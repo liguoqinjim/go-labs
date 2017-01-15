@@ -8,3 +8,4 @@
 |lab004|解析json，go-simplejson|
 |lab005|得到程序本身的路径|
 |lab006|读取文件，ioutil|
+|lab007|读取文件，os.File|
