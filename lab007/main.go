@@ -19,6 +19,8 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	//close a file
+	defer f.Close()
 
 	//读取5个字节
 	b1 := make([]byte, 5)
