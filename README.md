@@ -10,3 +10,4 @@
 |lab006|读取文件，ioutil|
 |lab007|读取文件，os.File|
 |lab008|读取文件，bufio|
+|lab009|mysql，go-sql-driver|
