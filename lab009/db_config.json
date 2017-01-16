@@ -1,0 +1,6 @@
+{
+    "DBHost": "db_host",
+    "DBUser": "db_user",
+    "DBPwd": "db_password",
+    "DBName": "test"
+}
