@@ -1,6 +1,6 @@
 {
-    "DBHost": "db_host",
-    "DBUser": "db_user",
-    "DBPwd": "db_password",
+    "DBHost": "127.0.0.1",
+    "DBUser": "root",
+    "DBPwd": "123456",
     "DBName": "test"
 }
