@@ -1,6 +1,6 @@
 {
-    "DBHost": "dbHost",
-    "DBUser": "root",
-    "DBPwd": "123456",
-    "DBName": "test"
+    "DBHost": "DBHost",
+    "DBUser": "DBUser",
+    "DBPwd": "DBPwd",
+    "DBName": "DBName"
 }
