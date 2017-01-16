@@ -1,6 +1,6 @@
 {
-    "DBHost": "127.0.0.22",
+    "DBHost": "dbHost",
     "DBUser": "root",
-    "DBPwd": "root123",
+    "DBPwd": "123456",
     "DBName": "test"
 }
