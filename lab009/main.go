@@ -33,7 +33,8 @@ func main() {
 	dbConfig = *getDBConfig(data)
 
 	//连接数据库
-	db, err := sql.Open("mysql", dbConfig.DBUser+":"+dbConfig.DBPwd+"@tcp("+dbConfig.DBHost+":3306)/"+dbConfig.DBName)
+	connectInfo := fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?charset=utf8&parseTime=True&loc=Local", dbConfig.DBUser, dbConfig.DBPwd, dbConfig.DBHost, dbConfig.DBName)
+	db, err := sql.Open("mysql", connectInfo)
 	if err != nil {
 		log.Fatal(err)
 	}
