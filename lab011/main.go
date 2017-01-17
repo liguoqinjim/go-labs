@@ -21,4 +21,6 @@ func main() {
 
 	n3, err := f.WriteString("Hello goNuts")
 	fmt.Printf("wrote %d bytes\n", n3)
+
+	f.Sync()
 }
