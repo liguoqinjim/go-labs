@@ -12,3 +12,4 @@
 |lab008|读取文件，bufio|
 |lab009|mysql，go-sql-driver|
 |lab010|写文件，ioutil|
+|lab011|写文件，os.File|
