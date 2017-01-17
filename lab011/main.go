@@ -11,6 +11,7 @@ func main() {
 	if err != nil {
 		log.Fatal(err)
 	}
+	defer f.Close()
 
 	d2 := []byte("Hello\ngo\n")
 	n2, err := f.Write(d2)

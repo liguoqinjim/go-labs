@@ -13,3 +13,4 @@
 |lab009|mysql，go-sql-driver|
 |lab010|写文件，ioutil|
 |lab011|写文件，os.File|
+|lab012|写文件，bufio|
