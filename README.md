@@ -15,3 +15,4 @@
 |lab011|写文件，os.File|
 |lab012|写文件，bufio|
 |lab013|读取StructTag|
+|lab014|环境变量|
