@@ -17,3 +17,4 @@
 |lab013|读取StructTag|
 |lab014|环境变量|
 |lab015|调用外部命令|
+|lab016|调用go fmt|
