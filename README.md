@@ -21,3 +21,4 @@
 |lab017|正则表达式|
 |lab018|string和[]byte的转换|
 |lab019|解析xml，xml->struct|
+|lab020|解析xml，struct->xml|
