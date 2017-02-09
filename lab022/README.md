@@ -8,3 +8,4 @@
 |lab022_4|channel directions|
 |lab022_5|select|
 |lab022_6|timeouts|
+|lab022_7|non-blocking channel operations|
