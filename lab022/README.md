@@ -12,3 +12,4 @@
 |lab022_08|closing channels|
 |lab022_09|range over channels|
 |lab022_10|timers|
+|lab022_11|tickers|
