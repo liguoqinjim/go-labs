@@ -13,3 +13,4 @@
 |lab022_09|range over channels|
 |lab022_10|timers|
 |lab022_11|tickers|
+|lab022_12|worker pools|
