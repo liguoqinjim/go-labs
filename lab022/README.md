@@ -9,3 +9,4 @@
 |lab022_5|select|
 |lab022_6|timeouts|
 |lab022_7|non-blocking channel operations|
+|lab022_8|closing channels|
