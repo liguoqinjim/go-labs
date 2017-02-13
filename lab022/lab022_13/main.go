@@ -6,6 +6,7 @@ import (
 )
 
 func main() {
+	//normal rate limiting
 	requests := make(chan int, 5)
 	for i := 1; i <= 5; i++ {
 		requests <- i
@@ -15,11 +16,11 @@ func main() {
 	limiter := time.Tick(time.Millisecond * 200)
 
 	for req := range requests {
-		<-limiter
+		<-limiter //limiting
 		fmt.Println("request", req, time.Now())
 	}
 
-	//burstyLimiter
+	//2 burstyLimiter bustryLimiter事先就<-了三个，那么前三个就不用等候这个rate limiting了
 	fmt.Println()
 	bustryLimiter := make(chan time.Time, 3)
 	for i := 0; i < 3; i++ {
