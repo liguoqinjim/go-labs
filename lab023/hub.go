@@ -1,7 +1,5 @@
 package main
 
-import "fmt"
-
 type Hub struct {
 	clients map[*Client]bool
 
@@ -29,12 +27,16 @@ func (h *Hub) run() {
 		case client := <-h.unregister:
 			if _, ok := h.clients[client]; ok {
 				delete(h.clients, client)
-				//todo close(client.send)
+				close(client.send)
 			}
 		case message := <-h.broadcast:
 			for client := range h.clients {
-				//todo
-				fmt.Println(message, client)
+				select {
+				case client.send <- message:
+				default:
+					close(client.send)
+					delete(h.clients, client)
+				}
 			}
 		}
 	}
