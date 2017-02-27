@@ -25,3 +25,5 @@
 |lab021|解析xml，struct->xml|
 |lab022|关于channel的几个实验|
 |lab023|websocket|
+|lab024|xls操作|
+|lab025|关于sync的几个实验|
