@@ -3,3 +3,4 @@
 |实验|简介|
 |---|---|
 |lab025_01|sync/atomic的使用|
+|lab025_02|sync.Mutex|
