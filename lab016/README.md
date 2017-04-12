@@ -1,7 +1,7 @@
-###调用go fmt
+### 调用go fmt
 运行环境:windows
 
-####运行结果
+#### 运行结果
 运行前:
 ![Imgur](http://i.imgur.com/p9xOrK2.png)
 
