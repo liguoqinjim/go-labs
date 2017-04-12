@@ -34,3 +34,4 @@
 |lab030|sokcet|
 |lab031|程序性能分析|
 |lab032|单元测试|
+|lab033|gops|
