@@ -16,7 +16,7 @@
 
 图里面显示的Duration:20.5079308s，这个时间和我们在程序里面计算的总共的运行时间是相同的。
 我们可以认为这个Duration就是我们的程序的实际运行时间。
-Duration的下面一行380ms of 380ms，现在看来是所有的goroutine的运行时间加起来。这个图片还开不太出来，我们下面贴一张slg游戏服务器的分析图片
+Duration的下面一行380ms of 380ms，现在看来是所有的goroutine的运行时间加起来。这个图片还看不太出来，我们下面贴一张slg游戏服务器的分析图片
 
 ![Imgur](http://i.imgur.com/i2368cb.png)
 
