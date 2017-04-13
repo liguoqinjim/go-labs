@@ -4,3 +4,4 @@
 |---|---|
 |lab001|gopsutil|
 |lab002|go tool pprof|
+|lab003|go tool trace|
