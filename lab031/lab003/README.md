@@ -1,4 +1,4 @@
-### go tool trace
+### go tool trace示例
 
 #### 运行命令
 `go tool trace trace.out`

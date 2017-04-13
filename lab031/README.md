@@ -4,4 +4,5 @@
 |---|---|
 |lab001|gopsutil|
 |lab002|go tool pprof|
-|lab003|go tool trace|
+|lab003|go tool trace示例|
+|lab004|go tool trace实验1|
