@@ -1,0 +1,73 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "W+UDF6H5I7spd9+8iXDbnFGKIo8=",
+			"path": "github.com/gorilla/websocket",
+			"revision": "a91eba7f97777409bc2c443f5534d41dd20c5720",
+			"revisionTime": "2017-03-19T17:27:27Z"
+		},
+		{
+			"checksumSHA1": "/Oir6RT0/pmfQf2yHBPSWIjbvwE=",
+			"path": "github.com/name5566/leaf",
+			"revision": "c82b2f95037c837d676e8bf3e0ac1fe54a51e83d",
+			"revisionTime": "2017-02-23T07:22:32Z"
+		},
+		{
+			"checksumSHA1": "y6E0ovsIXVw7Zod1/fbz9wZV/n4=",
+			"path": "github.com/name5566/leaf/chanrpc",
+			"revision": "c82b2f95037c837d676e8bf3e0ac1fe54a51e83d",
+			"revisionTime": "2017-02-23T07:22:32Z"
+		},
+		{
+			"checksumSHA1": "sowt7ZfJrH+Wf+rfTflhm1Tca9s=",
+			"path": "github.com/name5566/leaf/cluster",
+			"revision": "c82b2f95037c837d676e8bf3e0ac1fe54a51e83d",
+			"revisionTime": "2017-02-23T07:22:32Z"
+		},
+		{
+			"checksumSHA1": "As7QD82xhjAwg4791Wg0pY7r0L4=",
+			"path": "github.com/name5566/leaf/conf",
+			"revision": "c82b2f95037c837d676e8bf3e0ac1fe54a51e83d",
+			"revisionTime": "2017-02-23T07:22:32Z"
+		},
+		{
+			"checksumSHA1": "3DGP02mA3oHKzWZwbX+O2E2awuI=",
+			"path": "github.com/name5566/leaf/console",
+			"revision": "c82b2f95037c837d676e8bf3e0ac1fe54a51e83d",
+			"revisionTime": "2017-02-23T07:22:32Z"
+		},
+		{
+			"checksumSHA1": "ECx6CC5rqOL89b9Slzph0cTwpVY=",
+			"path": "github.com/name5566/leaf/go",
+			"revision": "c82b2f95037c837d676e8bf3e0ac1fe54a51e83d",
+			"revisionTime": "2017-02-23T07:22:32Z"
+		},
+		{
+			"checksumSHA1": "hDDoUmN8rbcixW2MYmRuN/HDffk=",
+			"path": "github.com/name5566/leaf/log",
+			"revision": "c82b2f95037c837d676e8bf3e0ac1fe54a51e83d",
+			"revisionTime": "2017-02-23T07:22:32Z"
+		},
+		{
+			"checksumSHA1": "u5iaNOTVoIbuXk/9qHmBfehnO/0=",
+			"path": "github.com/name5566/leaf/module",
+			"revision": "c82b2f95037c837d676e8bf3e0ac1fe54a51e83d",
+			"revisionTime": "2017-02-23T07:22:32Z"
+		},
+		{
+			"checksumSHA1": "FTr8X1dsYGZDHTFcddfgCs7Zsg4=",
+			"path": "github.com/name5566/leaf/network",
+			"revision": "c82b2f95037c837d676e8bf3e0ac1fe54a51e83d",
+			"revisionTime": "2017-02-23T07:22:32Z"
+		},
+		{
+			"checksumSHA1": "ldrELMgmEp92+sMLAxjdAPOygh4=",
+			"path": "github.com/name5566/leaf/timer",
+			"revision": "c82b2f95037c837d676e8bf3e0ac1fe54a51e83d",
+			"revisionTime": "2017-02-23T07:22:32Z"
+		}
+	],
+	"rootPath": "lab035/lab001"
+}
