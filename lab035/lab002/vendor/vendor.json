@@ -1,0 +1,13 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "LI4rKGNHWKKez6pOjhi5R1MxZc4=",
+			"path": "github.com/liguoqinjim/pholcus",
+			"revision": "6012e0fec7ca65066b936c0f2a33e82d63f3fc80",
+			"revisionTime": "2017-01-11T03:35:06Z"
+		}
+	],
+	"rootPath": "lab035/lab002"
+}
