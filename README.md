@@ -35,3 +35,4 @@
 |lab031|程序性能分析|
 |lab032|单元测试|
 |lab033|gops|
+|lab034|Golang比较两个slice是否相等|
