@@ -17,7 +17,7 @@ func main() {
 
 	server := &http.Server{}
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Println(os.Getgid())
+		fmt.Println(os.Getgid(), html.EscapeString(r.URL.Path))
 		fmt.Fprintf(w, "Hello, %q\n", html.EscapeString(r.URL.Path))
 	})
 
