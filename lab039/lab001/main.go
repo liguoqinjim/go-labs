@@ -48,6 +48,9 @@ func (db *Database) LookupPlayerItem(id int) *PlayerItem {
 
 func (db *Database) InsertPlayerItem(playerItem *PlayerItem) {
 	db.playerItem[playerItem.Id] = playerItem
+
+	//这里一开始还没理解，为什么db.transLogs明明是[]TransLog的，但这里是可以用&
+	//这是因为我们在下面的代码中是*PlayerItemTransLog来实现TransLog这个接口的，
 	db.transLogs = append(db.transLogs, &PlayerItemTransLog{
 		Type: INSERT, New: playerItem,
 	})
