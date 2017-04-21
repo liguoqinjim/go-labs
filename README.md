@@ -43,5 +43,4 @@
 |lab039|内存数据库事务demo|
 |lab040|grpc|
 |lab041|mock|
-|lab042|socket|
-|lab043|SO_REUSEPORT|
+|lab042|SO_REUSEPORT|
