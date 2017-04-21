@@ -1,6 +1,19 @@
 ### 示例代码
 
 #### 运行结果
+##### win10
+会报错
+
+![Imgur](http://i.imgur.com/VVusg6r.png)
+
+![Imgur](http://i.imgur.com/BVvH9Ry.png)
+
+##### ubuntu(linux 3.19.0)
+不会报错
+
+![Imgur](http://i.imgur.com/Wu0uI1Q.png)
+
+![Imgur](http://i.imgur.com/4m7TmiU.png)
 
 #### 参考资料
 1. https://github.com/kavu/go_reuseport
