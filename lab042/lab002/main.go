@@ -6,5 +6,6 @@ import (
 )
 
 func main() {
-	reuseport.Link("tcp", ":8881")
+	//reuseport.Link("tcp", ":8881")
+
 }
