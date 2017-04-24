@@ -36,7 +36,7 @@
 |lab032|单元测试|
 |lab033|gops|
 |lab034|Golang比较两个slice是否相等|
-|lab035|govendor|
+|lab035|包依赖管理|
 |lab036|日志库|
 |lab037|funny/link|
 |lab038|protobuf|
