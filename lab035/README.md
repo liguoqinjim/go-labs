@@ -6,7 +6,10 @@
 
 #### 使用建议
 现在用下来感觉是glide比govendor好。
-`https://github.com/emirpasic/gods#arraylist`就拿这个包来说，govendor直接安装是有问题的，但是glide没有任何问题
+`https://github.com/emirpasic/gods#arraylist`就拿这个包来说，govendor直接安装是有问题的，但是glide没有任何问题。
+
+#### 后续实验
+之后还要试下dep，看看效果如何
 
 |实验|简介|
 |---|---|
