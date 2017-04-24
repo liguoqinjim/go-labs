@@ -1,0 +1,4 @@
+package: lab035/lab003
+import:
+- package: github.com/emirpasic/gods
+  version: ^1.9.0
