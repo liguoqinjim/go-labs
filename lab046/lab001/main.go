@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"encoding/hex"
+	"fmt"
 	"github.com/funny/snet/go"
 	"io"
 	"log"
@@ -46,6 +47,7 @@ func main() {
 			return
 		}
 
+		fmt.Println("io.Copy")
 		io.Copy(conn, conn)
 		conn.Close()
 		log.Println("copy exit")
@@ -61,9 +63,6 @@ func main() {
 		return conn, nil
 	})
 	defer conn.Close()
-
-	log.Println(conn.LocalAddr())
-	log.Println(conn.RemoteAddr())
 
 	for i := 0; i < 2; i++ {
 		b := RandBytes(100)

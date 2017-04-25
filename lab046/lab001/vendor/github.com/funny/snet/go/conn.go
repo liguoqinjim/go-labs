@@ -70,17 +70,19 @@ func Dial(config Config, dialer Dialer) (net.Conn, error) {
 	)
 
 	privKey, pubKey := dh64.KeyPair()
+	//fmt.Println("客户端连接生成秘钥", privKey, pubKey)
 	binary.LittleEndian.PutUint64(field2, pubKey)
-	fmt.Println("Dial:", privKey, pubKey)
 	if _, err := conn.Write(buf[:]); err != nil {
 		return nil, err
 	}
 
+	//收服务器返回
 	if _, err := io.ReadFull(conn, buf[:16]); err != nil {
 		return nil, err
 	}
 
 	srvPubKey := binary.LittleEndian.Uint64(field1)
+	//fmt.Println("客户端收到srvPubKey", srvPubKey)
 	secret := dh64.Secret(privKey, srvPubKey)
 
 	sconn, err := newConn(conn, 0, secret, config)
@@ -184,6 +186,7 @@ func (c *Conn) TryReconn() {
 }
 
 func (c *Conn) Read(b []byte) (n int, err error) {
+	fmt.Println("liguoqinjim read")
 	c.trace("Read(%d)", len(b))
 	if len(b) == 0 {
 		return
@@ -237,6 +240,7 @@ func (c *Conn) Read(b []byte) (n int, err error) {
 }
 
 func (c *Conn) Write(b []byte) (n int, err error) {
+	fmt.Println("liguoqinjim c write")
 	c.trace("Write(%d)", len(b))
 	if len(b) == 0 {
 		return

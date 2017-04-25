@@ -107,6 +107,7 @@ func (l *Listener) handshake(conn net.Conn) {
 		l.trace("new conn")
 
 		connPubKey := binary.LittleEndian.Uint64(field2)
+		fmt.Println("服务端收到公钥", connPubKey)
 		if connPubKey == 0 {
 			l.trace("zero public key")
 			conn.Close()
@@ -114,7 +115,9 @@ func (l *Listener) handshake(conn net.Conn) {
 		}
 
 		privKey, pubKey := dh64.KeyPair()
+		fmt.Println("服务器生成秘钥", privKey, pubKey)
 		secret := dh64.Secret(privKey, connPubKey)
+		fmt.Println("服务器生成secret", secret)
 
 		connID = atomic.AddUint64(&l.atomicConnID, 1)
 		sconn, err := newConn(conn, connID, secret, l.config)
