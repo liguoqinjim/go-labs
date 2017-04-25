@@ -13,7 +13,7 @@ func main() {
 	addr := "0.0.0.0:8881"
 
 	config := snet.Config{
-		EnableCrypt:        false,
+		EnableCrypt:        true,
 		HandshakeTimeout:   time.Second * 5,
 		RewriterBufferSize: 1024,
 		ReconnWaitTimeout:  time.Minute * 5,
@@ -48,6 +48,7 @@ func main() {
 		}
 		result := buffer[:n]
 		fmt.Println("收到返回", string(result))
+		fmt.Println("收到返回raw", result)
 
 		//sleep
 		time.Sleep(time.Second * 2)

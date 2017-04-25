@@ -9,6 +9,7 @@ import (
 	"sync"
 	"time"
 
+	"fmt"
 	"github.com/funny/crypto/dh64/go"
 )
 
@@ -251,9 +252,11 @@ func (c *Conn) Write(b []byte) (n int, err error) {
 		c.writeMutex.Unlock()
 	}()
 
+	fmt.Println("加密前", b)
 	if c.enableCrypt {
 		c.writeCipher.XORKeyStream(b, b)
 	}
+	fmt.Println("加密后", b)
 
 	c.rewriter.Push(b)
 	c.writeCount += uint64(len(b))
