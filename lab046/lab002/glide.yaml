@@ -1,0 +1,5 @@
+package: lab046/lab002
+import:
+- package: github.com/funny/snet
+- package: github.com/funny/crypto
+- package: github.com/funny/utest

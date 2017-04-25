@@ -1,0 +1,10 @@
+hash: 9b37e9f22ff5f29532a16902a7ee74a08c2830a49080519ab74e190b1ac13e68
+updated: 2017-04-25T19:28:15.944251+08:00
+imports:
+- name: github.com/funny/crypto
+  version: d0152d76d92aa73df44de7935d11d1f6390a2a30
+- name: github.com/funny/snet
+  version: c3be73502963cf32c806779b29fbc7ba9d818099
+- name: github.com/funny/utest
+  version: 43870a37450048a2862e573cfcc7914fd7671c8a
+testImports: []
