@@ -38,6 +38,7 @@ func (server *Server) Listener() net.Listener {
 
 func (server *Server) Serve() error {
 	for {
+		//收连接
 		conn, err := Accept(server.listener)
 		if err != nil {
 			return err
@@ -49,6 +50,7 @@ func (server *Server) Serve() error {
 				conn.Close()
 				return
 			}
+			//创建session
 			session := server.manager.NewSession(codec, server.sendChanSize)
 			server.handler.HandleSession(session)
 		}()

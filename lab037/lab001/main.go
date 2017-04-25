@@ -3,7 +3,6 @@ package main
 import (
 	"log"
 
-	"fmt"
 	"github.com/funny/link"
 	"github.com/funny/link/codec"
 )
@@ -17,6 +16,7 @@ type AddRsp struct {
 }
 
 func main() {
+	//在codec中注册消息类型
 	json := codec.Json()
 	json.Register(AddReq{})
 	json.Register(AddRsp{})
@@ -24,7 +24,6 @@ func main() {
 	server, err := link.Listen("tcp", "0.0.0.0:0", json, 0 /* sync send */, link.HandlerFunc(serverSessionLoop))
 	checkErr(err)
 	addr := server.Listener().Addr().String()
-	fmt.Println("addr=", addr)
 	go server.Serve()
 
 	client, err := link.Dial("tcp", addr, json, 0)
