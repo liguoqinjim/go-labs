@@ -3,7 +3,6 @@ package main
 import (
 	"bytes"
 	"encoding/hex"
-	"fmt"
 	"github.com/funny/snet/go"
 	"io"
 	"log"
@@ -47,7 +46,6 @@ func main() {
 			return
 		}
 
-		fmt.Println("io.Copy")
 		io.Copy(conn, conn)
 		conn.Close()
 		log.Println("copy exit")

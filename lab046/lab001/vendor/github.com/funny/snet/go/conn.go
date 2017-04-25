@@ -186,7 +186,6 @@ func (c *Conn) TryReconn() {
 }
 
 func (c *Conn) Read(b []byte) (n int, err error) {
-	fmt.Println("liguoqinjim read")
 	c.trace("Read(%d)", len(b))
 	if len(b) == 0 {
 		return
@@ -240,7 +239,6 @@ func (c *Conn) Read(b []byte) (n int, err error) {
 }
 
 func (c *Conn) Write(b []byte) (n int, err error) {
-	fmt.Println("liguoqinjim c write")
 	c.trace("Write(%d)", len(b))
 	if len(b) == 0 {
 		return
