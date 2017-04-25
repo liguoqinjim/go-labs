@@ -1,0 +1,14 @@
+hash: 72132544e82f0233d1e6e5962cbbb6ef6e2fde4550288e92fb54240884ac971c
+updated: 2017-04-25T13:56:44.2291568+08:00
+imports:
+- name: github.com/funny/crypto
+  version: d0152d76d92aa73df44de7935d11d1f6390a2a30
+  subpackages:
+  - dh64/go
+- name: github.com/funny/snet
+  version: c3be73502963cf32c806779b29fbc7ba9d818099
+  subpackages:
+  - go
+- name: github.com/funny/utest
+  version: 43870a37450048a2862e573cfcc7914fd7671c8a
+testImports: []

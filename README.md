@@ -47,3 +47,4 @@
 |lab043|+build(build tag)|
 |lab044|go-fuzz|
 |lab045|reflect|
+|lab046|funny/snet|
