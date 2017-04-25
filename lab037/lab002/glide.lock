@@ -1,0 +1,6 @@
+hash: 7b52428df5c43d2f2d4f9cc2d913043cf7152f8133a432d75a5998129df1ab7b
+updated: 2017-04-25T10:35:48.7219177+08:00
+imports:
+- name: github.com/funny/link
+  version: f4ec00735c7f5262675b7350fe451a8c36d0928a
+testImports: []

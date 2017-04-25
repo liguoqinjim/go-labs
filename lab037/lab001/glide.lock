@@ -1,0 +1,8 @@
+hash: b7965197424a5c0f26e3bb9538431e24efbc3dd6d35b21b28f93d49e38b338bd
+updated: 2017-04-25T10:45:01.5761465+08:00
+imports:
+- name: github.com/funny/link
+  version: 4c3ad4ff4295b1feea87eebb3f99c9b927a3c78c
+  subpackages:
+  - codec
+testImports: []

@@ -1,0 +1,3 @@
+package: lab037/lab001
+import:
+- package: github.com/funny/link
