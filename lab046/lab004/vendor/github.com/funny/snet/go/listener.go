@@ -6,6 +6,7 @@ import (
 	"encoding/binary"
 	"github.com/funny/crypto/dh64/go"
 	"io"
+	"log"
 	"net"
 	"os"
 	"sync"
@@ -111,6 +112,7 @@ func (l *Listener) handshake(conn net.Conn) {
 		secret := dh64.Secret(privKey, connPubKey)
 
 		connID = atomic.AddUint64(&l.atomicConnID, 1)
+		log.Println("connID=", connID)
 		sconn, err := newConn(conn, connID, secret, l.config)
 		if err != nil {
 			l.trace("new conn failed: %s", err)
