@@ -10,7 +10,7 @@ import (
 
 func main() {
 	config := snet.Config{
-		EnableCrypt:        false,
+		EnableCrypt:        true,
 		HandshakeTimeout:   time.Second * 5,
 		RewriterBufferSize: 1024,
 		ReconnWaitTimeout:  time.Minute * 5,
