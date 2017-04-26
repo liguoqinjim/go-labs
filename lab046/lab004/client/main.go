@@ -64,10 +64,11 @@ func main() {
 	fmt.Println("\n\n")
 	for i := 0; i < 10; i++ {
 		content := "content" + strconv.Itoa(i+10)
-		if _, err := conn.Write([]byte(content)); err != nil {
+		if n, err := conn.Write([]byte(content)); err != nil {
 			fmt.Println("发送数据错误", err)
+		} else {
+			fmt.Println("发送数据成功", n)
 		}
-
 		time.Sleep(time.Second * 5)
 	}
 

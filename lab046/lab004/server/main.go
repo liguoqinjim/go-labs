@@ -48,7 +48,6 @@ func handleConn(conn net.Conn) {
 		//返回客户端
 		data := string(content) + "<-server"
 		conn.Write([]byte(data))
-		conn.Close()
 	}
 }
 
