@@ -5,11 +5,12 @@ import (
 	"github.com/funny/snet/go"
 	"log"
 	"net"
+	"strconv"
 	"time"
 )
 
 func main() {
-	addr := "0.0.0.0:8881"
+	addr := "192.168.3.118:8881"
 
 	config := snet.Config{
 		EnableCrypt:        false,
@@ -49,14 +50,25 @@ func main() {
 	time.Sleep(time.Second * 1)
 
 	//模拟连接错误
+	//fmt.Println("\n\n")
+	//conn.(*snet.Conn).GetInfo()
+	////conn.Close()
+	//content = "content2"
+	//if _, err := conn.Write([]byte(content)); err != nil {
+	//	log.Println("write failed", err)
+	//	conn.(*snet.Conn).GetInfo()
+	//	conn.(*snet.Conn).TryReconn()
+	//}
+
+	//模拟错误
 	fmt.Println("\n\n")
-	conn.(*snet.Conn).GetInfo()
-	//conn.Close()
-	content = "content2"
-	if _, err := conn.Write([]byte(content)); err != nil {
-		log.Println("write failed", err)
-		conn.(*snet.Conn).GetInfo()
-		conn.(*snet.Conn).TryReconn()
+	for i := 0; i < 10; i++ {
+		content := "content" + strconv.Itoa(i+10)
+		if _, err := conn.Write([]byte(content)); err != nil {
+			fmt.Println("发送数据错误", err)
+		}
+
+		time.Sleep(time.Second * 5)
 	}
 
 	//等待
