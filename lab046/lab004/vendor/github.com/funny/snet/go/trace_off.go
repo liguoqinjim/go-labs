@@ -1,4 +1,4 @@
-// +build !snet_trace
+// +build snet_trace
 
 package snet
 

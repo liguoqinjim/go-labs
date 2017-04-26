@@ -169,7 +169,6 @@ func (c *Conn) SetReconnWaitTimeout(d time.Duration) {
 
 func (c *Conn) Close() error {
 	c.trace("Close()")
-	fmt.Println("liguoqinjim close")
 	c.closeOnce.Do(func() {
 		c.closed = true
 		if c.listener != nil {
@@ -365,6 +364,10 @@ func (c *Conn) handleReconn(conn net.Conn, writeCount, readCount uint64) {
 	done = c.doReconn(conn, writeCount, readCount)
 }
 
+func (c *Conn) GetInfo() {
+	fmt.Println("Conn.info", c.closed)
+}
+
 func (c *Conn) tryReconn(badConn net.Conn) {
 	var done bool
 
@@ -394,16 +397,19 @@ func (c *Conn) tryReconn(badConn net.Conn) {
 	binary.LittleEndian.PutUint64(buf[0:8], c.id)
 	binary.LittleEndian.PutUint64(buf[8:16], c.writeCount)
 	binary.LittleEndian.PutUint64(buf[16:24], c.readCount+c.rereader.count)
+	fmt.Println("reConn!", c.id, c.writeCount, c.readCount, c.rereader.count)
 	hash := md5.New()
 	hash.Write(buf[0:24])
 	hash.Write(c.key[:])
 	copy(buf[24:], hash.Sum(nil))
 
+	fmt.Println("c.closed", c.closed)
 	for i := 0; !c.closed; i++ {
 		if i > 0 {
 			time.Sleep(time.Second * 3)
 		}
 
+		fmt.Println("开始重连111")
 		c.trace("reconn dial")
 		conn, err := c.dialer()
 		if err != nil {
@@ -425,6 +431,7 @@ func (c *Conn) tryReconn(badConn net.Conn) {
 			conn.Close()
 			continue
 		}
+		fmt.Println("收到服务器返回重连消息")
 
 		writeCount := binary.LittleEndian.Uint64(buf2[0:8])
 		readCount := binary.LittleEndian.Uint64(buf2[8:16])
