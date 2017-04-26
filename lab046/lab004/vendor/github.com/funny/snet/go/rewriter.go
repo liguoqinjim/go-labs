@@ -11,6 +11,7 @@ type rewriter struct {
 }
 
 func (r *rewriter) Push(b []byte) {
+	//写数据之前 先把数据压到data中
 	if len(b) >= len(r.data) {
 		drop := len(b) - len(r.data)
 		copy(r.data, b[drop:])

@@ -30,7 +30,7 @@ func main() {
 		log.Println(err)
 	}
 
-	for i := 0; i < 3; i++ {
+	for i := 0; i < 1; i++ {
 		content := "content" + strconv.Itoa(i)
 		data := []byte(content)
 

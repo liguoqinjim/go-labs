@@ -9,7 +9,9 @@ import (
 	"sync"
 	"time"
 
+	"fmt"
 	"github.com/funny/crypto/dh64/go"
+	"log"
 )
 
 var _ net.Conn = &Conn{}
@@ -68,19 +70,23 @@ func Dial(config Config, dialer Dialer) (net.Conn, error) {
 		field2 = buf[8:16]
 	)
 
+	//DH64
 	privKey, pubKey := dh64.KeyPair()
 	binary.LittleEndian.PutUint64(field2, pubKey)
 	if _, err := conn.Write(buf[:]); err != nil {
 		return nil, err
 	}
 
+	//读取返回数据
 	if _, err := io.ReadFull(conn, buf[:16]); err != nil {
 		return nil, err
 	}
 
+	//DH64协商出的秘钥，用于rc4
 	srvPubKey := binary.LittleEndian.Uint64(field1)
 	secret := dh64.Secret(privKey, srvPubKey)
 
+	//新建连接snet.Conn 分配rc4的cipher
 	sconn, err := newConn(conn, 0, secret, config)
 	if err != nil {
 		return nil, err
@@ -88,6 +94,7 @@ func Dial(config Config, dialer Dialer) (net.Conn, error) {
 
 	sconn.readCipher.XORKeyStream(field2, field2)
 	sconn.id = binary.LittleEndian.Uint64(field2)
+	log.Println("connId=", sconn.id)
 	sconn.dialer = dialer
 	return sconn, nil
 }
@@ -106,6 +113,7 @@ func newConn(base net.Conn, id, secret uint64, config Config) (conn *Conn, err e
 		},
 	}
 
+	//保存DH64协商好的key
 	binary.LittleEndian.PutUint64(conn.key[:], secret)
 
 	conn.writeCipher, err = rc4.NewCipher(conn.key[:])
@@ -161,6 +169,7 @@ func (c *Conn) SetReconnWaitTimeout(d time.Duration) {
 
 func (c *Conn) Close() error {
 	c.trace("Close()")
+	fmt.Println("liguoqinjim close")
 	c.closeOnce.Do(func() {
 		c.closed = true
 		if c.listener != nil {
@@ -199,18 +208,22 @@ func (c *Conn) Read(b []byte) (n int, err error) {
 	}()
 
 	for {
+		//查看rereader里面是否有数据
 		n, err = c.rereader.Pull(b), nil
 		c.trace("read from queue, n = %d", n)
 		if n > 0 {
 			break
 		}
 
+		//net.Conn读取数据
 		base := c.base
 		n, err = base.Read(b[n:])
 		if err == nil {
 			c.trace("read from conn, n = %d", n)
 			break
 		}
+
+		//处理错误
 		base.Close()
 
 		if c.listener == nil {
@@ -235,6 +248,7 @@ func (c *Conn) Read(b []byte) (n int, err error) {
 
 func (c *Conn) Write(b []byte) (n int, err error) {
 	c.trace("Write(%d)", len(b))
+	fmt.Println("发送数据长度:", len(b), string(b))
 	if len(b) == 0 {
 		return
 	}
@@ -263,6 +277,8 @@ func (c *Conn) Write(b []byte) (n int, err error) {
 	if err == nil {
 		return
 	}
+
+	//出错之后的操作
 	base.Close()
 
 	if c.listener == nil {
@@ -323,7 +339,8 @@ func (c *Conn) handleReconn(conn net.Conn, writeCount, readCount uint64) {
 	defer c.reconnOpMutex.Unlock()
 
 	c.base.Close()
-	c.trace("handleReconn() wait Read() or Write()")
+	c.trace("handleReconn() wait Read() or " +
+		")")
 	c.reconnMutex.Lock()
 	readWaiting := c.readWaiting
 	writeWaiting := c.writeWaiting
