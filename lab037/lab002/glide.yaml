@@ -1,3 +1,4 @@
 package: lab037/lab002
 import:
 - package: github.com/funny/link
+- package: github.com/funny/utest
