@@ -1,4 +1,3 @@
 package: lab037/lab002
 import:
 - package: github.com/funny/link
-  version: ^2.6.0

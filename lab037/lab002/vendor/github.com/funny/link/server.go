@@ -1,33 +1,34 @@
 package link
 
-import (
-	"net"
-	"sync"
-	"time"
-)
+import "net"
 
 type Server struct {
-	listener  net.Listener
-	codecType CodecType
-
-	// About sessions
-	maxSessionId uint64
-	sessions     map[uint64]*Session
-	sessionMutex sync.RWMutex
-
-	// About server start and stop
-	stopOnce sync.Once
-	stopWait sync.WaitGroup
-
-	// Server state
-	State interface{}
+	manager      *Manager
+	listener     net.Listener
+	protocol     Protocol
+	handler      Handler
+	sendChanSize int
 }
 
-func NewServer(listener net.Listener, codecType CodecType) *Server {
+type Handler interface {
+	HandleSession(*Session)
+}
+
+var _ Handler = HandlerFunc(nil)
+
+type HandlerFunc func(*Session)
+
+func (f HandlerFunc) HandleSession(session *Session) {
+	f(session)
+}
+
+func NewServer(listener net.Listener, protocol Protocol, sendChanSize int, handler Handler) *Server {
 	return &Server{
-		listener:  listener,
-		codecType: codecType,
-		sessions:  make(map[uint64]*Session),
+		manager:      NewManager(),
+		listener:     listener,
+		protocol:     protocol,
+		handler:      handler,
+		sendChanSize: sendChanSize,
 	}
 }
 
@@ -35,84 +36,30 @@ func (server *Server) Listener() net.Listener {
 	return server.listener
 }
 
-func (server *Server) Accept() (*Session, error) {
-	var tempDelay time.Duration
+func (server *Server) Serve() error {
 	for {
-		conn, err := server.listener.Accept()
+		conn, err := Accept(server.listener)
 		if err != nil {
-			if ne, ok := err.(net.Error); ok && ne.Temporary() {
-				if tempDelay == 0 {
-					tempDelay = 5 * time.Millisecond
-				} else {
-					tempDelay *= 2
-				}
-				if max := 1 * time.Second; tempDelay > max {
-					tempDelay = max
-				}
-				time.Sleep(tempDelay)
-				continue
-			}
-			return nil, err
+			return err
 		}
-		tempDelay = 0
-		return server.newSession(conn), nil
+
+		go func() {
+			codec, err := server.protocol.NewCodec(conn)
+			if err != nil {
+				conn.Close()
+				return
+			}
+			session := server.manager.NewSession(codec, server.sendChanSize)
+			server.handler.HandleSession(session)
+		}()
 	}
+}
+
+func (server *Server) GetSession(sessionID uint64) *Session {
+	return server.manager.GetSession(sessionID)
 }
 
 func (server *Server) Stop() {
-	server.stopOnce.Do(func() {
-		server.listener.Close()
-		server.closeSessions()
-		server.stopWait.Wait()
-	})
-}
-
-func (server *Server) GetSession(sessionId uint64) *Session {
-	server.sessionMutex.RLock()
-	defer server.sessionMutex.RUnlock()
-	session, _ := server.sessions[sessionId]
-	return session
-}
-
-func (server *Server) newSession(conn net.Conn) *Session {
-	session := NewSession(conn, server.codecType)
-	server.putSession(session)
-	return session
-}
-
-func (server *Server) putSession(session *Session) {
-	server.sessionMutex.Lock()
-	defer server.sessionMutex.Unlock()
-
-	session.AddCloseCallback(server, func() { server.delSession(session) })
-	server.sessions[session.id] = session
-	server.stopWait.Add(1)
-}
-
-func (server *Server) delSession(session *Session) {
-	server.sessionMutex.Lock()
-	defer server.sessionMutex.Unlock()
-
-	session.RemoveCloseCallback(server)
-	delete(server.sessions, session.id)
-	server.stopWait.Done()
-}
-
-func (server *Server) copySessions() []*Session {
-	server.sessionMutex.Lock()
-	defer server.sessionMutex.Unlock()
-
-	sessions := make([]*Session, 0, len(server.sessions))
-	for _, session := range server.sessions {
-		sessions = append(sessions, session)
-	}
-	return sessions
-}
-
-func (server *Server) closeSessions() {
-	// copy session to avoid deadlock
-	sessions := server.copySessions()
-	for _, session := range sessions {
-		session.Close()
-	}
+	server.listener.Close()
+	server.manager.Dispose()
 }
