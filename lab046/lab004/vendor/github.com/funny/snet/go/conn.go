@@ -173,7 +173,7 @@ func (c *Conn) Close() error {
 		c.closed = true
 		if c.listener != nil {
 			//liguoqinjim 暂时去掉这个代码 只是为了测试
-			//c.listener.delConn(c.id)
+			c.listener.delConn(c.id)
 		}
 		close(c.closeChan)
 	})
@@ -280,10 +280,12 @@ func (c *Conn) Write(b []byte) (n int, err error) {
 	//出错之后的操作
 	base.Close()
 
+	//重连操作
 	if c.listener == nil {
 		go c.tryReconn(base)
 	}
 
+	//等待重连
 	if c.waitReconn('w', c.writeWaitChan) {
 		n, err = len(b), nil
 	}
@@ -330,6 +332,7 @@ func (c *Conn) waitReconn(who byte, waitChan chan struct{}) (done bool) {
 	}
 }
 
+//只有服务器端会调用 用来处理连接
 func (c *Conn) handleReconn(conn net.Conn, writeCount, readCount uint64) {
 	var done bool
 
@@ -382,6 +385,7 @@ func (c *Conn) tryReconn(badConn net.Conn) {
 	writeWaiting := c.writeWaiting
 	defer func() {
 		c.reconnMutex.Unlock()
+		//重连操作完成，调用wakeup来进行重读和重写
 		if done {
 			c.wakeUp(readWaiting, writeWaiting)
 		}
@@ -449,7 +453,7 @@ func (c *Conn) doReconn(conn net.Conn, writeCount, readCount uint64) (reconnDone
 		conn.RemoteAddr(), writeCount, readCount, c.writeCount, c.readCount,
 	)
 
-	if writeCount < c.readCount {
+	if writeCount < c.readCount { //客户端实际写的数据还没服务器读过的数据多，返回错
 		c.trace("writeCount < c.readCount")
 		return
 	}
@@ -464,7 +468,7 @@ func (c *Conn) doReconn(conn net.Conn, writeCount, readCount uint64) (reconnDone
 		return
 	}
 
-	if writeCount != c.readCount {
+	if writeCount != c.readCount { //客户端写的数据和服务器收到的数据长度不符
 		rereadWaitChan := make(chan bool)
 
 		defer func() {
@@ -483,6 +487,7 @@ func (c *Conn) doReconn(conn net.Conn, writeCount, readCount uint64) (reconnDone
 				"reread, writeCount = %d, c.readCount = %d, n = %d",
 				writeCount, c.readCount, n,
 			)
+			//去读取数据
 			rereadWaitChan <- c.rereader.Reread(conn, n)
 		}()
 	}

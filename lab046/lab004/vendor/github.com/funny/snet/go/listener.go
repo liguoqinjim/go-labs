@@ -136,6 +136,7 @@ func (l *Listener) handshake(conn net.Conn) {
 		case <-l.closeChan:
 		}
 	default:
+		//重连操作
 		l.trace("reconn")
 
 		sconn, exists := l.getConn(connID)

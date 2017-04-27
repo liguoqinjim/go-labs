@@ -33,7 +33,7 @@ func (r *rereader) Pull(b []byte) (n int) {
 	return
 }
 
-func (r *rereader) Reread(rd io.Reader, n int) bool {
+func (r *rereader) Reread(rd io.Reader, n int) bool { //从客户端读取没有收到的数据
 	b := make([]byte, n)
 	if _, err := io.ReadFull(rd, b); err != nil {
 		return false

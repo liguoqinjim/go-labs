@@ -58,7 +58,7 @@ func handleConn(conn net.Conn) {
 		} else {
 			log.Println("write success", content)
 		}
-		time.Sleep(time.Second * 3)
+		time.Sleep(time.Second * 5)
 	}
 }
 
