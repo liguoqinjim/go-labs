@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	addr := "192.168.3.118:8881"
+	addr := "localhost:8881"
 
 	config := snet.Config{
 		EnableCrypt:        false,
@@ -32,7 +32,6 @@ func main() {
 
 	//正常发送一次数据
 	content := "content1"
-
 	if _, err := conn.Write([]byte(content)); err != nil {
 		log.Println("write failed", err)
 		return

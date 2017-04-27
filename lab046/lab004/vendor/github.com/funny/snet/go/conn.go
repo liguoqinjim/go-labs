@@ -172,7 +172,8 @@ func (c *Conn) Close() error {
 	c.closeOnce.Do(func() {
 		c.closed = true
 		if c.listener != nil {
-			c.listener.delConn(c.id)
+			//liguoqinjim 暂时去掉这个代码 只是为了测试
+			//c.listener.delConn(c.id)
 		}
 		close(c.closeChan)
 	})

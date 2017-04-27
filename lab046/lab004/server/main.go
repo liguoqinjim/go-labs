@@ -36,6 +36,7 @@ func main() {
 func handleConn(conn net.Conn) {
 	buffer := make([]byte, 2048)
 
+	i := 0
 	for {
 		n, err := conn.Read(buffer)
 		if err != nil {
@@ -48,6 +49,13 @@ func handleConn(conn net.Conn) {
 		//返回客户端
 		data := string(content) + "<-server"
 		conn.Write([]byte(data))
+
+		//模拟断开连接
+		if i == 3{
+
+		}
+		conn.Close()
+		i++
 	}
 }
 
