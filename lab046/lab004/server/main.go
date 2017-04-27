@@ -69,6 +69,7 @@ func handleConn(conn net.Conn) {
 func sender(conn net.Conn) {
 	blood := 100
 	for i := 0; i < 10; i++ {
+		time.Sleep(time.Second * 2)
 		blood -= rand.Intn(8) + 1
 		content := "blood:" + strconv.Itoa(blood)
 
