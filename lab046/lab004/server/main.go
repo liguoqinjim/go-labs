@@ -3,7 +3,6 @@ package main
 import (
 	"github.com/funny/snet/go"
 	"log"
-	"math"
 	"math/rand"
 	"net"
 	"os"
