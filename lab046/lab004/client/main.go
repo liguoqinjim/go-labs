@@ -12,7 +12,7 @@ import (
 )
 
 func main() {
-	addr := "127.0.0.1:8881"
+	addr := "192.168.116.130:8881"
 
 	config := snet.Config{
 		EnableCrypt:        false,
@@ -35,6 +35,7 @@ func main() {
 
 	//发送数据
 	go handleConn(conn)
+	go listenConn(conn)
 
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
@@ -57,6 +58,21 @@ func handleConn(conn net.Conn) {
 		} else {
 			log.Println("write success", content)
 		}
-		time.Sleep(time.Second)
+		time.Sleep(time.Second * 3)
+	}
+}
+
+func listenConn(conn net.Conn) {
+	buffer := make([]byte, 2048)
+
+	for {
+		n, err := conn.Read(buffer)
+		if err != nil {
+			log.Println("read error", err)
+			continue
+		}
+
+		data := buffer[:n]
+		log.Println("收到数据", string(data))
 	}
 }

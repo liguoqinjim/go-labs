@@ -3,9 +3,12 @@ package main
 import (
 	"github.com/funny/snet/go"
 	"log"
+	"math"
+	"math/rand"
 	"net"
 	"os"
 	"os/signal"
+	"strconv"
 	"syscall"
 	"time"
 )
@@ -32,6 +35,7 @@ func main() {
 			continue
 		}
 		go handleConn(conn)
+		go sender(conn)
 	}
 
 	sigs := make(chan os.Signal, 1)
@@ -60,6 +64,18 @@ func handleConn(conn net.Conn) {
 		//	break
 		//}
 		i++
+	}
+}
+
+func sender(conn net.Conn) {
+	blood := 100
+	for i := 0; i < 10; i++ {
+		blood -= rand.Intn(8) + 1
+		content := "blood:" + strconv.Itoa(blood)
+
+		if _, err := conn.Write([]byte(content)); err != nil {
+			log.Println("write err", err)
+		}
 	}
 }
 
