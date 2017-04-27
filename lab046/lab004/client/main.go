@@ -1,16 +1,18 @@
 package main
 
 import (
-	"fmt"
 	"github.com/funny/snet/go"
 	"log"
 	"net"
+	"os"
+	"os/signal"
 	"strconv"
+	"syscall"
 	"time"
 )
 
 func main() {
-	addr := "localhost:8881"
+	addr := "127.0.0.1:8881"
 
 	config := snet.Config{
 		EnableCrypt:        false,
@@ -22,55 +24,39 @@ func main() {
 	conn, err := snet.Dial(config, func() (net.Conn, error) {
 		conn, err := net.Dial("tcp", addr)
 		if err != nil {
+			log.Println("net.Dial error", err)
 			return nil, err
 		}
 		return conn, nil
 	})
 	if err != nil {
-		log.Println(err)
+		log.Println("conn error", err)
 	}
 
-	//正常发送一次数据
-	content := "content1"
-	if _, err := conn.Write([]byte(content)); err != nil {
-		log.Println("write failed", err)
-		return
-	}
-	fmt.Println("发送数据", content)
-	buffer := make([]byte, 2048)
-	n, err := conn.Read(buffer)
-	if err != nil {
-		log.Println("read failed", err)
-		return
-	}
-	result := buffer[:n]
-	fmt.Println("收到返回", string(result))
-	//sleep
-	time.Sleep(time.Second * 1)
+	//发送数据
+	go handleConn(conn)
 
-	//模拟连接错误
-	//fmt.Println("\n\n")
-	//conn.(*snet.Conn).GetInfo()
-	////conn.Close()
-	//content = "content2"
-	//if _, err := conn.Write([]byte(content)); err != nil {
-	//	log.Println("write failed", err)
-	//	conn.(*snet.Conn).GetInfo()
-	//	conn.(*snet.Conn).TryReconn()
-	//}
+	sigs := make(chan os.Signal, 1)
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+	<-sigs
+	log.Println("client结束")
+}
 
-	//模拟错误
-	fmt.Println("\n\n")
+func handleConn(conn net.Conn) {
+	log.Println("发送数据")
+	sPos := 0
+	moveSpeed := 2
+
+	//每秒发送一次移动数据
 	for i := 0; i < 10; i++ {
-		content := "content" + strconv.Itoa(i+10)
-		if n, err := conn.Write([]byte(content)); err != nil {
-			fmt.Println("发送数据错误", err)
-		} else {
-			fmt.Println("发送数据成功", n)
-		}
-		time.Sleep(time.Second * 5)
-	}
+		pos := sPos + moveSpeed*i
+		content := "myPosition" + strconv.Itoa(pos)
 
-	//等待
-	time.Sleep(time.Minute * 10)
+		if _, err := conn.Write([]byte(content)); err != nil {
+			log.Println("write error", content, err)
+		} else {
+			log.Println("write success", content)
+		}
+		time.Sleep(time.Second)
+	}
 }

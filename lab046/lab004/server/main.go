@@ -1,10 +1,12 @@
 package main
 
 import (
-	"fmt"
 	"github.com/funny/snet/go"
 	"log"
 	"net"
+	"os"
+	"os/signal"
+	"syscall"
 	"time"
 )
 
@@ -17,7 +19,7 @@ func main() {
 	}
 
 	listener, err := snet.Listen(config, func() (net.Listener, error) {
-		l, err := net.Listen("tcp", "0.0.0.0:8881")
+		l, err := net.Listen("tcp", "127.0.0.1:8881")
 		checkErr(err)
 		return l, err
 	})
@@ -31,6 +33,11 @@ func main() {
 		}
 		go handleConn(conn)
 	}
+
+	sigs := make(chan os.Signal, 1)
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+	<-sigs
+	log.Println("server结束")
 }
 
 func handleConn(conn net.Conn) {
@@ -44,17 +51,14 @@ func handleConn(conn net.Conn) {
 			return
 		}
 		content := buffer[:n]
-		fmt.Println("服务器收到消息:content=", string(content))
-
-		//返回客户端
-		data := string(content) + "<-server"
-		conn.Write([]byte(data))
+		log.Println("收到消息", string(content))
 
 		//模拟断开连接
-		if i == 3{
-
-		}
-		conn.Close()
+		//if i == 3 {
+		//	log.Println("server端模拟连接关闭")
+		//	conn.Close()
+		//	break
+		//}
 		i++
 	}
 }

@@ -248,7 +248,6 @@ func (c *Conn) Read(b []byte) (n int, err error) {
 
 func (c *Conn) Write(b []byte) (n int, err error) {
 	c.trace("Write(%d)", len(b))
-	fmt.Println("发送数据长度:", len(b), string(b))
 	if len(b) == 0 {
 		return
 	}
