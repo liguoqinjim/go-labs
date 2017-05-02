@@ -1,0 +1,6 @@
+hash: c08c26c6f686c1aac317e0a77059d4e02624615e7f44ede8e82bb778303f06bd
+updated: 2017-05-02T11:37:27.4137214+08:00
+imports:
+- name: github.com/faiface/pixel
+  version: 85ba21a2f42f3785ffd4be17f92dc454121fcaaa
+testImports: []
