@@ -7,3 +7,4 @@
 |lab003|运行示例代码，moving_scaling_and_rotating_with_matrix|
 |lab004|运行示例代码，pressing_keys_and_clicking_mouse|
 |lab005|运行示例代码，drawing_efficiently_with_batch|
+|lab006|运行示例代码，drawing_shapes_with_imdraw|
