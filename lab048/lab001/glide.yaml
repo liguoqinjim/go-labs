@@ -1,0 +1,3 @@
+package: lab048/lab001
+import:
+- package: github.com/yuin/gopher-lua

@@ -1,0 +1,6 @@
+hash: 2cf52919821daac2e1407306f7f8b558e3e7ccad374d20de65415e45e98d2e84
+updated: 2017-05-03T15:58:16.6364515+08:00
+imports:
+- name: github.com/yuin/gopher-lua
+  version: b402f3114ec730d8bddb074a6c137309f561aa78
+testImports: []
