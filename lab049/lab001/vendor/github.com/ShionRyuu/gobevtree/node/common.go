@@ -27,6 +27,8 @@ import (
 	p "github.com/ShionRyuu/gobevtree/precondition"
 )
 
+//一些简单的常数和一个行为节点的interface
+
 /*
  * BevRunningStatus
  */

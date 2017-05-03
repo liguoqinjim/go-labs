@@ -30,7 +30,7 @@ import (
 /*
  *
  */
-type LoopSelector struct {
+type LoopSelector struct { //li 循环选择器
 	*BevNode
 	loopCount    int
 	currentCount int

@@ -30,7 +30,7 @@ import (
 /*
  * BevNode
  */
-type BevNode struct {
+type BevNode struct { //li 行为节点
 	nodePrecondition p.IPrecondition
 	parentNode       IBevNode
 	activeNode       IBevNode
