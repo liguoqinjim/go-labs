@@ -1,0 +1,3 @@
+package: lab049/lab001
+import:
+- package: github.com/ShionRyuu/gobevtree

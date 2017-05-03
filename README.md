@@ -49,4 +49,5 @@
 |lab045|reflect|
 |lab046|funny/snet|
 |lab047|pixel，一个2D引擎|
-|lab048|gopher-lua|
+|lab048|gopher-lua，A Lua VM in Go|
+|lab049|gobevtree，Behavior Tree in Go|

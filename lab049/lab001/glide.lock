@@ -1,0 +1,6 @@
+hash: a436c78c96e83ab8ad38a6f2024dafd038acca95388f98f1328735e1d5bcda0f
+updated: 2017-05-03T17:43:10.3521441+08:00
+imports:
+- name: github.com/ShionRyuu/gobevtree
+  version: 0f29e58a4dba7bad0d261560f2c32ece458fcdfc
+testImports: []
