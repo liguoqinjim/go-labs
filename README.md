@@ -52,3 +52,4 @@
 |lab048|gopher-lua，A Lua VM in Go|
 |lab049|gobevtree，Behavior Tree in Go|
 |lab050|goconvey|
+|lab051|behavior3go，golang behavior tree|
