@@ -12,7 +12,6 @@ import (
 	. "github.com/magicsea/behavior3go/decorators"
 )
 
-//基础节点
 func createBaseStructMaps() *b3.RegisterStructMaps {
 	st := b3.NewRegisterStructMaps()
 	//actions
@@ -38,7 +37,6 @@ func createBaseStructMaps() *b3.RegisterStructMaps {
 	return st
 }
 
-//从json加载一棵树
 func CreateBevTreeFromConfig(config *BTTreeCfg, extMap *b3.RegisterStructMaps) *BehaviorTree {
 	baseMaps := createBaseStructMaps()
 	tree := NewBeTree()

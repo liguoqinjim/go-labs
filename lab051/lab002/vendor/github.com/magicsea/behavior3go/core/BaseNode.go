@@ -150,6 +150,7 @@ func (this *BaseNode) Initialize(params *BTNodeCfg) {
 	this.title = params.Title             //|| node.title;
 	this.description = params.Description // || node.description;
 	this.properties = params.Properties   //|| node.properties;
+
 }
 
 func (this *BaseNode) GetCategory() string {

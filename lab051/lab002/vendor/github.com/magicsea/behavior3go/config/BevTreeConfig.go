@@ -67,11 +67,12 @@ type BTTreeCfg struct {
 	Description string                 `json:"description"`
 	Root        string                 `json:"root"`
 	Properties  map[string]interface{} `json:"properties"`
-	Nodes       map[string]BTNodeCfg   `json:"nodes"` //key是node_id
+	Nodes       map[string]BTNodeCfg   `json:"nodes"`
 }
 
-//加载  读取json
+//加载
 func LoadTreeCfg(path string) (*BTTreeCfg, bool) {
+
 	var tree BTTreeCfg
 	file, err := ioutil.ReadFile(path)
 	if err != nil {

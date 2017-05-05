@@ -5,10 +5,10 @@ const (
 	VERSION = "0.2.0"
 
 	// Node categories
-	COMPOSITE = "composite" //li 组合节点
-	DECORATOR = "decorator" //li 装饰节点
-	ACTION    = "action"    //li 行为节点
-	CONDITION = "condition" //li 条件节点
+	COMPOSITE = "composite"
+	DECORATOR = "decorator"
+	ACTION    = "action"
+	CONDITION = "condition"
 )
 
 // Returning status

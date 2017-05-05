@@ -1,0 +1,3 @@
+package: lab051/lab002
+import:
+- package: github.com/magicsea/behavior3go

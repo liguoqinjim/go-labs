@@ -28,6 +28,7 @@ func TestExample(t *testing.T) {
 	} else {
 		t.Log(reflect.TypeOf(data))
 	}
+
 }
 
 func TestLoadTree(t *testing.T) {
@@ -43,4 +44,5 @@ func TestLoadTree(t *testing.T) {
 	} else {
 		t.Error("LoadTreeCfg err")
 	}
+
 }
