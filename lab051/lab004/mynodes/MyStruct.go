@@ -23,6 +23,15 @@ func NewArmyGroup() *ArmyGroup {
 	return &ArmyGroup{Armys: make([]*Army, 0)}
 }
 
+func (ag *ArmyGroup) IsDead() bool { //集团军是否死亡
+	for _, v := range ag.Armys {
+		if v.Alife > 0 {
+			return false
+		}
+	}
+	return true
+}
+
 func NewArmy(id, side, pos, life, arange, attack, speed int) *Army {
 	return &Army{Aid: id, Aside: side, Apos: pos, Alife: life, Arange: arange, Aattack: attack, Aspeed: speed}
 }
@@ -60,6 +69,7 @@ func (a *Army) Attack(enemies []*Army) {
 
 		damage := rand.Intn(a.Aattack) + 1
 		v.Alife -= damage
+		fmt.Printf("Army%d血量%d\n", v.Aid, v.Alife)
 	}
 	fmt.Printf("Army%d开始攻击\n", a.Aid)
 }

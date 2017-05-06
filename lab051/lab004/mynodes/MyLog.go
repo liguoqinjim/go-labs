@@ -1,6 +1,7 @@
 package mynodes
 
 import (
+	"fmt"
 	b3 "github.com/liguoqinjim/behavior3go"
 	. "github.com/liguoqinjim/behavior3go/core"
 )
@@ -10,7 +11,6 @@ type MyLog struct {
 }
 
 func (this *MyLog) OnTick(tick *Tick) b3.Status {
-	//posX := tick.Target.(*player.Player).Px
-	//fmt.Println("玩家现在位置:", posX)
+	fmt.Printf("军队%d现在位置%d,血量%d\n", tick.Target.(*Army).Aid, tick.Target.(*Army).Apos, tick.Target.(*Army).Alife)
 	return b3.SUCCESS
 }

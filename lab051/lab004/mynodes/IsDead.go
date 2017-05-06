@@ -10,11 +10,12 @@ type IsDead struct {
 	Condition
 }
 
-func (this *IsDead) Tick(tick *Tick) b3.Status {
-	fmt.Println("判断是否死亡")
+func (this *IsDead) OnTick(tick *Tick) b3.Status {
 	if tick.Target.(*Army).IsDead() { //死亡
+		fmt.Println("判断是否死亡success")
 		return b3.SUCCESS
 	} else {
+		fmt.Println("判断是否死亡failure")
 		return b3.FAILURE
 	}
 }

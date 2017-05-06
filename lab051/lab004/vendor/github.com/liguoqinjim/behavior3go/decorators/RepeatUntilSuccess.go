@@ -1,6 +1,7 @@
 package decorators
 
 import (
+	"fmt"
 	b3 "github.com/liguoqinjim/behavior3go"
 	. "github.com/liguoqinjim/behavior3go/config"
 	. "github.com/liguoqinjim/behavior3go/core"
@@ -64,6 +65,7 @@ func (this *RepeatUntilSuccess) OnTick(tick *Tick) b3.Status {
 	var status = b3.ERROR
 	for this.maxLoop < 0 || i < this.maxLoop {
 		status = this.GetChild().Execute(tick)
+		fmt.Println("liguoqinjim repeat status", status)
 		if status == b3.FAILURE {
 			i++
 		} else {

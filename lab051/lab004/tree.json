@@ -2,7 +2,7 @@
     "id": "67e3047e-0942-4d55-8443-9f28dc50b660",
     "title": "simple battle",
     "description": "",
-    "root": "e788c15e-1407-4297-b40b-fe40ebe8cbeb",
+    "root": "eb0923d5-2668-47d2-8584-8a4f2e48ec2c",
     "properties": {},
     "nodes": {
         "74b85279-8d06-4bff-85e5-237526a8368f": {
@@ -13,52 +13,33 @@
             "properties": {},
             "display": {
                 "x": 48,
-                "y": -252
+                "y": -180
             }
         },
-        "e788c15e-1407-4297-b40b-fe40ebe8cbeb": {
-            "id": "e788c15e-1407-4297-b40b-fe40ebe8cbeb",
-            "name": "RepeatUntilSuccess",
-            "title": "Repeat Until Success",
+        "18a17683-5baf-4baf-8804-561df9504bf2": {
+            "id": "18a17683-5baf-4baf-8804-561df9504bf2",
+            "name": "IsAlive",
+            "title": "IsAlive",
+            "description": "是否活着",
+            "properties": {},
+            "display": {
+                "x": 528,
+                "y": -360
+            }
+        },
+        "eb0923d5-2668-47d2-8584-8a4f2e48ec2c": {
+            "id": "eb0923d5-2668-47d2-8584-8a4f2e48ec2c",
+            "name": "RepeatUntilFailure",
+            "title": "Repeat Until Failure",
             "description": "",
             "properties": {
-                "maxLoop": 10
+                "maxLoop": 99
             },
             "display": {
                 "x": -372,
-                "y": -144
+                "y": -96
             },
-            "child": "771c93be-fe21-4672-8a83-de4603b2a6fd"
-        },
-        "771c93be-fe21-4672-8a83-de4603b2a6fd": {
-            "id": "771c93be-fe21-4672-8a83-de4603b2a6fd",
-            "name": "Sequence",
-            "title": "Sequence",
-            "description": "",
-            "properties": {},
-            "display": {
-                "x": -168,
-                "y": -144
-            },
-            "children": [
-                "74b85279-8d06-4bff-85e5-237526a8368f",
-                "90be522d-2f04-40c6-9271-2c77ed31ff71"
-            ]
-        },
-        "90be522d-2f04-40c6-9271-2c77ed31ff71": {
-            "id": "90be522d-2f04-40c6-9271-2c77ed31ff71",
-            "name": "Priority",
-            "title": "Priority",
-            "description": "行为选择",
-            "properties": {},
-            "display": {
-                "x": 48,
-                "y": -48
-            },
-            "children": [
-                "e57b2f42-7797-4424-8be1-a77ef96825b2",
-                "4888f46a-22e0-409c-8107-0e7c59ef61ff"
-            ]
+            "child": "fd210e9a-8ed4-44bb-bc44-2e5a527defd0"
         },
         "fc221ffc-e147-4743-9aa6-ab6405b55856": {
             "id": "fc221ffc-e147-4743-9aa6-ab6405b55856",
@@ -68,7 +49,7 @@
             "properties": {},
             "display": {
                 "x": 456,
-                "y": -156
+                "y": -96
             }
         },
         "5d3df278-b528-4b7e-8e5d-049ea8e51f9d": {
@@ -78,8 +59,8 @@
             "description": "MyMove",
             "properties": {},
             "display": {
-                "x": 456,
-                "y": -72
+                "x": 252,
+                "y": 0
             }
         },
         "4888f46a-22e0-409c-8107-0e7c59ef61ff": {
@@ -89,24 +70,64 @@
             "description": "攻击",
             "properties": {},
             "display": {
-                "x": 252,
-                "y": 12
+                "x": 48,
+                "y": 84
             }
         },
-        "e57b2f42-7797-4424-8be1-a77ef96825b2": {
-            "id": "e57b2f42-7797-4424-8be1-a77ef96825b2",
+        "fd210e9a-8ed4-44bb-bc44-2e5a527defd0": {
+            "id": "fd210e9a-8ed4-44bb-bc44-2e5a527defd0",
             "name": "Priority",
             "title": "Priority",
             "description": "",
             "properties": {},
             "display": {
-                "x": 252,
-                "y": -120
+                "x": -168,
+                "y": -96
             },
             "children": [
-                "fc221ffc-e147-4743-9aa6-ab6405b55856",
+                "b8c34f17-bfd9-4a8e-80a1-6de6246ab580",
+                "74b85279-8d06-4bff-85e5-237526a8368f",
+                "c26a09be-07ab-4b23-8988-9cb3e7272539",
+                "4888f46a-22e0-409c-8107-0e7c59ef61ff"
+            ]
+        },
+        "c26a09be-07ab-4b23-8988-9cb3e7272539": {
+            "id": "c26a09be-07ab-4b23-8988-9cb3e7272539",
+            "name": "Sequence",
+            "title": "Sequence",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": 48,
+                "y": -48
+            },
+            "children": [
+                "9bfcf64b-a9bb-4eaa-8ebc-b2b1cde43de4",
                 "5d3df278-b528-4b7e-8e5d-049ea8e51f9d"
             ]
+        },
+        "9bfcf64b-a9bb-4eaa-8ebc-b2b1cde43de4": {
+            "id": "9bfcf64b-a9bb-4eaa-8ebc-b2b1cde43de4",
+            "name": "Inverter",
+            "title": "Inverter",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": 252,
+                "y": -96
+            },
+            "child": "fc221ffc-e147-4743-9aa6-ab6405b55856"
+        },
+        "b8c34f17-bfd9-4a8e-80a1-6de6246ab580": {
+            "id": "b8c34f17-bfd9-4a8e-80a1-6de6246ab580",
+            "name": "IsBattleOver",
+            "title": "IsBattleOver",
+            "description": "整个战斗是否结束",
+            "properties": {},
+            "display": {
+                "x": 48,
+                "y": -264
+            }
         }
     },
     "display": {
@@ -114,7 +135,7 @@
         "camera_y": 461,
         "camera_z": 1,
         "x": -576,
-        "y": -144
+        "y": -96
     },
     "custom_nodes": [
         {
@@ -159,6 +180,20 @@
             "category": "action",
             "title": "Attack",
             "description": "攻击",
+            "properties": {}
+        },
+        {
+            "name": "IsAlive",
+            "category": "condition",
+            "title": "IsAlive",
+            "description": "是否活着",
+            "properties": {}
+        },
+        {
+            "name": "IsBattleOver",
+            "category": "condition",
+            "title": "IsBattleOver",
+            "description": "整个战斗是否结束",
             "properties": {}
         }
     ]

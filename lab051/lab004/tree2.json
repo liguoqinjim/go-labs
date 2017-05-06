@@ -1,0 +1,238 @@
+{
+    "id": "67e3047e-0942-4d55-8443-9f28dc50b660",
+    "title": "simple battle",
+    "description": "",
+    "root": "37f84496-e785-47df-84cd-51be18eef1de",
+    "properties": {},
+    "nodes": {
+        "74b85279-8d06-4bff-85e5-237526a8368f": {
+            "id": "74b85279-8d06-4bff-85e5-237526a8368f",
+            "name": "IsDead",
+            "title": "IsDead",
+            "description": "is player dead,死的时候返回true",
+            "properties": {},
+            "display": {
+                "x": 216,
+                "y": -384
+            }
+        },
+        "e788c15e-1407-4297-b40b-fe40ebe8cbeb": {
+            "id": "e788c15e-1407-4297-b40b-fe40ebe8cbeb",
+            "name": "RepeatUntilSuccess",
+            "title": "Repeat Until Success",
+            "description": "",
+            "properties": {
+                "maxLoop": 10
+            },
+            "display": {
+                "x": -204,
+                "y": -276
+            },
+            "child": "771c93be-fe21-4672-8a83-de4603b2a6fd"
+        },
+        "771c93be-fe21-4672-8a83-de4603b2a6fd": {
+            "id": "771c93be-fe21-4672-8a83-de4603b2a6fd",
+            "name": "Sequence",
+            "title": "Sequence",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": 0,
+                "y": -276
+            },
+            "children": [
+                "74b85279-8d06-4bff-85e5-237526a8368f",
+                "90be522d-2f04-40c6-9271-2c77ed31ff71"
+            ]
+        },
+        "90be522d-2f04-40c6-9271-2c77ed31ff71": {
+            "id": "90be522d-2f04-40c6-9271-2c77ed31ff71",
+            "name": "Priority",
+            "title": "Priority",
+            "description": "行为选择",
+            "properties": {},
+            "display": {
+                "x": 216,
+                "y": -180
+            },
+            "children": [
+                "e57b2f42-7797-4424-8be1-a77ef96825b2",
+                "4888f46a-22e0-409c-8107-0e7c59ef61ff"
+            ]
+        },
+        "fc221ffc-e147-4743-9aa6-ab6405b55856": {
+            "id": "fc221ffc-e147-4743-9aa6-ab6405b55856",
+            "name": "HasEnemyInRange",
+            "title": "HasEnemyInRange",
+            "description": "检测攻击范围内是否有敌人",
+            "properties": {},
+            "display": {
+                "x": 624,
+                "y": -288
+            }
+        },
+        "5d3df278-b528-4b7e-8e5d-049ea8e51f9d": {
+            "id": "5d3df278-b528-4b7e-8e5d-049ea8e51f9d",
+            "name": "Move",
+            "title": "Move",
+            "description": "MyMove",
+            "properties": {},
+            "display": {
+                "x": -144,
+                "y": 36
+            }
+        },
+        "4888f46a-22e0-409c-8107-0e7c59ef61ff": {
+            "id": "4888f46a-22e0-409c-8107-0e7c59ef61ff",
+            "name": "Attack",
+            "title": "Attack",
+            "description": "攻击",
+            "properties": {},
+            "display": {
+                "x": 420,
+                "y": -120
+            }
+        },
+        "e57b2f42-7797-4424-8be1-a77ef96825b2": {
+            "id": "e57b2f42-7797-4424-8be1-a77ef96825b2",
+            "name": "Priority",
+            "title": "Priority",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": 420,
+                "y": -252
+            },
+            "children": [
+                "fc221ffc-e147-4743-9aa6-ab6405b55856"
+            ]
+        },
+        "37f84496-e785-47df-84cd-51be18eef1de": {
+            "id": "37f84496-e785-47df-84cd-51be18eef1de",
+            "name": "Sequence",
+            "title": "Sequence",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": -348,
+                "y": 132
+            },
+            "children": [
+                "4fdcfa5c-f47f-46df-84e1-9b1b854b0d2c",
+                "5d3df278-b528-4b7e-8e5d-049ea8e51f9d",
+                "5d883fb8-ee60-475d-8fd1-30d1d3f7a2bb",
+                "d2b8f524-5611-47ba-b33d-d4c36a427254",
+                "e077b3e4-392d-4b35-8d16-ff8c86d91240"
+            ]
+        },
+        "4fdcfa5c-f47f-46df-84e1-9b1b854b0d2c": {
+            "id": "4fdcfa5c-f47f-46df-84e1-9b1b854b0d2c",
+            "name": "MyLog",
+            "title": "MyLog",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": -144,
+                "y": -48
+            }
+        },
+        "5d883fb8-ee60-475d-8fd1-30d1d3f7a2bb": {
+            "id": "5d883fb8-ee60-475d-8fd1-30d1d3f7a2bb",
+            "name": "MyLog",
+            "title": "MyLog",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": -144,
+                "y": 132
+            }
+        },
+        "d2b8f524-5611-47ba-b33d-d4c36a427254": {
+            "id": "d2b8f524-5611-47ba-b33d-d4c36a427254",
+            "name": "Inverter",
+            "title": "Inverter",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": -144,
+                "y": 216
+            },
+            "child": "2137ce6d-f90d-4c1f-8f4e-f5fdf4d93e16"
+        },
+        "2137ce6d-f90d-4c1f-8f4e-f5fdf4d93e16": {
+            "id": "2137ce6d-f90d-4c1f-8f4e-f5fdf4d93e16",
+            "name": "Move",
+            "title": "Move",
+            "description": "MyMove",
+            "properties": {},
+            "display": {
+                "x": 72,
+                "y": 216
+            }
+        },
+        "e077b3e4-392d-4b35-8d16-ff8c86d91240": {
+            "id": "e077b3e4-392d-4b35-8d16-ff8c86d91240",
+            "name": "MyLog",
+            "title": "MyLog",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": -144,
+                "y": 300
+            }
+        }
+    },
+    "display": {
+        "camera_x": 936.5,
+        "camera_y": 461,
+        "camera_z": 1,
+        "x": -552,
+        "y": 132
+    },
+    "custom_nodes": [
+        {
+            "name": "Log",
+            "category": "action",
+            "title": "Log",
+            "description": "Log",
+            "properties": {
+                "info": "log..."
+            }
+        },
+        {
+            "name": "Move",
+            "category": "action",
+            "title": "Move",
+            "description": "MyMove",
+            "properties": {}
+        },
+        {
+            "name": "MyLog",
+            "category": "action",
+            "title": "MyLog",
+            "description": null,
+            "properties": {}
+        },
+        {
+            "name": "IsDead",
+            "category": "condition",
+            "title": "IsDead",
+            "description": "is player dead\n死的时候返回true",
+            "properties": {}
+        },
+        {
+            "name": "HasEnemyInRange",
+            "category": "condition",
+            "title": "HasEnemyInRange",
+            "description": "检测攻击范围内是否有敌人",
+            "properties": {}
+        },
+        {
+            "name": "Attack",
+            "category": "action",
+            "title": "Attack",
+            "description": "攻击",
+            "properties": {}
+        }
+    ]
+}
