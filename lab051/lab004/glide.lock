@@ -1,0 +1,13 @@
+hash: 57a620c3e7e17534dcc20bd0b772b6c670d814d98476ea9791e3038cd929f8c4
+updated: 2017-05-06T10:41:14.0261752+08:00
+imports:
+- name: github.com/liguoqinjim/behavior3go
+  version: 66b7cb53803f5eeaf3959210c948149dec769053
+  subpackages:
+  - actions
+  - composites
+  - config
+  - core
+  - decorators
+  - loader
+testImports: []

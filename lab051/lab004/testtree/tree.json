@@ -1,0 +1,165 @@
+{
+    "id": "67e3047e-0942-4d55-8443-9f28dc50b660",
+    "title": "A behavior tree",
+    "description": "",
+    "root": "e788c15e-1407-4297-b40b-fe40ebe8cbeb",
+    "properties": {},
+    "nodes": {
+        "74b85279-8d06-4bff-85e5-237526a8368f": {
+            "id": "74b85279-8d06-4bff-85e5-237526a8368f",
+            "name": "IsDead",
+            "title": "IsDead",
+            "description": "is player dead\n死的时候返回true",
+            "properties": {},
+            "display": {
+                "x": 24,
+                "y": 72
+            }
+        },
+        "e788c15e-1407-4297-b40b-fe40ebe8cbeb": {
+            "id": "e788c15e-1407-4297-b40b-fe40ebe8cbeb",
+            "name": "RepeatUntilSuccess",
+            "title": "Repeat Until Success",
+            "description": "",
+            "properties": {
+                "maxLoop": -1
+            },
+            "display": {
+                "x": -384,
+                "y": -144
+            },
+            "child": "771c93be-fe21-4672-8a83-de4603b2a6fd"
+        },
+        "771c93be-fe21-4672-8a83-de4603b2a6fd": {
+            "id": "771c93be-fe21-4672-8a83-de4603b2a6fd",
+            "name": "Sequence",
+            "title": "Sequence",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": -204,
+                "y": -144
+            },
+            "children": [
+                "90be522d-2f04-40c6-9271-2c77ed31ff71",
+                "74b85279-8d06-4bff-85e5-237526a8368f"
+            ]
+        },
+        "90be522d-2f04-40c6-9271-2c77ed31ff71": {
+            "id": "90be522d-2f04-40c6-9271-2c77ed31ff71",
+            "name": "Priority",
+            "title": "Priority",
+            "description": "行为选择",
+            "properties": {},
+            "display": {
+                "x": -48,
+                "y": -180
+            },
+            "children": [
+                "e57b2f42-7797-4424-8be1-a77ef96825b2",
+                "4888f46a-22e0-409c-8107-0e7c59ef61ff"
+            ]
+        },
+        "fc221ffc-e147-4743-9aa6-ab6405b55856": {
+            "id": "fc221ffc-e147-4743-9aa6-ab6405b55856",
+            "name": "HasEnemyInRange",
+            "title": "HasEnemyInRange",
+            "description": "检测攻击范围内是否有敌人",
+            "properties": {},
+            "display": {
+                "x": 420,
+                "y": -336
+            }
+        },
+        "5d3df278-b528-4b7e-8e5d-049ea8e51f9d": {
+            "id": "5d3df278-b528-4b7e-8e5d-049ea8e51f9d",
+            "name": "Move",
+            "title": "Move",
+            "description": "MyMove",
+            "properties": {},
+            "display": {
+                "x": 432,
+                "y": -168
+            }
+        },
+        "4888f46a-22e0-409c-8107-0e7c59ef61ff": {
+            "id": "4888f46a-22e0-409c-8107-0e7c59ef61ff",
+            "name": "Attack",
+            "title": "Attack",
+            "description": "攻击",
+            "properties": {},
+            "display": {
+                "x": 240,
+                "y": -48
+            }
+        },
+        "e57b2f42-7797-4424-8be1-a77ef96825b2": {
+            "id": "e57b2f42-7797-4424-8be1-a77ef96825b2",
+            "name": "Priority",
+            "title": "Priority",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": 156,
+                "y": -264
+            },
+            "children": [
+                "fc221ffc-e147-4743-9aa6-ab6405b55856",
+                "5d3df278-b528-4b7e-8e5d-049ea8e51f9d"
+            ]
+        }
+    },
+    "display": {
+        "camera_x": 936.5,
+        "camera_y": 461,
+        "camera_z": 1,
+        "x": -576,
+        "y": -144
+    },
+    "custom_nodes": [
+        {
+            "name": "Log",
+            "category": "action",
+            "title": "Log",
+            "description": "Log",
+            "properties": {
+                "info": "log..."
+            }
+        },
+        {
+            "name": "Move",
+            "category": "action",
+            "title": "Move",
+            "description": "MyMove",
+            "properties": {}
+        },
+        {
+            "name": "MyLog",
+            "category": "action",
+            "title": "MyLog",
+            "description": null,
+            "properties": {}
+        },
+        {
+            "name": "IsDead",
+            "category": "condition",
+            "title": "IsDead",
+            "description": "is player dead\n死的时候返回true",
+            "properties": {}
+        },
+        {
+            "name": "HasEnemyInRange",
+            "category": "condition",
+            "title": "HasEnemyInRange",
+            "description": "检测攻击范围内是否有敌人",
+            "properties": {}
+        },
+        {
+            "name": "Attack",
+            "category": "action",
+            "title": "Attack",
+            "description": "攻击",
+            "properties": {}
+        }
+    ]
+}

@@ -1,0 +1,6 @@
+package: lab051/lab004
+import:
+- package: github.com/liguoqinjim/behavior3go
+  subpackages:
+  - config
+  - loader

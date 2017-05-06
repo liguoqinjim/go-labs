@@ -1,0 +1,101 @@
+{
+    "id": "67e3047e-0942-4d55-8443-9f28dc50b660",
+    "title": "简单战斗",
+    "description": "",
+    "root": "d302865c-2697-430a-8912-81a5f3e4e974",
+    "properties": {},
+    "nodes": {
+        "74b85279-8d06-4bff-85e5-237526a8368f": {
+            "id": "74b85279-8d06-4bff-85e5-237526a8368f",
+            "name": "IsDead",
+            "title": "IsDead",
+            "description": "is player dead\n死的时候返回true",
+            "properties": {},
+            "display": {
+                "x": 72,
+                "y": 156
+            }
+        },
+        "be696b74-3b69-47de-aa7a-97f08407bb67": {
+            "id": "be696b74-3b69-47de-aa7a-97f08407bb67",
+            "name": "Log",
+            "title": "Log",
+            "description": "Log",
+            "properties": {
+                "info": "nihao"
+            },
+            "display": {
+                "x": 72,
+                "y": -48
+            }
+        },
+        "d302865c-2697-430a-8912-81a5f3e4e974": {
+            "id": "d302865c-2697-430a-8912-81a5f3e4e974",
+            "name": "MemSequence",
+            "title": "MemSequence",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": -192,
+                "y": 36
+            },
+            "children": [
+                "be696b74-3b69-47de-aa7a-97f08407bb67",
+                "74b85279-8d06-4bff-85e5-237526a8368f"
+            ]
+        }
+    },
+    "display": {
+        "camera_x": 936.5,
+        "camera_y": 461,
+        "camera_z": 1,
+        "x": -348,
+        "y": 36
+    },
+    "custom_nodes": [
+        {
+            "name": "Log",
+            "category": "action",
+            "title": "Log",
+            "description": "Log",
+            "properties": {
+                "info": "log..."
+            }
+        },
+        {
+            "name": "Move",
+            "category": "action",
+            "title": "Move",
+            "description": "MyMove",
+            "properties": {}
+        },
+        {
+            "name": "MyLog",
+            "category": "action",
+            "title": "MyLog",
+            "description": null,
+            "properties": {}
+        },
+        {
+            "name": "IsDead",
+            "category": "condition",
+            "title": "IsDead",
+            "description": "is player dead\n死的时候返回true",
+            "properties": {}
+        },
+        {
+            "name": "HasEnemyInRange",
+            "category": "condition",
+            "title": "HasEnemyInRange",
+            "description": "检测攻击范围内是否有敌人",
+            "properties": {}
+        },
+        {
+            "name": "Attack",
+            "category": "action",
+            "title": "Attack",
+            "description": "攻击",
+            "properties": {}
+        }
+    ]
+}
