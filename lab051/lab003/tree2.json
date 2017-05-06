@@ -1,0 +1,132 @@
+{
+    "id": "67e3047e-0942-4d55-8443-9f28dc50b660",
+    "title": "A behavior tree",
+    "description": "",
+    "root": "697cd44d-7c41-4614-8094-f918b595bd72",
+    "properties": {},
+    "nodes": {
+        "7deef17b-e7fa-4dcb-94c5-979e142c0eee": {
+            "id": "7deef17b-e7fa-4dcb-94c5-979e142c0eee",
+            "name": "Log",
+            "title": "Log",
+            "description": "Log",
+            "properties": {
+                "info": "log...22"
+            },
+            "display": {
+                "x": -120,
+                "y": -312
+            }
+        },
+        "6fb01fec-8fd7-49d0-b6ce-f9335937bfa3": {
+            "id": "6fb01fec-8fd7-49d0-b6ce-f9335937bfa3",
+            "name": "Log",
+            "title": "Log",
+            "description": "Log",
+            "properties": {
+                "info": "log...333"
+            },
+            "display": {
+                "x": -120,
+                "y": 72
+            }
+        },
+        "697cd44d-7c41-4614-8094-f918b595bd72": {
+            "id": "697cd44d-7c41-4614-8094-f918b595bd72",
+            "name": "Sequence",
+            "title": "Sequence",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": -336,
+                "y": -72
+            },
+            "children": [
+                "7deef17b-e7fa-4dcb-94c5-979e142c0eee",
+                "1de7df51-c410-431d-866d-99c9cd769dcf",
+                "8b514f0a-913e-4eaf-817b-03e85b98efa0",
+                "6fb01fec-8fd7-49d0-b6ce-f9335937bfa3",
+                "6b02670f-f4cb-42e7-80e4-6cd7bdf6cf8e"
+            ]
+        },
+        "cceb7823-7b95-4814-ba97-ae9cd2f8ea19": {
+            "id": "cceb7823-7b95-4814-ba97-ae9cd2f8ea19",
+            "name": "Move",
+            "title": "Move",
+            "description": "MyMove",
+            "properties": {},
+            "display": {
+                "x": 180,
+                "y": -72
+            }
+        },
+        "8b514f0a-913e-4eaf-817b-03e85b98efa0": {
+            "id": "8b514f0a-913e-4eaf-817b-03e85b98efa0",
+            "name": "Repeater",
+            "title": "Repeat <maxLoop>x",
+            "description": "",
+            "properties": {
+                "maxLoop": 2
+            },
+            "display": {
+                "x": -120,
+                "y": -72
+            },
+            "child": "cceb7823-7b95-4814-ba97-ae9cd2f8ea19"
+        },
+        "1de7df51-c410-431d-866d-99c9cd769dcf": {
+            "id": "1de7df51-c410-431d-866d-99c9cd769dcf",
+            "name": "MyLog",
+            "title": "MyLog",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": -120,
+                "y": -204
+            }
+        },
+        "6b02670f-f4cb-42e7-80e4-6cd7bdf6cf8e": {
+            "id": "6b02670f-f4cb-42e7-80e4-6cd7bdf6cf8e",
+            "name": "MyLog",
+            "title": "MyLog",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": -120,
+                "y": 204
+            }
+        }
+    },
+    "display": {
+        "camera_x": 936.5,
+        "camera_y": 461,
+        "camera_z": 1,
+        "x": -540,
+        "y": -72
+    },
+    "custom_nodes": [
+        {
+            "name": "Log",
+            "category": "action",
+            "title": "Log",
+            "description": "Log",
+            "properties": {
+                "info": "log..."
+            }
+        },
+        {
+            "name": "Move",
+            "category": "action",
+            "title": "Move",
+            "description": "MyMove",
+            "properties": {}
+        },
+        {
+            "name": "MyLog",
+            "category": "action",
+            "title": "MyLog",
+            "description": null,
+            "properties": {}
+        }
+    ]
+}
