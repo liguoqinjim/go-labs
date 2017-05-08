@@ -12,7 +12,8 @@ type MyLog struct {
 
 func (this *MyLog) OnTick(tick *Tick) b3.Status {
 	posX := tick.Target.(*Player).Px
-	fmt.Println("玩家现在位置:", posX)
+	pid := tick.Target.(*Player).Pid
+	fmt.Printf("玩家%d现在位置:%d\n", pid, posX)
 
 	return b3.SUCCESS
 }
