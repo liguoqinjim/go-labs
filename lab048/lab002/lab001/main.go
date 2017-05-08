@@ -11,14 +11,12 @@ func main() {
 	if err := L.DoFile("test.lua"); err != nil {
 		panic(err)
 	}
-	L.
 
-	lv := L.Get(-1)
-	fmt.Println(lv)
-	if i, ok := lv.(lua.LNumber); ok {
-		fmt.Println("i=", i)
-	} else {
-		fmt.Println("error")
-	}
+	a := L.GetGlobal("a")
+	fmt.Printf("a=%v\n", a)
 
+	b := L.GetGlobal("b").(*lua.LTable)
+	b.ForEach(func(key, value lua.LValue) {
+		fmt.Printf("b.%v=%v\n", key, value)
+	})
 }

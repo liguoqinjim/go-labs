@@ -6,7 +6,11 @@
 -- To change this template use File | Settings | File Templates.
 --
 
-a, b = 1, 2
-c = "helloworld"
-print("hello test.lua")
+print("hello")
+
+a = 2
+b = {
+    c = 4,
+    d = a + 3
+}
 
