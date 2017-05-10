@@ -1,0 +1,3 @@
+package: lab052/lab001
+import:
+- package: github.com/golang/snappy
