@@ -1,0 +1,6 @@
+hash: 5be62c2fe33f15b107526c35415e6c797a9ea369e5617d7756e2982d983c974d
+updated: 2017-05-11T10:00:57.6436839+08:00
+imports:
+- name: github.com/hoisie/web
+  version: 450827e80115ecef60cca452dd914b5c400a0396
+testImports: []

@@ -1,0 +1,4 @@
+package: lab053/lab001
+import:
+- package: github.com/hoisie/web
+  version: v0.1.0
