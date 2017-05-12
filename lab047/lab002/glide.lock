@@ -1,5 +1,5 @@
 hash: b6c263929f3e649ffb5b725bf9108f6b2603fbc72d7a483687d03c4cfec0de72
-updated: 2017-05-02T20:21:57.8797248+08:00
+updated: 2017-05-12T11:28:15.555974+08:00
 imports:
 - name: github.com/faiface/glhf
   version: 3fbc836ef57b221d3f2e5c2bdc73b27d228c9626
@@ -7,8 +7,10 @@ imports:
   version: 7127dc8993886d1ce799086ff298ff99bf258fbf
 - name: github.com/faiface/pixel
   version: 85ba21a2f42f3785ffd4be17f92dc454121fcaaa
+  subpackages:
+  - pixelgl
 - name: github.com/go-gl/gl
-  version: b303bcb3e83b7ef645a5104e1c2db7f8d9e8918a
+  version: 887577e03012940ff715b6af70a9ea1b9f9e60bb
   subpackages:
   - v3.3-core/gl
 - name: github.com/go-gl/glfw
@@ -23,5 +25,9 @@ imports:
 - name: github.com/pkg/errors
   version: 645ef00459ed84a119197bfb8d8205042c6df63d
 - name: golang.org/x/image
-  version: d442804300f687c2fa12d7e8a146aa5db45e9caf
+  version: f483456c9f61fd7c1e170033d58ef22ff5ffe291
+  subpackages:
+  - colornames
+  - math/f32
+  - math/f64
 testImports: []
