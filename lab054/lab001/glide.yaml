@@ -1,0 +1,4 @@
+package: lab054/lab001
+import:
+- package: github.com/tidwall/gjson
+- package: github.com/tidwall/match

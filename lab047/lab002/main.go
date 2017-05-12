@@ -50,6 +50,7 @@ func run() {
 
 	angle := 0.0
 	last := time.Now()
+	x := 0
 	for !win.Closed() {
 		dt := time.Since(last).Seconds()
 		last = time.Now()
@@ -59,9 +60,10 @@ func run() {
 		win.Clear(colornames.Firebrick)
 
 		mat := pixel.IM
-		mat = mat.Rotated(0, angle)
-		mat = mat.Moved(win.Bounds().Center())
-		sprite.SetMatrix(mat)
+		//mat = mat.Rotated(0, angle)
+		mat = mat.Moved(pixel.V(float64(x+5), 0))
+		x += int(5)
+		sprite.SetMatrix(sprite.Matrix().Moved(pixel.V(5, 0)))
 		sprite.Draw(win)
 
 		win.Update()
