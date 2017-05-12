@@ -9,3 +9,4 @@ https://github.com/faiface/pixel
 |---|---|
 |lab001|运行示例代码|
 |lab002|sprite移动|
+|lab003|简单战斗模拟|
