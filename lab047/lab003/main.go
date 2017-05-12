@@ -5,6 +5,7 @@ import (
 	"fmt"
 	_ "image/png"
 	"lab047/lab003/data"
+	"strconv"
 
 	"image"
 	"os"
@@ -68,7 +69,12 @@ func run() {
 	for !win.Closed() {
 		select {
 		case f := <-chanFrame:
-			fmt.Println(f)
+			frame, err := strconv.Atoi(string(f))
+			if err != nil {
+				panic(err)
+			}
+			setArmyStateFrame(frame)
+			win.Clear(colornames.Skyblue)
 		default:
 		}
 
@@ -103,6 +109,22 @@ func initBattleState() {
 
 		x, y := convertPos(int(posx), int(posy))
 		Armys[n+4].SetMatrix(pixel.IM.Moved(pixel.V(x, y)))
+	}
+}
+
+func setArmyStateFrame(frame int) {
+	matchPath := fmt.Sprintf("Back.Params.BattleFrameDatas.#[Frame==\"%d\"]#", frame)
+
+	value := gjson.Get(data.BattleData, matchPath)
+	for _, v := range value.Array() {
+		operator := gjson.Get(v.String(), "Operator").Int()
+		fid := gjson.Get(v.String(), "ArmyFieldId").Int()
+		posx := gjson.Get(v.String(), "Posx").Int()
+		posy := gjson.Get(v.String(), "Posy").Int()
+		x, y := convertPos(int(posx), int(posy))
+		if operator == 1 { //移动
+			Armys[fid-1].SetMatrix(pixel.IM.Moved(pixel.V(x, y)))
+		}
 	}
 }
 

@@ -32,9 +32,17 @@ func main() {
 	//println(value1.String())
 	//value2 := gjson.Get(json, "age")
 	//println(value2.Int())
-	value1 := gjson.Get(testjson, "Back.Params.ArmyGroup1Init.Armys")
-	for _, v := range value1.Array() {
-		value2 := gjson.Get(v.String(), "PosX")
-		fmt.Println(value2)
-	}
+
+	//测试1
+	//value1 := gjson.Get(testjson, "Back.Params.ArmyGroup1Init.Armys")
+	//for _, v := range value1.Array() {
+	//	value2 := gjson.Get(v.String(), "PosX")
+	//	fmt.Println(value2)
+	//}
+
+	matchPath := fmt.Sprintf("Back.Params.BattleFrameDatas.#[Frame==\"%d\"]#", 10)
+	fmt.Println(matchPath)
+	value1 := gjson.Get(testjson, matchPath)
+	fmt.Println(value1)
+	fmt.Println(len(value1.Array()))
 }
