@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	_ "image/png"
+	"lab047/lab003/data"
 
 	"image"
 	"os"
@@ -12,6 +13,7 @@ import (
 
 	"github.com/faiface/pixel"
 	"github.com/faiface/pixel/pixelgl"
+	"github.com/tidwall/gjson"
 )
 
 func loadPicture(path string) (pixel.Picture, error) {
@@ -45,7 +47,7 @@ func init() {
 		Armys[i] = s
 	}
 
-	//读取json
+	data.LoadData()
 }
 
 func run() {
@@ -59,6 +61,10 @@ func run() {
 		panic(err)
 	}
 	win.Clear(colornames.Skyblue)
+
+	initBattleState()
+	// sprite.Draw(win)
+
 	for !win.Closed() {
 		select {
 		case f := <-chanFrame:
@@ -66,8 +72,42 @@ func run() {
 		default:
 		}
 
+		drawArmy(win)
+
 		win.Update()
 	}
+}
+
+func drawArmy(win *pixelgl.Window) {
+	for _, v := range Armys {
+		v.Draw(win)
+	}
+}
+
+func initBattleState() {
+	fmt.Println("战斗初始配置")
+
+	army1 := gjson.Get(data.BattleData, "Back.Params.ArmyGroup1Init.Armys")
+	for n, v := range army1.Array() {
+		posx := gjson.Get(v.String(), "PosX").Int()
+		posy := gjson.Get(v.String(), "PosY").Int()
+
+		x, y := convertPos(int(posx), int(posy))
+		Armys[n].SetMatrix(pixel.IM.Moved(pixel.V(x, y)))
+	}
+
+	army2 := gjson.Get(data.BattleData, "Back.Params.ArmyGroup2Init.Armys")
+	for n, v := range army2.Array() {
+		posx := gjson.Get(v.String(), "PosX").Int()
+		posy := gjson.Get(v.String(), "PosY").Int()
+
+		x, y := convertPos(int(posx), int(posy))
+		Armys[n+4].SetMatrix(pixel.IM.Moved(pixel.V(x, y)))
+	}
+}
+
+func convertPos(posx, posy int) (float64, float64) {
+	return float64(posx / 8), float64(posy / 8)
 }
 
 func read() {

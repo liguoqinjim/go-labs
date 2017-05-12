@@ -45,7 +45,8 @@ func run() {
 	win.Clear(colornames.Skyblue)
 	sprite := pixel.NewSprite(pic, pic.Bounds())
 
-	sprite.SetMatrix(pixel.IM.Moved(win.Bounds().Center()))
+	//sprite.SetMatrix(pixel.IM.Moved(win.Bounds().Center()))
+	sprite.SetMatrix(pixel.IM.Moved(pixel.V(400, 400)))
 	sprite.Draw(win)
 
 	angle := 0.0
@@ -59,12 +60,13 @@ func run() {
 
 		win.Clear(colornames.Firebrick)
 
-		mat := pixel.IM
+		//mat := pixel.IM
 		//mat = mat.Rotated(0, angle)
-		mat = mat.Moved(pixel.V(float64(x+5), 0))
+		//mat = mat.Moved(pixel.V(float64(x+5), 0))
 		x += int(5)
-		sprite.SetMatrix(sprite.Matrix().Moved(pixel.V(5, 0)))
-		sprite.Draw(win)
+		//sprite.SetMatrix(sprite.Matrix().Moved(pixel.V(5, 5)))
+		//sprite.SetMatrix(pixel.IM.Moved(pixel.V(400, 400)))
+		//sprite.Draw(win)
 
 		win.Update()
 	}

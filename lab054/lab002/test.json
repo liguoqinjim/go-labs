@@ -1,0 +1,4206 @@
+{
+    "Back": {
+        "Cmd": 900001,
+        "Success": true,
+        "ErrorCode": 0,
+        "Params": {
+            "StartTime": 1494555908,
+            "ArmyGroup1Init": {
+                "ArmyGroupId": 1,
+                "ArmyFormationId": 1,
+                "ArmyFormationSide": 1,
+                "Armys": [
+                    {
+                        "Hero": {
+                            "HeroId": 2,
+                            "HeroLife": 550
+                        },
+                        "Soldier": {
+                            "SoldierId": 2,
+                            "SoldierNum": 2000
+                        },
+                        "ArmyFieldId": 1,
+                        "PosX": 3200,
+                        "PosY": 4266
+                    },
+                    {
+                        "Hero": {
+                            "HeroId": 1,
+                            "HeroLife": 500
+                        },
+                        "Soldier": {
+                            "SoldierId": 1,
+                            "SoldierNum": 2000
+                        },
+                        "ArmyFieldId": 2,
+                        "PosX": 3900,
+                        "PosY": 4266
+                    },
+                    {
+                        "Hero": {
+                            "HeroId": 4,
+                            "HeroLife": 650
+                        },
+                        "Soldier": {
+                            "SoldierId": 4,
+                            "SoldierNum": 2000
+                        },
+                        "ArmyFieldId": 3,
+                        "PosX": 3200,
+                        "PosY": 2133
+                    },
+                    {
+                        "Hero": {
+                            "HeroId": 3,
+                            "HeroLife": 600
+                        },
+                        "Soldier": {
+                            "SoldierId": 3,
+                            "SoldierNum": 2000
+                        },
+                        "ArmyFieldId": 4,
+                        "PosX": 3900,
+                        "PosY": 2133
+                    }
+                ]
+            },
+            "ArmyGroup2Init": {
+                "ArmyGroupId": 2,
+                "ArmyFormationId": 2,
+                "ArmyFormationSide": 2,
+                "Armys": [
+                    {
+                        "Hero": {
+                            "HeroId": 1,
+                            "HeroLife": 500
+                        },
+                        "Soldier": {
+                            "SoldierId": 1,
+                            "SoldierNum": 2000
+                        },
+                        "ArmyFieldId": 5,
+                        "PosX": 6400,
+                        "PosY": 4266
+                    },
+                    {
+                        "Hero": {
+                            "HeroId": 2,
+                            "HeroLife": 550
+                        },
+                        "Soldier": {
+                            "SoldierId": 2,
+                            "SoldierNum": 2000
+                        },
+                        "ArmyFieldId": 6,
+                        "PosX": 7000,
+                        "PosY": 4266
+                    },
+                    {
+                        "Hero": {
+                            "HeroId": 3,
+                            "HeroLife": 600
+                        },
+                        "Soldier": {
+                            "SoldierId": 3,
+                            "SoldierNum": 2000
+                        },
+                        "ArmyFieldId": 7,
+                        "PosX": 6400,
+                        "PosY": 2133
+                    },
+                    {
+                        "Hero": {
+                            "HeroId": 4,
+                            "HeroLife": 650
+                        },
+                        "Soldier": {
+                            "SoldierId": 4,
+                            "SoldierNum": 2000
+                        },
+                        "ArmyFieldId": 8,
+                        "PosX": 7000,
+                        "PosY": 2133
+                    }
+                ]
+            },
+            "ArmyGroupWin": {
+                "ArmyGroupId": 1,
+                "ArmyFormationId": 1,
+                "ArmyFormationSide": 1,
+                "Armys": [
+                    {
+                        "Hero": {
+                            "HeroId": 2,
+                            "HeroLife": 550
+                        },
+                        "Soldier": {
+                            "SoldierId": 2,
+                            "SoldierNum": 1328
+                        },
+                        "ArmyFieldId": 1,
+                        "PosX": 6200,
+                        "PosY": 4266
+                    },
+                    {
+                        "Hero": {
+                            "HeroId": 1,
+                            "HeroLife": 0
+                        },
+                        "Soldier": {
+                            "SoldierId": 1,
+                            "SoldierNum": 0
+                        },
+                        "ArmyFieldId": 2,
+                        "PosX": 5230,
+                        "PosY": 4266
+                    },
+                    {
+                        "Hero": {
+                            "HeroId": 4,
+                            "HeroLife": 650
+                        },
+                        "Soldier": {
+                            "SoldierId": 4,
+                            "SoldierNum": 1030
+                        },
+                        "ArmyFieldId": 3,
+                        "PosX": 5200,
+                        "PosY": 2133
+                    },
+                    {
+                        "Hero": {
+                            "HeroId": 3,
+                            "HeroLife": 0
+                        },
+                        "Soldier": {
+                            "SoldierId": 3,
+                            "SoldierNum": 0
+                        },
+                        "ArmyFieldId": 4,
+                        "PosX": 5230,
+                        "PosY": 2133
+                    }
+                ]
+            },
+            "BattleFrameDatas": [
+                {
+                    "Frame": 10,
+                    "ArmyFieldId": 1,
+                    "Posx": 3450,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 10,
+                    "ArmyFieldId": 2,
+                    "Posx": 4150,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 10,
+                    "ArmyFieldId": 3,
+                    "Posx": 3450,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 10,
+                    "ArmyFieldId": 4,
+                    "Posx": 4150,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 10,
+                    "ArmyFieldId": 5,
+                    "Posx": 6150,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 10,
+                    "ArmyFieldId": 6,
+                    "Posx": 6750,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 10,
+                    "ArmyFieldId": 7,
+                    "Posx": 6150,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 10,
+                    "ArmyFieldId": 8,
+                    "Posx": 6750,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 11,
+                    "ArmyFieldId": 1,
+                    "Posx": 3700,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 11,
+                    "ArmyFieldId": 2,
+                    "Posx": 4400,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 11,
+                    "ArmyFieldId": 3,
+                    "Posx": 3700,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 11,
+                    "ArmyFieldId": 4,
+                    "Posx": 4400,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 11,
+                    "ArmyFieldId": 5,
+                    "Posx": 5900,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 11,
+                    "ArmyFieldId": 6,
+                    "Posx": 6500,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 11,
+                    "ArmyFieldId": 7,
+                    "Posx": 5900,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 11,
+                    "ArmyFieldId": 8,
+                    "Posx": 6500,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 12,
+                    "ArmyFieldId": 1,
+                    "Posx": 3950,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 12,
+                    "ArmyFieldId": 2,
+                    "Posx": 4650,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 12,
+                    "ArmyFieldId": 3,
+                    "Posx": 3950,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 12,
+                    "ArmyFieldId": 4,
+                    "Posx": 4650,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 12,
+                    "ArmyFieldId": 5,
+                    "Posx": 5650,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 12,
+                    "ArmyFieldId": 6,
+                    "Posx": 6250,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 12,
+                    "ArmyFieldId": 7,
+                    "Posx": 5650,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 12,
+                    "ArmyFieldId": 8,
+                    "Posx": 6250,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 13,
+                    "ArmyFieldId": 1,
+                    "Posx": 4200,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 13,
+                    "ArmyFieldId": 2,
+                    "Posx": 4900,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 13,
+                    "ArmyFieldId": 3,
+                    "Posx": 4200,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 13,
+                    "ArmyFieldId": 4,
+                    "Posx": 4900,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 13,
+                    "ArmyFieldId": 5,
+                    "Posx": 5400,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 13,
+                    "ArmyFieldId": 6,
+                    "Posx": 6000,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 13,
+                    "ArmyFieldId": 7,
+                    "Posx": 5400,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 13,
+                    "ArmyFieldId": 8,
+                    "Posx": 6000,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 14,
+                    "ArmyFieldId": 1,
+                    "Posx": 4450,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 14,
+                    "ArmyFieldId": 2,
+                    "Posx": 5150,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 14,
+                    "ArmyFieldId": 3,
+                    "Posx": 4450,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 14,
+                    "ArmyFieldId": 4,
+                    "Posx": 5150,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 14,
+                    "ArmyFieldId": 5,
+                    "Posx": 5170,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 14,
+                    "ArmyFieldId": 6,
+                    "Posx": 5750,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 14,
+                    "ArmyFieldId": 7,
+                    "Posx": 5170,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 14,
+                    "ArmyFieldId": 8,
+                    "Posx": 5750,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 14,
+                    "ArmyFieldId": 2,
+                    "Posx": 5150,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 14,
+                    "ArmyFieldId": 2,
+                    "Posx": 5150,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 14,
+                    "ArmyFieldId": 4,
+                    "Posx": 5150,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 14,
+                    "ArmyFieldId": 4,
+                    "Posx": 5150,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 14,
+                    "ArmyFieldId": 5,
+                    "Posx": 5170,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 14,
+                    "ArmyFieldId": 5,
+                    "Posx": 5170,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 14,
+                    "ArmyFieldId": 7,
+                    "Posx": 5170,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 14,
+                    "ArmyFieldId": 7,
+                    "Posx": 5170,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 15,
+                    "ArmyFieldId": 1,
+                    "Posx": 4700,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 15,
+                    "ArmyFieldId": 3,
+                    "Posx": 4700,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 15,
+                    "ArmyFieldId": 6,
+                    "Posx": 5500,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 15,
+                    "ArmyFieldId": 8,
+                    "Posx": 5500,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 2,
+                    "Posx": 5150,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 2,
+                    "Posx": 5150,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 4,
+                    "Posx": 5150,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 4,
+                    "Posx": 5150,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 5,
+                    "Posx": 5170,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 5,
+                    "Posx": 5170,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 7,
+                    "Posx": 5170,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 7,
+                    "Posx": 5170,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 16,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 18,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 18,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 18,
+                    "ArmyFieldId": 2,
+                    "Posx": 5150,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 18,
+                    "ArmyFieldId": 2,
+                    "Posx": 5150,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 18,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 18,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 18,
+                    "ArmyFieldId": 4,
+                    "Posx": 5150,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 18,
+                    "ArmyFieldId": 4,
+                    "Posx": 5150,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 18,
+                    "ArmyFieldId": 5,
+                    "Posx": 5170,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 18,
+                    "ArmyFieldId": 5,
+                    "Posx": 5170,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 18,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 18,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 18,
+                    "ArmyFieldId": 7,
+                    "Posx": 5170,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 18,
+                    "ArmyFieldId": 7,
+                    "Posx": 5170,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 18,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 18,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 20,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 20,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 20,
+                    "ArmyFieldId": 2,
+                    "Posx": 5150,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 20,
+                    "ArmyFieldId": 2,
+                    "Posx": 5150,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 20,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 20,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 20,
+                    "ArmyFieldId": 4,
+                    "Posx": 5150,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 20,
+                    "ArmyFieldId": 4,
+                    "Posx": 5150,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 20,
+                    "ArmyFieldId": 5,
+                    "Posx": 5170,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 20,
+                    "ArmyFieldId": 5,
+                    "Posx": 5170,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 20,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 20,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 20,
+                    "ArmyFieldId": 7,
+                    "Posx": 5170,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 20,
+                    "ArmyFieldId": 7,
+                    "Posx": 5170,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 20,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 20,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 22,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 22,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 22,
+                    "ArmyFieldId": 2,
+                    "Posx": 5150,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 22,
+                    "ArmyFieldId": 2,
+                    "Posx": 5150,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 22,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 22,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 22,
+                    "ArmyFieldId": 4,
+                    "Posx": 5150,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 22,
+                    "ArmyFieldId": 4,
+                    "Posx": 5150,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 22,
+                    "ArmyFieldId": 5,
+                    "Posx": 5170,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 22,
+                    "ArmyFieldId": 5,
+                    "Posx": 5170,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 22,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 22,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 22,
+                    "ArmyFieldId": 7,
+                    "Posx": 5170,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 22,
+                    "ArmyFieldId": 7,
+                    "Posx": 5170,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 22,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 22,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 24,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 24,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 24,
+                    "ArmyFieldId": 2,
+                    "Posx": 5150,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 24,
+                    "ArmyFieldId": 2,
+                    "Posx": 5150,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 24,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 24,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 24,
+                    "ArmyFieldId": 4,
+                    "Posx": 5150,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 24,
+                    "ArmyFieldId": 4,
+                    "Posx": 5150,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 24,
+                    "ArmyFieldId": 5,
+                    "Posx": 5170,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 24,
+                    "ArmyFieldId": 5,
+                    "Posx": 5170,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 24,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 24,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 24,
+                    "ArmyFieldId": 7,
+                    "Posx": 5170,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 24,
+                    "ArmyFieldId": 7,
+                    "Posx": 5170,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 24,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 24,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 26,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 26,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 26,
+                    "ArmyFieldId": 2,
+                    "Posx": 5150,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 26,
+                    "ArmyFieldId": 2,
+                    "Posx": 5150,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        5
+                    ]
+                },
+                {
+                    "Frame": 26,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 26,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 26,
+                    "ArmyFieldId": 4,
+                    "Posx": 5150,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 26,
+                    "ArmyFieldId": 4,
+                    "Posx": 5150,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        7
+                    ]
+                },
+                {
+                    "Frame": 26,
+                    "ArmyFieldId": 5,
+                    "Posx": 5170,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 26,
+                    "ArmyFieldId": 5,
+                    "Posx": 5170,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 26,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 26,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 26,
+                    "ArmyFieldId": 7,
+                    "Posx": 5170,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 26,
+                    "ArmyFieldId": 7,
+                    "Posx": 5170,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 26,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 26,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 28,
+                    "ArmyFieldId": 5,
+                    "Posx": 5170,
+                    "Posy": 4266,
+                    "Operator": 3,
+                    "Data": null
+                },
+                {
+                    "Frame": 28,
+                    "ArmyFieldId": 7,
+                    "Posx": 5170,
+                    "Posy": 2133,
+                    "Operator": 3,
+                    "Data": null
+                },
+                {
+                    "Frame": 28,
+                    "ArmyFieldId": 2,
+                    "Posx": 5230,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 28,
+                    "ArmyFieldId": 4,
+                    "Posx": 5230,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 28,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 28,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 28,
+                    "ArmyFieldId": 2,
+                    "Posx": 5230,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 28,
+                    "ArmyFieldId": 2,
+                    "Posx": 5230,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 28,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 28,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 28,
+                    "ArmyFieldId": 4,
+                    "Posx": 5230,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 28,
+                    "ArmyFieldId": 4,
+                    "Posx": 5230,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 28,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 28,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 28,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 28,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        4
+                    ]
+                },
+                {
+                    "Frame": 30,
+                    "ArmyFieldId": 4,
+                    "Posx": 5230,
+                    "Posy": 2133,
+                    "Operator": 3,
+                    "Data": null
+                },
+                {
+                    "Frame": 30,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 30,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 30,
+                    "ArmyFieldId": 2,
+                    "Posx": 5230,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 30,
+                    "ArmyFieldId": 2,
+                    "Posx": 5230,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 30,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 30,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 30,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 30,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        2
+                    ]
+                },
+                {
+                    "Frame": 30,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 30,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 32,
+                    "ArmyFieldId": 2,
+                    "Posx": 5230,
+                    "Posy": 4266,
+                    "Operator": 3,
+                    "Data": null
+                },
+                {
+                    "Frame": 32,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 32,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 32,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 32,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 32,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 32,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 32,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 32,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 34,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 34,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 34,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 34,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 34,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 34,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 34,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 34,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 36,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 36,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 36,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 36,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 36,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 36,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 36,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 36,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 38,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 38,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 38,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 38,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 38,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 38,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 38,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 38,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 40,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 40,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 40,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 40,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 40,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 40,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 40,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 40,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 42,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 42,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 42,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 42,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 42,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 42,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 42,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 42,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 44,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 44,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 44,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 44,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 44,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 44,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 44,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 44,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 46,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 46,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 46,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 46,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 46,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 46,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 46,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 46,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 48,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 48,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 48,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 48,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 48,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 48,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 48,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 48,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 50,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 50,
+                    "ArmyFieldId": 1,
+                    "Posx": 4950,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        6
+                    ]
+                },
+                {
+                    "Frame": 50,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 50,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 50,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 50,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 2,
+                    "Data": [
+                        1
+                    ]
+                },
+                {
+                    "Frame": 50,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 50,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 52,
+                    "ArmyFieldId": 6,
+                    "Posx": 5250,
+                    "Posy": 4266,
+                    "Operator": 3,
+                    "Data": null
+                },
+                {
+                    "Frame": 52,
+                    "ArmyFieldId": 1,
+                    "Posx": 5200,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 52,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 52,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 52,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 52,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 53,
+                    "ArmyFieldId": 1,
+                    "Posx": 5450,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 54,
+                    "ArmyFieldId": 1,
+                    "Posx": 5700,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 54,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 54,
+                    "ArmyFieldId": 3,
+                    "Posx": 4950,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        8
+                    ]
+                },
+                {
+                    "Frame": 54,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 54,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 2,
+                    "Data": [
+                        3
+                    ]
+                },
+                {
+                    "Frame": 55,
+                    "ArmyFieldId": 1,
+                    "Posx": 5950,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 56,
+                    "ArmyFieldId": 8,
+                    "Posx": 5250,
+                    "Posy": 2133,
+                    "Operator": 3,
+                    "Data": null
+                },
+                {
+                    "Frame": 56,
+                    "ArmyFieldId": 1,
+                    "Posx": 6200,
+                    "Posy": 4266,
+                    "Operator": 1,
+                    "Data": null
+                },
+                {
+                    "Frame": 56,
+                    "ArmyFieldId": 3,
+                    "Posx": 5200,
+                    "Posy": 2133,
+                    "Operator": 1,
+                    "Data": null
+                }
+            ],
+            "BattleFrameDamageDatas": [
+                {
+                    "Frame": 16,
+                    "ArmyId": 5,
+                    "ArmyFromId": 2,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 16,
+                    "ArmyId": 5,
+                    "ArmyFromId": 2,
+                    "FromType": 2,
+                    "Damage": 100
+                },
+                {
+                    "Frame": 16,
+                    "ArmyId": 7,
+                    "ArmyFromId": 4,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 16,
+                    "ArmyId": 7,
+                    "ArmyFromId": 4,
+                    "FromType": 2,
+                    "Damage": 120
+                },
+                {
+                    "Frame": 16,
+                    "ArmyId": 2,
+                    "ArmyFromId": 5,
+                    "FromType": 1,
+                    "Damage": 1790
+                },
+                {
+                    "Frame": 16,
+                    "ArmyId": 2,
+                    "ArmyFromId": 5,
+                    "FromType": 2,
+                    "Damage": 100
+                },
+                {
+                    "Frame": 16,
+                    "ArmyId": 4,
+                    "ArmyFromId": 7,
+                    "FromType": 1,
+                    "Damage": 1788
+                },
+                {
+                    "Frame": 16,
+                    "ArmyId": 4,
+                    "ArmyFromId": 7,
+                    "FromType": 2,
+                    "Damage": 120
+                },
+                {
+                    "Frame": 18,
+                    "ArmyId": 5,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 18,
+                    "ArmyId": 5,
+                    "ArmyFromId": 1,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 18,
+                    "ArmyId": 5,
+                    "ArmyFromId": 2,
+                    "FromType": 1,
+                    "Damage": 1811
+                },
+                {
+                    "Frame": 18,
+                    "ArmyId": 5,
+                    "ArmyFromId": 2,
+                    "FromType": 2,
+                    "Damage": 100
+                },
+                {
+                    "Frame": 18,
+                    "ArmyId": 7,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 18,
+                    "ArmyId": 7,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 18,
+                    "ArmyId": 7,
+                    "ArmyFromId": 4,
+                    "FromType": 1,
+                    "Damage": 1810
+                },
+                {
+                    "Frame": 18,
+                    "ArmyId": 7,
+                    "ArmyFromId": 4,
+                    "FromType": 2,
+                    "Damage": 120
+                },
+                {
+                    "Frame": 18,
+                    "ArmyId": 2,
+                    "ArmyFromId": 5,
+                    "FromType": 1,
+                    "Damage": 1388
+                },
+                {
+                    "Frame": 18,
+                    "ArmyId": 2,
+                    "ArmyFromId": 5,
+                    "FromType": 2,
+                    "Damage": 100
+                },
+                {
+                    "Frame": 18,
+                    "ArmyId": 2,
+                    "ArmyFromId": 6,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 18,
+                    "ArmyId": 2,
+                    "ArmyFromId": 6,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 18,
+                    "ArmyId": 4,
+                    "ArmyFromId": 7,
+                    "FromType": 1,
+                    "Damage": 1382
+                },
+                {
+                    "Frame": 18,
+                    "ArmyId": 4,
+                    "ArmyFromId": 7,
+                    "FromType": 2,
+                    "Damage": 120
+                },
+                {
+                    "Frame": 18,
+                    "ArmyId": 4,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 18,
+                    "ArmyId": 4,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 20,
+                    "ArmyId": 5,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 20,
+                    "ArmyId": 5,
+                    "ArmyFromId": 1,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 20,
+                    "ArmyId": 5,
+                    "ArmyFromId": 2,
+                    "FromType": 1,
+                    "Damage": 1452
+                },
+                {
+                    "Frame": 20,
+                    "ArmyId": 5,
+                    "ArmyFromId": 2,
+                    "FromType": 2,
+                    "Damage": 100
+                },
+                {
+                    "Frame": 20,
+                    "ArmyId": 7,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 20,
+                    "ArmyId": 7,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 20,
+                    "ArmyId": 7,
+                    "ArmyFromId": 4,
+                    "FromType": 1,
+                    "Damage": 1447
+                },
+                {
+                    "Frame": 20,
+                    "ArmyId": 7,
+                    "ArmyFromId": 4,
+                    "FromType": 2,
+                    "Damage": 120
+                },
+                {
+                    "Frame": 20,
+                    "ArmyId": 2,
+                    "ArmyFromId": 5,
+                    "FromType": 1,
+                    "Damage": 1022
+                },
+                {
+                    "Frame": 20,
+                    "ArmyId": 2,
+                    "ArmyFromId": 5,
+                    "FromType": 2,
+                    "Damage": 100
+                },
+                {
+                    "Frame": 20,
+                    "ArmyId": 2,
+                    "ArmyFromId": 6,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 20,
+                    "ArmyId": 2,
+                    "ArmyFromId": 6,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 20,
+                    "ArmyId": 4,
+                    "ArmyFromId": 7,
+                    "FromType": 1,
+                    "Damage": 1013
+                },
+                {
+                    "Frame": 20,
+                    "ArmyId": 4,
+                    "ArmyFromId": 7,
+                    "FromType": 2,
+                    "Damage": 120
+                },
+                {
+                    "Frame": 20,
+                    "ArmyId": 4,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 20,
+                    "ArmyId": 4,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 22,
+                    "ArmyId": 5,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 22,
+                    "ArmyId": 5,
+                    "ArmyFromId": 1,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 22,
+                    "ArmyId": 5,
+                    "ArmyFromId": 2,
+                    "FromType": 1,
+                    "Damage": 1129
+                },
+                {
+                    "Frame": 22,
+                    "ArmyId": 5,
+                    "ArmyFromId": 2,
+                    "FromType": 2,
+                    "Damage": 100
+                },
+                {
+                    "Frame": 22,
+                    "ArmyId": 7,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 22,
+                    "ArmyId": 7,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 22,
+                    "ArmyId": 7,
+                    "ArmyFromId": 4,
+                    "FromType": 1,
+                    "Damage": 1121
+                },
+                {
+                    "Frame": 22,
+                    "ArmyId": 7,
+                    "ArmyFromId": 4,
+                    "FromType": 2,
+                    "Damage": 120
+                },
+                {
+                    "Frame": 22,
+                    "ArmyId": 2,
+                    "ArmyFromId": 5,
+                    "FromType": 1,
+                    "Damage": 689
+                },
+                {
+                    "Frame": 22,
+                    "ArmyId": 2,
+                    "ArmyFromId": 5,
+                    "FromType": 2,
+                    "Damage": 100
+                },
+                {
+                    "Frame": 22,
+                    "ArmyId": 2,
+                    "ArmyFromId": 6,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 22,
+                    "ArmyId": 2,
+                    "ArmyFromId": 6,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 22,
+                    "ArmyId": 4,
+                    "ArmyFromId": 7,
+                    "FromType": 1,
+                    "Damage": 676
+                },
+                {
+                    "Frame": 22,
+                    "ArmyId": 4,
+                    "ArmyFromId": 7,
+                    "FromType": 2,
+                    "Damage": 120
+                },
+                {
+                    "Frame": 22,
+                    "ArmyId": 4,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 22,
+                    "ArmyId": 4,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 24,
+                    "ArmyId": 5,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 24,
+                    "ArmyId": 5,
+                    "ArmyFromId": 1,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 24,
+                    "ArmyId": 5,
+                    "ArmyFromId": 2,
+                    "FromType": 1,
+                    "Damage": 840
+                },
+                {
+                    "Frame": 24,
+                    "ArmyId": 5,
+                    "ArmyFromId": 2,
+                    "FromType": 2,
+                    "Damage": 100
+                },
+                {
+                    "Frame": 24,
+                    "ArmyId": 7,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 24,
+                    "ArmyId": 7,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 24,
+                    "ArmyId": 7,
+                    "ArmyFromId": 4,
+                    "FromType": 1,
+                    "Damage": 829
+                },
+                {
+                    "Frame": 24,
+                    "ArmyId": 7,
+                    "ArmyFromId": 4,
+                    "FromType": 2,
+                    "Damage": 120
+                },
+                {
+                    "Frame": 24,
+                    "ArmyId": 2,
+                    "ArmyFromId": 5,
+                    "FromType": 1,
+                    "Damage": 384
+                },
+                {
+                    "Frame": 24,
+                    "ArmyId": 2,
+                    "ArmyFromId": 5,
+                    "FromType": 2,
+                    "Damage": 100
+                },
+                {
+                    "Frame": 24,
+                    "ArmyId": 2,
+                    "ArmyFromId": 6,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 24,
+                    "ArmyId": 2,
+                    "ArmyFromId": 6,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 24,
+                    "ArmyId": 4,
+                    "ArmyFromId": 7,
+                    "FromType": 1,
+                    "Damage": 369
+                },
+                {
+                    "Frame": 24,
+                    "ArmyId": 4,
+                    "ArmyFromId": 7,
+                    "FromType": 2,
+                    "Damage": 120
+                },
+                {
+                    "Frame": 24,
+                    "ArmyId": 4,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 24,
+                    "ArmyId": 4,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 26,
+                    "ArmyId": 5,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 26,
+                    "ArmyId": 5,
+                    "ArmyFromId": 1,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 26,
+                    "ArmyId": 5,
+                    "ArmyFromId": 2,
+                    "FromType": 1,
+                    "Damage": 581
+                },
+                {
+                    "Frame": 26,
+                    "ArmyId": 5,
+                    "ArmyFromId": 2,
+                    "FromType": 2,
+                    "Damage": 100
+                },
+                {
+                    "Frame": 26,
+                    "ArmyId": 7,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 26,
+                    "ArmyId": 7,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 26,
+                    "ArmyId": 7,
+                    "ArmyFromId": 4,
+                    "FromType": 1,
+                    "Damage": 568
+                },
+                {
+                    "Frame": 26,
+                    "ArmyId": 7,
+                    "ArmyFromId": 4,
+                    "FromType": 2,
+                    "Damage": 120
+                },
+                {
+                    "Frame": 26,
+                    "ArmyId": 2,
+                    "ArmyFromId": 5,
+                    "FromType": 1,
+                    "Damage": 105
+                },
+                {
+                    "Frame": 26,
+                    "ArmyId": 2,
+                    "ArmyFromId": 5,
+                    "FromType": 2,
+                    "Damage": 100
+                },
+                {
+                    "Frame": 26,
+                    "ArmyId": 2,
+                    "ArmyFromId": 6,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 26,
+                    "ArmyId": 2,
+                    "ArmyFromId": 6,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 26,
+                    "ArmyId": 4,
+                    "ArmyFromId": 7,
+                    "FromType": 1,
+                    "Damage": 88
+                },
+                {
+                    "Frame": 26,
+                    "ArmyId": 4,
+                    "ArmyFromId": 7,
+                    "FromType": 2,
+                    "Damage": 120
+                },
+                {
+                    "Frame": 26,
+                    "ArmyId": 4,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 26,
+                    "ArmyId": 4,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 28,
+                    "ArmyId": 5,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 28,
+                    "ArmyId": 7,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 28,
+                    "ArmyId": 2,
+                    "ArmyFromId": 6,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 28,
+                    "ArmyId": 2,
+                    "ArmyFromId": 6,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 28,
+                    "ArmyId": 4,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 28,
+                    "ArmyId": 4,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 30,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 30,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 30,
+                    "ArmyId": 6,
+                    "ArmyFromId": 2,
+                    "FromType": 1,
+                    "Damage": 139
+                },
+                {
+                    "Frame": 30,
+                    "ArmyId": 6,
+                    "ArmyFromId": 2,
+                    "FromType": 2,
+                    "Damage": 100
+                },
+                {
+                    "Frame": 30,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 30,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 30,
+                    "ArmyId": 8,
+                    "ArmyFromId": 4,
+                    "FromType": 1,
+                    "Damage": 122
+                },
+                {
+                    "Frame": 30,
+                    "ArmyId": 8,
+                    "ArmyFromId": 4,
+                    "FromType": 2,
+                    "Damage": 120
+                },
+                {
+                    "Frame": 30,
+                    "ArmyId": 2,
+                    "ArmyFromId": 6,
+                    "FromType": 1,
+                    "Damage": 1766
+                },
+                {
+                    "Frame": 30,
+                    "ArmyId": 2,
+                    "ArmyFromId": 6,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 30,
+                    "ArmyId": 4,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 1763
+                },
+                {
+                    "Frame": 30,
+                    "ArmyId": 4,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 32,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 32,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 32,
+                    "ArmyId": 6,
+                    "ArmyFromId": 2,
+                    "FromType": 1,
+                    "Damage": 0
+                },
+                {
+                    "Frame": 32,
+                    "ArmyId": 6,
+                    "ArmyFromId": 2,
+                    "FromType": 2,
+                    "Damage": 100
+                },
+                {
+                    "Frame": 32,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 32,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 32,
+                    "ArmyId": 2,
+                    "ArmyFromId": 6,
+                    "FromType": 1,
+                    "Damage": 1545
+                },
+                {
+                    "Frame": 32,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 1550
+                },
+                {
+                    "Frame": 32,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 34,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 2000
+                },
+                {
+                    "Frame": 34,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 34,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 1832
+                },
+                {
+                    "Frame": 34,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 34,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 1,
+                    "Damage": 1334
+                },
+                {
+                    "Frame": 34,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 34,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 1354
+                },
+                {
+                    "Frame": 34,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 36,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 1856
+                },
+                {
+                    "Frame": 36,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 36,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 1684
+                },
+                {
+                    "Frame": 36,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 36,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 1,
+                    "Damage": 1138
+                },
+                {
+                    "Frame": 36,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 36,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 1173
+                },
+                {
+                    "Frame": 36,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 38,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 1732
+                },
+                {
+                    "Frame": 38,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 38,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 1554
+                },
+                {
+                    "Frame": 38,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 38,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 1,
+                    "Damage": 954
+                },
+                {
+                    "Frame": 38,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 38,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 1005
+                },
+                {
+                    "Frame": 38,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 40,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 1626
+                },
+                {
+                    "Frame": 40,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 40,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 1441
+                },
+                {
+                    "Frame": 40,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 40,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 1,
+                    "Damage": 781
+                },
+                {
+                    "Frame": 40,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 40,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 848
+                },
+                {
+                    "Frame": 40,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 42,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 1537
+                },
+                {
+                    "Frame": 42,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 42,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 1344
+                },
+                {
+                    "Frame": 42,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 42,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 1,
+                    "Damage": 617
+                },
+                {
+                    "Frame": 42,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 42,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 701
+                },
+                {
+                    "Frame": 42,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 44,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 1465
+                },
+                {
+                    "Frame": 44,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 44,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 1261
+                },
+                {
+                    "Frame": 44,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 44,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 1,
+                    "Damage": 460
+                },
+                {
+                    "Frame": 44,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 44,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 562
+                },
+                {
+                    "Frame": 44,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 46,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 1408
+                },
+                {
+                    "Frame": 46,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 46,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 1192
+                },
+                {
+                    "Frame": 46,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 46,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 1,
+                    "Damage": 309
+                },
+                {
+                    "Frame": 46,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 46,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 430
+                },
+                {
+                    "Frame": 46,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 48,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 1367
+                },
+                {
+                    "Frame": 48,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 48,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 1136
+                },
+                {
+                    "Frame": 48,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 48,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 1,
+                    "Damage": 162
+                },
+                {
+                    "Frame": 48,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 48,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 304
+                },
+                {
+                    "Frame": 48,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 50,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 1340
+                },
+                {
+                    "Frame": 50,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 50,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 1093
+                },
+                {
+                    "Frame": 50,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 50,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 1,
+                    "Damage": 17
+                },
+                {
+                    "Frame": 50,
+                    "ArmyId": 1,
+                    "ArmyFromId": 6,
+                    "FromType": 2,
+                    "Damage": 110
+                },
+                {
+                    "Frame": 50,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 182
+                },
+                {
+                    "Frame": 50,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 52,
+                    "ArmyId": 6,
+                    "ArmyFromId": 1,
+                    "FromType": 1,
+                    "Damage": 1328
+                },
+                {
+                    "Frame": 52,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 1062
+                },
+                {
+                    "Frame": 52,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 52,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 63
+                },
+                {
+                    "Frame": 52,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 54,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 1043
+                },
+                {
+                    "Frame": 54,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 54,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 1,
+                    "Damage": 0
+                },
+                {
+                    "Frame": 54,
+                    "ArmyId": 3,
+                    "ArmyFromId": 8,
+                    "FromType": 2,
+                    "Damage": 130
+                },
+                {
+                    "Frame": 56,
+                    "ArmyId": 8,
+                    "ArmyFromId": 3,
+                    "FromType": 1,
+                    "Damage": 1030
+                }
+            ]
+        }
+    }
+}
