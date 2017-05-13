@@ -7,7 +7,7 @@
 ##### `glide get xxx`
 在glide中安装包
 
-最好上面这两步就可以直接写程序了，之后运行的时候go会自动识别我们装在vendor中的包的
+做好上面这两步就可以直接写程序了，之后运行的时候go会自动识别我们装在vendor中的包的
 
 #### 运行结果
 ![Imgur](http://i.imgur.com/o1bGw69.png)
