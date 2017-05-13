@@ -1,0 +1,6 @@
+hash: bbff8946740979a9a0de894394c04f84138d79d2b9f96f3a0d9fd1add267ae3f
+updated: 2017-05-13T16:18:20.3897414+08:00
+imports:
+- name: github.com/benmanns/goworker
+  version: 36e605a9e15a8a1d99ddacc079dd178758aa1db5
+testImports: []

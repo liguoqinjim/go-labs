@@ -1,0 +1,4 @@
+package: lab055/lab001
+import:
+- package: github.com/benmanns/goworker
+  version: v0.1.2
