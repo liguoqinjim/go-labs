@@ -1,0 +1,8 @@
+hash: 4b20e99160244b3e7d2f3cc10f3cc08bf8b286a8706b4330ea674a28961be8a1
+updated: 2017-05-13T11:15:25.2023126+08:00
+imports:
+- name: github.com/gorilla/websocket
+  version: 3ab3a8b8831546bd18fd182c20687ca853b2bb13
+- name: github.com/name5566/leaf
+  version: b4a5928965598cb0211ce4067f2032889fe0fb66
+testImports: []

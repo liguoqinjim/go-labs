@@ -1,0 +1,6 @@
+package: lab055/lab001
+import:
+- package: github.com/name5566/leaf
+  version: 1.1.3
+- package: github.com/gorilla/websocket
+  version: v1.1.0
