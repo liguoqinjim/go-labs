@@ -17,3 +17,4 @@
 |lab002|govendor简单实验2|
 |lab003|glide实验1|
 |lab004|glide实验2|
+|lab005|dep实验1|
