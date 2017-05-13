@@ -57,3 +57,5 @@
 |lab053|web.go|
 |lab054|gjson|
 |lab055|goworker|
+|lab056|go redis|
+|lab057|leaf|
