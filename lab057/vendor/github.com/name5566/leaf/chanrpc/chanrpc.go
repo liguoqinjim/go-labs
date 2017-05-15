@@ -44,7 +44,7 @@ type RetInfo struct {
 type Client struct {
 	s               *Server
 	chanSyncRet     chan *RetInfo
-	ChanAsynRet     chan *RetInfo
+	ChanAsynRet     chan *RetInfo //异步
 	pendingAsynCall int
 }
 
