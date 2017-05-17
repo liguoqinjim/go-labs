@@ -1,6 +1,8 @@
 package main
 
 import (
+	"fmt"
+
 	"github.com/go-redis/redis"
 )
 
@@ -10,5 +12,5 @@ func main() {
 		Password: "", // no password set
 		DB:       0,  // use default DB
 	})
-
+	fmt.Println(client)
 }
