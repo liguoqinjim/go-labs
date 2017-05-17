@@ -6,4 +6,4 @@ https://github.com/go-redis/redis
 |实验|简介|
 |---|---|
 |lab001|实验1：ping set get|
-|lab002||
+|lab002|实验2：customCommand|

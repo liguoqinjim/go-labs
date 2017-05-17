@@ -20,5 +20,11 @@ func main() {
 	}
 
 	v,err := Get(client,"key2").Result()
-	fmt.Println(v,err)
+	if err == redis.Nil{
+		fmt.Println("key dose not exits")
+	}else if err != nil{
+		panic(err)
+	}else{
+		fmt.Println("v",v)
+	}
 }
