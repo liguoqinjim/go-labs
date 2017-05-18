@@ -1,0 +1,6 @@
+package: lab058/lab001
+import:
+- package: github.com/nsqio/nsq
+  version: v1.0.0-compat
+  subpackages:
+  - '...'
