@@ -1,6 +1,10 @@
 hash: c1ca5bc00fc907b57e5401d50ad49c8bdf6cae0ab0003fb35f1958a59eefe442
-updated: 2017-05-18T19:47:06.4664618+08:00
+updated: 2017-05-18T19:50:19.0275984+08:00
 imports:
+- name: github.com/mreiferson/go-snappystream
+  version: 028eae7ab5c4c9e2d1cb4c4ca1e53259bbe7e504
+  subpackages:
+  - snappy-go
 - name: github.com/nsqio/go-nsq
   version: d71fb89c9e0263aaed89645b0b168e11ccf597b1
 testImports: []
