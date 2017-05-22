@@ -3,47 +3,34 @@ package main
 import (
 	"fmt"
 	"net/rpc"
-	"os"
 )
 
 type Args struct {
-	I, J int
+	I int
+	J int
 }
-
-//func (this *MyMethod) Mult(args *Args, reply *int) error {
-//	if args == nil || reply == nil {
-//		return errors.New("nil paramters !")
-//	}
-//	*reply = args.I*args.J
-//	return nil
-//}
 
 type DivResult struct {
 	Quo, Rem int
 }
 
-//func (this *MyMethod) Div(args *Args, reply *DivResult) {
-//	reply.Quo = args.I / args.J
-//	reply.Rem = args.J % args.J
-//}
-
 func main() {
 	pClient, err := rpc.Dial("tcp", "127.0.0.1:7777")
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "err : %s\n", err.Error())
+		fmt.Printf("error %v\n", err)
 		return
 	}
 
-	// 同步RPC
+	//同步rpc
 	var multResult int
 	err = pClient.Call("MyMethod.Mult", &Args{2, 7}, &multResult)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "err : %s\n", err.Error())
+		fmt.Printf("error %v\n", err)
 		return
 	}
 	fmt.Println("Mult返回", multResult)
 
-	// 异步RPC
+	//异步rpc
 	var divResult DivResult
 	pCall := pClient.Go("MyMethod.Div", &Args{5, 2}, &divResult, nil)
 	if pCall != nil {
