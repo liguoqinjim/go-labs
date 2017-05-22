@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package message;
+
+service Calculator{
+    rpc Mult (CalRequest) returns (MultResult){
+
+    }
+    rpc Div(CalRequest) returns (DivResult){
+
+    }
+}
+
+message CalRequest{
+    int32 a = 1;
+    int32 b = 2;
+}
+
+message MultResult{
+    int32 result = 1;
+}
+
+message DivResult{
+    int32 result = 1;
+    int32 mod = 2;
+}
