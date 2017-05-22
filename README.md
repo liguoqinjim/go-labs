@@ -41,7 +41,7 @@
 |lab037|funny/link|
 |lab038|protobuf|
 |lab039|内存数据库事务demo|
-|lab040|grpc|
+|lab040|rpc|
 |lab041|mock|
 |lab042|SO_REUSEPORT|
 |lab043|+build(build tag)|
