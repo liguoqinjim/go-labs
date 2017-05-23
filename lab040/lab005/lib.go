@@ -2,10 +2,8 @@ package lib
 
 import (
 	"errors"
-	"fmt"
 	pb "lab040/lab005/message"
 	"log"
-	"net"
 
 	"golang.org/x/net/context"
 	"google.golang.org/grpc"
@@ -13,9 +11,9 @@ import (
 )
 
 const (
-	rpcPort     = ":50050"
-	grpcPort    = ":50051"
-	grpcAddress = "localhost:50051"
+	RPCPort     = ":50050"
+	GRPCPort    = ":50051"
+	GRPCAddress = "localhost:50051"
 )
 
 type GRPCCalServer struct{}
@@ -38,30 +36,21 @@ func (s *GRPCCalServer) Div(ctx context.Context, in *pb.CalRequest) (*pb.DivResu
 	return divResult, nil
 }
 
-func NewGRPCServer() {
-	listener, err := net.Listen("tcp", grpcPort)
-	if err != nil {
-		fmt.Printf("error %v\n", err)
-	}
-
+func NewGRPCServer() *grpc.Server {
 	s := grpc.NewServer()
 	pb.RegisterCalculatorServer(s, &GRPCCalServer{})
 	reflection.Register(s)
 
-	if err := s.Serve(listener); err != nil {
-		log.Fatalf("failed to serve:%v\n", err)
-	}
+	return s
 }
 
+var GRPCCalClient pb.CalculatorClient
+
 func NewGRPCClient() {
-	conn, err := grpc.Dial(grpcAddress, grpc.WithInsecure())
+	conn, err := grpc.Dial(GRPCAddress, grpc.WithInsecure())
 	if err != nil {
 		log.Fatalf("failed to connect:%v\n", err)
 	}
 	defer conn.Close()
-
-	// client := pb.NewCalculatorClient(conn)
-
-	// multRequest := &pb.CalRequest{A: 2, B: 3}
-
+	GRPCCalClient = pb.NewCalculatorClient(conn)
 }
