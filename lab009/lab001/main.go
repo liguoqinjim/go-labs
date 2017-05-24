@@ -1,4 +1,4 @@
-package lab001
+package main
 
 import (
 	"database/sql"
@@ -89,9 +89,9 @@ func main() {
 	// Make a slice for the values
 	values := make([]sql.RawBytes, len(columns))
 
-	// rows.Scan wants '[]interface{}' as an argument, so we must copy the
-	// references into such a slice
-	// See http://code.google.com/p/go-wiki/wiki/InterfaceSlice for details
+	//rows.Scan wants '[]interface{}' as an argument, so we must copy the
+	//references into such a slice
+	//See http://code.google.com/p/go-wiki/wiki/InterfaceSlice for details
 	scanArgs := make([]interface{}, len(values))
 	for i := range values {
 		scanArgs[i] = &values[i]
@@ -100,7 +100,7 @@ func main() {
 	// Fetch rows
 	for rows.Next() {
 		// get RawBytes from data
-		err = rows.Scan(scanArgs...)
+		err = rows.Scan(values...)
 		if err != nil {
 			panic(err.Error()) // proper error handling instead of panic in your app
 		}

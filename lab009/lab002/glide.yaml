@@ -1,0 +1,4 @@
+package: lab009/lab002
+import:
+- package: github.com/go-sql-driver/mysql
+  version: v1.3
