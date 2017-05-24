@@ -8,3 +8,4 @@
 |lab004|net/rpc实验2|
 |lab005|grpc和net/rpc对比|
 |lab006|thrift实验1|
+|lab007|thrift实验2|
