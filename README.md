@@ -60,3 +60,4 @@
 |lab056|go redis|
 |lab057|leaf|
 |lab058|nsq|
+|lab059|得到本机ip|
