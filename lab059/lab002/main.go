@@ -33,7 +33,7 @@ func IntranetIP() (ips []string, err error) {
 	fmt.Println()
 
 	for _, iface := range ifaces {
-		if iface.Flags&net.FlagUp == 0 { //网卡是否启用
+		if iface.Flags&net.FlagUp == 0 { //网卡是否连接
 			continue // interface down
 		}
 

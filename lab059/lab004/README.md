@@ -9,6 +9,7 @@
  4. 要去掉docker或者vm的虚拟网卡，和云服务器上的一些虚拟网卡
 
 #### 运行结果
-
+![Imgur](http://i.imgur.com/BQTsQnC.png)
 
 #### 参考资料
+http://golangtc.com/t/5111b98b320b5209f4000004
