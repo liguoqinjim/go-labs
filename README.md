@@ -60,5 +60,5 @@
 |lab056|go redis|
 |lab057|leaf|
 |lab058|nsq|
-|lab059|得到本机ip|
+|lab059|得到本机ip和公网ip|
 |lab060|golang错误和异常处理|
