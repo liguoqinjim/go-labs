@@ -32,6 +32,7 @@ func metricsHandler(w http.ResponseWriter, r *http.Request) {
 func main() {
 	mux := http.NewServeMux()
 	mux.HandleFunc("/debug/vars", metricsHandler)
+	fmt.Println("开始监听localhost:6060")
 	endpoint := http.ListenAndServe("localhost:6060", mux)
 	fmt.Println(endpoint)
 }
