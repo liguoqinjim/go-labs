@@ -63,3 +63,4 @@
 |lab059|得到本机ip和公网ip|
 |lab060|golang错误和异常处理|
 |lab061|metricbeat,elastic|
+|lab062|中文字符串长度|
