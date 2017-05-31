@@ -4,3 +4,4 @@
 |---|---|
 |lab001|实验1，例子程序typewriter|
 |lab002|实验2，简单例子|
+|lab003|实验3，truetype|
