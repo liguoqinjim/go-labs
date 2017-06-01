@@ -18,6 +18,7 @@ import (
 	"github.com/golang/freetype/truetype"
 	"github.com/tidwall/gjson"
 	"golang.org/x/image/font"
+	"golang.org/x/image/font/basicfont"
 	"io/ioutil"
 	"unicode"
 )
@@ -60,8 +61,16 @@ func loadTTF(path string, size float64) (font.Face, error) {
 }
 
 //初始化的参数
-var Armys [8]*pixel.Sprite
+var Armys [8]*Army
 var chanFrame chan []byte
+var basicAtlas *text.Atlas
+
+type Army struct {
+	id    int
+	x, y  float64
+	sp    *pixel.Sprite //显示图片
+	txtId *text.Text    //显示军队编号
+}
 
 func init() {
 	chanFrame = make(chan []byte, 1)
@@ -70,10 +79,16 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+	basicAtlas = text.NewAtlas(basicfont.Face7x13, text.ASCII)
 
 	for i := 0; i < len(Armys); i++ {
-		s := pixel.NewSprite(pic, pic.Bounds())
-		Armys[i] = s
+		army := new(Army)
+		army.sp = pixel.NewSprite(pic, pic.Bounds())
+		fmt.Println(pic.Bounds())
+		army.id = i + 1
+		army.txtId = text.New(pixel.V(army.x, army.y), basicAtlas)
+		army.txtId.Color = colornames.Red
+		Armys[i] = army
 	}
 
 	data.LoadData()
@@ -91,13 +106,13 @@ func run() {
 	}
 	win.Clear(colornames.Skyblue)
 
-	face, err := loadTTF("WRYH.ttf", 30)
-	if err != nil {
-		panic(err)
-	}
+	//face, err := loadTTF("WRYH.ttf", 30)
+	//if err != nil {
+	//	panic(err)
+	//}
 
 	initBattleState(win)
-	initBattleInfo(win, face)
+	//initBattleInfo(win, face)
 
 	for !win.Closed() {
 		select {
@@ -124,7 +139,14 @@ func initBattleState(win *pixelgl.Window) {
 		posy := gjson.Get(v.String(), "PosY").Int()
 
 		x, y := convertPos(int(posx), int(posy))
-		Armys[n].Draw(win, pixel.IM.Moved(pixel.V(x, y)))
+		Armys[n].x = x
+		Armys[n].y = y
+		Armys[n].id = n + 1
+		Armys[n].sp.Draw(win, pixel.IM.Moved(pixel.V(x, y)))
+		fmt.Fprintf(Armys[n].txtId, "%d", Armys[n].id)
+		mat := pixel.IM
+		mat.Scaled(pixel.V(x, y), 2)
+		Armys[n].txtId.Draw(win, mat)
 	}
 
 	army2 := gjson.Get(data.BattleData, "Back.Params.ArmyGroup2Init.Armys")
@@ -133,7 +155,12 @@ func initBattleState(win *pixelgl.Window) {
 		posy := gjson.Get(v.String(), "PosY").Int()
 
 		x, y := convertPos(int(posx), int(posy))
-		Armys[n+4].Draw(win, pixel.IM.Moved(pixel.V(x, y)))
+		Armys[n+4].x = x
+		Armys[n+4].y = y
+		Armys[n+4].id = n + 5
+		Armys[n+4].sp.Draw(win, pixel.IM.Moved(pixel.V(x, y)))
+		fmt.Fprintf(Armys[n+4].txtId, "%d", Armys[n+4].id)
+		Armys[n+4].txtId.Draw(win, pixel.IM.Moved(pixel.V(x, y)))
 	}
 }
 
@@ -158,7 +185,7 @@ func setArmyStateFrame(win *pixelgl.Window, frame int) {
 		posy := gjson.Get(v.String(), "Posy").Int()
 		x, y := convertPos(int(posx), int(posy))
 		if operator == 1 { //移动
-			Armys[fid-1].Draw(win, pixel.IM.Moved(pixel.V(x, y)))
+			Armys[fid-1].sp.Draw(win, pixel.IM.Moved(pixel.V(x, y)))
 		}
 	}
 }
