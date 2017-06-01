@@ -12,3 +12,4 @@ https://github.com/faiface/pixel
 |lab003|简单战斗模拟|
 |lab004|测试一下静态情况下的展示|
 |lab005|显示文本和输入文本|
+|lab006|简单战斗模拟2|
