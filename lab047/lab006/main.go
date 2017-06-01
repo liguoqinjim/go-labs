@@ -84,7 +84,6 @@ func init() {
 	for i := 0; i < len(Armys); i++ {
 		army := new(Army)
 		army.sp = pixel.NewSprite(pic, pic.Bounds())
-		fmt.Println(pic.Bounds())
 		army.id = i + 1
 		army.txtId = text.New(pixel.V(army.x, army.y), basicAtlas)
 		army.txtId.Color = colornames.Red
@@ -144,8 +143,11 @@ func initBattleState(win *pixelgl.Window) {
 		Armys[n].id = n + 1
 		Armys[n].sp.Draw(win, pixel.IM.Moved(pixel.V(x, y)))
 		fmt.Fprintf(Armys[n].txtId, "%d", Armys[n].id)
+
 		mat := pixel.IM
-		mat.Scaled(pixel.V(x, y), 2)
+		mat = mat.Moved(pixel.V(x, y))
+		mat = mat.Scaled(pixel.V(x, y), 2)
+
 		Armys[n].txtId.Draw(win, mat)
 	}
 
@@ -160,7 +162,11 @@ func initBattleState(win *pixelgl.Window) {
 		Armys[n+4].id = n + 5
 		Armys[n+4].sp.Draw(win, pixel.IM.Moved(pixel.V(x, y)))
 		fmt.Fprintf(Armys[n+4].txtId, "%d", Armys[n+4].id)
-		Armys[n+4].txtId.Draw(win, pixel.IM.Moved(pixel.V(x, y)))
+		mat := pixel.IM
+		mat = mat.Moved(pixel.V(x, y))
+		mat = mat.Scaled(pixel.V(x, y), 2)
+
+		Armys[n+4].txtId.Draw(win, mat)
 	}
 }
 
