@@ -14,7 +14,12 @@ import (
 
 	"github.com/faiface/pixel"
 	"github.com/faiface/pixel/pixelgl"
+	"github.com/faiface/pixel/text"
+	"github.com/golang/freetype/truetype"
 	"github.com/tidwall/gjson"
+	"golang.org/x/image/font"
+	"io/ioutil"
+	"unicode"
 )
 
 func loadPicture(path string) (pixel.Picture, error) {
@@ -29,6 +34,29 @@ func loadPicture(path string) (pixel.Picture, error) {
 		return nil, err
 	}
 	return pixel.PictureDataFromImage(img), nil
+}
+
+func loadTTF(path string, size float64) (font.Face, error) {
+	file, err := os.Open(path)
+	if err != nil {
+		return nil, err
+	}
+	defer file.Close()
+
+	data, err := ioutil.ReadAll(file)
+	if err != nil {
+		return nil, err
+	}
+
+	font, err := truetype.Parse(data)
+	if err != nil {
+		return nil, err
+	}
+
+	return truetype.NewFace(font, &truetype.Options{
+		Size:              size,
+		GlyphCacheEntries: 1,
+	}), nil
 }
 
 //初始化的参数
@@ -63,8 +91,13 @@ func run() {
 	}
 	win.Clear(colornames.Skyblue)
 
+	face, err := loadTTF("WRYH.ttf", 30)
+	if err != nil {
+		panic(err)
+	}
+
 	initBattleState(win)
-	// sprite.Draw(win)
+	initBattleInfo(win, face)
 
 	for !win.Closed() {
 		select {
@@ -73,22 +106,14 @@ func run() {
 			if err != nil {
 				panic(err)
 			}
-			setArmyStateFrame(win, frame)
 			win.Clear(colornames.Skyblue)
+			setArmyStateFrame(win, frame)
 		default:
 		}
-
-		//drawArmy(win)
 
 		win.Update()
 	}
 }
-
-//func drawArmy(win *pixelgl.Window) {
-//	for _, v := range Armys {
-//		v.Draw(win, nil)
-//	}
-//}
 
 func initBattleState(win *pixelgl.Window) {
 	fmt.Println("战斗初始配置")
@@ -110,6 +135,16 @@ func initBattleState(win *pixelgl.Window) {
 		x, y := convertPos(int(posx), int(posy))
 		Armys[n+4].Draw(win, pixel.IM.Moved(pixel.V(x, y)))
 	}
+}
+
+func initBattleInfo(win *pixelgl.Window, font font.Face) {
+	basicAtlas := text.NewAtlas(font, text.ASCII, text.RangeTable(unicode.Han))
+	basicTxt := text.New(pixel.V(0, 0), basicAtlas)
+
+	basicTxt.Color = colornames.Red
+	fmt.Fprintln(basicTxt, "战报")
+
+	basicTxt.Draw(win, pixel.IM.Scaled(basicTxt.Orig, 0.5))
 }
 
 func setArmyStateFrame(win *pixelgl.Window, frame int) {
