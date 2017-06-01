@@ -4,7 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	_ "image/png"
-	"lab047/lab003/data"
+	"lab047/lab006/data"
 	"strconv"
 
 	"image"
@@ -63,7 +63,7 @@ func run() {
 	}
 	win.Clear(colornames.Skyblue)
 
-	initBattleState()
+	initBattleState(win)
 	// sprite.Draw(win)
 
 	for !win.Closed() {
@@ -73,24 +73,24 @@ func run() {
 			if err != nil {
 				panic(err)
 			}
-			setArmyStateFrame(frame)
+			setArmyStateFrame(win, frame)
 			win.Clear(colornames.Skyblue)
 		default:
 		}
 
-		drawArmy(win)
+		//drawArmy(win)
 
 		win.Update()
 	}
 }
 
-func drawArmy(win *pixelgl.Window) {
-	for _, v := range Armys {
-		v.Draw(win)
-	}
-}
+//func drawArmy(win *pixelgl.Window) {
+//	for _, v := range Armys {
+//		v.Draw(win, nil)
+//	}
+//}
 
-func initBattleState() {
+func initBattleState(win *pixelgl.Window) {
 	fmt.Println("战斗初始配置")
 
 	army1 := gjson.Get(data.BattleData, "Back.Params.ArmyGroup1Init.Armys")
@@ -99,7 +99,7 @@ func initBattleState() {
 		posy := gjson.Get(v.String(), "PosY").Int()
 
 		x, y := convertPos(int(posx), int(posy))
-		Armys[n].SetMatrix(pixel.IM.Moved(pixel.V(x, y)))
+		Armys[n].Draw(win, pixel.IM.Moved(pixel.V(x, y)))
 	}
 
 	army2 := gjson.Get(data.BattleData, "Back.Params.ArmyGroup2Init.Armys")
@@ -108,11 +108,11 @@ func initBattleState() {
 		posy := gjson.Get(v.String(), "PosY").Int()
 
 		x, y := convertPos(int(posx), int(posy))
-		Armys[n+4].SetMatrix(pixel.IM.Moved(pixel.V(x, y)))
+		Armys[n+4].Draw(win, pixel.IM.Moved(pixel.V(x, y)))
 	}
 }
 
-func setArmyStateFrame(frame int) {
+func setArmyStateFrame(win *pixelgl.Window, frame int) {
 	matchPath := fmt.Sprintf("Back.Params.BattleFrameDatas.#[Frame==\"%d\"]#", frame)
 
 	value := gjson.Get(data.BattleData, matchPath)
@@ -123,7 +123,7 @@ func setArmyStateFrame(frame int) {
 		posy := gjson.Get(v.String(), "Posy").Int()
 		x, y := convertPos(int(posx), int(posy))
 		if operator == 1 { //移动
-			Armys[fid-1].SetMatrix(pixel.IM.Moved(pixel.V(x, y)))
+			Armys[fid-1].Draw(win, pixel.IM.Moved(pixel.V(x, y)))
 		}
 	}
 }
