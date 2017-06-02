@@ -16,6 +16,7 @@ import (
 	"github.com/faiface/pixel/pixelgl"
 	"github.com/faiface/pixel/text"
 	"github.com/golang/freetype/truetype"
+	"github.com/name5566/leaf/log"
 	"github.com/tidwall/gjson"
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/basicfont"
@@ -64,12 +65,14 @@ func loadTTF(path string, size float64) (font.Face, error) {
 var Armys [8]*Army
 var chanFrame chan []byte
 var basicAtlas *text.Atlas
+var battleInfoText *text.Text
 
 type Army struct {
-	id    int
-	x, y  float64
-	sp    *pixel.Sprite //显示图片
-	txtId *text.Text    //显示军队编号
+	id     int
+	x, y   float64
+	ox, oy int
+	sp     *pixel.Sprite //显示图片
+	txtId  *text.Text    //显示军队编号
 }
 
 func init() {
@@ -80,6 +83,7 @@ func init() {
 		panic(err)
 	}
 	basicAtlas = text.NewAtlas(basicfont.Face7x13, text.ASCII)
+	battleInfoText = text.New(pixel.V(0, 0), basicAtlas)
 
 	for i := 0; i < len(Armys); i++ {
 		army := new(Army)
@@ -96,7 +100,7 @@ func init() {
 func run() {
 	cfg := pixelgl.WindowConfig{
 		Title:  "战斗模拟",
-		Bounds: pixel.R(0, 0, 1200, 800),
+		Bounds: pixel.R(0, 0, 1920, 900),
 		VSync:  true,
 	}
 	win, err := pixelgl.NewWindow(cfg)
@@ -118,7 +122,8 @@ func run() {
 		case f := <-chanFrame:
 			frame, err := strconv.Atoi(string(f))
 			if err != nil {
-				panic(err)
+				log.Error("输入不正确")
+				break
 			}
 			win.Clear(colornames.Skyblue)
 			setArmyStateFrame(win, frame)
@@ -132,7 +137,8 @@ func run() {
 func initBattleState(win *pixelgl.Window) {
 	fmt.Println("战斗初始配置")
 
-	army1 := gjson.Get(data.BattleData, "Back.Params.ArmyGroup1Init.Armys")
+	//army1 := gjson.Get(data.BattleData, "Back.Params.ArmyGroup1Init.Armys")
+	army1 := gjson.Get(data.BattleData, "ArmyGroup1Init.Armys")
 	for n, v := range army1.Array() {
 		posx := gjson.Get(v.String(), "PosX").Int()
 		posy := gjson.Get(v.String(), "PosY").Int()
@@ -140,6 +146,8 @@ func initBattleState(win *pixelgl.Window) {
 		x, y := convertPos(int(posx), int(posy))
 		Armys[n].x = x
 		Armys[n].y = y
+		Armys[n].ox = int(posx)
+		Armys[n].oy = int(posy)
 		Armys[n].id = n + 1
 		Armys[n].sp.Draw(win, pixel.IM.Moved(pixel.V(x, y)))
 		fmt.Fprintf(Armys[n].txtId, "%d", Armys[n].id)
@@ -151,7 +159,7 @@ func initBattleState(win *pixelgl.Window) {
 		Armys[n].txtId.Draw(win, mat)
 	}
 
-	army2 := gjson.Get(data.BattleData, "Back.Params.ArmyGroup2Init.Armys")
+	army2 := gjson.Get(data.BattleData, "ArmyGroup2Init.Armys")
 	for n, v := range army2.Array() {
 		posx := gjson.Get(v.String(), "PosX").Int()
 		posy := gjson.Get(v.String(), "PosY").Int()
@@ -159,6 +167,8 @@ func initBattleState(win *pixelgl.Window) {
 		x, y := convertPos(int(posx), int(posy))
 		Armys[n+4].x = x
 		Armys[n+4].y = y
+		Armys[n+4].ox = int(posx)
+		Armys[n+4].oy = int(posy)
 		Armys[n+4].id = n + 5
 		Armys[n+4].sp.Draw(win, pixel.IM.Moved(pixel.V(x, y)))
 		fmt.Fprintf(Armys[n+4].txtId, "%d", Armys[n+4].id)
@@ -181,19 +191,56 @@ func initBattleInfo(win *pixelgl.Window, font font.Face) {
 }
 
 func setArmyStateFrame(win *pixelgl.Window, frame int) {
-	matchPath := fmt.Sprintf("Back.Params.BattleFrameDatas.#[Frame==\"%d\"]#", frame)
+	matchPath := fmt.Sprintf("BattleFrameDatas.#[Frame==\"%d\"]#", frame)
 
 	value := gjson.Get(data.BattleData, matchPath)
-	for _, v := range value.Array() {
-		operator := gjson.Get(v.String(), "Operator").Int()
-		fid := gjson.Get(v.String(), "ArmyFieldId").Int()
-		posx := gjson.Get(v.String(), "Posx").Int()
-		posy := gjson.Get(v.String(), "Posy").Int()
-		x, y := convertPos(int(posx), int(posy))
-		if operator == 1 { //移动
-			Armys[fid-1].sp.Draw(win, pixel.IM.Moved(pixel.V(x, y)))
+	if len(value.Array()) == 0 {
+		fmt.Println("该帧没有动作")
+	} else {
+		for _, v := range value.Array() {
+			operator := gjson.Get(v.String(), "Operator").Int()
+			fid := gjson.Get(v.String(), "ArmyFieldId").Int()
+			posx := gjson.Get(v.String(), "Posx").Int()
+			posy := gjson.Get(v.String(), "Posy").Int()
+			x, y := convertPos(int(posx), int(posy))
+			if operator == 1 { //移动
+				Armys[fid-1].x = x
+				Armys[fid-1].y = y
+				Armys[fid-1].ox = int(posx)
+				Armys[fid-1].oy = int(posy)
+			}
 		}
 	}
+
+	//开始画
+	for _, v := range Armys {
+		if v != nil {
+			v.sp.Draw(win, pixel.IM.Moved(pixel.V(v.x, v.y)))
+			mat := pixel.IM
+			mat = mat.Moved(pixel.V(v.x, v.y))
+			mat = mat.Scaled(pixel.V(v.x, v.y), 2)
+			v.txtId.Draw(win, mat)
+		}
+	}
+
+	//显示出位置
+	setBattleInfoFrame(win)
+}
+func setBattleInfoFrame(win *pixelgl.Window) {
+	battleInfoText.Clear()
+	battleInfoText.Color = colornames.Red
+	battleInfoText.Orig = pixel.V(0, 0)
+	battleInfoText.Dot = pixel.V(0, 0)
+	for _, v := range Armys {
+		if v != nil {
+			fmt.Fprintf(battleInfoText, "%d:xy[%f,%f];oxy[%d,%d]\n", v.id, v.x, v.y, v.ox, v.oy)
+		}
+	}
+
+	mat := pixel.IM
+	mat = mat.Moved(pixel.V(1320, 700))
+	mat = mat.Scaled(pixel.V(1320, 700), 2)
+	battleInfoText.Draw(win, mat)
 }
 
 func convertPos(posx, posy int) (float64, float64) {
