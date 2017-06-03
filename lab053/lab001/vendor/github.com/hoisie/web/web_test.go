@@ -1,569 +1,679 @@
 package web
 
 import (
-    "bytes"
-    "encoding/binary"
-    "fmt"
-    "http"
-    "os"
-    "strconv"
-    "strings"
-    "testing"
+	"bytes"
+	"encoding/base64"
+	"encoding/json"
+	"errors"
+	"fmt"
+	"io"
+	"io/ioutil"
+	"log"
+	"net/http"
+	"net/url"
+	"runtime"
+	"strconv"
+	"strings"
+	"testing"
 )
 
-//this implements io.ReadWriteCloser, which means it can be passed around as a tcp connection
-type tcpBuffer struct {
-    input  *bytes.Buffer
-    output *bytes.Buffer
+func init() {
+	runtime.GOMAXPROCS(runtime.NumCPU())
 }
 
-func (buf *tcpBuffer) Write(p []uint8) (n int, err os.Error) {
-    return buf.output.Write(p)
+// ioBuffer is a helper that implements io.ReadWriteCloser,
+// which is helpful in imitating a net.Conn
+type ioBuffer struct {
+	input  *bytes.Buffer
+	output *bytes.Buffer
+	closed bool
 }
 
-func (buf *tcpBuffer) Read(p []byte) (n int, err os.Error) {
-    return buf.input.Read(p)
+func (buf *ioBuffer) Write(p []uint8) (n int, err error) {
+	if buf.closed {
+		return 0, errors.New("Write after Close on ioBuffer")
+	}
+	return buf.output.Write(p)
 }
 
-func (buf *tcpBuffer) Close() os.Error { return nil }
+func (buf *ioBuffer) Read(p []byte) (n int, err error) {
+	if buf.closed {
+		return 0, errors.New("Read after Close on ioBuffer")
+	}
+	return buf.input.Read(p)
+}
+
+//noop
+func (buf *ioBuffer) Close() error {
+	buf.closed = true
+	return nil
+}
 
 type testResponse struct {
-    statusCode int
-    status     string
-    body       string
-    headers    map[string][]string
-    cookies    map[string]string
+	statusCode int
+	status     string
+	body       string
+	headers    map[string][]string
+	cookies    map[string]string
 }
 
 func buildTestResponse(buf *bytes.Buffer) *testResponse {
 
-    response := testResponse{headers: make(map[string][]string), cookies: make(map[string]string)}
-    s := buf.String()
+	response := testResponse{headers: make(map[string][]string), cookies: make(map[string]string)}
+	s := buf.String()
+	contents := strings.SplitN(s, "\r\n\r\n", 2)
 
-    contents := strings.Split(s, "\r\n\r\n", 2)
+	header := contents[0]
 
-    header := contents[0]
+	if len(contents) > 1 {
+		response.body = contents[1]
+	}
 
-    if len(contents) > 1 {
-        response.body = contents[1]
-    }
+	headers := strings.Split(header, "\r\n")
 
-    headers := strings.Split(header, "\r\n", 0)
+	statusParts := strings.SplitN(headers[0], " ", 3)
+	response.statusCode, _ = strconv.Atoi(statusParts[1])
 
-    statusParts := strings.Split(headers[0], " ", 3)
-    response.statusCode, _ = strconv.Atoi(statusParts[1])
+	for _, h := range headers[1:] {
+		split := strings.SplitN(h, ":", 2)
+		name := strings.TrimSpace(split[0])
+		value := strings.TrimSpace(split[1])
+		if _, ok := response.headers[name]; !ok {
+			response.headers[name] = []string{}
+		}
 
-    for _, h := range (headers[1:]) {
-        split := strings.Split(h, ":", 2)
-        name := strings.TrimSpace(split[0])
-        value := strings.TrimSpace(split[1])
-        if _, ok := response.headers[name]; !ok {
-            response.headers[name] = []string{}
-        }
+		newheaders := make([]string, len(response.headers[name])+1)
+		copy(newheaders, response.headers[name])
+		newheaders[len(newheaders)-1] = value
+		response.headers[name] = newheaders
 
-        newheaders := make([]string, len(response.headers[name])+1)
-        copy(newheaders, response.headers[name])
-        newheaders[len(newheaders)-1] = value
-        response.headers[name] = newheaders
+		//if the header is a cookie, set it
+		if name == "Set-Cookie" {
+			i := strings.Index(value, ";")
+			cookie := value[0:i]
+			cookieParts := strings.SplitN(cookie, "=", 2)
+			response.cookies[strings.TrimSpace(cookieParts[0])] = strings.TrimSpace(cookieParts[1])
+		}
+	}
 
-        //if the header is a cookie, set it
-        if name == "Set-Cookie" {
-            i := strings.Index(value, ";")
-            cookie := value[0:i]
-            cookieParts := strings.Split(cookie, "=", 2)
-
-            response.cookies[strings.TrimSpace(cookieParts[0])] = strings.TrimSpace(cookieParts[1])
-        }
-    }
-
-    return &response
+	return &response
 }
 
-func getTestResponse(method string, path string, body string, headers map[string]string) *testResponse {
+func getTestResponse(method string, path string, body string, headers map[string][]string, cookies []*http.Cookie) *testResponse {
+	req := buildTestRequest(method, path, body, headers, cookies)
+	var buf bytes.Buffer
 
-    req := buildTestRequest(method, path, body, headers)
-    var buf bytes.Buffer
+	tcpb := ioBuffer{input: nil, output: &buf}
+	c := scgiConn{wroteHeaders: false, req: req, headers: make(map[string][]string), fd: &tcpb}
+	mainServer.Process(&c, req)
+	return buildTestResponse(&buf)
+}
 
-    tcpb := tcpBuffer{nil, &buf}
-    c := scgiConn{wroteHeaders: false, headers: make(map[string][]string), fd: &tcpb}
-    routeHandler(req, &c)
-    return buildTestResponse(&buf)
-
+func testGet(path string, headers map[string]string) *testResponse {
+	var header http.Header
+	for k, v := range headers {
+		header.Set(k, v)
+	}
+	return getTestResponse("GET", path, "", header, nil)
 }
 
 type Test struct {
-    method         string
-    path           string
-    body           string
-    expectedStatus int
-    expectedBody   string
+	method         string
+	path           string
+	headers        map[string][]string
+	body           string
+	expectedStatus int
+	expectedBody   string
 }
-
 
 //initialize the routes
 func init() {
-    Get("/", func() string { return "index" })
-    Get("/echo/(.*)", func(s string) string { return s })
-    Get("/multiecho/(.*)/(.*)/(.*)/(.*)", func(a, b, c, d string) string { return a + b + c + d })
-    Post("/post/echo/(.*)", func(s string) string { return s })
-    Post("/post/echoparam/(.*)", func(ctx *Context, name string) string { return ctx.Request.Params[name][0] })
+	mainServer.SetLogger(log.New(ioutil.Discard, "", 0))
+	Get("/", func() string { return "index" })
+	Get("/panic", func() { panic(0) })
+	Get("/echo/(.*)", func(s string) string { return s })
+	Get("/multiecho/(.*)/(.*)/(.*)/(.*)", func(a, b, c, d string) string { return a + b + c + d })
+	Post("/post/echo/(.*)", func(s string) string { return s })
+	Post("/post/echoparam/(.*)", func(ctx *Context, name string) string { return ctx.Params[name] })
 
-    Get("/error/code/(.*)", func(ctx *Context, code string) string {
-        n, _ := strconv.Atoi(code)
-        message := statusText[n]
-        ctx.Abort(n, message)
-        return ""
-    })
+	Get("/error/code/(.*)", func(ctx *Context, code string) string {
+		n, _ := strconv.Atoi(code)
+		message := http.StatusText(n)
+		ctx.Abort(n, message)
+		return ""
+	})
 
-    Get("/error/notfound/(.*)", func(ctx *Context, message string) { ctx.NotFound(message) })
+	Get("/error/notfound/(.*)", func(ctx *Context, message string) { ctx.NotFound(message) })
 
-    Post("/posterror/code/(.*)/(.*)", func(ctx *Context, code string, message string) string {
-        n, _ := strconv.Atoi(code)
-        ctx.Abort(n, message)
-        return ""
-    })
+	Get("/error/badrequest", func(ctx *Context) { ctx.BadRequest() })
+	Post("/error/badrequest", func(ctx *Context) { ctx.BadRequest() })
 
-    Get("/writetest", func(ctx *Context) { ctx.WriteString("hello") })
+	Get("/error/unauthorized", func(ctx *Context) { ctx.Unauthorized() })
+	Post("/error/unauthorized", func(ctx *Context) { ctx.Unauthorized() })
 
-    Post("/securecookie/set/(.+)/(.+)", func(ctx *Context, name string, val string) string {
-        ctx.SetSecureCookie(name, val, 60)
-        return ""
-    })
+	Get("/error/forbidden", func(ctx *Context) { ctx.Forbidden() })
+	Post("/error/forbidden", func(ctx *Context) { ctx.Forbidden() })
 
-    Get("/securecookie/get/(.+)", func(ctx *Context, name string) string {
-        val, ok := ctx.GetSecureCookie(name)
-        if !ok {
-            return ""
-        }
-        return val
-    })
+	Post("/posterror/code/(.*)/(.*)", func(ctx *Context, code string, message string) string {
+		n, _ := strconv.Atoi(code)
+		ctx.Abort(n, message)
+		return ""
+	})
+
+	Get("/writetest", func(ctx *Context) { ctx.WriteString("hello") })
+
+	Post("/securecookie/set/(.+)/(.+)", func(ctx *Context, name string, val string) string {
+		ctx.SetSecureCookie(name, val, 60)
+		return ""
+	})
+
+	Get("/securecookie/get/(.+)", func(ctx *Context, name string) string {
+		val, ok := ctx.GetSecureCookie(name)
+		if !ok {
+			return ""
+		}
+		return val
+	})
+	Get("/getparam", func(ctx *Context) string { return ctx.Params["a"] })
+	Get("/fullparams", func(ctx *Context) string {
+		return strings.Join(ctx.Request.Form["a"], ",")
+	})
+
+	Get("/json", func(ctx *Context) string {
+		ctx.ContentType("json")
+		data, _ := json.Marshal(ctx.Params)
+		return string(data)
+	})
+
+	Get("/jsonbytes", func(ctx *Context) []byte {
+		ctx.ContentType("json")
+		data, _ := json.Marshal(ctx.Params)
+		return data
+	})
+
+	Post("/parsejson", func(ctx *Context) string {
+		var tmp = struct {
+			A string
+			B string
+		}{}
+		json.NewDecoder(ctx.Request.Body).Decode(&tmp)
+		return tmp.A + " " + tmp.B
+	})
+
+	Match("OPTIONS", "/options", func(ctx *Context) {
+		ctx.SetHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS", true)
+		ctx.SetHeader("Access-Control-Max-Age", "1000", true)
+		ctx.WriteHeader(200)
+	})
+
+	Get("/dupeheader", func(ctx *Context) string {
+		ctx.SetHeader("Server", "myserver", true)
+		return ""
+	})
+
+	Get("/authorization", func(ctx *Context) string {
+		user, pass, err := ctx.GetBasicAuth()
+		if err != nil {
+			return "fail"
+		}
+		return user + pass
+	})
 }
 
 var tests = []Test{
-    Test{"GET", "/", "", 200, "index"},
-    Test{"GET", "/echo/hello", "", 200, "hello"},
-    Test{"GET", "/echo/hello", "", 200, "hello"},
-    Test{"GET", "/multiecho/a/b/c/d", "", 200, "abcd"},
-    Test{"POST", "/post/echo/hello", "", 200, "hello"},
-    Test{"POST", "/post/echo/hello", "", 200, "hello"},
-    Test{"POST", "/post/echoparam/a", "a=hello", 200, "hello"},
-    Test{"POST", "/post/echoparam/a", "a=hello\x00", 200, "hello\x00"},
-    //long url
-    Test{"GET", "/echo/" + strings.Repeat("0123456789", 100), "", 200, strings.Repeat("0123456789", 100)},
-
-    Test{"GET", "/writetest", "", 200, "hello"},
-    Test{"GET", "/error/notfound/notfound", "", 404, "notfound"},
-    Test{"GET", "/doesnotexist", "", 404, "Page not found"},
-    Test{"POST", "/doesnotexist", "", 404, "Page not found"},
-    Test{"GET", "/error/code/500", "", 500, statusText[500]},
-    Test{"POST", "/posterror/code/410/failedrequest", "", 410, "failedrequest"},
+	{"GET", "/", nil, "", 200, "index"},
+	{"GET", "/echo/hello", nil, "", 200, "hello"},
+	{"GET", "/echo/hello", nil, "", 200, "hello"},
+	{"GET", "/multiecho/a/b/c/d", nil, "", 200, "abcd"},
+	{"POST", "/post/echo/hello", nil, "", 200, "hello"},
+	{"POST", "/post/echo/hello", nil, "", 200, "hello"},
+	{"POST", "/post/echoparam/a", map[string][]string{"Content-Type": {"application/x-www-form-urlencoded"}}, "a=hello", 200, "hello"},
+	{"POST", "/post/echoparam/c?c=hello", nil, "", 200, "hello"},
+	{"POST", "/post/echoparam/a", map[string][]string{"Content-Type": {"application/x-www-form-urlencoded"}}, "a=hello\x00", 200, "hello\x00"},
+	//long url
+	{"GET", "/echo/" + strings.Repeat("0123456789", 100), nil, "", 200, strings.Repeat("0123456789", 100)},
+	{"GET", "/writetest", nil, "", 200, "hello"},
+	{"GET", "/error/badrequest", nil, "", 400, ""},
+	{"POST", "/error/badrequest", nil, "", 400, ""},
+	{"GET", "/error/unauthorized", nil, "", 401, ""},
+	{"POST", "/error/unauthorized", nil, "", 401, ""},
+	{"GET", "/error/forbidden", nil, "", 403, ""},
+	{"POST", "/error/forbidden", nil, "", 403, ""},
+	{"GET", "/error/notfound/notfound", nil, "", 404, "notfound"},
+	{"GET", "/doesnotexist", nil, "", 404, "Page not found"},
+	{"POST", "/doesnotexist", nil, "", 404, "Page not found"},
+	{"GET", "/error/code/500", nil, "", 500, http.StatusText(500)},
+	{"POST", "/posterror/code/410/failedrequest", nil, "", 410, "failedrequest"},
+	{"GET", "/getparam?a=abcd", nil, "", 200, "abcd"},
+	{"GET", "/getparam?b=abcd", nil, "", 200, ""},
+	{"GET", "/fullparams?a=1&a=2&a=3", nil, "", 200, "1,2,3"},
+	{"GET", "/panic", nil, "", 500, "Server Error"},
+	{"GET", "/json?a=1&b=2", nil, "", 200, `{"a":"1","b":"2"}`},
+	{"GET", "/jsonbytes?a=1&b=2", nil, "", 200, `{"a":"1","b":"2"}`},
+	{"POST", "/parsejson", map[string][]string{"Content-Type": {"application/json"}}, `{"a":"hello", "b":"world"}`, 200, "hello world"},
+	//{"GET", "/testenv", "", 200, "hello world"},
+	{"GET", "/authorization", map[string][]string{"Authorization": {BuildBasicAuthCredentials("foo", "bar")}}, "", 200, "foobar"},
+	{"GET", "/authorization", nil, "", 200, "fail"},
 }
 
-func buildTestRequest(method string, path string, body string, headers map[string]string) *Request {
-    host := "127.0.0.1"
-    port := "80"
-    rawurl := "http://" + host + ":" + port + path
-    url, _ := http.ParseURL(rawurl)
+func buildTestRequest(method string, path string, body string, headers map[string][]string, cookies []*http.Cookie) *http.Request {
+	host := "127.0.0.1"
+	port := "80"
+	rawurl := "http://" + host + ":" + port + path
+	url_, _ := url.Parse(rawurl)
+	proto := "HTTP/1.1"
 
-    proto := "HTTP/1.1"
-    useragent := "web.go test framework"
+	if headers == nil {
+		headers = map[string][]string{}
+	}
 
-    if headers == nil {
-        headers = map[string]string{}
-    }
+	headers["User-Agent"] = []string{"web.go test"}
+	if method == "POST" {
+		headers["Content-Length"] = []string{fmt.Sprintf("%d", len(body))}
+		if headers["Content-Type"] == nil {
+			headers["Content-Type"] = []string{"text/plain"}
+		}
+	}
 
-    if method == "POST" {
-        headers["Content-Length"] = fmt.Sprintf("%d", len(body))
-        headers["Content-Type"] = "text/plain"
-    }
+	req := http.Request{Method: method,
+		URL:    url_,
+		Proto:  proto,
+		Host:   host,
+		Header: http.Header(headers),
+		Body:   ioutil.NopCloser(bytes.NewBufferString(body)),
+	}
 
-    req := Request{Method: method,
-        RawURL: rawurl,
-        URL: url,
-        Proto: proto,
-        Host: host,
-        UserAgent: useragent,
-        Headers: headers,
-        Body: bytes.NewBufferString(body),
-    }
-
-    return &req
+	for _, cookie := range cookies {
+		req.AddCookie(cookie)
+	}
+	return &req
 }
 
 func TestRouting(t *testing.T) {
-    for _, test := range (tests) {
-        resp := getTestResponse(test.method, test.path, test.body, make(map[string]string))
+	for _, test := range tests {
+		resp := getTestResponse(test.method, test.path, test.body, test.headers, nil)
 
-        if resp.statusCode != test.expectedStatus {
-            t.Fatalf("expected status %d got %d", test.expectedStatus, resp.statusCode)
-        }
-        if resp.body != test.expectedBody {
-            t.Fatalf("expected %q got %q", test.expectedBody, resp.body)
-        }
-        if cl, ok := resp.headers["Content-Length"]; ok {
-            clExp, _ := strconv.Atoi(cl[0])
-            clAct := len(strings.Bytes(resp.body))
-            if clExp != clAct {
-                t.Fatalf("Content-length doesn't match. expected %d got %d", clExp, clAct)
-            }
-        }
-    }
+		if resp.statusCode != test.expectedStatus {
+			t.Fatalf("%v(%v) expected status %d got %d", test.method, test.path, test.expectedStatus, resp.statusCode)
+		}
+		if resp.body != test.expectedBody {
+			t.Fatalf("%v(%v) expected %q got %q", test.method, test.path, test.expectedBody, resp.body)
+		}
+		if cl, ok := resp.headers["Content-Length"]; ok {
+			clExp, _ := strconv.Atoi(cl[0])
+			clAct := len(resp.body)
+			if clExp != clAct {
+				t.Fatalf("Content-length doesn't match. expected %d got %d", clExp, clAct)
+			}
+		}
+	}
 }
 
 func TestHead(t *testing.T) {
-    for _, test := range (tests) {
+	for _, test := range tests {
 
-        if test.method != "GET" {
-            continue
-        }
-        getresp := getTestResponse("GET", test.path, test.body, make(map[string]string))
-        headresp := getTestResponse("HEAD", test.path, test.body, make(map[string]string))
+		if test.method != "GET" {
+			continue
+		}
+		getresp := getTestResponse("GET", test.path, test.body, test.headers, nil)
+		headresp := getTestResponse("HEAD", test.path, test.body, test.headers, nil)
 
-        if getresp.statusCode != headresp.statusCode {
-            t.Fatalf("head and get status differ. expected %d got %d", getresp.statusCode, headresp.statusCode)
-        }
-        if len(strings.Bytes(headresp.body)) != 0 {
-            t.Fatalf("head request arrived with a body")
-        }
+		if getresp.statusCode != headresp.statusCode {
+			t.Fatalf("head and get status differ. expected %d got %d", getresp.statusCode, headresp.statusCode)
+		}
+		if len(headresp.body) != 0 {
+			t.Fatalf("head request arrived with a body")
+		}
 
-        var cl []string
-        var getcl, headcl int
-        var hascl1, hascl2 bool
+		var cl []string
+		var getcl, headcl int
+		var hascl1, hascl2 bool
 
-        if cl, hascl1 = getresp.headers["Content-Length"]; hascl1 {
-            getcl, _ = strconv.Atoi(cl[0])
-        }
+		if cl, hascl1 = getresp.headers["Content-Length"]; hascl1 {
+			getcl, _ = strconv.Atoi(cl[0])
+		}
 
-        if cl, hascl2 = headresp.headers["Content-Length"]; hascl2 {
-            headcl, _ = strconv.Atoi(cl[0])
-        }
+		if cl, hascl2 = headresp.headers["Content-Length"]; hascl2 {
+			headcl, _ = strconv.Atoi(cl[0])
+		}
 
-        if hascl1 != hascl2 {
-            t.Fatalf("head and get: one has content-length, one doesn't")
-        }
+		if hascl1 != hascl2 {
+			t.Fatalf("head and get: one has content-length, one doesn't")
+		}
 
-        if hascl1 == true && getcl != headcl {
-            t.Fatalf("head and get content-length differ")
-        }
-    }
+		if hascl1 == true && getcl != headcl {
+			t.Fatalf("head and get content-length differ")
+		}
+	}
 }
 
-func buildScgiFields(fields map[string]string, buf *bytes.Buffer) []byte {
+func buildTestScgiRequest(method string, path string, body string, headers map[string][]string) *bytes.Buffer {
+	var headerBuf bytes.Buffer
+	scgiHeaders := make(map[string]string)
 
-    for k, v := range (fields) {
-        buf.WriteString(k)
-        buf.Write([]byte{0})
-        buf.WriteString(v)
-        buf.Write([]byte{0})
-    }
+	headerBuf.WriteString("CONTENT_LENGTH")
+	headerBuf.WriteByte(0)
+	headerBuf.WriteString(fmt.Sprintf("%d", len(body)))
+	headerBuf.WriteByte(0)
 
-    return buf.Bytes()
-}
+	scgiHeaders["REQUEST_METHOD"] = method
+	scgiHeaders["HTTP_HOST"] = "127.0.0.1"
+	scgiHeaders["REQUEST_URI"] = path
+	scgiHeaders["SERVER_PORT"] = "80"
+	scgiHeaders["SERVER_PROTOCOL"] = "HTTP/1.1"
+	scgiHeaders["USER_AGENT"] = "web.go test framework"
 
-func buildTestScgiRequest(method string, path string, body string, headers map[string]string) *bytes.Buffer {
+	for k, v := range headers {
+		//Skip content-length
+		if k == "Content-Length" {
+			continue
+		}
+		key := "HTTP_" + strings.ToUpper(strings.Replace(k, "-", "_", -1))
+		scgiHeaders[key] = v[0]
+	}
+	for k, v := range scgiHeaders {
+		headerBuf.WriteString(k)
+		headerBuf.WriteByte(0)
+		headerBuf.WriteString(v)
+		headerBuf.WriteByte(0)
+	}
+	headerData := headerBuf.Bytes()
 
-    var hbuf bytes.Buffer
-    scgiHeaders := make(map[string]string)
-
-    hbuf.WriteString("CONTENT_LENGTH")
-    hbuf.Write([]byte{0})
-    hbuf.WriteString(fmt.Sprintf("%d", len(body)))
-    hbuf.Write([]byte{0})
-
-    scgiHeaders["REQUEST_METHOD"] = method
-    scgiHeaders["HTTP_HOST"] = "127.0.0.1"
-    scgiHeaders["REQUEST_URI"] = path
-    scgiHeaders["SERVER_PORT"] = "80"
-    scgiHeaders["SERVER_PROTOCOL"] = "HTTP/1.1"
-    scgiHeaders["USER_AGENT"] = "web.go test framework"
-
-    buildScgiFields(scgiHeaders, &hbuf)
-
-    if method == "POST" {
-        headers["Content-Length"] = fmt.Sprintf("%d", len(body))
-        headers["Content-Type"] = "text/plain"
-    }
-
-    if len(headers) > 0 {
-        buildScgiFields(headers, &hbuf)
-    }
-
-    fielddata := hbuf.Bytes()
-    var buf bytes.Buffer
-
-    //extra 1 is for the comma at the end
-    dlen := len(fielddata) + len(body) + 1
-    fmt.Fprintf(&buf, "%d:", dlen)
-    buf.Write(fielddata)
-    buf.WriteString(",")
-    buf.WriteString(body)
-
-    return &buf
+	var buf bytes.Buffer
+	//extra 1 is for the comma at the end
+	dlen := len(headerData)
+	fmt.Fprintf(&buf, "%d:", dlen)
+	buf.Write(headerData)
+	buf.WriteByte(',')
+	buf.WriteString(body)
+	return &buf
 }
 
 func TestScgi(t *testing.T) {
-    for _, test := range (tests) {
-        req := buildTestScgiRequest(test.method, test.path, test.body, make(map[string]string))
-        var output bytes.Buffer
-        nb := tcpBuffer{input: req, output: &output}
-        handleScgiRequest(&nb)
-        resp := buildTestResponse(&output)
+	for _, test := range tests {
+		req := buildTestScgiRequest(test.method, test.path, test.body, test.headers)
+		var output bytes.Buffer
+		nb := ioBuffer{input: req, output: &output}
+		mainServer.handleScgiRequest(&nb)
+		resp := buildTestResponse(&output)
 
-        if resp.statusCode != test.expectedStatus {
-            t.Fatalf("expected status %d got %d", test.expectedStatus, resp.statusCode)
-        }
+		if resp.statusCode != test.expectedStatus {
+			t.Fatalf("expected status %d got %d", test.expectedStatus, resp.statusCode)
+		}
 
-        if resp.body != test.expectedBody {
-            t.Fatalf("Scgi expected %q got %q", test.expectedBody, resp.body)
-        }
-    }
+		if resp.body != test.expectedBody {
+			t.Fatalf("Scgi expected %q got %q", test.expectedBody, resp.body)
+		}
+	}
 }
 
 func TestScgiHead(t *testing.T) {
-    for _, test := range (tests) {
+	for _, test := range tests {
 
-        if test.method != "GET" {
-            continue
-        }
+		if test.method != "GET" {
+			continue
+		}
 
-        req := buildTestScgiRequest("GET", test.path, test.body, make(map[string]string))
-        var output bytes.Buffer
-        nb := tcpBuffer{input: req, output: &output}
-        handleScgiRequest(&nb)
-        getresp := buildTestResponse(&output)
+		req := buildTestScgiRequest("GET", test.path, test.body, make(map[string][]string))
+		var output bytes.Buffer
+		nb := ioBuffer{input: req, output: &output}
+		mainServer.handleScgiRequest(&nb)
+		getresp := buildTestResponse(&output)
 
-        req = buildTestScgiRequest("HEAD", test.path, test.body, make(map[string]string))
-        var output2 bytes.Buffer
-        nb = tcpBuffer{input: req, output: &output2}
-        handleScgiRequest(&nb)
-        headresp := buildTestResponse(&output2)
+		req = buildTestScgiRequest("HEAD", test.path, test.body, make(map[string][]string))
+		var output2 bytes.Buffer
+		nb = ioBuffer{input: req, output: &output2}
+		mainServer.handleScgiRequest(&nb)
+		headresp := buildTestResponse(&output2)
 
-        if getresp.statusCode != headresp.statusCode {
-            t.Fatalf("head and get status differ. expected %d got %d", getresp.statusCode, headresp.statusCode)
-        }
-        if len(strings.Bytes(headresp.body)) != 0 {
-            t.Fatalf("head request arrived with a body")
-        }
+		if getresp.statusCode != headresp.statusCode {
+			t.Fatalf("head and get status differ. expected %d got %d", getresp.statusCode, headresp.statusCode)
+		}
+		if len(headresp.body) != 0 {
+			t.Fatalf("head request arrived with a body")
+		}
 
-        var cl []string
-        var getcl, headcl int
-        var hascl1, hascl2 bool
+		var cl []string
+		var getcl, headcl int
+		var hascl1, hascl2 bool
 
-        if cl, hascl1 = getresp.headers["Content-Length"]; hascl1 {
-            getcl, _ = strconv.Atoi(cl[0])
-        }
+		if cl, hascl1 = getresp.headers["Content-Length"]; hascl1 {
+			getcl, _ = strconv.Atoi(cl[0])
+		}
 
-        if cl, hascl2 = headresp.headers["Content-Length"]; hascl2 {
-            headcl, _ = strconv.Atoi(cl[0])
-        }
+		if cl, hascl2 = headresp.headers["Content-Length"]; hascl2 {
+			headcl, _ = strconv.Atoi(cl[0])
+		}
 
-        if hascl1 != hascl2 {
-            t.Fatalf("head and get: one has content-length, one doesn't")
-        }
+		if hascl1 != hascl2 {
+			t.Fatalf("head and get: one has content-length, one doesn't")
+		}
 
-        if hascl1 == true && getcl != headcl {
-            t.Fatalf("head and get content-length differ")
-        }
-    }
+		if hascl1 == true && getcl != headcl {
+			t.Fatalf("head and get content-length differ")
+		}
+	}
 }
 
-
-func buildFcgiKeyValue(key string, val string) []byte {
-
-    var buf bytes.Buffer
-
-    if len(key) <= 127 && len(val) <= 127 {
-        data := struct {
-            A   uint8
-            B   uint8
-        }{uint8(len(key)), uint8(len(val))}
-        binary.Write(&buf, binary.BigEndian, data)
-    } else if len(key) <= 127 && len(val) > 127 {
-        data := struct {
-            A   uint8
-            B   uint32
-        }{uint8(len(key)), uint32(len(val)) | 1<<31}
-
-        binary.Write(&buf, binary.BigEndian, data)
-    }
-    buf.Write(strings.Bytes(key))
-    buf.Write(strings.Bytes(val))
-
-    return buf.Bytes()
+func TestReadScgiRequest(t *testing.T) {
+	headers := map[string][]string{"User-Agent": {"web.go"}}
+	req := buildTestScgiRequest("POST", "/hello", "Hello world!", headers)
+	var s Server
+	httpReq, err := s.readScgiRequest(&ioBuffer{input: req, output: nil})
+	if err != nil {
+		t.Fatalf("Error while reading SCGI request: ", err.Error())
+	}
+	if httpReq.ContentLength != 12 {
+		t.Fatalf("Content length mismatch, expected %d, got %d ", 12, httpReq.ContentLength)
+	}
+	var body bytes.Buffer
+	io.Copy(&body, httpReq.Body)
+	if body.String() != "Hello world!" {
+		t.Fatalf("Body mismatch, expected %q, got %q ", "Hello world!", body.String())
+	}
 }
 
-func buildTestFcgiRequest(method string, path string, bodychunks []string, headers map[string]string) *bytes.Buffer {
-
-    var req bytes.Buffer
-    fcgiHeaders := make(map[string]string)
-
-    bodylength := 0
-    for _, s := range (bodychunks) {
-        bodylength += len(s)
-    }
-
-    fcgiHeaders["CONTENT_LENGTH"] = fmt.Sprintf("%d", bodylength)
-    fcgiHeaders["REQUEST_METHOD"] = method
-    fcgiHeaders["HTTP_HOST"] = "127.0.0.1"
-    fcgiHeaders["REQUEST_URI"] = path
-    fcgiHeaders["SERVER_PORT"] = "80"
-    fcgiHeaders["SERVER_PROTOCOL"] = "HTTP/1.1"
-    fcgiHeaders["USER_AGENT"] = "web.go test framework"
-
-    if method == "POST" {
-        fcgiHeaders["Content-Length"] = fmt.Sprintf("%d", bodylength)
-        fcgiHeaders["Content-Type"] = "text/plain"
-    }
-
-    // add the begin request
-    req.Write(newFcgiRecord(fcgiBeginRequest, 0, make([]byte, 8)))
-
-    var buf bytes.Buffer
-    for k, v := range (fcgiHeaders) {
-        kv := buildFcgiKeyValue(k, v)
-        buf.Write(kv)
-    }
-
-    //add the params record
-    req.Write(newFcgiRecord(fcgiParams, 0, buf.Bytes()))
-
-    //add the end-of-params record
-    req.Write(newFcgiRecord(fcgiParams, 0, []byte{}))
-
-    //send the body
-    for _, s := range (bodychunks) {
-        if len(s) > 0 {
-            req.Write(newFcgiRecord(fcgiStdin, 0, strings.Bytes(s)))
-        }
-    }
-
-    //add the end-of-stdin record
-    req.Write(newFcgiRecord(fcgiStdin, 0, []byte{}))
-
-    return &req
-}
-
-func getFcgiOutput(br *bytes.Buffer) *bytes.Buffer {
-    var output bytes.Buffer
-    for {
-        var h fcgiHeader
-        err := binary.Read(br, binary.BigEndian, &h)
-        if err == os.EOF {
-            break
-        }
-
-        content := make([]byte, h.ContentLength)
-        br.Read(content)
-
-        //read padding
-        if h.PaddingLength > 0 {
-            padding := make([]byte, h.PaddingLength)
-            br.Read(padding)
-        }
-
-        if h.Type == fcgiStdout {
-            output.Write(content)
-        }
-    }
-
-    return &output
-}
-
-func TestFcgi(t *testing.T) {
-    for _, test := range (tests) {
-        req := buildTestFcgiRequest(test.method, test.path, []string{test.body}, make(map[string]string))
-        var output bytes.Buffer
-        nb := tcpBuffer{input: req, output: &output}
-        handleFcgiConnection(&nb)
-        contents := getFcgiOutput(&output)
-        resp := buildTestResponse(contents)
-
-        if resp.statusCode != test.expectedStatus {
-            t.Fatalf("expected status %d got %d", test.expectedStatus, resp.statusCode)
-        }
-
-        if resp.body != test.expectedBody {
-            t.Fatalf("Fcgi exected %q got %q", test.expectedBody, resp.body)
-        }
-    }
-}
-
-func TestFcgiHead(t *testing.T) {
-    for _, test := range (tests) {
-
-        if test.method != "GET" {
-            continue
-        }
-        req := buildTestFcgiRequest("GET", test.path, []string{test.body}, make(map[string]string))
-        var output bytes.Buffer
-        nb := tcpBuffer{input: req, output: &output}
-        handleFcgiConnection(&nb)
-        contents := getFcgiOutput(&output)
-        getresp := buildTestResponse(contents)
-
-        req = buildTestFcgiRequest("HEAD", test.path, []string{test.body}, make(map[string]string))
-        var output2 bytes.Buffer
-        nb = tcpBuffer{input: req, output: &output2}
-        handleFcgiConnection(&nb)
-        contents = getFcgiOutput(&output2)
-        headresp := buildTestResponse(contents)
-
-        if getresp.statusCode != headresp.statusCode {
-            t.Fatalf("head and get status differ. expected %d got %d", getresp.statusCode, headresp.statusCode)
-        }
-        if len(strings.Bytes(headresp.body)) != 0 {
-            t.Fatalf("head request arrived with a body")
-        }
-
-        var cl []string
-        var getcl, headcl int
-        var hascl1, hascl2 bool
-
-        if cl, hascl1 = getresp.headers["Content-Length"]; hascl1 {
-            getcl, _ = strconv.Atoi(cl[0])
-        }
-
-        if cl, hascl2 = headresp.headers["Content-Length"]; hascl2 {
-            headcl, _ = strconv.Atoi(cl[0])
-        }
-
-        if hascl1 != hascl2 {
-            t.Fatalf("head and get: one has content-length, one doesn't")
-        }
-
-        if hascl1 == true && getcl != headcl {
-            t.Fatalf("head and get content-length differ")
-        }
-    }
-}
-
-func TestFcgiChunks(t *testing.T) {
-    //split up an fcgi request
-    bodychunks := []string{`a=12&b=`, strings.Repeat("1234567890", 200)}
-
-    req := buildTestFcgiRequest("POST", "/post/echoparam/b", bodychunks, make(map[string]string))
-    var output bytes.Buffer
-    nb := tcpBuffer{input: req, output: &output}
-    handleFcgiConnection(&nb)
-    contents := getFcgiOutput(&output)
-    resp := buildTestResponse(contents)
-
-    if resp.body != strings.Repeat("1234567890", 200) {
-        t.Fatalf("Fcgi chunks test failed")
-    }
+func makeCookie(vals map[string]string) []*http.Cookie {
+	var cookies []*http.Cookie
+	for k, v := range vals {
+		c := &http.Cookie{
+			Name:  k,
+			Value: v,
+		}
+		cookies = append(cookies, c)
+	}
+	return cookies
 }
 
 func TestSecureCookie(t *testing.T) {
-    SetCookieSecret("7C19QRmwf3mHZ9CPAaPQ0hsWeufKd")
-    resp1 := getTestResponse("POST", "/securecookie/set/a/1", "", nil)
-    sval, ok := resp1.cookies["a"]
-    if !ok {
-        t.Fatalf("Failed to get cookie ")
-    }
-    cookie := fmt.Sprintf("%s=%s", "a", sval)
-    resp2 := getTestResponse("GET", "/securecookie/get/a", "", map[string]string{"Cookie": cookie})
+	mainServer.Config.CookieSecret = "7C19QRmwf3mHZ9CPAaPQ0hsWeufKd"
+	mainServer.initServer()
+	resp1 := getTestResponse("POST", "/securecookie/set/a/1", "", nil, nil)
+	sval, ok := resp1.cookies["a"]
+	if !ok {
+		t.Fatalf("Failed to get cookie ")
+	}
+	cookies := makeCookie(map[string]string{"a": sval})
 
-    if resp2.body != "1" {
-        t.Fatalf("SecureCookie test failed")
-    }
+	resp2 := getTestResponse("GET", "/securecookie/get/a", "", nil, cookies)
+
+	if resp2.body != "1" {
+		t.Fatalf("SecureCookie test failed")
+	}
+}
+
+func TestEmptySecureCookie(t *testing.T) {
+	mainServer.Config.CookieSecret = "7C19QRmwf3mHZ9CPAaPQ0hsWeufKd"
+	cookies := makeCookie(map[string]string{"empty": ""})
+
+	resp2 := getTestResponse("GET", "/securecookie/get/empty", "", nil, cookies)
+
+	if resp2.body != "" {
+		t.Fatalf("Expected an empty secure cookie")
+	}
+}
+
+func TestEarlyClose(t *testing.T) {
+	var server1 Server
+	server1.Close()
+}
+
+func TestOptions(t *testing.T) {
+	resp := getTestResponse("OPTIONS", "/options", "", nil, nil)
+	if resp.headers["Access-Control-Allow-Methods"][0] != "POST, GET, OPTIONS" {
+		t.Fatalf("TestOptions - Access-Control-Allow-Methods failed")
+	}
+	if resp.headers["Access-Control-Max-Age"][0] != "1000" {
+		t.Fatalf("TestOptions - Access-Control-Max-Age failed")
+	}
+}
+
+func TestSlug(t *testing.T) {
+	tests := [][]string{
+		{"", ""},
+		{"a", "a"},
+		{"a/b", "a-b"},
+		{"a b", "a-b"},
+		{"a////b", "a-b"},
+		{" a////b ", "a-b"},
+		{" Manowar / Friends ", "manowar-friends"},
+	}
+
+	for _, test := range tests {
+		v := Slug(test[0], "-")
+		if v != test[1] {
+			t.Fatalf("TestSlug(%v) failed, expected %v, got %v", test[0], test[1], v)
+		}
+	}
+}
+
+// tests that we don't duplicate headers
+func TestDuplicateHeader(t *testing.T) {
+	resp := testGet("/dupeheader", nil)
+	if len(resp.headers["Server"]) > 1 {
+		t.Fatalf("Expected only one header, got %#v", resp.headers["Server"])
+	}
+	if resp.headers["Server"][0] != "myserver" {
+		t.Fatalf("Incorrect header, exp 'myserver', got %q", resp.headers["Server"][0])
+	}
+}
+
+// test that output contains ASCII color codes by default
+func TestColorOutputDefault(t *testing.T) {
+	s := NewServer()
+	var logOutput bytes.Buffer
+	logger := log.New(&logOutput, "", 0)
+	s.Logger = logger
+	s.Get("/test", func() string {
+		return "test"
+	})
+	req := buildTestRequest("GET", "/test", "", nil, nil)
+	var buf bytes.Buffer
+	iob := ioBuffer{input: nil, output: &buf}
+	c := scgiConn{wroteHeaders: false, req: req, headers: make(map[string][]string), fd: &iob}
+	s.Process(&c, req)
+	if !strings.Contains(logOutput.String(), "\x1b") {
+		t.Fatalf("The default log output does not seem to be colored")
+	}
+}
+
+// test that output contains ASCII color codes by default
+func TestNoColorOutput(t *testing.T) {
+	s := NewServer()
+	s.Config.ColorOutput = false
+	var logOutput bytes.Buffer
+	logger := log.New(&logOutput, "", 0)
+	s.Logger = logger
+	s.Get("/test", func() string {
+		return "test"
+	})
+	req := buildTestRequest("GET", "/test", "", nil, nil)
+	var buf bytes.Buffer
+	iob := ioBuffer{input: nil, output: &buf}
+	c := scgiConn{wroteHeaders: false, req: req, headers: make(map[string][]string), fd: &iob}
+	s.Process(&c, req)
+	if strings.Contains(logOutput.String(), "\x1b") {
+		t.Fatalf("The log contains color escape codes")
+	}
+}
+
+// a malformed SCGI request should be discarded and not cause a panic
+func TestMaformedScgiRequest(t *testing.T) {
+	var headerBuf bytes.Buffer
+
+	headerBuf.WriteString("CONTENT_LENGTH")
+	headerBuf.WriteByte(0)
+	headerBuf.WriteString("0")
+	headerBuf.WriteByte(0)
+	headerData := headerBuf.Bytes()
+
+	var buf bytes.Buffer
+	fmt.Fprintf(&buf, "%d:", len(headerData))
+	buf.Write(headerData)
+	buf.WriteByte(',')
+
+	var output bytes.Buffer
+	nb := ioBuffer{input: &buf, output: &output}
+	mainServer.handleScgiRequest(&nb)
+	if !nb.closed {
+		t.Fatalf("The connection should have been closed")
+	}
+}
+
+type TestHandler struct{}
+
+func (t *TestHandler) ServeHTTP(c http.ResponseWriter, req *http.Request) {
+}
+
+// When a custom HTTP handler is used, the Content-Type header should not be set to a default.
+// Go's FileHandler does not replace the Content-Type header if it is already set.
+func TestCustomHandlerContentType(t *testing.T) {
+	s := NewServer()
+	s.SetLogger(log.New(ioutil.Discard, "", 0))
+	s.Handle("/testHandler", "GET", &TestHandler{})
+	req := buildTestRequest("GET", "/testHandler", "", nil, nil)
+	c := scgiConn{wroteHeaders: false, req: req, headers: make(map[string][]string), fd: nil}
+	s.Process(&c, req)
+	if c.headers["Content-Type"] != nil {
+		t.Fatalf("A default Content-Type should not be present when using a custom HTTP handler")
+	}
+}
+
+func BuildBasicAuthCredentials(user string, pass string) string {
+	s := user + ":" + pass
+	return "Basic " + base64.StdEncoding.EncodeToString([]byte(s))
+}
+
+func BenchmarkProcessGet(b *testing.B) {
+	s := NewServer()
+	s.SetLogger(log.New(ioutil.Discard, "", 0))
+	s.Get("/echo/(.*)", func(s string) string {
+		return s
+	})
+	req := buildTestRequest("GET", "/echo/hi", "", nil, nil)
+	var buf bytes.Buffer
+	iob := ioBuffer{input: nil, output: &buf}
+	c := scgiConn{wroteHeaders: false, req: req, headers: make(map[string][]string), fd: &iob}
+	b.ReportAllocs()
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		s.Process(&c, req)
+	}
+}
+
+func BenchmarkProcessPost(b *testing.B) {
+	s := NewServer()
+	s.SetLogger(log.New(ioutil.Discard, "", 0))
+	s.Post("/echo/(.*)", func(s string) string {
+		return s
+	})
+	req := buildTestRequest("POST", "/echo/hi", "", nil, nil)
+	var buf bytes.Buffer
+	iob := ioBuffer{input: nil, output: &buf}
+	c := scgiConn{wroteHeaders: false, req: req, headers: make(map[string][]string), fd: &iob}
+	b.ReportAllocs()
+	b.ResetTimer()
+	for i := 0; i < b.N; i++ {
+		s.Process(&c, req)
+	}
 }
