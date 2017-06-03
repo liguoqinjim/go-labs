@@ -1,0 +1,20 @@
+hash: ed1cb71a030b77f73b2326a6f69ed3ca45fabca1a28981fe918f3391f7f684e1
+updated: 2017-06-03T18:32:08.994373+08:00
+imports:
+- name: github.com/murlokswarm/app
+  version: f5d5a6656108cc5dc576690f989d8110692015ce
+- name: github.com/murlokswarm/cli
+  version: ff9f6f9686370c3ca109359ac6eea1056a6e88bc
+- name: github.com/murlokswarm/errors
+  version: 2c535fcba8dc697cb75a5ea135f6194ee9169824
+- name: github.com/murlokswarm/log
+  version: 3cc9a679b36d0c026f2dd557edf67379cbabc0da
+- name: github.com/murlokswarm/mac
+  version: 7fcf408f7a44c1283f8df198b8a8b409c17c42e2
+- name: github.com/murlokswarm/markup
+  version: c8ad6c19eb30a85443f7826d49e3ae72b3e99808
+- name: github.com/pkg/errors
+  version: 645ef00459ed84a119197bfb8d8205042c6df63d
+- name: github.com/satori/go.uuid
+  version: 5bf94b69c6b68ee1b541973bb8e1144db23a194b
+testImports: []

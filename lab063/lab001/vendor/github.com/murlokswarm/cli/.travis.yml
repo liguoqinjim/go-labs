@@ -1,0 +1,12 @@
+language: go
+go: 1.7
+
+install:
+  - go get -v -t .
+
+script:
+  - go test -covermode count -coverprofile cover.out
+  - go test -test.run Benchmark -cpu 1 -bench .
+
+notifications:
+  email: false

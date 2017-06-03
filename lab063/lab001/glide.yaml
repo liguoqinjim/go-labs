@@ -1,0 +1,3 @@
+package: lab063/lab001
+import:
+- package: github.com/murlokswarm/mac
