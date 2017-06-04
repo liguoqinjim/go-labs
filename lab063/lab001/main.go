@@ -22,7 +22,8 @@ func main() {
 	}
 
 	// run task list
-	err = c.Run(ctxt, click())
+	s := "test1"
+	err = c.Run(ctxt, click(&s))
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -40,11 +41,12 @@ func main() {
 	}
 }
 
-func click() cdp.Tasks {
+func click(res *string) cdp.Tasks {
 	return cdp.Tasks{
-		cdp.Navigate(`https://golang.org/pkg/time/`),
-		cdp.WaitVisible(`#footer`),
-		cdp.Click(`#pkg-overview`, cdp.NodeVisible),
+		cdp.Navigate(`https://www.baidu.com/?tn=95932978_hao_pg`),
+		//cdp.WaitVisible(`#footer`),
+		cdp.Text(`#wd`, res, cdp.NodeVisible, cdp.ByID),
+		cdp.Click(`#su`, cdp.NodeVisible),
 		cdp.Sleep(150 * time.Second),
 	}
 }
