@@ -3,7 +3,7 @@
 package runner
 
 const (
-	DefaultUserDataTmpDir = `c:\temp`
+	DefaultUserDataTmpDir = `e:\temp`
 )
 
 // KillProcessGroup is a Chrome command line option that will instruct the
