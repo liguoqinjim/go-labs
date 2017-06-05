@@ -9,3 +9,4 @@
 |lab005|visible，执行js，查看节点是否visible|
 |lab006|eval，调用eval方法|
 |lab007|headless，以headless方式启动|
+|lab008|在已经启动的chrome里面打开|
