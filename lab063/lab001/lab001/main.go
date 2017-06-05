@@ -6,6 +6,7 @@ import (
 	"time"
 
 	cdp "github.com/knq/chromedp"
+	"github.com/knq/chromedp/runner"
 )
 
 func main() {
@@ -16,14 +17,14 @@ func main() {
 	defer cancel()
 
 	// create chrome instance
-	c, err := cdp.New(ctxt, cdp.WithLog(log.Printf))
+	//最后的参数是设置代理，因为给出的例子里面都是需要用代理才能访问的
+	c, err := cdp.New(ctxt, cdp.WithLog(log.Printf), cdp.WithRunnerOptions(runner.Proxy("127.0.0.1:1080")))
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// run task list
-	s := "test1"
-	err = c.Run(ctxt, click(&s))
+	err = c.Run(ctxt, click())
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -41,12 +42,12 @@ func main() {
 	}
 }
 
-func click(res *string) cdp.Tasks {
+func click() cdp.Tasks {
 	return cdp.Tasks{
-		cdp.Navigate(`https://www.baidu.com/?tn=95932978_hao_pg`),
-		//cdp.WaitVisible(`#footer`),
-		cdp.Text(`#wd`, res, cdp.NodeVisible, cdp.ByID),
-		cdp.Click(`#su`, cdp.NodeVisible),
+		cdp.Navigate(`https://golang.org/pkg/time/`),
+		cdp.WaitVisible(`#footer`),
+		//模拟点击
+		cdp.Click(`#pkg-overview`, cdp.NodeVisible),
 		cdp.Sleep(150 * time.Second),
 	}
 }
