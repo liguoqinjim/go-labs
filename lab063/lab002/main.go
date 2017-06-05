@@ -15,24 +15,54 @@ import (
 func main() {
 	var err error
 
-	// create context
 	ctxt, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
-	// create chrome
 	c, err := cdp.New(ctxt, cdp.WithTargets(client.New().WatchPageTargets(ctxt)))
 	if err != nil {
 		log.Fatal(err)
 	}
 
 	// run task list
-	var site, res string
-	err = c.Run(ctxt, googleSearch("site:brank.as", "Easy Money Management", &site, &res))
+	//err = c.Run(ctxt, openYunbi())
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+
+	//log.Println("打开网站")
+	//err = c.Run(ctxt, cdp.Tasks{
+	//	cdp.Navigate("https://yunbi.com/?warning=false"),
+	//})
+	//if err != nil {
+	//	log.Fatal(err)
+	//}
+	//log.Println("打开网站完成")
+
+	//打开sc交易
+	err = c.Run(ctxt, openSCMarket())
 	if err != nil {
 		log.Fatal(err)
 	}
+	log.Println("输入完成")
+}
 
-	log.Printf("saved screenshot of #testimonials from search result listing `%s` (%s)", res, site)
+func openYunbi() cdp.Tasks {
+	return cdp.Tasks{
+		cdp.Navigate("https://yunbi.com/signin"),
+		cdp.Sleep(2 * time.Second),
+		cdp.WaitVisible(`#new_identity > div.ui.stacked.segment > input`, cdp.ByQuery),
+		cdp.Click(`#new_identity > div.ui.stacked.segment > input`),
+		cdp.WaitVisible(`#wrap > div.ui.text.container.segment > a`, cdp.ByQuery),
+		cdp.Click(`#wrap > div.ui.text.container.segment > a`),
+	}
+}
+
+func openSCMarket() cdp.Tasks {
+	return cdp.Tasks{
+		cdp.Navigate("https://yunbi.com/markets/sccny"),
+		cdp.WaitVisible(`#new_order_bid > button`, cdp.ByQuery),
+		cdp.SendKeys(`#order_bid_origin_volume`, `2222`),
+	}
 }
 
 func googleSearch(q, text string, site, res *string) cdp.Tasks {
