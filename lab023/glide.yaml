@@ -1,0 +1,3 @@
+package: lab023
+import:
+- package: github.com/gorilla/websocket
