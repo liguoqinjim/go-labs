@@ -1,4 +1,4 @@
-package lab001
+package main
 
 import (
 	"bytes"
