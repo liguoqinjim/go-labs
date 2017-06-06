@@ -21,7 +21,6 @@ import (
 	"golang.org/x/image/font"
 	"golang.org/x/image/font/basicfont"
 	"io/ioutil"
-	"unicode"
 )
 
 func loadPicture(path string) (pixel.Picture, error) {
@@ -127,6 +126,7 @@ func run() {
 			}
 			win.Clear(colornames.Skyblue)
 			setArmyStateFrame(win, frame)
+			initBattleInfo(win)
 		default:
 		}
 
@@ -178,16 +178,28 @@ func initBattleState(win *pixelgl.Window) {
 
 		Armys[n+4].txtId.Draw(win, mat)
 	}
+
+	initBattleInfo(win)
 }
 
-func initBattleInfo(win *pixelgl.Window, font font.Face) {
-	basicAtlas := text.NewAtlas(font, text.ASCII, text.RangeTable(unicode.Han))
+func initBattleInfo(win *pixelgl.Window) {
 	basicTxt := text.New(pixel.V(0, 0), basicAtlas)
-
 	basicTxt.Color = colornames.Red
-	fmt.Fprintln(basicTxt, "战报")
 
-	basicTxt.Draw(win, pixel.IM.Scaled(basicTxt.Orig, 0.5))
+	value := gjson.Get(data.BattleData, "BattleFrameDatas")
+	for _, v := range value.Array() {
+		operator := gjson.Get(v.String(), "Operator").Int()
+		if operator == 3 { //dead
+			frame := gjson.Get(v.String(), "Frame").Int()
+			fid := gjson.Get(v.String(), "ArmyFieldId").Int()
+			fmt.Fprintf(basicTxt, "ArmyId[%d]dead at frame[%d]\n", fid, frame)
+		}
+	}
+
+	mat := pixel.IM
+	mat = mat.Moved(pixel.V(1320, 300))
+	mat = mat.Scaled(pixel.V(1320, 300), 2)
+	basicTxt.Draw(win, mat)
 }
 
 func setArmyStateFrame(win *pixelgl.Window, frame int) {
