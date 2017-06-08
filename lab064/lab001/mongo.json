@@ -2,5 +2,6 @@
     "username":"username1",
     "pwd":"pwd2",
     "hostname":"hostname3",
+    "port":"port2",
     "db":"test4"
 }

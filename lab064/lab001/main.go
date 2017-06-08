@@ -19,6 +19,7 @@ type ConnectInfo struct {
 	Username string
 	Pwd      string
 	Hostname string
+	Port     string
 	DB       string
 }
 
@@ -41,7 +42,9 @@ func main() {
 	//读取连接配置
 	connectInfo = readConf()
 
-	session, err := mgo.Dial("server1.example.com,server2.example.com")
+	//mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
+	url := fmt.Sprintf("mongodb://[%s:%s@]%s:%s", connectInfo.Username, connectInfo.Pwd, connectInfo.Hostname, connectInfo.Port)
+	session, err := mgo.Dial(url)
 	if err != nil {
 		panic(err)
 	}
