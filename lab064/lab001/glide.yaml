@@ -1,0 +1,3 @@
+package: lab064/lab001
+import:
+- package: gopkg.in/mgo.v2
