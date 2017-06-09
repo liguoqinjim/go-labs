@@ -42,9 +42,12 @@ func main() {
 	//读取连接配置
 	connectInfo = readConf()
 
-	//mongodb://[username:password@]host1[:port1][,host2[:port2],...[,hostN[:portN]]][/[database][?options]]
-	url := fmt.Sprintf("mongodb://[%s:%s@]%s:%s", connectInfo.Username, connectInfo.Pwd, connectInfo.Hostname, connectInfo.Port)
-	session, err := mgo.Dial(url)
+	session, err := mgo.DialWithInfo(&mgo.DialInfo{
+		Addrs:    []string{fmt.Sprintf("%s:%s", connectInfo.Hostname, connectInfo.Port)},
+		Username: connectInfo.Username,
+		Password: connectInfo.Pwd,
+		Database: connectInfo.DB,
+	})
 	if err != nil {
 		panic(err)
 	}
