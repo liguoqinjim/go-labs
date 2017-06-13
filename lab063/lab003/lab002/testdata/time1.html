@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>lab002-1</title>
+</head>
+<body>
+<h3 id="time1">time1:</h3>
+<h3 id="time2" style="visibility: hidden">time2:</h3>
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+<script>
+    var time1 = $("#time1").text();
+    time1 += new Date().getTime();
+    $("#time1").text(time1);
+
+    setTimeout(showTime2, 8000);
+    function showTime2() {
+        $("#time2").css("visibility", "visible");
+        console.log("showTime2-1")
+        var time2 = $("#time2").text();
+        time2 += new Date().getTime();
+        $("#time2").text(time2);
+    }
+</script>
+</body>
+</html>
