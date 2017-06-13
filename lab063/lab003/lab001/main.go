@@ -5,7 +5,10 @@ import (
 	"log"
 
 	cdp "github.com/knq/chromedp"
+	cdptypes "github.com/knq/chromedp/cdp"
 	"github.com/knq/chromedp/client"
+	"os"
+	"time"
 )
 
 func main() {
@@ -22,17 +25,32 @@ func main() {
 	}
 
 	// run task list
-	var site, res string
 	err = c.Run(ctxt, baiduSearch())
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	log.Printf("saved screenshot of #testimonials from search result listing `%s` (%s)", res, site)
 }
 
 func baiduSearch() cdp.Tasks {
+	//file:///E:/Workspace/go-labs/src/lab063/lab003/lab001/testdata/time.html
+	pwd, err := os.Getwd()
+	if err != nil {
+		log.Fatal(err)
+	}
+	filePath := "file:///" + pwd + "/testdata/time.html"
+
 	return cdp.Tasks{
-		cdp.Navigate(`https://www.baidu.com`),
+		cdp.ActionFunc(func(context.Context, cdptypes.Handler) error {
+			log.Println("time1", time.Now().Unix())
+			log.Println("time1", time.Now().UnixNano())
+			log.Println(filePath)
+			return nil
+		}),
+		cdp.Navigate(filePath),
+		cdp.ActionFunc(func(context.Context, cdptypes.Handler) error {
+			log.Println("time2", time.Now().Unix())
+			log.Println("time2", time.Now().UnixNano())
+			return nil
+		}),
 	}
 }
