@@ -1,0 +1,12 @@
+hash: ee354a83c27205209bc3789dba7c6ccb20d6096a8c7a9fc647c88409774fda1e
+updated: 2017-06-13T18:12:21.6446387+08:00
+imports:
+- name: github.com/Knetic/govaluate
+  version: ed428fc1d628f009bd7fbf100ff72feba3527753
+- name: github.com/lxn/walk
+  version: a9fde3329dec110eb46f38dac19c3e5c2853bf75
+  subpackages:
+  - declarative
+- name: github.com/lxn/win
+  version: cd28d435f783e79477f1ebbd983dd8dd72315064
+testImports: []

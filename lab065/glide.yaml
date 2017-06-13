@@ -1,0 +1,3 @@
+package: lab065
+import:
+- package: github.com/lxn/walk
