@@ -6,3 +6,4 @@
 |lab002|简单压力测试|
 |lab003|test和Benchmark放一起|
 |lab004|Subtests and Sub-benchmarks，go1.7新特性|
+|lab005|查看代码覆盖率|
