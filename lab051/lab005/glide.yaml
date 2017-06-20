@@ -1,0 +1,3 @@
+package: lab051/lab005
+import:
+- package: github.com/liguoqinjim/behavior3go
