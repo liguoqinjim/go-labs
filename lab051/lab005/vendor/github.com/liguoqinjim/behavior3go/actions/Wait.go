@@ -6,6 +6,7 @@ import (
 	b3 "github.com/liguoqinjim/behavior3go"
 	. "github.com/liguoqinjim/behavior3go/config"
 	. "github.com/liguoqinjim/behavior3go/core"
+	"log"
 )
 
 /**
@@ -54,6 +55,7 @@ func (this *Wait) OnOpen(tick *Tick) {
  * @return {Constant} A state constant.
 **/
 func (this *Wait) OnTick(tick *Tick) b3.Status {
+	log.Println("Wait节点")
 	var currTime int64 = time.Now().UnixNano() / 1000000
 	var startTime = tick.Blackboard.GetInt64("startTime", tick.GetTree().GetID(), this.GetID())
 

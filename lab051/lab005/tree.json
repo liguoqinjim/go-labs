@@ -14,8 +14,8 @@
                 "maxLoop": 2
             },
             "display": {
-                "x": -144,
-                "y": -108
+                "x": -180,
+                "y": -240
             },
             "child": "af4ac079-941b-49d6-85f2-11758f76bd26"
         },
@@ -28,8 +28,8 @@
                 "info": "log...22"
             },
             "display": {
-                "x": -144,
-                "y": -12
+                "x": -180,
+                "y": -60
             }
         },
         "af4ac079-941b-49d6-85f2-11758f76bd26": {
@@ -41,8 +41,8 @@
                 "info": "log...11"
             },
             "display": {
-                "x": 96,
-                "y": -120
+                "x": 120,
+                "y": -240
             }
         },
         "2a5b35a6-f8f2-4922-993e-c9a3fa02beea": {
@@ -54,8 +54,8 @@
                 "maxLoop": 2
             },
             "display": {
-                "x": -132,
-                "y": 108
+                "x": -156,
+                "y": 36
             },
             "child": "6fb01fec-8fd7-49d0-b6ce-f9335937bfa3"
         },
@@ -68,8 +68,8 @@
                 "info": "log...333"
             },
             "display": {
-                "x": 108,
-                "y": 108
+                "x": 132,
+                "y": 36
             }
         },
         "3739a6fd-3205-45df-8f18-ab02f0c4b07e": {
@@ -79,14 +79,28 @@
             "description": "",
             "properties": {},
             "display": {
-                "x": -348,
-                "y": -24
+                "x": -372,
+                "y": -132
             },
             "children": [
                 "8b514f0a-913e-4eaf-817b-03e85b98efa0",
+                "730e7b51-a549-457a-ac55-4f42054acd67",
                 "7deef17b-e7fa-4dcb-94c5-979e142c0eee",
                 "2a5b35a6-f8f2-4922-993e-c9a3fa02beea"
             ]
+        },
+        "730e7b51-a549-457a-ac55-4f42054acd67": {
+            "id": "730e7b51-a549-457a-ac55-4f42054acd67",
+            "name": "Wait",
+            "title": "Wait <milliseconds>ms",
+            "description": "",
+            "properties": {
+                "milliseconds": 2000
+            },
+            "display": {
+                "x": -180,
+                "y": -144
+            }
         }
     },
     "display": {
@@ -94,7 +108,7 @@
         "camera_y": 461,
         "camera_z": 1,
         "x": -504,
-        "y": -24
+        "y": -132
     },
     "custom_nodes": [
         {
@@ -105,6 +119,27 @@
             "properties": {
                 "info": "log..."
             }
+        },
+        {
+            "name": "Move",
+            "category": "action",
+            "title": "Move",
+            "description": "移动",
+            "properties": {}
+        },
+        {
+            "name": "HasEnemy",
+            "category": "condition",
+            "title": "HasEnemy",
+            "description": "是否有敌人在射程里面",
+            "properties": {}
+        },
+        {
+            "name": "IsEnemyInRange",
+            "category": "condition",
+            "title": "IsEnemyInRange",
+            "description": "敌人是否在自己的射程里面",
+            "properties": {}
         }
     ]
 }

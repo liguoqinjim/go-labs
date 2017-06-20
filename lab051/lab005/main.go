@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"github.com/liguoqinjim/behavior3go"
 	"github.com/liguoqinjim/behavior3go/config"
 	"github.com/liguoqinjim/behavior3go/core"
 	"github.com/liguoqinjim/behavior3go/loader"
+	"time"
 )
 
 func main() {
@@ -19,7 +21,11 @@ func main() {
 		//	tree.Tick(i, board)
 		//}
 		i := 0
-		tree.Tick(i, board)
+		status := tree.Tick(i, board)
+		for status != behavior3go.SUCCESS {
+			time.Sleep(time.Millisecond * 500)
+			status = tree.Tick(i, board)
+		}
 	} else {
 		fmt.Println("LoadTreeCfg error")
 	}

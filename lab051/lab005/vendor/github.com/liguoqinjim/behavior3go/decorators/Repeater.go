@@ -1,7 +1,7 @@
 package decorators
 
 import (
-	_ "fmt"
+	"fmt"
 
 	b3 "github.com/liguoqinjim/behavior3go"
 	. "github.com/liguoqinjim/behavior3go/config"
@@ -58,7 +58,7 @@ func (this *Repeater) OnOpen(tick *Tick) {
  * @return {Constant} A state constant.
 **/
 func (this *Repeater) OnTick(tick *Tick) b3.Status {
-	//fmt.Println("tick ", this.GetTitle())
+	fmt.Println("tick ", this.GetTitle())
 	if this.GetChild() == nil {
 		return b3.ERROR
 	}
