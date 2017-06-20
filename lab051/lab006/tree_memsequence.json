@@ -1,0 +1,131 @@
+{
+    "id": "ed215668-d5aa-467c-8f5e-12f5fa89f04f",
+    "title": "A behavior tree",
+    "description": "",
+    "root": "47aff913-1923-4749-849d-928af6131ecb",
+    "properties": {},
+    "nodes": {
+        "47aff913-1923-4749-849d-928af6131ecb": {
+            "id": "47aff913-1923-4749-849d-928af6131ecb",
+            "name": "MemSequence",
+            "title": "MemSequence",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": -300,
+                "y": -96
+            },
+            "children": [
+                "ecdad8c3-e209-486a-8484-c3b41aaf50b1",
+                "7570c1da-5cb5-43e7-99f8-fb5a4cce8660",
+                "80e29804-d830-47df-b0c4-1a480ae4e390"
+            ]
+        },
+        "ecdad8c3-e209-486a-8484-c3b41aaf50b1": {
+            "id": "ecdad8c3-e209-486a-8484-c3b41aaf50b1",
+            "name": "Log",
+            "title": "Log",
+            "description": "Log",
+            "properties": {
+                "info": "log...11"
+            },
+            "display": {
+                "x": -96,
+                "y": -228
+            }
+        },
+        "80e29804-d830-47df-b0c4-1a480ae4e390": {
+            "id": "80e29804-d830-47df-b0c4-1a480ae4e390",
+            "name": "Log",
+            "title": "Log",
+            "description": "Log",
+            "properties": {
+                "info": "log...22"
+            },
+            "display": {
+                "x": -96,
+                "y": 72
+            }
+        },
+        "7570c1da-5cb5-43e7-99f8-fb5a4cce8660": {
+            "id": "7570c1da-5cb5-43e7-99f8-fb5a4cce8660",
+            "name": "Sequence",
+            "title": "Sequence",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": -96,
+                "y": -96
+            },
+            "children": [
+                "44db7b1f-c49c-4f57-aa9d-dc2f24d44217",
+                "32c82a16-1913-4827-869d-e252f1cf46c9",
+                "212db110-c7d6-4c60-b870-dc796cd5a814"
+            ]
+        },
+        "44db7b1f-c49c-4f57-aa9d-dc2f24d44217": {
+            "id": "44db7b1f-c49c-4f57-aa9d-dc2f24d44217",
+            "name": "Log",
+            "title": "Log",
+            "description": "Log",
+            "properties": {
+                "info": "log...333"
+            },
+            "display": {
+                "x": 120,
+                "y": -180
+            }
+        },
+        "212db110-c7d6-4c60-b870-dc796cd5a814": {
+            "id": "212db110-c7d6-4c60-b870-dc796cd5a814",
+            "name": "Runner",
+            "title": "Runner",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": 120,
+                "y": -12
+            }
+        },
+        "32c82a16-1913-4827-869d-e252f1cf46c9": {
+            "id": "32c82a16-1913-4827-869d-e252f1cf46c9",
+            "name": "IsMax",
+            "title": "IsMax",
+            "description": "测试条件节点，IsMax",
+            "properties": {
+                "max": 5
+            },
+            "display": {
+                "x": 120,
+                "y": -96
+            }
+        }
+    },
+    "display": {
+        "camera_x": 870,
+        "camera_y": 449,
+        "camera_z": 1,
+        "x": -504,
+        "y": -96
+    },
+    "custom_nodes": [
+        {
+            "name": "Log",
+            "category": "action",
+            "title": "Log",
+            "description": "Log",
+            "properties": {
+                "info": "log..."
+            }
+        },
+        {
+            "name": "IsMax",
+            "category": "condition",
+            "title": "IsMax",
+            "description": "测试条件节点，IsMax",
+            "properties": {
+                "max": -1
+            }
+        }
+    ]
+}

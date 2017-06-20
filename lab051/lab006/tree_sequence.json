@@ -1,0 +1,94 @@
+{
+    "id": "67e3047e-0942-4d55-8443-9f28dc50b660",
+    "title": "A behavior tree",
+    "description": "",
+    "root": "ec13f68c-b74c-49b4-85da-f4c2fe498bbb",
+    "properties": {},
+    "nodes": {
+        "7deef17b-e7fa-4dcb-94c5-979e142c0eee": {
+            "id": "7deef17b-e7fa-4dcb-94c5-979e142c0eee",
+            "name": "Log",
+            "title": "Log",
+            "description": "Log",
+            "properties": {
+                "info": "log...22"
+            },
+            "display": {
+                "x": -204,
+                "y": 48
+            }
+        },
+        "af4ac079-941b-49d6-85f2-11758f76bd26": {
+            "id": "af4ac079-941b-49d6-85f2-11758f76bd26",
+            "name": "Log",
+            "title": "Log",
+            "description": "Log",
+            "properties": {
+                "info": "log...11"
+            },
+            "display": {
+                "x": -204,
+                "y": -192
+            }
+        },
+        "ec13f68c-b74c-49b4-85da-f4c2fe498bbb": {
+            "id": "ec13f68c-b74c-49b4-85da-f4c2fe498bbb",
+            "name": "Sequence",
+            "title": "Sequence",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": -444,
+                "y": -84
+            },
+            "children": [
+                "af4ac079-941b-49d6-85f2-11758f76bd26",
+                "c5596860-6ce2-4477-80ef-fa679dea797b",
+                "7deef17b-e7fa-4dcb-94c5-979e142c0eee"
+            ]
+        },
+        "59da6df9-ac13-4def-82cb-d9b67a42d81e": {
+            "id": "59da6df9-ac13-4def-82cb-d9b67a42d81e",
+            "name": "Runner",
+            "title": "Runner",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": 60,
+                "y": -84
+            }
+        },
+        "c5596860-6ce2-4477-80ef-fa679dea797b": {
+            "id": "c5596860-6ce2-4477-80ef-fa679dea797b",
+            "name": "Repeater",
+            "title": "Repeat <maxLoop>x",
+            "description": "",
+            "properties": {
+                "maxLoop": 2
+            },
+            "display": {
+                "x": -204,
+                "y": -84
+            },
+            "child": "59da6df9-ac13-4def-82cb-d9b67a42d81e"
+        }
+    },
+    "display": {
+        "camera_x": 936.5,
+        "camera_y": 461,
+        "camera_z": 1,
+        "x": -600,
+        "y": -84
+    },
+    "custom_nodes": [
+        {
+            "name": "Log",
+            "category": "action",
+            "title": "Log",
+            "description": "Log",
+            "properties": {
+                "info": "log..."
+            }
+        }
+    ]
+}
