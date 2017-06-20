@@ -6,7 +6,7 @@ import (
 	//"github.com/liguoqinjim/behavior3go/core"
 	//"github.com/liguoqinjim/behavior3go/loader"
 	"fmt"
-	"lab051/lab006/util"
+	"lab051/lab007/util"
 )
 
 type Army struct {
