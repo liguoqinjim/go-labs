@@ -12,11 +12,11 @@
             "description": "查看是否有攻击对象",
             "properties": {},
             "display": {
-                "x": -12,
-                "y": -180
+                "x": -60,
+                "y": -168
             },
             "children": [
-                "0c69568f-7ff7-44a0-8d72-72896be89456",
+                "b4d7cfb6-eda4-4c9f-b528-a19ac3945b5a",
                 "87ad91c2-1515-4145-8114-3324c70fedc9"
             ]
         },
@@ -27,7 +27,7 @@
             "description": "army是否有目标",
             "properties": {},
             "display": {
-                "x": 204,
+                "x": 360,
                 "y": -216
             }
         },
@@ -38,8 +38,8 @@
             "description": "得到敌人",
             "properties": {},
             "display": {
-                "x": 204,
-                "y": -132
+                "x": 156,
+                "y": -120
             }
         },
         "2c6dd3d5-1d62-4acf-a389-24c2f61bbf02": {
@@ -49,23 +49,23 @@
             "description": "",
             "properties": {},
             "display": {
-                "x": -216,
-                "y": -84
+                "x": -264,
+                "y": 12
             },
             "children": [
-                "e119defb-3934-444f-ac06-519c73d5a3ea",
-                "6513c001-8acf-4624-9c6b-4ea0149274fc"
+                "6513c001-8acf-4624-9c6b-4ea0149274fc",
+                "5e3a61d3-6461-4e38-89f0-3b996c2286b2"
             ]
         },
         "6513c001-8acf-4624-9c6b-4ea0149274fc": {
             "id": "6513c001-8acf-4624-9c6b-4ea0149274fc",
             "name": "Sequence",
             "title": "Sequence",
-            "description": "",
+            "description": "移动",
             "properties": {},
             "display": {
-                "x": -12,
-                "y": 0
+                "x": -60,
+                "y": 12
             },
             "children": [
                 "26dcfa7b-c6ab-4c07-8355-797bfa0fab50",
@@ -74,13 +74,13 @@
         },
         "99a74dc1-921d-4be6-846c-5ddc995ca1ea": {
             "id": "99a74dc1-921d-4be6-846c-5ddc995ca1ea",
-            "name": "EnmeyInRange",
-            "title": "EnmeyInRange",
+            "name": "EnemyInRange",
+            "title": "EnemyInRange",
             "description": "敌人在射程内",
             "properties": {},
             "display": {
-                "x": 408,
-                "y": -48
+                "x": 360,
+                "y": -36
             }
         },
         "26dcfa7b-c6ab-4c07-8355-797bfa0fab50": {
@@ -90,8 +90,8 @@
             "description": "",
             "properties": {},
             "display": {
-                "x": 204,
-                "y": -48
+                "x": 156,
+                "y": -36
             },
             "child": "99a74dc1-921d-4be6-846c-5ddc995ca1ea"
         },
@@ -102,17 +102,66 @@
             "description": "移动",
             "properties": {},
             "display": {
-                "x": 204,
+                "x": 156,
                 "y": 48
             }
+        },
+        "5e3a61d3-6461-4e38-89f0-3b996c2286b2": {
+            "id": "5e3a61d3-6461-4e38-89f0-3b996c2286b2",
+            "name": "Sequence",
+            "title": "Sequence",
+            "description": "攻击",
+            "properties": {},
+            "display": {
+                "x": -60,
+                "y": 180
+            },
+            "children": [
+                "f245d06b-3680-4082-93b2-7506d9e1683e",
+                "8f4ef845-0d5a-46b8-89e2-8e54206ba5ff"
+            ]
+        },
+        "f245d06b-3680-4082-93b2-7506d9e1683e": {
+            "id": "f245d06b-3680-4082-93b2-7506d9e1683e",
+            "name": "EnemyInRange",
+            "title": "EnemyInRange",
+            "description": "敌人在射程内",
+            "properties": {},
+            "display": {
+                "x": 156,
+                "y": 144
+            }
+        },
+        "8f4ef845-0d5a-46b8-89e2-8e54206ba5ff": {
+            "id": "8f4ef845-0d5a-46b8-89e2-8e54206ba5ff",
+            "name": "Attack",
+            "title": "Attack",
+            "description": "攻击",
+            "properties": {},
+            "display": {
+                "x": 156,
+                "y": 228
+            }
+        },
+        "b4d7cfb6-eda4-4c9f-b528-a19ac3945b5a": {
+            "id": "b4d7cfb6-eda4-4c9f-b528-a19ac3945b5a",
+            "name": "Inverter",
+            "title": "Inverter",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": 156,
+                "y": -216
+            },
+            "child": "0c69568f-7ff7-44a0-8d72-72896be89456"
         }
     },
     "display": {
         "camera_x": 870,
         "camera_y": 449,
         "camera_z": 1,
-        "x": -420,
-        "y": -84
+        "x": -468,
+        "y": 12
     },
     "custom_nodes": [
         {
@@ -130,13 +179,6 @@
             "properties": {}
         },
         {
-            "name": "EnmeyInRange",
-            "category": "condition",
-            "title": "EnmeyInRange",
-            "description": "敌人在射程内",
-            "properties": {}
-        },
-        {
             "name": "Attack",
             "category": "action",
             "title": "Attack",
@@ -148,6 +190,13 @@
             "category": "action",
             "title": "Move",
             "description": "移动",
+            "properties": {}
+        },
+        {
+            "name": "EnemyInRange",
+            "category": "condition",
+            "title": "EnemyInRange",
+            "description": "敌人在射程内",
             "properties": {}
         }
     ]
