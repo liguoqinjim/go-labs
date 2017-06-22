@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fmt"
 	b3 "github.com/liguoqinjim/behavior3go"
 	"github.com/liguoqinjim/behavior3go/config"
 	"github.com/liguoqinjim/behavior3go/loader"
+	"lab051/lab008/fight"
 	"lab051/lab008/mynode"
 	"log"
 )
@@ -27,5 +29,9 @@ func main() {
 
 	//生成树
 	tree := loader.CreateBevTreeFromConfig(treeConfig, extMap)
-	tree.Print()
+	//tree.Print()
+	_ = tree
+
+	//查看读取表的
+	fmt.Println(len(fight.SoldierBase_map))
 }
