@@ -32,6 +32,21 @@ func main() {
 	//tree.Print()
 	_ = tree
 
-	//查看读取表的
-	fmt.Println(len(fight.SoldierBase_map))
+	//生成两支军队
+	ag1 := &fight.ArmyGroup{1, 1, 1, make([]*fight.Army, 0)}
+	ag2 := &fight.ArmyGroup{2, 2, 2, make([]*fight.Army, 0)}
+
+}
+
+func NewArmy(heroId int) *fight.Army {
+	a := new(fight.Army)
+
+	hero := new(fight.Hero)
+	hero.HeroId = heroId
+	hero.HeroTotalLife = fight.HeroBase_map[heroId].HeroLife
+	hero.HeroLife = hero.HeroTotalLife
+
+	soldier := new(fight.Soldier)
+
+	return a
 }

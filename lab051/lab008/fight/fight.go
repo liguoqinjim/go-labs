@@ -4,7 +4,7 @@ type ArmyGroup struct {
 	ArmyGroupId       int
 	ArmyFormationId   int
 	ArmyFormationSide int //集团军初始位置在战场的哪边(constsUtil里面有常量)
-	Armys             [4]*Army
+	Armys             []*Army
 }
 
 type Army struct {
