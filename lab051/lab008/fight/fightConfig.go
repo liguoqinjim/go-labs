@@ -62,6 +62,9 @@ type HeroXml struct {
 	HeroStrategy         string `xml:"HeroStrategy,attr"`
 	HeroFirstAtkInterval string `xml:"HeroFirstAtkInterval,attr"`
 	HeroAttackInterval   string `xml:"HeroAttackInterval,attr"`
+	SoldierId            string `xml:"soldierId,attr"`
+	SoldierNum           string `xml:"soldierNum,attr"`
+	RangeAttack          string `xml:"soldierAtackType,attr"`
 }
 type HeroXmls struct {
 	Nodes []HeroXml `xml:"HeroXml"`
@@ -173,6 +176,9 @@ type HeroBase struct {
 	HeroStrategy         int
 	HeroFirstAtkInterval int
 	HeroAttackInterval   int
+	SoldierId            int
+	SoldierNum           int
+	RangeAttack          bool
 }
 
 var SoldierBase_map map[int]*SoldierBase
@@ -314,6 +320,15 @@ func initHeroXml() {
 		hb.HeroStrategy, _ = strconv.Atoi(v.HeroStrategy)
 		hb.HeroFirstAtkInterval, _ = strconv.Atoi(v.HeroFirstAtkInterval)
 		hb.HeroAttackInterval, _ = strconv.Atoi(v.HeroAttackInterval)
+		hb.SoldierId, _ = strconv.Atoi(v.SoldierId)
+		hb.SoldierNum, _ = strconv.Atoi(v.SoldierNum)
+		ra, _ := strconv.Atoi(v.RangeAttack)
+		if ra == 1 {
+			hb.RangeAttack = false
+		} else if ra == 2 {
+			hb.RangeAttack = true
+		}
+
 		HeroBase_map[hb.HeroId] = hb
 	}
 }

@@ -35,18 +35,47 @@ func main() {
 	//生成两支军队
 	ag1 := &fight.ArmyGroup{1, 1, 1, make([]*fight.Army, 0)}
 	ag2 := &fight.ArmyGroup{2, 2, 2, make([]*fight.Army, 0)}
+	a1 := NewArmy(311001)
+	a5 := NewArmy(311005)
+	ag1.Armys = append(ag1.Armys, a1)
+	ag2.Armys = append(ag2.Armys, a5)
 
+	//修改targetFieldId
+	SetArmyGroupId(ag1)
+	SetArmyGroupId(ag2)
+}
+
+func SetArmyGroupId(ag *fight.ArmyGroup) {
+	for n, v := range ag.Armys {
+		if ag.ArmyFormationSide == 1 {
+			v.ArmyFieldId = n + 1
+		} else {
+			v.ArmyFieldId = n + 5
+		}
+	}
 }
 
 func NewArmy(heroId int) *fight.Army {
 	a := new(fight.Army)
 
+	hb := fight.HeroBase_map[heroId]
+	if hb == nil {
+		log.Fatal("heroBase id error ", heroId)
+	}
+
 	hero := new(fight.Hero)
 	hero.HeroId = heroId
-	hero.HeroTotalLife = fight.HeroBase_map[heroId].HeroLife
+	hero.HeroTotalLife = hb.HeroLife
 	hero.HeroLife = hero.HeroTotalLife
 
 	soldier := new(fight.Soldier)
+	soldier.SoldierId = hb.SoldierId
+	soldier.SoldierTotalNum = hb.SoldierNum
+	soldier.SoldierNum = hb.SoldierNum
+
+	a.Hero = hero
+	a.Soldier = soldier
+	a.RangedAttack = hb.RangeAttack
 
 	return a
 }
