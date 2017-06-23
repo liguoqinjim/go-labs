@@ -9,7 +9,6 @@ import (
 	"lab051/lab008/fight"
 	"lab051/lab008/mynode"
 	"log"
-	"time"
 )
 
 func main() {
@@ -53,9 +52,10 @@ func main() {
 	fmt.Println("\n\n")
 	//tick
 	//在黑板中加入frame参数
-	board.Set("frame", 1, "", "")
+	board.Set("frame", 0, "", "")
 	//模拟有对手
 	a1.TargetArmy = a5
+	a5.TargetArmy = a1
 	//打印两队初始状态
 	fmt.Println("初始状态")
 	for _, v := range ag1.Armys {
@@ -65,17 +65,25 @@ func main() {
 		fmt.Printf("军队id[%d],len(damages)=[%d]\n", v.TargetFieldId, len(v.Damages))
 	}
 	fmt.Println("")
-	for _, v := range ag1.Armys {
-		fmt.Println("运行time1", time.Now())
-		status := tree.Tick(v, board)
-		fmt.Println("运行time2", time.Now())
-		fmt.Println("status=", status)
+	for i := 0; i < 2; i++ {
+		for _, v := range ag1.Armys {
+			status := tree.Tick(v, board)
+			fmt.Println("status=", status)
+		}
+		fmt.Println("")
+		for _, v := range ag2.Armys {
+			status := tree.Tick(v, board)
+			fmt.Println("status=", status)
+		}
+		fmt.Println()
+		frame := board.GetInt("frame", "", "") + 1
+		board.Set("frame", frame, "", "")
 	}
-	fmt.Println("")
 	//打印结束状态
 	for _, v := range ag1.Armys {
 		fmt.Printf("军队id[%d],len(damages)=[%d]\n", v.TargetFieldId, len(v.Damages))
 	}
+	fmt.Println("")
 	for _, v := range ag2.Armys {
 		fmt.Printf("军队id[%d],len(damages)=[%d]\n", v.TargetFieldId, len(v.Damages))
 	}

@@ -1,6 +1,9 @@
 package fight
 
-import "lab051/lab008/util"
+import (
+	"fmt"
+	"lab051/lab008/util"
+)
 
 type ArmyGroup struct {
 	ArmyGroupId       int
@@ -83,6 +86,7 @@ func (a *Army) HasEnemy() bool {
 	}
 }
 func (a *Army) HasDamage(nowFrame int) bool {
+	fmt.Printf("HasDamage,armyId[%d]frame=[%d]\n", a.ArmyFieldId, nowFrame)
 	if _, ok := a.Damages[nowFrame]; !ok {
 		return false
 	} else {

@@ -127,7 +127,7 @@
                 "y": -252
             },
             "children": [
-                "4e7d3d66-370b-4835-8ace-4c4c0e403f72",
+                "c1eba69b-a7c0-409f-93a2-0f981bc32da7",
                 "99852a17-fd4d-4100-b292-b6e311ca48c9",
                 "db4a40fc-767c-49dd-adb7-467af3205f2d"
             ]
@@ -226,21 +226,9 @@
             "description": "这一帧是否有伤害",
             "properties": {},
             "display": {
-                "x": 216,
-                "y": -336
-            }
-        },
-        "4e7d3d66-370b-4835-8ace-4c4c0e403f72": {
-            "id": "4e7d3d66-370b-4835-8ace-4c4c0e403f72",
-            "name": "Inverter",
-            "title": "Inverter",
-            "description": "",
-            "properties": {},
-            "display": {
                 "x": 12,
                 "y": -336
-            },
-            "child": "c1eba69b-a7c0-409f-93a2-0f981bc32da7"
+            }
         }
     },
     "display": {
