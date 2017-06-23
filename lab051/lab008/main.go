@@ -9,6 +9,7 @@ import (
 	"lab051/lab008/fight"
 	"lab051/lab008/mynode"
 	"log"
+	"time"
 )
 
 func main() {
@@ -31,7 +32,6 @@ func main() {
 	//生成树
 	tree := loader.CreateBevTreeFromConfig(treeConfig, extMap)
 	//tree.Print()
-	_ = tree
 
 	//生成黑板
 	board := core.NewBlackboard()
@@ -49,6 +49,15 @@ func main() {
 	SetArmyGroupId(ag1)
 	SetArmyGroupId(ag2)
 
+	fmt.Println("\n\n")
+	//tick
+	a1.TargetArmy = a5
+	for _, v := range ag1.Armys {
+		fmt.Println("time1", time.Now())
+		status := tree.Tick(v, board)
+		fmt.Println("time2", time.Now())
+		fmt.Println("status=", status)
+	}
 }
 
 func SetArmyGroupId(ag *fight.ArmyGroup) {

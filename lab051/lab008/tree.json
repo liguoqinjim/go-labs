@@ -18,8 +18,9 @@
             "children": [
                 "5fc230e9-0f82-4597-8486-52aaae1863c0",
                 "1d890244-8a76-457c-98d1-54394a3ce18f",
-                "77cf1d41-1afd-4fa7-a59f-d5417bd5ef89",
-                "ed6919a5-591e-4cc5-8603-579f5bda597b",
+                "2554a567-58ed-4ee7-8b11-5d15c160c8f0",
+                "6f03bcb0-ca76-411c-84e4-5be20cbe6e6e",
+                "75033ce7-fe73-4eb8-8556-285303034ca5",
                 "052a2b05-0dd9-491f-a5ec-64552f28b0cc"
             ]
         },
@@ -30,8 +31,8 @@
             "description": "army是否有目标",
             "properties": {},
             "display": {
-                "x": 24,
-                "y": -144
+                "x": 228,
+                "y": -60
             }
         },
         "364a7c67-c732-4e3f-9f3d-d0ece71ba6fc": {
@@ -42,7 +43,7 @@
             "properties": {},
             "display": {
                 "x": 24,
-                "y": -12
+                "y": 24
             }
         },
         "9c4dcc67-3a40-4ef8-84b3-92b0fd9957d2": {
@@ -52,8 +53,8 @@
             "description": "敌人在射程内",
             "properties": {},
             "display": {
-                "x": 24,
-                "y": 60
+                "x": 228,
+                "y": 108
             }
         },
         "01b8e9fa-f7d6-4627-8223-901d58729bfb": {
@@ -64,7 +65,7 @@
             "properties": {},
             "display": {
                 "x": 24,
-                "y": 144
+                "y": 204
             }
         },
         "052a2b05-0dd9-491f-a5ec-64552f28b0cc": {
@@ -75,7 +76,7 @@
             "properties": {},
             "display": {
                 "x": -192,
-                "y": 276
+                "y": 336
             },
             "children": [
                 "d24de93e-89b4-4351-8f0c-853003d8f048",
@@ -90,7 +91,7 @@
             "properties": {},
             "display": {
                 "x": 24,
-                "y": 228
+                "y": 288
             }
         },
         "76b9c7ab-5057-446c-8ef1-2f9e5811b615": {
@@ -101,7 +102,7 @@
             "properties": {},
             "display": {
                 "x": 24,
-                "y": 324
+                "y": 372
             }
         },
         "5fc230e9-0f82-4597-8486-52aaae1863c0": {
@@ -112,38 +113,8 @@
             "properties": {},
             "display": {
                 "x": -192,
-                "y": -384
+                "y": -420
             }
-        },
-        "77cf1d41-1afd-4fa7-a59f-d5417bd5ef89": {
-            "id": "77cf1d41-1afd-4fa7-a59f-d5417bd5ef89",
-            "name": "Priority",
-            "title": "Priority",
-            "description": "",
-            "properties": {},
-            "display": {
-                "x": -192,
-                "y": -72
-            },
-            "children": [
-                "abe4b1a2-dc5e-4bc9-8b19-ed3a6d88e7ce",
-                "364a7c67-c732-4e3f-9f3d-d0ece71ba6fc"
-            ]
-        },
-        "ed6919a5-591e-4cc5-8603-579f5bda597b": {
-            "id": "ed6919a5-591e-4cc5-8603-579f5bda597b",
-            "name": "Priority",
-            "title": "Priority",
-            "description": "",
-            "properties": {},
-            "display": {
-                "x": -192,
-                "y": 96
-            },
-            "children": [
-                "9c4dcc67-3a40-4ef8-84b3-92b0fd9957d2",
-                "01b8e9fa-f7d6-4627-8223-901d58729bfb"
-            ]
         },
         "1d890244-8a76-457c-98d1-54394a3ce18f": {
             "id": "1d890244-8a76-457c-98d1-54394a3ce18f",
@@ -153,7 +124,7 @@
             "properties": {},
             "display": {
                 "x": -192,
-                "y": -252
+                "y": -288
             },
             "children": [
                 "99852a17-fd4d-4100-b292-b6e311ca48c9",
@@ -168,7 +139,7 @@
             "properties": {},
             "display": {
                 "x": 24,
-                "y": -300
+                "y": -324
             }
         },
         "db4a40fc-767c-49dd-adb7-467af3205f2d": {
@@ -179,7 +150,72 @@
             "properties": {},
             "display": {
                 "x": 24,
-                "y": -204
+                "y": -240
+            }
+        },
+        "6f03bcb0-ca76-411c-84e4-5be20cbe6e6e": {
+            "id": "6f03bcb0-ca76-411c-84e4-5be20cbe6e6e",
+            "name": "Sequence",
+            "title": "Sequence",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": -192,
+                "y": -24
+            },
+            "children": [
+                "1ae41c0d-73b8-4624-834e-589fa1ae2163",
+                "364a7c67-c732-4e3f-9f3d-d0ece71ba6fc"
+            ]
+        },
+        "1ae41c0d-73b8-4624-834e-589fa1ae2163": {
+            "id": "1ae41c0d-73b8-4624-834e-589fa1ae2163",
+            "name": "Inverter",
+            "title": "Inverter",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": 24,
+                "y": -60
+            },
+            "child": "abe4b1a2-dc5e-4bc9-8b19-ed3a6d88e7ce"
+        },
+        "75033ce7-fe73-4eb8-8556-285303034ca5": {
+            "id": "75033ce7-fe73-4eb8-8556-285303034ca5",
+            "name": "Sequence",
+            "title": "Sequence",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": -192,
+                "y": 156
+            },
+            "children": [
+                "b347d596-496f-4590-8943-e36679050a8c",
+                "01b8e9fa-f7d6-4627-8223-901d58729bfb"
+            ]
+        },
+        "b347d596-496f-4590-8943-e36679050a8c": {
+            "id": "b347d596-496f-4590-8943-e36679050a8c",
+            "name": "Inverter",
+            "title": "Inverter",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": 24,
+                "y": 108
+            },
+            "child": "9c4dcc67-3a40-4ef8-84b3-92b0fd9957d2"
+        },
+        "2554a567-58ed-4ee7-8b11-5d15c160c8f0": {
+            "id": "2554a567-58ed-4ee7-8b11-5d15c160c8f0",
+            "name": "IsDead",
+            "title": "IsDead",
+            "description": "军队是否死亡",
+            "properties": {},
+            "display": {
+                "x": -192,
+                "y": -156
             }
         }
     },

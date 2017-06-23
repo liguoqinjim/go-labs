@@ -36,6 +36,16 @@ type Soldier struct {
 	SoldierTotalNum int //兵种总数量
 }
 
+//ArmyGroup
+func (ag *ArmyGroup) IsDead() bool {
+	for _, v := range ag.Armys {
+		if !v.IsDead() {
+			return false
+		}
+	}
+	return true
+}
+
 //Army
 func (a *Army) IsDead() bool {
 	if a.Soldier.IsDead() && a.Hero.IsDead() {
@@ -43,6 +53,10 @@ func (a *Army) IsDead() bool {
 	} else {
 		return false
 	}
+}
+func (a *Army) SimDead() {
+	a.Hero.HeroLife = 0
+	a.Soldier.SoldierNum = 0
 }
 func (a *Army) HasEnemy() bool {
 	if a.TargetArmy != nil {
