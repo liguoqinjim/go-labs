@@ -100,7 +100,7 @@ func (a *Army) IsEnemyInRange() bool {
 func (a *Army) Attack(nowFrame, frame int) {
 	unit := new(DamageUnit)
 	unit.FromFrame = nowFrame
-	unit.FromType = util.ATTACK_FROM_SOLDIER
+	unit.FromType = util.ATTACK_FROM_HERO
 	unit.FromId = a.ArmyFieldId
 	unit.ToId = a.TargetArmy.ArmyFieldId
 	a.TargetArmy.AddDamageUnit(frame, unit)
@@ -116,6 +116,42 @@ func (a *Army) AddDamageUnit(frame int, unit *DamageUnit) {
 		v.DamageUnits = append(v.DamageUnits, unit)
 	}
 }
+func (a *Army) GetAtk(atk_type int) int {
+	if atk_type == util.ATTACK_FROM_HERO {
+		return a.Hero.GetAtk()
+	} else {
+		return a.Soldier.GetAtk()
+	}
+}
+func (a *Army) BeHurt(damage int) {
+	if !a.Soldier.IsDead() {
+		restDamage := a.Soldier.BeHurt(damage)
+		if restDamage > 0 {
+			a.Hero.BeHurt(restDamage)
+		}
+	} else { //直接扣英雄的血
+		a.Hero.BeHurt(damage)
+	}
+}
+func (a *Army) CalDamage(nowFrame int, enemyAg *ArmyGroup) {
+	fmt.Println("CalDamage", nowFrame)
+	fd := a.Damages[nowFrame] //这里不判断是否为空，为空在上一个节点已经判断过了
+	for _, v := range fd.DamageUnits {
+		enemy := GetArmyByFieldId(v.FromId, enemyAg)
+		if enemy.IsDead() {
+			continue
+		}
+		damage := enemy.GetAtk(v.FromType)
+		a.BeHurt(damage)
+	}
+	delete(a.Damages, nowFrame)
+}
+func GetArmyByFieldId(fieldId int, ag *ArmyGroup) *Army {
+	if fieldId > 4 {
+		fieldId -= 4
+	}
+	return ag.Armys[fieldId-1]
+}
 
 //Hero
 func (h *Hero) IsDead() bool {
@@ -123,6 +159,15 @@ func (h *Hero) IsDead() bool {
 		return true
 	} else {
 		return false
+	}
+}
+func (h *Hero) GetAtk() int {
+	return HeroBase_map[h.HeroId].HeroAtk
+}
+func (h *Hero) BeHurt(damage int) {
+	h.HeroLife -= damage
+	if h.HeroLife < 0 {
+		h.HeroLife = 0
 	}
 }
 
@@ -133,4 +178,21 @@ func (s *Soldier) IsDead() bool {
 	} else {
 		return false
 	}
+}
+func (s *Soldier) GetAtk() int {
+	return SoldierBase_map[s.SoldierId].SoldierAtk * s.SoldierNum
+}
+func (s *Soldier) GetLife() int {
+	return SoldierBase_map[s.SoldierId].SoldierLife
+}
+func (s *Soldier) BeHurt(damage int) (restDamage int) { //返回一个剩余伤害
+	restDamage = 0
+	deadSoldier := damage / s.GetLife()
+	if deadSoldier >= s.SoldierNum {
+		restDamage = damage - s.GetLife()*s.SoldierNum
+		s.SoldierNum = 0
+	} else {
+		s.SoldierNum -= deadSoldier
+	}
+	return restDamage
 }

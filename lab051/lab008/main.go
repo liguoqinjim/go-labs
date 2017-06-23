@@ -8,6 +8,7 @@ import (
 	"github.com/liguoqinjim/behavior3go/loader"
 	"lab051/lab008/fight"
 	"lab051/lab008/mynode"
+	"lab051/lab008/util"
 	"log"
 )
 
@@ -52,17 +53,19 @@ func main() {
 	fmt.Println("\n\n")
 	//tick
 	//在黑板中加入frame参数
-	board.Set("frame", 0, "", "")
+	board.Set(util.BOARD_KEY_FRAME, 0, "", "")
+	board.Set(util.BOARD_KEY_AG1, ag1, "", "")
+	board.Set(util.BOARD_KEY_AG2, ag2, "", "")
 	//模拟有对手
 	a1.TargetArmy = a5
 	a5.TargetArmy = a1
 	//打印两队初始状态
 	fmt.Println("初始状态")
 	for _, v := range ag1.Armys {
-		fmt.Printf("军队id[%d],len(damages)=[%d]\n", v.TargetFieldId, len(v.Damages))
+		fmt.Printf("军队id[%d],len(damages)=[%d],[%d][%d]\n", v.TargetFieldId, len(v.Damages), v.Hero.HeroLife, v.Soldier.SoldierNum)
 	}
 	for _, v := range ag2.Armys {
-		fmt.Printf("军队id[%d],len(damages)=[%d]\n", v.TargetFieldId, len(v.Damages))
+		fmt.Printf("军队id[%d],len(damages)=[%d],[%d][%d]\n", v.TargetFieldId, len(v.Damages), v.Hero.HeroLife, v.Soldier.SoldierNum)
 	}
 	fmt.Println("")
 	for i := 0; i < 2; i++ {
@@ -76,17 +79,25 @@ func main() {
 			fmt.Println("status=", status)
 		}
 		fmt.Println()
-		frame := board.GetInt("frame", "", "") + 1
-		board.Set("frame", frame, "", "")
+		frame := board.GetInt(util.BOARD_KEY_FRAME, "", "") + 1
+		board.Set(util.BOARD_KEY_FRAME, frame, "", "")
+		for _, v := range ag1.Armys {
+			fmt.Printf("军队id[%d],len(damages)=[%d],[%d][%d]\n", v.TargetFieldId, len(v.Damages), v.Hero.HeroLife, v.Soldier.SoldierNum)
+		}
+		fmt.Println("")
+		for _, v := range ag2.Armys {
+			fmt.Printf("军队id[%d],len(damages)=[%d],[%d][%d]\n", v.TargetFieldId, len(v.Damages), v.Hero.HeroLife, v.Soldier.SoldierNum)
+		}
+		fmt.Println()
 	}
 	//打印结束状态
-	for _, v := range ag1.Armys {
-		fmt.Printf("军队id[%d],len(damages)=[%d]\n", v.TargetFieldId, len(v.Damages))
-	}
-	fmt.Println("")
-	for _, v := range ag2.Armys {
-		fmt.Printf("军队id[%d],len(damages)=[%d]\n", v.TargetFieldId, len(v.Damages))
-	}
+	//for _, v := range ag1.Armys {
+	//	fmt.Printf("军队id[%d],len(damages)=[%d],[%d][%d]\n", v.TargetFieldId, len(v.Damages), v.Hero.HeroLife, v.Soldier.SoldierNum)
+	//}
+	//fmt.Println("")
+	//for _, v := range ag2.Armys {
+	//	fmt.Printf("军队id[%d],len(damages)=[%d],[%d][%d]\n", v.TargetFieldId, len(v.Damages), v.Hero.HeroLife, v.Soldier.SoldierNum)
+	//}
 }
 
 func SetArmyGroupId(ag *fight.ArmyGroup) {
