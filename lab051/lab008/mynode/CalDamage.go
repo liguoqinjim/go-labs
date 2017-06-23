@@ -13,10 +13,8 @@ type CalDamage struct {
 }
 
 func (this *CalDamage) OnTick(tick *Tick) b3.Status {
-	fmt.Println("CalDamage节点")
 	// todo
-	//模拟军队死亡
-	//tick.Target.(*fight.Army).SimDead()
+	fmt.Println("CalDamage节点")
 	var enemyAg *fight.ArmyGroup
 	nowFrame := tick.Blackboard.GetInt(util.BOARD_KEY_FRAME, "", "")
 	if tick.Target.(*fight.Army).ArmyFieldId > 4 {

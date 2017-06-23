@@ -62,10 +62,10 @@ func main() {
 	//打印两队初始状态
 	fmt.Println("初始状态")
 	for _, v := range ag1.Armys {
-		fmt.Printf("军队id[%d],len(damages)=[%d],[%d][%d]\n", v.TargetFieldId, len(v.Damages), v.Hero.HeroLife, v.Soldier.SoldierNum)
+		fmt.Printf("军队id[%d],len(damages)=[%d],[%d][%d]\n", v.ArmyFieldId, len(v.Damages), v.Hero.HeroLife, v.Soldier.SoldierNum)
 	}
 	for _, v := range ag2.Armys {
-		fmt.Printf("军队id[%d],len(damages)=[%d],[%d][%d]\n", v.TargetFieldId, len(v.Damages), v.Hero.HeroLife, v.Soldier.SoldierNum)
+		fmt.Printf("军队id[%d],len(damages)=[%d],[%d][%d]\n", v.ArmyFieldId, len(v.Damages), v.Hero.HeroLife, v.Soldier.SoldierNum)
 	}
 	fmt.Println("")
 	for i := 0; i < 2; i++ {
@@ -73,6 +73,14 @@ func main() {
 			status := tree.Tick(v, board)
 			fmt.Println("status=", status)
 		}
+		for _, v := range ag1.Armys {
+			fmt.Printf("军队id[%d],len(damages)=[%d],[%d][%d]\n", v.ArmyFieldId, len(v.Damages), v.Hero.HeroLife, v.Soldier.SoldierNum)
+		}
+		fmt.Println("")
+		for _, v := range ag2.Armys {
+			fmt.Printf("军队id[%d],len(damages)=[%d],[%d][%d]\n", v.ArmyFieldId, len(v.Damages), v.Hero.HeroLife, v.Soldier.SoldierNum)
+		}
+		fmt.Println()
 		fmt.Println("")
 		for _, v := range ag2.Armys {
 			status := tree.Tick(v, board)
@@ -82,11 +90,11 @@ func main() {
 		frame := board.GetInt(util.BOARD_KEY_FRAME, "", "") + 1
 		board.Set(util.BOARD_KEY_FRAME, frame, "", "")
 		for _, v := range ag1.Armys {
-			fmt.Printf("军队id[%d],len(damages)=[%d],[%d][%d]\n", v.TargetFieldId, len(v.Damages), v.Hero.HeroLife, v.Soldier.SoldierNum)
+			fmt.Printf("军队id[%d],len(damages)=[%d],[%d][%d]\n", v.ArmyFieldId, len(v.Damages), v.Hero.HeroLife, v.Soldier.SoldierNum)
 		}
 		fmt.Println("")
 		for _, v := range ag2.Armys {
-			fmt.Printf("军队id[%d],len(damages)=[%d],[%d][%d]\n", v.TargetFieldId, len(v.Damages), v.Hero.HeroLife, v.Soldier.SoldierNum)
+			fmt.Printf("军队id[%d],len(damages)=[%d],[%d][%d]\n", v.ArmyFieldId, len(v.Damages), v.Hero.HeroLife, v.Soldier.SoldierNum)
 		}
 		fmt.Println()
 	}

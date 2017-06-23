@@ -1,7 +1,6 @@
 package fight
 
 import (
-	"fmt"
 	"lab051/lab008/util"
 )
 
@@ -86,7 +85,6 @@ func (a *Army) HasEnemy() bool {
 	}
 }
 func (a *Army) HasDamage(nowFrame int) bool {
-	fmt.Printf("HasDamage,armyId[%d]frame=[%d]\n", a.ArmyFieldId, nowFrame)
 	if _, ok := a.Damages[nowFrame]; !ok {
 		return false
 	} else {
@@ -134,7 +132,6 @@ func (a *Army) BeHurt(damage int) {
 	}
 }
 func (a *Army) CalDamage(nowFrame int, enemyAg *ArmyGroup) {
-	fmt.Println("CalDamage", nowFrame)
 	fd := a.Damages[nowFrame] //这里不判断是否为空，为空在上一个节点已经判断过了
 	for _, v := range fd.DamageUnits {
 		enemy := GetArmyByFieldId(v.FromId, enemyAg)
