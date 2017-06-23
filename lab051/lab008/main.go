@@ -4,6 +4,7 @@ import (
 	"fmt"
 	b3 "github.com/liguoqinjim/behavior3go"
 	"github.com/liguoqinjim/behavior3go/config"
+	"github.com/liguoqinjim/behavior3go/core"
 	"github.com/liguoqinjim/behavior3go/loader"
 	"lab051/lab008/fight"
 	"lab051/lab008/mynode"
@@ -32,6 +33,10 @@ func main() {
 	//tree.Print()
 	_ = tree
 
+	//生成黑板
+	board := core.NewBlackboard()
+	_ = board
+
 	//生成两支军队
 	ag1 := &fight.ArmyGroup{1, 1, 1, make([]*fight.Army, 0)}
 	ag2 := &fight.ArmyGroup{2, 2, 2, make([]*fight.Army, 0)}
@@ -43,6 +48,7 @@ func main() {
 	//修改targetFieldId
 	SetArmyGroupId(ag1)
 	SetArmyGroupId(ag2)
+
 }
 
 func SetArmyGroupId(ag *fight.ArmyGroup) {
