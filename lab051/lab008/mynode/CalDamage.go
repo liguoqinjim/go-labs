@@ -15,7 +15,8 @@ func (this *CalDamage) OnTick(tick *Tick) b3.Status {
 	fmt.Println("CalDamage节点")
 	// todo
 	//模拟军队死亡
-	tick.Target.(*fight.Army).SimDead()
+	//tick.Target.(*fight.Army).SimDead()
+	_ = tick.Target.(*fight.Army)
 
 	return b3.SUCCESS
 }

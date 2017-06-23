@@ -12,8 +12,8 @@
             "description": "",
             "properties": {},
             "display": {
-                "x": -396,
-                "y": -60
+                "x": -408,
+                "y": 0
             },
             "children": [
                 "5fc230e9-0f82-4597-8486-52aaae1863c0",
@@ -31,8 +31,8 @@
             "description": "army是否有目标",
             "properties": {},
             "display": {
-                "x": 228,
-                "y": -60
+                "x": 216,
+                "y": 12
             }
         },
         "364a7c67-c732-4e3f-9f3d-d0ece71ba6fc": {
@@ -42,8 +42,8 @@
             "description": "得到敌人",
             "properties": {},
             "display": {
-                "x": 24,
-                "y": 24
+                "x": 12,
+                "y": 108
             }
         },
         "9c4dcc67-3a40-4ef8-84b3-92b0fd9957d2": {
@@ -53,8 +53,8 @@
             "description": "敌人在射程内",
             "properties": {},
             "display": {
-                "x": 228,
-                "y": 108
+                "x": 216,
+                "y": 192
             }
         },
         "01b8e9fa-f7d6-4627-8223-901d58729bfb": {
@@ -64,8 +64,8 @@
             "description": "移动",
             "properties": {},
             "display": {
-                "x": 24,
-                "y": 204
+                "x": 12,
+                "y": 276
             }
         },
         "052a2b05-0dd9-491f-a5ec-64552f28b0cc": {
@@ -75,8 +75,8 @@
             "description": "",
             "properties": {},
             "display": {
-                "x": -192,
-                "y": 336
+                "x": -204,
+                "y": 408
             },
             "children": [
                 "d24de93e-89b4-4351-8f0c-853003d8f048",
@@ -90,8 +90,8 @@
             "description": "敌人在射程内",
             "properties": {},
             "display": {
-                "x": 24,
-                "y": 288
+                "x": 12,
+                "y": 372
             }
         },
         "76b9c7ab-5057-446c-8ef1-2f9e5811b615": {
@@ -101,8 +101,8 @@
             "description": "攻击",
             "properties": {},
             "display": {
-                "x": 24,
-                "y": 372
+                "x": 12,
+                "y": 456
             }
         },
         "5fc230e9-0f82-4597-8486-52aaae1863c0": {
@@ -112,7 +112,7 @@
             "description": "军队是否死亡",
             "properties": {},
             "display": {
-                "x": -192,
+                "x": -204,
                 "y": -420
             }
         },
@@ -123,10 +123,11 @@
             "description": "",
             "properties": {},
             "display": {
-                "x": -192,
-                "y": -288
+                "x": -204,
+                "y": -252
             },
             "children": [
+                "4e7d3d66-370b-4835-8ace-4c4c0e403f72",
                 "99852a17-fd4d-4100-b292-b6e311ca48c9",
                 "db4a40fc-767c-49dd-adb7-467af3205f2d"
             ]
@@ -138,8 +139,8 @@
             "description": "扣除军队血量",
             "properties": {},
             "display": {
-                "x": 24,
-                "y": -324
+                "x": 12,
+                "y": -252
             }
         },
         "db4a40fc-767c-49dd-adb7-467af3205f2d": {
@@ -149,8 +150,8 @@
             "description": "",
             "properties": {},
             "display": {
-                "x": 24,
-                "y": -240
+                "x": 12,
+                "y": -156
             }
         },
         "6f03bcb0-ca76-411c-84e4-5be20cbe6e6e": {
@@ -160,8 +161,8 @@
             "description": "",
             "properties": {},
             "display": {
-                "x": -192,
-                "y": -24
+                "x": -204,
+                "y": 60
             },
             "children": [
                 "1ae41c0d-73b8-4624-834e-589fa1ae2163",
@@ -175,8 +176,8 @@
             "description": "",
             "properties": {},
             "display": {
-                "x": 24,
-                "y": -60
+                "x": 12,
+                "y": 12
             },
             "child": "abe4b1a2-dc5e-4bc9-8b19-ed3a6d88e7ce"
         },
@@ -187,8 +188,8 @@
             "description": "",
             "properties": {},
             "display": {
-                "x": -192,
-                "y": 156
+                "x": -204,
+                "y": 240
             },
             "children": [
                 "b347d596-496f-4590-8943-e36679050a8c",
@@ -202,8 +203,8 @@
             "description": "",
             "properties": {},
             "display": {
-                "x": 24,
-                "y": 108
+                "x": 12,
+                "y": 192
             },
             "child": "9c4dcc67-3a40-4ef8-84b3-92b0fd9957d2"
         },
@@ -214,17 +215,40 @@
             "description": "军队是否死亡",
             "properties": {},
             "display": {
-                "x": -192,
-                "y": -156
+                "x": -204,
+                "y": -72
             }
+        },
+        "c1eba69b-a7c0-409f-93a2-0f981bc32da7": {
+            "id": "c1eba69b-a7c0-409f-93a2-0f981bc32da7",
+            "name": "HasDamage",
+            "title": "HasDamage",
+            "description": "这一帧是否有伤害",
+            "properties": {},
+            "display": {
+                "x": 216,
+                "y": -336
+            }
+        },
+        "4e7d3d66-370b-4835-8ace-4c4c0e403f72": {
+            "id": "4e7d3d66-370b-4835-8ace-4c4c0e403f72",
+            "name": "Inverter",
+            "title": "Inverter",
+            "description": "",
+            "properties": {},
+            "display": {
+                "x": 12,
+                "y": -336
+            },
+            "child": "c1eba69b-a7c0-409f-93a2-0f981bc32da7"
         }
     },
     "display": {
         "camera_x": 960,
         "camera_y": 475,
         "camera_z": 1,
-        "x": -600,
-        "y": -60
+        "x": -612,
+        "y": 0
     },
     "custom_nodes": [
         {
@@ -274,6 +298,13 @@
             "category": "condition",
             "title": "IsEnemyInRange",
             "description": "敌人在射程内",
+            "properties": {}
+        },
+        {
+            "name": "HasDamage",
+            "category": "condition",
+            "title": "HasDamage",
+            "description": "这一帧是否有伤害",
             "properties": {}
         }
     ]

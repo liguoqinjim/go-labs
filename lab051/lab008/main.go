@@ -22,6 +22,7 @@ func main() {
 	extMap.Register("IsDead", &mynode.IsDead{})
 	extMap.Register("IsEnemyInRange", &mynode.IsEnemyInRange{})
 	extMap.Register("HasEnemy", &mynode.HasEnemy{})
+	extMap.Register("HasDamage", &mynode.HasDamage{})
 
 	//加载treeConfig
 	treeConfig, ok := config.LoadTreeCfg("tree.json")
@@ -51,12 +52,32 @@ func main() {
 
 	fmt.Println("\n\n")
 	//tick
+	//在黑板中加入frame参数
+	board.Set("frame", 1, "", "")
+	//模拟有对手
 	a1.TargetArmy = a5
+	//打印两队初始状态
+	fmt.Println("初始状态")
 	for _, v := range ag1.Armys {
-		fmt.Println("time1", time.Now())
+		fmt.Printf("军队id[%d],len(damages)=[%d]\n", v.TargetFieldId, len(v.Damages))
+	}
+	for _, v := range ag2.Armys {
+		fmt.Printf("军队id[%d],len(damages)=[%d]\n", v.TargetFieldId, len(v.Damages))
+	}
+	fmt.Println("")
+	for _, v := range ag1.Armys {
+		fmt.Println("运行time1", time.Now())
 		status := tree.Tick(v, board)
-		fmt.Println("time2", time.Now())
+		fmt.Println("运行time2", time.Now())
 		fmt.Println("status=", status)
+	}
+	fmt.Println("")
+	//打印结束状态
+	for _, v := range ag1.Armys {
+		fmt.Printf("军队id[%d],len(damages)=[%d]\n", v.TargetFieldId, len(v.Damages))
+	}
+	for _, v := range ag2.Armys {
+		fmt.Printf("军队id[%d],len(damages)=[%d]\n", v.TargetFieldId, len(v.Damages))
 	}
 }
 
@@ -91,6 +112,7 @@ func NewArmy(heroId int) *fight.Army {
 	a.Hero = hero
 	a.Soldier = soldier
 	a.RangedAttack = hb.RangeAttack
+	a.Damages = make(map[int]*fight.FrameDamageUnit)
 
 	return a
 }
