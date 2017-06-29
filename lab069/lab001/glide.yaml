@@ -1,3 +1,4 @@
 package: lab069/lab001
 import:
 - package: github.com/funny/slab
+- package: github.com/funny/utest
