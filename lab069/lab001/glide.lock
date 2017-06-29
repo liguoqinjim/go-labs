@@ -1,0 +1,6 @@
+hash: dbbf97fed580d03299bcc39ad962bee7cdc4f21456170bdc5579ba1f3e86a059
+updated: 2017-06-29T10:38:15.8372711+08:00
+imports:
+- name: github.com/funny/slab
+  version: 7c6981bd0e511e324ed89aa209b623a8ef6f0486
+testImports: []

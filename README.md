@@ -70,3 +70,4 @@
 |lab066|net/http client相关|
 |lab067|goquery|
 |lab068|对象池 sync.Pool|
+|lab069|funny/slab|
