@@ -16,6 +16,7 @@ import (
 	"time"
 
 	"github.com/mreiferson/go-snappystream"
+	"log"
 )
 
 // IdentifyResponse represents the metadata
@@ -145,8 +146,11 @@ func (c *Conn) Connect() (*IdentifyResponse, error) {
 		Timeout:   c.config.DialTimeout,
 	}
 
+	log.Println("c.Addr=", c.config.LocalAddr)
+	log.Println("c.Addr=", c.addr)
 	conn, err := dialer.Dial("tcp", c.addr)
 	if err != nil {
+		log.Println("Connect", err)
 		return nil, err
 	}
 	c.conn = conn.(*net.TCPConn)

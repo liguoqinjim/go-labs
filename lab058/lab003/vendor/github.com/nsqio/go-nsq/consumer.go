@@ -467,6 +467,7 @@ func (r *Consumer) queryLookupd() {
 
 	var nsqdAddrs []string
 	for _, producer := range data.Producers {
+		log.Println("producer", producer)
 		broadcastAddress := producer.BroadcastAddress
 		port := producer.TCPPort
 		joined := net.JoinHostPort(broadcastAddress, strconv.Itoa(port))
@@ -477,8 +478,11 @@ func (r *Consumer) queryLookupd() {
 		nsqdAddrs = discoveryFilter.Filter(nsqdAddrs)
 	}
 	for _, addr := range nsqdAddrs {
+		log.Println("nsqAddr=", addr)
 		err = r.ConnectToNSQD(addr)
+		log.Println("nsqAddr2=", addr)
 		if err != nil && err != ErrAlreadyConnected {
+			log.Println("liguoqinjim error 1")
 			r.log(LogLevelError, "(%s) error connecting to nsqd - %s", addr, err)
 			continue
 		}
@@ -505,6 +509,7 @@ func (r *Consumer) ConnectToNSQDs(addresses []string) error {
 // automatically.  This method is useful when you want to connect to a single, local,
 // instance.
 func (r *Consumer) ConnectToNSQD(addr string) error {
+	log.Println("ConnectToNSQD1")
 	if atomic.LoadInt32(&r.stopFlag) == 1 {
 		return errors.New("consumer stopped")
 	}
@@ -513,6 +518,7 @@ func (r *Consumer) ConnectToNSQD(addr string) error {
 		return errors.New("no handlers")
 	}
 
+	log.Println("ConnectToNSQD2")
 	atomic.StoreInt32(&r.connectedFlag, 1)
 
 	logger, logLvl := r.getLogger()
@@ -520,6 +526,8 @@ func (r *Consumer) ConnectToNSQD(addr string) error {
 	conn := NewConn(addr, &r.config, &consumerConnDelegate{r})
 	conn.SetLogger(logger, logLvl,
 		fmt.Sprintf("%3d [%s/%s] (%%s)", r.id, r.topic, r.channel))
+
+	log.Println("ConnectToNSQD3")
 
 	r.mtx.Lock()
 	_, pendingOk := r.pendingConnections[addr]
@@ -535,6 +543,7 @@ func (r *Consumer) ConnectToNSQD(addr string) error {
 	r.mtx.Unlock()
 
 	r.log(LogLevelInfo, "(%s) connecting to nsqd", addr)
+	log.Println("ConnectToNSQD4")
 
 	cleanupConnection := func() {
 		r.mtx.Lock()
@@ -546,8 +555,10 @@ func (r *Consumer) ConnectToNSQD(addr string) error {
 	resp, err := conn.Connect()
 	if err != nil {
 		cleanupConnection()
+		log.Println("ConnectToNSQD6")
 		return err
 	}
+	log.Println("ConnectToNSQD5")
 
 	if resp != nil {
 		if resp.MaxRdyCount < int64(r.getMaxInFlight()) {
@@ -749,6 +760,7 @@ func (r *Consumer) onConnClose(c *Conn) {
 				}
 				err := r.ConnectToNSQD(addr)
 				if err != nil && err != ErrAlreadyConnected {
+					log.Println("liguoqinjim error 2")
 					r.log(LogLevelError, "(%s) error connecting to nsqd - %s", addr, err)
 					continue
 				}
