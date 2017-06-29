@@ -1,0 +1,6 @@
+hash: fb21e29a46ceaa414c8608bf55cb884558bd38f5bfcf6d6036770eac58e56973
+updated: 2017-06-29T13:57:56.1212982+08:00
+imports:
+- name: github.com/nsqio/go-nsq
+  version: d71fb89c9e0263aaed89645b0b168e11ccf597b1
+testImports: []
