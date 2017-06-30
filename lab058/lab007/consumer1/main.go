@@ -17,7 +17,7 @@ func main() {
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 
 	config := nsq.NewConfig()
-	q, err := nsq.NewConsumer("lab005", "a", config)
+	q, err := nsq.NewConsumer("lab007", "a", config)
 	if err != nil {
 		log.Fatal("NewConsumer error:", err)
 	}
