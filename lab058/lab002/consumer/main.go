@@ -10,7 +10,7 @@ import (
 
 func main() {
 	sigs := make(chan os.Signal, 1)
-	signal.Notify(sigs, syscall.SIGTERM|syscall.SIGTERM)
+	signal.Notify(sigs, syscall.SIGTERM, syscall.SIGTERM)
 
 	config := nsq.NewConfig()
 	q, err := nsq.NewConsumer("test_topic", "ch", config)

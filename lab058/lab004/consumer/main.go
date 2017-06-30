@@ -14,7 +14,7 @@ func main() {
 	log.Println("nsq address=", ip)
 
 	sigs := make(chan os.Signal, 1)
-	signal.Notify(sigs, syscall.SIGTERM|syscall.SIGINT)
+	signal.Notify(sigs, syscall.SIGTERM, syscall.SIGINT)
 
 	config := nsq.NewConfig()
 	q, err := nsq.NewConsumer("test004", "ch", config)
