@@ -6,6 +6,7 @@ import (
 	"io/ioutil"
 	"log"
 	"os"
+	"reflect"
 	"time"
 )
 
@@ -20,16 +21,17 @@ func main() {
 	}
 	defer w.Stop()
 
-	for i := 0; i < 10; i++ {
+	for i := 0; i < 100; i++ {
 		message := fmt.Sprintf("hello %d", i)
 		err := w.Publish("test005", []byte(message))
 		if err != nil {
+			log.Println("error type:", reflect.TypeOf(err))
 			log.Fatal("Publish error:", err)
 		} else {
 			log.Println("发送消息:", message)
 		}
 
-		time.Sleep(time.Second * 2)
+		time.Sleep(time.Second * 3)
 	}
 }
 
