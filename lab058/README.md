@@ -8,3 +8,4 @@
 |lab003|实验3，comsumer改成连接到nsqlookupd|
 |lab004|实验4，和实验3一样，只是为了隐藏自己服务器的ip|
 |lab005|实验5，测试producer断开的情况|
+|lab006|实验6，nsq源代码|
