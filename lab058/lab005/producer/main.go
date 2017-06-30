@@ -25,7 +25,6 @@ func main() {
 		message := fmt.Sprintf("hello %d", i)
 		err := w.Publish("test005", []byte(message))
 		if err != nil {
-			log.Println("error type:", reflect.TypeOf(err))
 			log.Fatal("Publish error:", err)
 		} else {
 			log.Println("发送消息:", message)
