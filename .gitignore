@@ -32,3 +32,6 @@ lab024/lab001/~$test.xlsx
 lab047/lab005/lab003/腾祥嘉丽细圆简.TTF
 *.ttf
 lab051/lab008/gamedata/fightDemo/
+
+# ctags
+.tags
