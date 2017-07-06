@@ -35,3 +35,5 @@ lab051/lab008/gamedata/fightDemo/
 
 # ctags
 .tags
+
+*.swp
