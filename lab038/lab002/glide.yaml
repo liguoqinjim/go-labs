@@ -1,0 +1,3 @@
+package: lab038/lab002
+import:
+- package: github.com/golang/protobuf

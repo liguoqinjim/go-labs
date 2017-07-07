@@ -2,10 +2,11 @@ package main
 
 import (
 	"fmt"
-	"github.com/golang/protobuf/proto"
 	"io/ioutil"
 	"lab038/lab001/pb"
 	"log"
+
+	"github.com/golang/protobuf/proto"
 )
 
 func main() {
@@ -18,6 +19,7 @@ func main() {
 	if err != nil {
 		log.Fatalln("Failed to encode address book:", err)
 	}
+	fmt.Println("out:", out)
 	if err := ioutil.WriteFile("tmp.out", out, 0644); err != nil {
 		log.Fatalln("Failed to write address book:", err)
 	}
