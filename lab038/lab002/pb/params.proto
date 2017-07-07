@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package tutorial;
+
+message Info {
+    int32 id = 1;
+    repeated int32 scores = 2;
+    int32 toId = 3;
+    int32 FromId = 4;
+}
+
