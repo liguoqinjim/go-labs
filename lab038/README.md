@@ -11,6 +11,7 @@
 |实验|简介|
 |---|---|
 |lab001|运行demo|
-|lab002|实验repeated|
-|lab003|实验map|
-|lab004|实验嵌套|
+|lab002|测试package的自动生成|
+|lab003|实验repeated|
+|lab004|实验map|
+|lab005|实验嵌套|
