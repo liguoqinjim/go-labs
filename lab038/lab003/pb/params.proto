@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package pb;
+
+message student {
+    int32 id = 1;
+    string NAME = 2;
+    int32 MATH_SCORE = 3;
+    int32 ChineseSocre = 4;
+    int32 englishscore = 5;
+    int32 musicSocre = 6;
+}
