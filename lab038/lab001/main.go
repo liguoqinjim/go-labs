@@ -3,15 +3,15 @@ package main
 import (
 	"fmt"
 	"io/ioutil"
-	"lab038/lab000/pb"
+	"lab038/lab001/pb"
 	"log"
 
 	"github.com/golang/protobuf/proto"
 )
 
 func main() {
-	personNumber := &pb.Person_PhoneNumber{Number: "13999999999", Type: pb.Person_WORK}
-	person := pb.Person{Name: "xiaoming", Id: 23, Email: "136542728@qq.com", Phones: []*pb.Person_PhoneNumber{personNumber}}
+	personNumber := &tutorial.Person_PhoneNumber{Number: "13999999999", Type: tutorial.Person_WORK}
+	person := tutorial.Person{Name: "xiaoming", Id: 23, Email: "136542728@qq.com", Phones: []*tutorial.Person_PhoneNumber{personNumber}}
 	fmt.Println(person)
 
 	//write to file
@@ -29,7 +29,7 @@ func main() {
 	if err != nil {
 		log.Fatalln("Error reading file:", err)
 	}
-	person1 := &pb.Person{}
+	person1 := &tutorial.Person{}
 	if err := proto.Unmarshal(in, person1); err != nil {
 		log.Fatalln("Failed to parse address book:", err)
 	}
