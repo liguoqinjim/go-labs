@@ -72,3 +72,4 @@
 |lab068|对象池 sync.Pool|
 |lab069|funny/slab|
 |lab070|golang的值传递和引用传递|
+|lab071|golang/template|
