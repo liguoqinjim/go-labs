@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+package pb;
+
+message ErrorStatus {
+    string message = 1;
+    repeated google.protobuf.Any details = 2;
+}
