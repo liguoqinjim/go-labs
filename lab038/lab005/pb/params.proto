@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package pb;
+
+message playerItem {
+    int32 playerId = 1;
+    map<int32, int32> items = 2;
+    int32 itemCnt = 3;
+}

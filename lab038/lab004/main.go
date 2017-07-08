@@ -52,4 +52,8 @@ func main() {
 	}
 	fmt.Println(s11)
 	fmt.Println(s22)
+
+	//判断s22的Score是否是nil
+	fmt.Printf("s11.Scores:len[%d],cap[%d]\n", len(s11.Scores), cap(s11.Scores))
+	fmt.Printf("s22.Scores:len[%d],cap[%d]\n", len(s22.Scores), cap(s22.Scores))
 }
