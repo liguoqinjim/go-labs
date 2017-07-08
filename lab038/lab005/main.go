@@ -51,5 +51,10 @@ func main() {
 	fmt.Println(p22)
 
 	//判断map是否是nil
-	fmt.Println(p22.Items)
+	if p22.Items == nil {
+		fmt.Println("p22.Items = nil")
+	} else {
+		fmt.Println("p22.Items != nil")
+	}
+	fmt.Printf("p22.Items:len[%d]\n", len(p22.Items))
 }
