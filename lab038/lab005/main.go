@@ -33,6 +33,23 @@ func main() {
 	//read file
 	in1, err := ioutil.ReadFile("tmp1.out")
 	if err != nil {
-
+		log.Fatalln("failed to read file1:", err)
 	}
+	in2, err := ioutil.ReadFile("tmp2.out")
+	if err != nil {
+		log.Fatalln("failed to read file2:", err)
+	}
+	p11 := new(pb.PlayerItem)
+	p22 := new(pb.PlayerItem)
+	if err := proto.Unmarshal(in1, p11); err != nil {
+		log.Fatalln("failed to parse in1:", err)
+	}
+	if err := proto.Unmarshal(in2, p22); err != nil {
+		log.Fatalln("failed to parse in2:", err)
+	}
+	fmt.Println(p11)
+	fmt.Println(p22)
+
+	//判断map是否是nil
+	fmt.Println(p22.Items)
 }
