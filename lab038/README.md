@@ -16,4 +16,5 @@
 |lab004|测试repeated|
 |lab005|测试map|
 |lab006|测试嵌套|
+|lab007|测试Enum|
 |lab007|测试any|

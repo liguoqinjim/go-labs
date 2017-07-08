@@ -1,0 +1,36 @@
+syntax = "proto3";
+
+package pb;
+
+enum MapItemType {
+    BUILDING = 0;
+    MONSTER = 1;
+    RESOURCE = 2;
+    SHOP = 3;
+    FARM = 4;
+}
+
+message MapItem {
+    int32 MapItemId = 1;
+    MapItemType MapItemType = 2;
+}
+
+message MapEvent {
+    int32 MapEventId = 1;
+    enum MapEventType {
+        EVERY_HOUR = 0;
+        EVERY_DAY = 1;
+        EVERY_WEEK = 2;
+        EVERY_MONTH = 3;
+        EVERY_SEASON = 4;
+    }
+    MapEventType EventType = 2;
+}
+
+//用allow_alias参数可以重复值
+enum EnumAllowingAlias {
+    option allow_alias = true;
+    UNKNOWN = 0;
+    STARTED = 1;
+    RUNNING = 1;
+}
