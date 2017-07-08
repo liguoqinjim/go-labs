@@ -13,6 +13,6 @@
 |lab001|运行demo|
 |lab002|测试package的自动生成|
 |lab003|测试message中的field名称大小写、下划线的影响|
-|lab003|实验repeated|
-|lab004|实验map|
-|lab005|实验嵌套|
+|lab004|测试repeated|
+|lab005|实验map|
+|lab006|实验嵌套|

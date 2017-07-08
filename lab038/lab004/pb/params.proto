@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+package pb;
+
+message Student {
+    int32 Id = 1;
+    repeated int32 scores = 2;
+    int32 Age = 3;
+}
