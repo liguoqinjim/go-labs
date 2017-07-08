@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package pb;
+
+message Hero {
+    int32 HeroId = 1;
+    int32 HeroLife = 2;
+}
+
+message Item {
+    int32 ItemId = 1;
+    int32 ItemNum = 2;
+}
+
+message Player {
+    int32 PlayerId = 1;
+    Hero PlayerHero = 2;
+    repeated Item PlayerItem = 3;
+    int32 PlayerGold = 4;
+}

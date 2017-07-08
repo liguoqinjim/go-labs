@@ -15,5 +15,5 @@
 |lab003|测试message中的field名称大小写、下划线的影响|
 |lab004|测试repeated|
 |lab005|测试map|
-|lab006|实验嵌套|
+|lab006|测试嵌套|
 |lab007|测试any|
