@@ -6,5 +6,18 @@ package pb;
 message ErrorStatus {
     string message = 1;
     repeated google.protobuf.Any details = 2;
-    google.protobuf.Any info = 3;
+    google.protobuf.Any params = 3;
+}
+
+message Player {
+    int32 playerId = 1;
+    string playerName = 2;
+    int32 playerGold = 3;
+}
+
+message PlayerHero {
+    int32 Id = 1;
+    int32 HeroId = 2;
+    int32 HeroLv = 3;
+    int32 HeroLife = 4;
 }
