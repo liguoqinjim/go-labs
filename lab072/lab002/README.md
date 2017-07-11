@@ -1,6 +1,9 @@
 ### string转float
 ParseFloat参数里面的32和64，是转换的精度，但是返回的都是float64的。
 
+#### 运行结果
+![Imgur](http://i.imgur.com/jeD1kUf.png)
+
 #### 参考资料
 ParseFloat函数的注释
 
