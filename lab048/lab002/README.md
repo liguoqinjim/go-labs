@@ -5,3 +5,5 @@
 |lab001|从lua读取值|
 |lab002|calling go code from lua|
 |lab003|calling lua from go|
+|lab004|user-defined-types，官方例子|
+|lab005|参考lab004，在lua中读出golang的struct的值|
