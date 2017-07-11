@@ -8,3 +8,4 @@
 |lab004|user-defined-types，官方例子|
 |lab005|参考lab004，在lua中读出golang的struct的值|
 |lab006|go传struct到lua，在lua中读出struct里的值|
+|lab007|测试多次调用lua的时候，值是否会出错|
