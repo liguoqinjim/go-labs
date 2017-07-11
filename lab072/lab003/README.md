@@ -1,4 +1,5 @@
 ### fmt对浮点数位数取舍
+用fmt对浮点数的位数操作，然后再用parseFloat转到float64
 
 #### 运行结果
 ![Imgur](http://i.imgur.com/fRGiEn9.png)
