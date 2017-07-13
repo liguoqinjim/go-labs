@@ -51,7 +51,7 @@
 |lab047|pixel，一个2D引擎|
 |lab048|gopher-lua，A Lua VM in Go|
 |lab049|gobevtree，Behavior Tree in Go|
-|lab050|goconvey|
+|lab050|goconvey，测试框架|
 |lab051|behavior3go，golang behavior tree|
 |lab052|snappy|
 |lab053|web.go|
@@ -74,3 +74,4 @@
 |lab070|golang的值传递和引用传递|
 |lab071|golang/template|
 |lab072|golang小数的计算|
+|lab073|testify，测试框架|
