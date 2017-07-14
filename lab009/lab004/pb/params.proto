@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package pb;
+
+message Hero{
+    string ID  = 1;
+    int32 HeroID  = 2;
+    int32 HeroLv  = 3;
+    int32 HeroStar  = 4;
+}
+
+message Soldier{
+    string ID  = 1;
+    int32 SoldierId  = 2;
+    int32 SoldierNum  = 3;
+}
+
+message ArmyGroup{
+    string ID  = 1;
+    repeated Hero Heros = 2;
+    repeated Soldier Soldiers = 3;
+}
