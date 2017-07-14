@@ -4,10 +4,13 @@ import (
 	"database/sql"
 	"encoding/json"
 	"fmt"
-	_ "github.com/go-sql-driver/mysql"
 	"io/ioutil"
+	"lab009/lab004/pb"
 	"log"
 	"os"
+
+	_ "github.com/go-sql-driver/mysql"
+	"github.com/golang/protobuf/proto"
 )
 
 type DBConf struct {
@@ -58,13 +61,19 @@ func main() {
 	}
 	fmt.Println("数据库连接成功")
 
+	armyGroup := CreateArmyGroup()
+	data, err := proto.Marshal(armyGroup)
+	if err != nil {
+		log.Fatalln("failed to marshal pb:", err)
+	}
+
 	//insert blob类型
-	stmtIns, err := db.Prepare("insert into t_test_blob(mailData) value(?)")
+	stmtIns, err := db.Prepare("insert into t_test_blob_pb(pbData) value(?)")
 	if err != nil {
 		panic(err.Error())
 	}
 	defer stmtIns.Close()
-	data := []byte("helloworld")
+
 	fmt.Println("data=", data)
 	_, err = stmtIns.Exec(data)
 	if err != nil {
@@ -74,7 +83,7 @@ func main() {
 	//读
 	//rawbytes
 	fmt.Println()
-	rows, err := db.Query("select * from t_test_blob limit 2")
+	rows, err := db.Query("select * from t_test_blob_pb limit 2")
 	if err != nil {
 		panic(err.Error()) // proper error handling instead of panic in your app
 	}
@@ -112,10 +121,30 @@ func main() {
 				value = string(col)
 			}
 			fmt.Println(columns[i], ": ", value)
-			fmt.Println("receive data:", col)
+
+			if i == 1 { //第二列的时候解析pb
+				receiveArmyGroup := new(pb.ArmyGroup)
+				if err := proto.Unmarshal(col, receiveArmyGroup); err == nil {
+					fmt.Println("receivepb:", receiveArmyGroup)
+				} else {
+					log.Fatalln("failed to parse:", err)
+				}
+			}
 		}
 	}
 	if err = rows.Err(); err != nil {
 		panic(err.Error()) // proper error handling instead of panic in your app
 	}
+}
+
+//ArmyGroup
+func CreateArmyGroup() *pb.ArmyGroup {
+	h1 := &pb.Hero{ID: "H001", HeroID: 1, HeroLv: 2, HeroStar: 3}
+	h2 := &pb.Hero{ID: "H002", HeroID: 11, HeroLv: 12, HeroStar: 13}
+
+	s1 := &pb.Soldier{ID: "S001", SoldierId: 101, SoldierNum: 500}
+	s2 := &pb.Soldier{ID: "S002", SoldierId: 102, SoldierNum: 1000}
+
+	armyGroup := &pb.ArmyGroup{ID: "A001", Heros: []*pb.Hero{h1, h2}, Soldiers: []*pb.Soldier{s1, s2}}
+	return armyGroup
 }
