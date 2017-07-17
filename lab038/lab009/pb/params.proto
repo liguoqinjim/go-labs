@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package pb;
+
+message MailItem{
+    int32 ItemId = 1;
+    int32 ItemNum = 2;
+}
+
+message MailItems{
+    repeated MailItem MailItems = 1;
+}
+
+message Back{
+    int32 PlayerId = 1;
+    MailItems MailItems = 2;
+}

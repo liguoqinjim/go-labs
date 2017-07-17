@@ -18,3 +18,4 @@
 |lab006|测试嵌套|
 |lab007|测试Enum|
 |lab008|测试any|
+|lab009|测试singular|
