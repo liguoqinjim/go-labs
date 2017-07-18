@@ -76,3 +76,4 @@
 |lab072|golang小数的计算|
 |lab073|testify，测试框架|
 |lab074|加密算法|
+|lab075|goroutine|
