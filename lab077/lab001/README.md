@@ -1,4 +1,4 @@
-### 示例1
+### 互斥锁示例1
 
 #### 运行结果
 ![Imgur](http://i.imgur.com/Zcn29TN.png)
