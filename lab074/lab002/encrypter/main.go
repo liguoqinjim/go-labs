@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	key := []byte("example key 1234")
+	key := []byte("example0key01234")
 	plaintext := []byte("helloworld123456")
 
 	// CBC mode works on blocks so plaintexts may need to be padded to the
