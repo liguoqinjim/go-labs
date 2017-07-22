@@ -23,7 +23,6 @@ func main() {
 		log.Fatalln("Decrypt error:", err)
 	}
 	fmt.Println(string(decrypt))
-
 }
 
 func Encrypt(plantText, key []byte) ([]byte, error) {
@@ -31,6 +30,7 @@ func Encrypt(plantText, key []byte) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+	fmt.Println("block.BlockSize=", block.BlockSize())
 	plantText = PKCS7Padding(plantText, block.BlockSize())
 
 	blockModel := cipher.NewCBCEncrypter(block, key)

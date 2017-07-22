@@ -1,0 +1,13 @@
+hash: fc5fd4a5e51f30056d56684530d7e53278be9ec30243163b6c60f6b15d82b815
+updated: 2017-07-22T12:15:16.7774444+08:00
+imports:
+- name: github.com/andreburgaud/crypt2go
+  version: 18fdff33d8fa6779a6eb859c3fbe0d330b340da2
+  subpackages:
+  - ecb
+  - padding
+- name: golang.org/x/crypto
+  version: 6914964337150723782436d56b3f21610a74ce7b
+  subpackages:
+  - blowfish
+testImports: []
