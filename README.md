@@ -52,7 +52,7 @@
 |lab048|gopher-lua，A Lua VM in Go|
 |lab049|gobevtree，Behavior Tree in Go|
 |lab050|goconvey，测试框架|
-|lab051|behavior3go，golang behavior tree|
+|lab051|behavior3go，golang behavior tree，行为树|
 |lab052|snappy|
 |lab053|web.go|
 |lab054|gjson|
@@ -80,3 +80,4 @@
 |lab076|编码相关|
 |lab077|锁|
 |lab078|map和slice的内存和速度分析|
+|lab079|interface|
