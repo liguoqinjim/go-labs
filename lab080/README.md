@@ -4,3 +4,4 @@
 |---|---|
 |lab001|goto label|
 |lab002|break label|
+|lab003|continue label|
