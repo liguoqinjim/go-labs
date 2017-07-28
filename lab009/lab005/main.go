@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	b64 "encoding/base64"
 	"encoding/json"
 	"fmt"
 	_ "github.com/go-sql-driver/mysql"
@@ -96,6 +97,8 @@ func main() {
 		scanArgs[i] = &values[i]
 	}
 
+	mail := &Mail{}
+
 	// Fetch rows
 	for rows.Next() {
 		// get RawBytes from data
@@ -114,9 +117,71 @@ func main() {
 			fmt.Println(columns[i], ": ", value)
 			fmt.Println("receive data:", col)
 			fmt.Println("receive data length:", len(col))
+			if i == 0 {
+				mail.MailId = value
+			} else if i == 6 {
+				mail.MailMessage = value
+			} else if i == 10 {
+				mail.MailData = value
+			}
 		}
 	}
 	if err = rows.Err(); err != nil {
 		panic(err.Error()) // proper error handling instead of panic in your app
 	}
+
+	//测试转到json的时候的问题
+	fmt.Println("测试转json")
+	fmt.Printf("%+v\n", mail)
+	fmt.Println(len(mail.MailId), len(mail.MailMessage), len(mail.MailData))
+
+	data, err := json.Marshal(mail)
+	if err != nil {
+		log.Fatalln("json.Marshal error:", err)
+	}
+	fmt.Println(string(data))
+
+	mail2 := new(Mail)
+	err2 := json.Unmarshal(data, mail2)
+	if err2 != nil {
+		log.Fatalln("json.Unmarshal error:", err)
+	}
+	fmt.Printf("%+v\n", mail2)
+	fmt.Println(len(mail2.MailId), len(mail2.MailMessage), len(mail2.MailData))
+
+	//测试base64转码
+	mail3 := &Mail{MailId: mail.MailId, MailMessage: mail.MailMessage, MailData: mail.MailData}
+	//mailData转码到base64
+	mailDataBase64 := b64.URLEncoding.EncodeToString([]byte(mail.MailData))
+	mail3.MailData = mailDataBase64
+	data3, err := json.Marshal(mail3)
+	if err != nil {
+		log.Fatalln("json.Marshal error:", err)
+	}
+	fmt.Printf("data3=%s\n", data3)
+	fmt.Println(len(mail3.MailId), len(mail3.MailMessage), len(mail3.MailData))
+
+	//base64->string
+	mail4 := new(Mail)
+	err3 := json.Unmarshal(data3, mail4)
+	if err3 != nil {
+		log.Fatalln("json.Unmarshal error:", err)
+	}
+	fmt.Printf("mail4=%+v\n", mail4)
+	fmt.Println(len(mail4.MailId), len(mail4.MailMessage), len(mail4.MailData))
+	mailDataBase64Decode, _ := b64.URLEncoding.DecodeString(mail4.MailData)
+	fmt.Println("mailDataBase64Decode:", mailDataBase64Decode)
+	mail4.MailData = string(mailDataBase64Decode)
+	fmt.Println("mail4.MailData.len=", len(mail4.MailData))
+
+	//比较mail里面的mailData和mail4的mailData
+	fmt.Println("比较mail和mail4")
+	fmt.Println([]byte(mail.MailData))
+	fmt.Println([]byte(mail4.MailData))
+}
+
+type Mail struct {
+	MailId      string
+	MailMessage string
+	MailData    string
 }
