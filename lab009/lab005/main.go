@@ -74,7 +74,7 @@ func main() {
 	//读
 	//rawbytes
 	fmt.Println()
-	rows, err := db.Query("select * from t_test_blob limit ")
+	rows, err := db.Query("select * from t_mail where id = '890851897148182528'")
 	if err != nil {
 		panic(err.Error()) // proper error handling instead of panic in your app
 	}
@@ -113,6 +113,7 @@ func main() {
 			}
 			fmt.Println(columns[i], ": ", value)
 			fmt.Println("receive data:", col)
+			fmt.Println("receive data length:", len(col))
 		}
 	}
 	if err = rows.Err(); err != nil {
