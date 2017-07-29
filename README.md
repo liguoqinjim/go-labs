@@ -73,7 +73,7 @@
 |lab069|funny/slab|
 |lab070|golang的值传递和引用传递|
 |lab071|golang/template|
-|lab072|golang小数的计算|
+|lab072|golang小数的计算，float|
 |lab073|testify，测试框架|
 |lab074|加密算法|
 |lab075|goroutine|
@@ -82,3 +82,4 @@
 |lab078|map和slice的内存和速度分析|
 |lab079|interface|
 |lab080|golang的label(标签)|
+|lab081|time|
