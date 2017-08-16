@@ -83,3 +83,4 @@
 |lab079|interface|
 |lab080|golang的label(标签)|
 |lab081|time|
+|lab082|得到goroutine id|

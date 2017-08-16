@@ -1,0 +1,3 @@
+package: lab082/lab001
+import:
+- package: github.com/petermattis/goid
