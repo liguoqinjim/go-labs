@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package pb;
+
+message mapRes1{
+    int32 id = 1;
+    string items  = 2;
+}
+
+message mapRes2{
+    int32 id = 1;
+    map<int32,int32> items = 2;
+}

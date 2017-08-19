@@ -19,3 +19,4 @@
 |lab007|测试Enum|
 |lab008|测试any|
 |lab009|测试singular|
+|lab010|测试pb的二进制的字节大小|
