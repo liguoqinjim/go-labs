@@ -10,4 +10,4 @@
 |lab005|实验5，测试producer断开的情况|
 |lab006|实验6，nsq源代码|
 |lab007|实验7，nsq有两个消费者在监听同一个topic不同的channel|
-|lab008|实验8，查看consumer和producer是否都可以通过nsqlookupd连接|
+|lab008|实验8，服务器测试代码|
