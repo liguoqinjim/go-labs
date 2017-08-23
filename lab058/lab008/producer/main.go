@@ -33,11 +33,20 @@ func main() {
 	//发送消息
 	i := 0
 	for {
-		message := fmt.Sprint("hello %d", i)
-		if err := w.Publish("test1", []byte(message)); err != nil {
-			log.Println("发送失败")
+		message := fmt.Sprintf("hello %d", i)
+
+		if i%2 == 0 {
+			if err := w.Publish("test1", []byte(message)); err != nil {
+				log.Println("发送失败1")
+			} else {
+				log.Println("发送消息1", message)
+			}
 		} else {
-			log.Println("发送消息", message)
+			if err := w.Publish("test2", []byte(message)); err != nil {
+				log.Println("发送失败2")
+			} else {
+				log.Println("发送消息2", message)
+			}
 		}
 
 		i++
