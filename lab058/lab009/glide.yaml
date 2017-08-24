@@ -1,0 +1,4 @@
+package: lab058/lab009
+import:
+- package: github.com/nsqio/go-nsq
+  version: v1.0.7
