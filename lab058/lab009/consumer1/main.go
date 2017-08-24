@@ -19,7 +19,7 @@ func main() {
 
 	//创建连接
 	config := nsq.NewConfig()
-	q, err := nsq.NewConsumer("server900001", "", config)
+	q, err := nsq.NewConsumer("server900001", "ch", config)
 	if err != nil {
 		log.Fatalf("NewConsumer error:%v", err)
 	}
@@ -31,8 +31,6 @@ func main() {
 		log.Fatalf("ConnnectToNSQLookupd error:%v", err)
 	}
 
-	//添加handler
-
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 
@@ -41,6 +39,6 @@ func main() {
 }
 
 func MsgHandler(message *nsq.Message) error {
-	log.Println("消息处理1:", string(message.ID[:]), string(message.Body))
+	log.Println("消息处理:", string(message.ID[:]), string(message.Body))
 	return nil
 }
