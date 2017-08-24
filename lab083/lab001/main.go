@@ -67,6 +67,7 @@ func main() {
 		log.Fatalf("ReadFile error:%v", err)
 	}
 	url := string(data)
+	log.Printf("url=%s\n", url)
 
 	// Starting with elastic.v5, you must pass a context to execute each service
 	ctx := context.Background()
@@ -74,7 +75,7 @@ func main() {
 	// Obtain a client and connect to the default Elasticsearch installation
 	// on 127.0.0.1:9200. Of course you can configure your client to connect
 	// to other hosts and configure it in various other ways.
-	client, err := elastic.NewClient()
+	client, err := elastic.NewClient(elastic.SetURL(url))
 	if err != nil {
 		log.Fatalf("NewClient error:%v", err)
 	}
