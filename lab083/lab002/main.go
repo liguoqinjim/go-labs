@@ -2,25 +2,22 @@ package main
 
 import (
 	"context"
-	"encoding/json"
-	"reflect"
-	"time"
 
+	"fmt"
 	elastic "gopkg.in/olivere/elastic.v5"
 	"io/ioutil"
 	"log"
+	"math/rand"
+	"os"
+	"os/signal"
+	"syscall"
+	"time"
 )
 
-// Tweet is a structure used for serializing/deserializing data in Elasticsearch.
-type Tweet struct {
-	User     string                `json:"user"`
-	Message  string                `json:"message"`
-	Retweets int                   `json:"retweets"`
-	Image    string                `json:"image,omitempty"`
-	Created  time.Time             `json:"created,omitempty"`
-	Tags     []string              `json:"tags,omitempty"`
-	Location string                `json:"location,omitempty"`
-	Suggest  *elastic.SuggestField `json:"suggest_field,omitempty"`
+type ActionLog struct {
+	PlayerId int    `json:"playerId"`
+	Cmd      int    `json:"cmd"`
+	Content  string `json:"content"`
 }
 
 const mapping = `
@@ -30,35 +27,23 @@ const mapping = `
 		"number_of_replicas": 0
 	},
 	"mappings":{
-		"tweet":{
+		"actionLog":{
 			"properties":{
-				"user":{
+				"playerId":{
 					"type":"keyword"
 				},
-				"message":{
-					"type":"text",
-					"store": true,
-					"fielddata": true
-				},
-				"image":{
+				"cmd":{
 					"type":"keyword"
-				},
-				"created":{
-					"type":"date"
-				},
-				"tags":{
-					"type":"keyword"
-				},
-				"location":{
-					"type":"geo_point"
-				},
-				"suggest_field":{
-					"type":"completion"
 				}
 			}
 		}
 	}
 }`
+
+const (
+	INDEX_NAME = "server900001"
+	TYPE_NAME  = "actionLog"
+)
 
 func main() {
 	//读取ip
@@ -95,13 +80,13 @@ func main() {
 	log.Printf("Elasticsearch version %s\n", esversion)
 
 	// Use the IndexExists service to check if a specified index exists.
-	exists, err := client.IndexExists("twitter").Do(ctx)
+	exists, err := client.IndexExists(INDEX_NAME).Do(ctx)
 	if err != nil {
 		log.Fatalf("IndexExists error:%v", err)
 	}
 	if !exists {
 		// Create a new index.
-		createIndex, err := client.CreateIndex("twitter").BodyString(mapping).Do(ctx)
+		createIndex, err := client.CreateIndex(INDEX_NAME).BodyString(mapping).Do(ctx)
 		if err != nil {
 			log.Fatalf("CreateIndex error:%v", err)
 		}
@@ -111,12 +96,12 @@ func main() {
 	}
 
 	// Index a tweet (using JSON serialization)
-	tweet1 := Tweet{User: "olivere", Message: "Take Five", Retweets: 0}
+	actionLog1 := ActionLog{PlayerId: 68, Cmd: 2088, Content: "行为日志"}
 	put1, err := client.Index().
-		Index("twitter").
-		Type("tweet").
+		Index(INDEX_NAME).
+		Type(TYPE_NAME).
 		Id("1").
-		BodyJson(tweet1).
+		BodyJson(actionLog1).
 		Do(ctx)
 	if err != nil {
 		log.Fatalf("Index error:%v", err)
@@ -124,12 +109,12 @@ func main() {
 	log.Printf("Indexed tweet %s to index %s, type %s\n", put1.Id, put1.Index, put1.Type)
 
 	// Index a second tweet (by string)
-	tweet2 := `{"user" : "olivere", "message" : "It's a Raggy Waltz"}`
+	actionLog2 := `{"playerId":67,"cmd":2008,"content":"行为日志2"}`
 	put2, err := client.Index().
-		Index("twitter").
-		Type("tweet").
+		Index(INDEX_NAME).
+		Type(TYPE_NAME).
 		Id("2").
-		BodyString(tweet2).
+		BodyString(actionLog2).
 		Do(ctx)
 	if err != nil {
 		log.Fatalf("Index error:%v", err)
@@ -138,8 +123,8 @@ func main() {
 
 	// Get tweet with specified ID
 	get1, err := client.Get().
-		Index("twitter").
-		Type("tweet").
+		Index(INDEX_NAME).
+		Type(TYPE_NAME).
 		Id("1").
 		Do(ctx)
 	if err != nil {
@@ -150,82 +135,46 @@ func main() {
 	}
 
 	// Flush to make sure the documents got written.
-	_, err = client.Flush().Index("twitter").Do(ctx)
+	_, err = client.Flush().Index(INDEX_NAME).Do(ctx)
 	if err != nil {
 		log.Fatalf("Flush error:%v", err)
 	}
 
-	// Search with a term query
-	termQuery := elastic.NewTermQuery("user", "olivere")
-	searchResult, err := client.Search().
-		Index("twitter").   // search in index "twitter"
-		Query(termQuery).   // specify the query
-		Sort("user", true). // sort by "user" field, ascending
-		From(0).Size(10).   // take documents 0-9
-		Pretty(true).       // pretty print request and response JSON
-		Do(ctx)             // execute
-	if err != nil {
-		log.Fatalf("Search error:%v", err)
-	}
+	sigs := make(chan os.Signal, 1)
+	signal.Notify(sigs, syscall.SIGTERM, syscall.SIGINT)
 
-	// searchResult is of type SearchResult and returns hits, suggestions,
-	// and all kinds of other information from Elasticsearch.
-	log.Printf("Query took %d milliseconds\n", searchResult.TookInMillis)
+	go func() {
+		playerIds := []int{4, 11, 68, 70}
+		cmds := []int{2001, 2003, 2005, 2401, 2088, 2009, 2006, 2409, 2004, 2007, 2002}
 
-	// Each is a convenience function that iterates over hits in a search result.
-	// It makes sure you don't need to check for nil values in the response.
-	// However, it ignores errors in serialization. If you want full control
-	// over iterating the hits, see below.
-	var ttyp Tweet
-	for _, item := range searchResult.Each(reflect.TypeOf(ttyp)) {
-		if t, ok := item.(Tweet); ok {
-			log.Printf("Tweet by %s: %s\n", t.User, t.Message)
-		}
-	}
-	// TotalHits is another convenience function that works even when something goes wrong.
-	log.Printf("Found a total of %d tweets\n", searchResult.TotalHits())
+		i := 0
+		for {
+			playerId := playerIds[rand.Intn(len(playerIds))]
+			cmd := cmds[rand.Intn(len(cmds))]
 
-	// Here's how you iterate through results with full control over each step.
-	if searchResult.Hits.TotalHits > 0 {
-		log.Printf("Found a total of %d tweets\n", searchResult.Hits.TotalHits)
+			actionLog := ActionLog{PlayerId: playerId, Cmd: cmd, Content: fmt.Sprintf("行为日志%d", i)}
 
-		// Iterate through results
-		for _, hit := range searchResult.Hits.Hits {
-			// hit.Index contains the name of the index
-
-			// Deserialize hit.Source into a Tweet (could also be just a map[string]interface{}).
-			var t Tweet
-			err := json.Unmarshal(*hit.Source, &t)
+			_, err := client.Index().
+				Index(INDEX_NAME).
+				Type(TYPE_NAME).
+				BodyJson(actionLog).
+				Do(ctx)
 			if err != nil {
-				// Deserialization failed
+				log.Fatalf("Index error:%v", err)
+			} else {
+				log.Printf("insert success")
 			}
 
-			// Work with tweet
-			log.Printf("Tweet by %s: %s\n", t.User, t.Message)
+			i++
+			time.Sleep(time.Second * 3)
 		}
-	} else {
-		// No hits
-		log.Print("Found no tweets\n")
-	}
+	}()
 
-	// Update a tweet by the update API of Elasticsearch.
-	// We just increment the number of retweets.
-	update, err := client.Update().Index("twitter").Type("tweet").Id("1").
-		Script(elastic.NewScriptInline("ctx._source.retweets += params.num").Lang("painless").Param("num", 1)).
-		Upsert(map[string]interface{}{"retweets": 0}).
-		Do(ctx)
+	<-sigs
+	_, err = client.Flush().Index(INDEX_NAME).Do(ctx)
 	if err != nil {
-		log.Fatalf("Update error:%v", err)
+		log.Fatalf("Flush error:%v", err)
 	}
-	log.Printf("New version of tweet %q is now %d\n", update.Id, update.Version)
 
-	// Delete an index.
-	//deleteIndex, err := client.DeleteIndex("twitter").Do(ctx)
-	//if err != nil {
-	//	// Handle error
-	//	panic(err)
-	//}
-	//if !deleteIndex.Acknowledged {
-	//	// Not acknowledged
-	//}
+	log.Println("end")
 }
