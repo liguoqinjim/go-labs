@@ -6,6 +6,8 @@ import (
 	"log"
 	"net"
 	"os"
+	"os/signal"
+	"syscall"
 	"time"
 )
 
@@ -19,24 +21,32 @@ func main() {
 
 	tcpAddr, err := net.ResolveTCPAddr("tcp4", addr)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		log.Fatalf("ResolveTCPAddr error:%v", err)
 	}
 
 	conn, err := net.DialTCP("tcp", nil, tcpAddr)
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		log.Fatalf("DialTCP error:%v", err)
+	} else {
+		log.Println("connect success")
 	}
 
-	fmt.Println("connect success")
-	sender(conn)
+	sigs := make(chan os.Signal, 1)
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 
-	time.Sleep(time.Second * 3)
-}
+	go func() {
+		i := 0
+		for {
+			words := fmt.Sprintf("helloworld%d\n", i)
 
-func sender(conn net.Conn) {
-	words := "hello world!"
-	conn.Write([]byte(words))
-	fmt.Println("send over")
+			conn.Write([]byte(words))
+			log.Println("send:", words)
+
+			i++
+			time.Sleep(time.Second * 5)
+		}
+	}()
+
+	<-sigs
+	log.Println("end")
 }
