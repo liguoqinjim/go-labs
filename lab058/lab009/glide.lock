@@ -1,8 +1,10 @@
-hash: 819a949b36b60208660d774bc5271cf758f5c977c4d3a7db4a8ef3b01b26b800
-updated: 2017-08-24T18:44:40.0869822+08:00
+hash: 42e01a8c5cc6b0a255dc99a695af28799daab3bf444c05cd6f32b3d71ec7c5c5
+updated: 2017-08-25T10:54:53.9172875+08:00
 imports:
 - name: github.com/golang/snappy
   version: 553a641470496b2327abcac10b36396bd98e45c9
 - name: github.com/nsqio/go-nsq
   version: eee57a3ac4174c55924125bb15eeeda8cffb6e6f
+- name: gopkg.in/olivere/elastic.v5
+  version: edbef41beaacc2ee95e61af8faff04e67c01e268
 testImports: []
