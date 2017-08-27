@@ -1,7 +1,7 @@
 ### otto
 https://github.com/robertkrimen/otto
 
-`go get -v github.com/robertkrimen/otto/otto`
+`go get github.com/robertkrimen/otto`
 
 |实验|简介|
 |---|---|
