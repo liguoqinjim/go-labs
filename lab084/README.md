@@ -6,3 +6,4 @@ https://github.com/robertkrimen/otto
 |实验|简介|
 |---|---|
 |lab001|运行example|
+|lab002|运行js文件|
