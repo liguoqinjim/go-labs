@@ -8,11 +8,13 @@ import (
 	"log"
 	"os"
 	"os/signal"
+	"strings"
 	"syscall"
 )
 
 const (
-	TOPIC_NAME = "server900001"
+	INDEX_NAME     = "server900002"
+	NSQ_TOPIC_NAME = "server900001"
 )
 
 const mapping = `
@@ -29,6 +31,12 @@ const mapping = `
 				},
 				"cmd":{
 					"type":"keyword"
+				},
+				"logType1":{
+					"type":"keyword"
+				},
+				"logType2":{
+					"type":"keyword"
 				}
 			}
 		}
@@ -38,6 +46,9 @@ const mapping = `
 type ActionLog struct {
 	PlayerId string `json:"playerId"`
 	Cmd      string `json:"cmd"`
+	LogType1 string `json:"logType1"`
+	LogType2 string `json:"logType2"`
+	LogTime  string `json:"LogTime"`
 	Content  string `json:"content"`
 }
 
@@ -60,7 +71,7 @@ func main() {
 
 	//创建连接
 	config := nsq.NewConfig()
-	q, err := nsq.NewConsumer(TOPIC_NAME, "ch", config)
+	q, err := nsq.NewConsumer(NSQ_TOPIC_NAME, "ch", config)
 	if err != nil {
 		log.Fatalf("NewConsumer error:%v", err)
 	}
@@ -106,13 +117,13 @@ func ConnectToElastic() {
 	log.Printf("Elasticsearch version %s\n", esversion)
 
 	// Use the IndexExists service to check if a specified index exists.
-	exists, err := client.IndexExists(TOPIC_NAME).Do(ELKContext)
+	exists, err := client.IndexExists(INDEX_NAME).Do(ELKContext)
 	if err != nil {
 		log.Fatalf("IndexExists error:%v", err)
 	}
 	if !exists {
 		// Create a new index.
-		createIndex, err := client.CreateIndex(TOPIC_NAME).BodyString(mapping).Do(ELKContext)
+		createIndex, err := client.CreateIndex(INDEX_NAME).BodyString(mapping).Do(ELKContext)
 		if err != nil {
 			log.Fatalf("CreateIndex error:%v", err)
 		}
@@ -126,16 +137,31 @@ func ConnectToElastic() {
 
 func AddDocument(actionLog *ActionLog) {
 	_, err := ELKClient.Index().
-		Index(TOPIC_NAME).
-		Type("ActionLog").
-		Id("1").BodyJson(actionLog).Do(ELKContext)
+		Index(INDEX_NAME).
+		Type("ActionLog").BodyJson(actionLog).Do(ELKContext)
 	if err != nil {
 		log.Fatalf("Index error:%v", err)
+	} else {
+		log.Println("添加document")
 	}
 }
 
 func MsgHandler(message *nsq.Message) error {
+	logMessage := string(message.Body)
+	logMessages := strings.Split(logMessage, "|")
 	log.Println("消息处理:", string(message.ID[:]), string(message.Body))
+
+	if len(logMessages) == 6 || len(logMessages) == 5 {
+		actionLog := new(ActionLog)
+		actionLog.PlayerId = logMessages[0]
+		actionLog.Cmd = logMessages[1]
+		actionLog.LogType1 = logMessages[2]
+		actionLog.LogType2 = logMessages[3]
+		actionLog.LogTime = logMessages[4]
+
+		//判断log类型
+		AddDocument(actionLog)
+	}
 
 	return nil
 }
