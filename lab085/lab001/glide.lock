@@ -1,0 +1,6 @@
+hash: 76772322570319cf07737087ca0bdd0b20465be9d2cc0e538608ce37127956a3
+updated: 2017-08-29T14:35:01.892672+08:00
+imports:
+- name: github.com/bwmarrin/snowflake
+  version: 1c0147d077f16f1abd13b630743b41484616ab9a
+testImports: []
