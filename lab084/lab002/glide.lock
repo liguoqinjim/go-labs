@@ -1,0 +1,6 @@
+hash: 0055ed1a619e7a285ee925602f8e542ee2a01b66b41e804cd99b8aed742209e0
+updated: 2017-08-29T09:59:54.4358191+08:00
+imports:
+- name: github.com/robertkrimen/otto
+  version: a813c59b1b4471ff7ecd3b533bac2f7e7d178784
+testImports: []
