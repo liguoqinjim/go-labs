@@ -7,7 +7,7 @@ import (
 
 func main() {
 	vm := otto.New()
-	script, err := vm.Compile("js/test1.js", `console.log("123")`)
+	script, err := vm.Compile("js/test1.js", nil)
 	if err != nil {
 		log.Fatalf("compile error:%v", err)
 	}
