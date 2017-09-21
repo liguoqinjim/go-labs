@@ -87,3 +87,4 @@
 |lab083|elastic，Elasticsearch client for Go|
 |lab084|otto，A JavaScript interpreter in Go|
 |lab085|snowflake，生成唯一id|
+|lab086|排序算法|
