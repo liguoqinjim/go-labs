@@ -15,6 +15,8 @@ func main() {
 	//float32占用内存
 	var a float32 = 0.5
 	var b float64 = 0.5
-	fmt.Println(unsafe.Sizeof(a))
-	fmt.Println(unsafe.Sizeof(b))
+	var c int = 1
+	fmt.Println("size of float32:", unsafe.Sizeof(a))
+	fmt.Println("size of float64:", unsafe.Sizeof(b))
+	fmt.Println("size of int:", unsafe.Sizeof(c))
 }
