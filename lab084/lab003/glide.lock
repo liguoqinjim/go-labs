@@ -1,6 +1,17 @@
 hash: d3220f7c3fabeecf7ac7744784d5f83ccbd8c2e504c7e94a3647356606581a9f
-updated: 2017-10-04T18:23:57.4023759+08:00
+updated: 2017-10-04T18:28:14.7069449+08:00
 imports:
 - name: github.com/robertkrimen/otto
   version: c284572e9b1ab16649f2fbdbbe97b7e3a18c06d0
+  subpackages:
+  - ast
+  - dbg
+  - file
+  - parser
+  - registry
+  - token
+- name: gopkg.in/sourcemap.v1
+  version: 6e83acea0053641eff084973fee085f0c193c61a
+  subpackages:
+  - base64vlq
 testImports: []
