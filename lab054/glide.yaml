@@ -1,0 +1,3 @@
+package: lab054
+import:
+- package: github.com/tidwall/gjson
