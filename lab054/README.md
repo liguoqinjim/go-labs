@@ -5,4 +5,5 @@ https://github.com/tidwall/gjson
 |---|---|
 |lab001|Get Value，最简单的得到值|
 |lab002|试验1|
-|lab003|Path Syntax，用路径的方式得到值|
+|lab003|Path Syntax1，用路径的方式得到值|
+|lab004|Path Syntax2，在1的基础上在加入匹配查找|
