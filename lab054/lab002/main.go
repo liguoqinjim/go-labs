@@ -26,6 +26,7 @@ func main() {
 		chunks = append(chunks, buf[:n]...)
 	}
 	testjson = string(chunks)
+	file.Close()
 
 	//const json = `{"name":{"first":"Janet","last":"Prichard"},"age":47}`
 	//value1 := gjson.Get(json, "name.last")
