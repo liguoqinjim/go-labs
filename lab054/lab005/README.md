@@ -1,4 +1,4 @@
-### Iterate through an object or array
+### Iterate through an object or array，迭代获得object或者array的key和value
 迭代得到array或者object的值
 
 #### 运行结果
