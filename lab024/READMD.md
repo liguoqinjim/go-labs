@@ -14,3 +14,4 @@
 |lab004|示例程序02，github.com/xuri/excelize，生成xlsx|
 |lab005|示例程序03，github.com/xuri/excelize，Add chart|
 |lab006|实验保存中文名文件|
+|lab007|实验xuri/excelize，生成数据|
