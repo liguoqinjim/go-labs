@@ -1,4 +1,10 @@
 ### xls操作
+这个实验里面用到两个库
+
+安装:
+
+1. `go get github.com/tealeg/xlsx`
+2. `go get github.com/xuri/excelize`
 
 |实验|简介|
 |---|---|
