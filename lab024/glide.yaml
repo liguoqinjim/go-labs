@@ -1,0 +1,4 @@
+package: lab024
+import:
+- package: github.com/tealeg/xlsx
+  version: v1.0.3
