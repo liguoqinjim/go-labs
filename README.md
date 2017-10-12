@@ -91,3 +91,4 @@
 |lab087|golang-geo，Geographical calculations in Go|
 |lab088|简单几何计算|
 |lab089|surfer，henrylee2cn/surfer|
+|lab090|gorequest，Simplified HTTP client|
