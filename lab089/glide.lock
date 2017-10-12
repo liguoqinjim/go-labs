@@ -1,0 +1,6 @@
+hash: b824b5b4e16bc3ab86612f05b8862abeeff75019087a20dcae287b039816567f
+updated: 2017-10-12T16:05:24.8046691+08:00
+imports:
+- name: github.com/henrylee2cn/surfer
+  version: e33aec285710eb2f78f0e91a1a97062e7b62bf49
+testImports: []

@@ -1,0 +1,4 @@
+package: lab089
+import:
+- package: github.com/henrylee2cn/surfer
+  version: v1.1
