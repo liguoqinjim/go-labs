@@ -15,18 +15,18 @@ func main() {
 	xlsx := excelize.NewFile()
 
 	//设置一行数据
-	//strs := []string{"你好1", "你好2", "你好3", "你好4", "你好5", "你好6"}
-	//SetRowValue(xlsx, 1, 'Y', strs)
-
-	nextCol, _ := GetNextColumn("AZ")
-	log.Println("nextCol=", nextCol)
+	strs := []interface{}{"你好1", "你好2", "你好3", "你好4", "你好5", "你好6"}
+	err := SetRowValue(xlsx, "Sheet1", 2, "Y", strs)
+	if err != nil {
+		log.Fatal("SetRowValue error:%v", err)
+	}
 
 	xlsx.SaveAs("test.xlsx")
 	log.Println("Save success")
 }
 
 //设置一行数据
-func SetRowValue(xlsx *excelize.File, row, firstColumn string, content []string) error {
+func SetRowValue(xlsx *excelize.File, sheet string, row int, firstColumn string, content []interface{}) error {
 	if len(content) == 0 {
 		return errors.New("content length == 0")
 	}
@@ -37,13 +37,23 @@ func SetRowValue(xlsx *excelize.File, row, firstColumn string, content []string)
 		}
 	}
 
+	nowColumn := firstColumn
+	var err error
 	for n, v := range content {
+		log.Println("n=", n)
 		if n == 0 {
-			xlsx.SetCellValue()
+			xlsx.SetCellValue(sheet, fmt.Sprintf("%s%d", firstColumn, row), v)
+		} else {
+			nowColumn, err = GetNextColumn(nowColumn)
+			log.Println("nowColumn=", nowColumn)
+			if err != nil {
+				log.Println("GetNextColumn error:", err)
+				return err
+			}
+			xlsx.SetCellValue(sheet, fmt.Sprintf("%s%d", nowColumn, row), v)
 		}
-
-		xlsx.SetCellValue("Sheet1", fmt.Sprintf("%c%d", firstColumn+n, row), v)
 	}
+	return nil
 }
 
 //这里就判断到AA1这种情况，三位的情况不考虑
