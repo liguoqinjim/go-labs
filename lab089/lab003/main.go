@@ -31,7 +31,7 @@ func main() {
 	surfer.SetPhantomJsFilePath("E:\\Workspace\\go-labs\\src\\lab089\\phantomjs.exe")
 	log.Println("phamtomjs内核" + HR)
 	resp, err = surfer.Download(&surfer.Request{
-		Url:          "http://httpbin.org/user-agent",
+		Url:          "http://httpbin.org/ip",
 		Method:       http.MethodGet,
 		DownloaderID: 1,
 	})
