@@ -1,0 +1,30 @@
+hash: 764c878409828f7ddd6cf32494bc67c2cd3b85aa3eeb0c7add7f5f9b56b0ae7b
+updated: 2017-10-13T20:59:48.5705293+08:00
+imports:
+- name: github.com/henrylee2cn/surfer
+  version: 82397f928e54545c45ac8689b73d12b0e606962d
+- name: golang.org/x/net
+  version: a04bdaca5b32abe1c069418fb7088ae607de5bd0
+  subpackages:
+  - html
+  - html/atom
+  - html/charset
+- name: golang.org/x/text
+  version: 825fc78a2fd6fa0a5447e300189e3219e05e1f25
+  subpackages:
+  - encoding
+  - encoding/charmap
+  - encoding/htmlindex
+  - encoding/internal
+  - encoding/internal/identifier
+  - encoding/japanese
+  - encoding/korean
+  - encoding/simplifiedchinese
+  - encoding/traditionalchinese
+  - encoding/unicode
+  - internal/tag
+  - internal/utf8internal
+  - language
+  - runes
+  - transform
+testImports: []
