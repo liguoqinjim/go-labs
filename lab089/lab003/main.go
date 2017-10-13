@@ -28,6 +28,7 @@ func main() {
 	log.Println("body=", string(b))
 
 	//phamtomjs内核
+	surfer.SetPhantomJsFilePath("E:\\Workspace\\go-labs\\src\\lab089\\phantomjs.exe")
 	log.Println("phamtomjs内核" + HR)
 	resp, err = surfer.Download(&surfer.Request{
 		Url:          "http://httpbin.org/user-agent",
