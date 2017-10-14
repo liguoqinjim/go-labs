@@ -1,0 +1,6 @@
+hash: 9f444f7899dca74425e2f57920438421ab84ba2be7e82802e6414ce628e68c31
+updated: 2017-10-14T16:02:19.0279381+08:00
+imports:
+- name: github.com/tidwall/pony
+  version: 486ea2dd9b05acb2e75cebd810e86b5529957afc
+testImports: []
