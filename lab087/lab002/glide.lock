@@ -1,6 +1,22 @@
 hash: d41fb30d7a8cb0ba24ad56d2a5b6fb306b2c7fdc111c44a6acd9a85df1384182
-updated: 2017-10-16T15:28:37.8205216+08:00
+updated: 2017-10-16T15:41:52.5685465+08:00
 imports:
+- name: github.com/erikstmartin/go-testdb
+  version: 8d10e4a1bae52cd8b81ffdec3445890d6dccab3d
 - name: github.com/kellydunn/golang-geo
   version: 6f16b0ccf2a6ebd1a234daacfb6199510fbd0db4
+- name: github.com/kylelemons/go-gypsy
+  version: 08cad365cd28a7fba23bb1e57aa43c5e18ad8bb8
+  subpackages:
+  - yaml
+- name: github.com/lib/pq
+  version: 017e4c14d80628353eaee677a1aeffe47a10c0dc
+  subpackages:
+  - oid
+- name: github.com/ziutek/mymysql
+  version: 1d19cbf98d83564cc561192ae7d7183d795f7ac7
+  subpackages:
+  - godrv
+  - mysql
+  - native
 testImports: []
