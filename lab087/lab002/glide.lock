@@ -1,0 +1,6 @@
+hash: d41fb30d7a8cb0ba24ad56d2a5b6fb306b2c7fdc111c44a6acd9a85df1384182
+updated: 2017-10-16T15:28:37.8205216+08:00
+imports:
+- name: github.com/kellydunn/golang-geo
+  version: 6f16b0ccf2a6ebd1a234daacfb6199510fbd0db4
+testImports: []
