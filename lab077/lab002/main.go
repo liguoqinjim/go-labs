@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"sync"
 )
 
@@ -14,13 +14,13 @@ func main() {
 func f() {
 	mu.Lock()
 	g()
-	fmt.Println("call f()")
+	log.Println("call f()")
 
 	mu.Unlock()
 }
 
 func g() {
 	mu.Lock()
-	fmt.Println("call g()")
+	log.Println("call g()")
 	mu.Unlock()
 }
