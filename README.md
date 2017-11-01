@@ -93,3 +93,4 @@
 |lab089|surfer，henrylee2cn/surfer|
 |lab090|gorequest，Simplified HTTP client|
 |lab091|pony，tidwall/pony|
+|lab092|go-bindata|
