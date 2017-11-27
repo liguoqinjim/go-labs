@@ -1,7 +1,6 @@
 package main
 
 import (
-	"flag"
 	"log"
 	"os"
 	"path/filepath"
@@ -11,8 +10,10 @@ import (
 )
 
 //根路径
-var root = ""
-var specDirName = "dir2" //要查找的文件夹
+var root = "E:/Workspace/go/src/github.com"
+
+//var root = "dir1"
+var specDirName = "liguoqinjim" //要查找的文件夹
 
 //一旦找到就返回
 var foundPath = ""
@@ -24,6 +25,17 @@ func visit(path string, info os.FileInfo, err error) error {
 	if err != nil {
 		log.Println("error:", err)
 		return err
+	}
+
+	//判断深度
+	rootCount := strings.Count(root, "\\")
+	if rootCount == 0 {
+		rootCount = strings.Count(root, "/")
+	}
+	depth := strings.Count(path, "\\") - rootCount
+	//log.Printf("depth[%d] [%d,%d]", depth, strings.Count(path, "\\"), strings.Count(root, "\\"))
+	if depth > specDepth {
+		return filepath.SkipDir
 	}
 
 	if info.IsDir() {
@@ -52,7 +64,11 @@ func visitAll(path string, info os.FileInfo, err error) error {
 	}
 
 	//判断深度
-	depth := strings.Count(path, "\\") - strings.Count(root, "\\")
+	rootCount := strings.Count(root, "\\")
+	if rootCount == 0 {
+		rootCount = strings.Count(root, "/")
+	}
+	depth := strings.Count(path, "\\") - rootCount
 	//log.Printf("depth[%d] [%d,%d]", depth, strings.Count(path, "\\"), strings.Count(root, "\\"))
 	if depth > specDepth {
 		return filepath.SkipDir
@@ -72,9 +88,9 @@ func visitAll(path string, info os.FileInfo, err error) error {
 }
 
 func main() {
-	//根目录
-	flag.Parse()
-	root = flag.Arg(0)
+	if root == "" {
+		log.Fatalf("root error:%s", root)
+	}
 
 	//一旦找到就返回
 	log.Println("方式1-------------------------------------------------------------")
