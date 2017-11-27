@@ -37,6 +37,27 @@ func visit(path string, info os.FileInfo, err error) error {
 }
 
 //找出所有再返回
+var paths []string
+
+func visitAll(path string, info os.FileInfo, err error) error {
+	log.Printf("Visited: %s\n", path)
+
+	if err != nil {
+		log.Println("error:", err)
+		return err
+	}
+
+	if info.IsDir() {
+		pathNames := strings.Split(path, "\\")
+		for _, v := range pathNames {
+			if v == specDirName {
+				paths = append(paths, path)
+			}
+		}
+	}
+
+	return nil
+}
 
 func main() {
 	//根目录
@@ -48,4 +69,8 @@ func main() {
 	if err == foundDir {
 		log.Println("找到文件夹")
 	}
+
+	//找出所有
+	err = filepath.Walk(root, visitAll)
+	log.Println(paths)
 }
