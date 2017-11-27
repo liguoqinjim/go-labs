@@ -346,7 +346,9 @@ func (s *Sina) UPLOAD(base string, params url.Values,
 }
 
 func ReadToken(token string) string {
-	data, err := ioutil.ReadFile(os.Getenv("PWD") + "/" + token)
+	//data, err := ioutil.ReadFile(os.Getenv("PWD") + "/" + token)
+	pwd, err := os.Getwd()
+	data, err := ioutil.ReadFile(pwd + "/" + token)
 	if err != nil {
 		log.Error(err)
 		panic(err)

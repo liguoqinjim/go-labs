@@ -1,6 +1,8 @@
 hash: 119d2af063d1314b28e1a0ae69294a9e75b1122a7741a09fa8e3f20e9b7c7929
-updated: 2017-11-27T16:39:13.6801974+08:00
+updated: 2017-11-27T17:07:24.1654967+08:00
 imports:
 - name: github.com/hugozhu/goweibo
   version: fec42f62054e61da2f14b3b706f924d3234f9d85
+- name: github.com/hugozhu/log4go
+  version: 00c023d54f3e92d05ca658b7e1e88d225f5e67ed
 testImports: []
