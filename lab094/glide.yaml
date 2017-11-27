@@ -1,0 +1,3 @@
+package: lab094
+import:
+- package: github.com/hugozhu/goweibo
