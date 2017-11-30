@@ -1,0 +1,14 @@
+
+package bong;
+
+message Request {
+	required uint64 id     = 1;
+	required string method = 2;
+	optional bytes  body   = 3;
+}
+
+message Response {
+	required uint64 id     = 1;
+	optional string error  = 2;
+	optional bytes  body   = 3;
+}
