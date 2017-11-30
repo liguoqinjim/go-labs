@@ -1,0 +1,6 @@
+hash: 4ff8313131091ec903535b3361b59af09fb62d8671e9b9e5cc20e68bebe29c93
+updated: 2017-11-30T17:16:31.9937424+08:00
+imports:
+- name: github.com/xiocode/weigo
+  version: 65f979f9ef5162a3336dd28a1fe8f1d753c4d3bf
+testImports: []
