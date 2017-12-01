@@ -98,3 +98,4 @@
 |lab094|goweibo，Weibo SDK for Golang|
 |lab095|ascii码->string|
 |lab096|weigo，Sina Weibo SDK For Gopher|
+|lab097|gosseract，Go package for OCR|

@@ -1,0 +1,3 @@
+package: lab097
+import:
+- package: github.com/otiai10/gosseract
