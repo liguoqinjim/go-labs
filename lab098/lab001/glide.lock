@@ -1,6 +1,0 @@
-hash: 3a008ff1abec44d0ae9c2b5b7d61977b232e4c0e66b9b82677b5a803e0135368
-updated: 2017-12-04T21:01:34.4878076+08:00
-imports:
-- name: github.com/henrylee2cn/pholcus
-  version: 2a7deb16ac396a5684045547dad9708e41a5ea97
-testImports: []
