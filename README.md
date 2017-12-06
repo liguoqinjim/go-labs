@@ -34,10 +34,10 @@
 |lab030|socket|
 |lab031|程序性能分析|
 |lab032|单元测试|
-|lab033|gops|
+|lab033|gops，A tool to list and diagnose Go processes currently running on your system|
 |lab034|Golang比较两个slice是否相等|
 |lab035|包依赖管理|
-|lab036|日志库|
+|lab036|logrus，日志库|
 |lab037|funny/link|
 |lab038|protobuf|
 |lab039|内存数据库事务demo|
