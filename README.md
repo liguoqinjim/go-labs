@@ -100,3 +100,4 @@
 |lab096|weigo，Sina Weibo SDK For Gopher|
 |lab097|gosseract，Go package for OCR|
 |lab098|csv|
+|lab099|sync.WaitGroup|
