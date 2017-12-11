@@ -1,14 +1,14 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"time"
 )
 
 func worker(done chan bool) {
-	fmt.Println("working...", time.Now().Unix())
+	log.Println("working...")
 	time.Sleep(time.Second * 5)
-	fmt.Println("done", time.Now().Unix())
+	log.Println("done")
 
 	done <- true
 }
@@ -18,5 +18,5 @@ func main() {
 	go worker(done)
 
 	<-done
-	fmt.Println("main done", time.Now().Unix())
+	log.Println("main done")
 }

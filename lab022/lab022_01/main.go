@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 )
 
 func main() {
@@ -11,5 +11,5 @@ func main() {
 	}()
 
 	msg := <-messages
-	fmt.Println("msg=", msg)
+	log.Println("msg=", msg)
 }
