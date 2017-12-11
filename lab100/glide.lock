@@ -1,0 +1,6 @@
+hash: 97099c889d22f9acd1453c95a061346457e1cf94309ca7bcc5a8428b8cdd8a7a
+updated: 2017-12-11T17:32:34.2895218+08:00
+imports:
+- name: github.com/divan/expvarmon
+  version: f80504d812754b431f717ff8adb084416e637739
+testImports: []
