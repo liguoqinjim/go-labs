@@ -1,6 +1,6 @@
 package main
 
-import "fmt"
+import "log"
 
 func main() {
 	messages := make(chan string)
@@ -8,25 +8,26 @@ func main() {
 
 	select {
 	case msg := <-messages:
-		fmt.Println("received message", msg)
+		log.Println("received message", msg)
 	default:
-		fmt.Println("no message received")
+		log.Println("no message received")
 	}
 
 	msg := "hi"
 	select {
 	case messages <- msg:
-		fmt.Println("send message", msg)
+		log.Println("send message", msg)
 	default:
-		fmt.Println("no message sent")
+		//这里因为没人在receive,所有会走default
+		log.Println("no message sent")
 	}
 
 	select {
 	case msg := <-messages:
-		fmt.Println("received message", msg)
+		log.Println("received message", msg)
 	case sig := <-signals:
-		fmt.Println("received signal", sig)
+		log.Println("received signal", sig)
 	default:
-		fmt.Println("no activity")
+		log.Println("no activity")
 	}
 }

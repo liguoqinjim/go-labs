@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"time"
 )
 
@@ -16,9 +16,9 @@ func main() {
 	//这样的话 要是超过After的时间，还没有收到c1，那么就执行time.After那个case
 	select {
 	case res := <-c1:
-		fmt.Println(res)
+		log.Println("res=", res)
 	case <-time.After(time.Second * 1):
-		fmt.Println("timeout 1")
+		log.Println("timeout 1")
 	}
 
 	c2 := make(chan string, 1)
@@ -28,8 +28,8 @@ func main() {
 	}()
 	select {
 	case res := <-c2:
-		fmt.Println(res)
+		log.Println("res=", res)
 	case <-time.After(time.Second * 3):
-		fmt.Println("timeout 2")
+		log.Println("timeout 2")
 	}
 }

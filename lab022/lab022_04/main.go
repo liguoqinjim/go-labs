@@ -1,11 +1,12 @@
 package main
 
-import "fmt"
+import "log"
 
 //参数pings只能send值
 func ping(pings chan<- string, msg string) {
 	pings <- msg
 
+	//因为pings只能send，所有下面这行代码编译的时候就不报错
 	//msg2 := <-pings //would be a compile-time error
 }
 
@@ -20,5 +21,5 @@ func main() {
 	pongs := make(chan string, 1)
 	ping(pings, "passed message")
 	pong(pings, pongs)
-	fmt.Println(<-pongs)
+	log.Println(<-pongs)
 }
