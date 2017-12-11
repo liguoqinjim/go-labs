@@ -1,15 +1,15 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"time"
 )
 
 func worker(id int, jobs <-chan int, results chan<- int) {
 	for j := range jobs {
-		fmt.Println("worker", id, "started job", j, "now_time", time.Now().Unix())
+		log.Println("worker", id, "started job", j, "now_time", time.Now().Unix())
 		time.Sleep(time.Second)
-		fmt.Println("worker", id, "finished job", j, "now_time", time.Now().Unix())
+		log.Println("worker", id, "finished job", j, "now_time", time.Now().Unix())
 		results <- j * 2
 	}
 }
@@ -29,6 +29,6 @@ func main() {
 
 	for a := 1; a <= 5; a++ {
 		//<-results
-		fmt.Println("result", <-results)
+		log.Println("result", <-results)
 	}
 }

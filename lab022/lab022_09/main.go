@@ -1,6 +1,6 @@
 package main
 
-import "fmt"
+import "log"
 
 func main() {
 	queue := make(chan string, 2)
@@ -10,6 +10,6 @@ func main() {
 
 	//it’s possible to close a non-empty channel but still have the remaining values be received.
 	for elem := range queue {
-		fmt.Println(elem)
+		log.Println(elem)
 	}
 }

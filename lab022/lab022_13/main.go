@@ -1,7 +1,7 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"time"
 )
 
@@ -17,11 +17,11 @@ func main() {
 
 	for req := range requests {
 		<-limiter //limiting
-		fmt.Println("request", req, time.Now())
+		log.Println("request", req, time.Now())
 	}
 
 	//2 burstyLimiter bustryLimiter事先就<-了三个，那么前三个就不用等候这个rate limiting了
-	fmt.Println()
+	log.Println()
 	bustryLimiter := make(chan time.Time, 3)
 	for i := 0; i < 3; i++ {
 		bustryLimiter <- time.Now()
@@ -29,7 +29,7 @@ func main() {
 
 	go func() {
 		for t := range time.Tick(time.Millisecond * 200) {
-			fmt.Println("li ", time.Now())
+			log.Println("li ", time.Now())
 			bustryLimiter <- t
 		}
 	}()
@@ -41,6 +41,6 @@ func main() {
 	close(burstyRequests)
 	for req := range burstyRequests {
 		<-burstyRequests
-		fmt.Println("request", req, time.Now())
+		log.Println("request", req, time.Now())
 	}
 }
