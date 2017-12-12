@@ -10,14 +10,14 @@ func main() {
 	timeNow := time.Now()
 	//second
 	second := timeNow.Unix()
-	log.Println("second=", second)
+	log.Printf("second=\t%d", second)
 	//milliSecond
 	milliSecond := second * (int64(time.Second) / int64(time.Millisecond))
-	log.Println("mill=", milliSecond)
+	log.Printf("mill=\t%d", milliSecond)
 	//microSecond
 	microSecond := milliSecond * (int64(time.Millisecond) / int64(time.Microsecond))
-	log.Println("micro=", microSecond)
+	log.Printf("micro=\t%d", microSecond)
 	//nanoSecond
 	nanoSecond := microSecond * (int64(time.Microsecond) / int64(time.Nanosecond))
-	log.Println("nano=", nanoSecond)
+	log.Printf("nano=\t%d", nanoSecond)
 }

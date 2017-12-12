@@ -1,17 +1,17 @@
 package main
 
 import (
-	"fmt"
+	"log"
 	"time"
 )
 
 func main() {
 	now := time.Now()
 
-	fmt.Println(now)
-	fmt.Println(now.Unix())
-	fmt.Println(now.UnixNano())
+	log.Println("now=", now)
+	log.Println("now.Unix=", now.Unix())
+	log.Println("now.UnixNano=", now.UnixNano())
 
-	fmt.Println(now.Format("2006-01-02"))
-	fmt.Println(now.Format("2006-01-02 15:04:05"))
+	log.Println("format1=", now.Format("2006-01-02"))
+	log.Println("format2=", now.Format("2006-01-02 15:04:05"))
 }
