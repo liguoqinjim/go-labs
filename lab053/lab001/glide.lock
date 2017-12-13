@@ -1,19 +1,20 @@
 hash: 5bf260cf6abedcc59253be972d474131fdaa9335a4dae6152b12cc443a011cdf
-updated: 2017-06-03T14:00:52.2627415+08:00
+updated: 2017-12-13T11:46:46.7375776+08:00
 imports:
 - name: github.com/hoisie/web
   version: a498c022b2c0babab2bf9c0400754190b24c8c39
 - name: golang.org/x/crypto
-  version: e1a4589e7d3ea14a3352255d04b6f1a418845e5e
+  version: 94eea52f7b742c7cbe0b03b22f0c4c8631ece122
   subpackages:
   - pbkdf2
   - ssh/terminal
 - name: golang.org/x/net
-  version: e4fa1c5465ad6111f206fc92186b8c83d64adbe1
+  version: d866cfc389cec985d6fda2859936a575a55a3ab6
   subpackages:
   - websocket
 - name: golang.org/x/sys
-  version: b90f89a1e7a9c1f6b918820b3daa7f08488c8594
+  version: 53aa286056ef226755cd898109dbcdaba8ac0b81
   subpackages:
   - unix
+  - windows
 testImports: []
