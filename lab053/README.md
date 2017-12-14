@@ -1,5 +1,7 @@
 ### web.go
-阅读源码
 https://github.com/hoisie/web
 
-|lab001|阅读源码|
+|实验|简介|
+|---|---|
+|lab001|example|
+|lab002|阅读源码|
