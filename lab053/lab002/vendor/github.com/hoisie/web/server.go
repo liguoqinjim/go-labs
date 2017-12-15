@@ -145,6 +145,7 @@ func (s *Server) Websocket(route string, httpHandler websocket.Handler) {
 func (s *Server) Run(addr string) {
 	s.initServer()
 
+	//注册pprof路径
 	mux := http.NewServeMux()
 	if s.Config.Profiler {
 		mux.Handle("/debug/pprof/cmdline", http.HandlerFunc(pprof.Cmdline))
@@ -152,6 +153,7 @@ func (s *Server) Run(addr string) {
 		mux.Handle("/debug/pprof/heap", pprof.Handler("heap"))
 		mux.Handle("/debug/pprof/symbol", http.HandlerFunc(pprof.Symbol))
 	}
+	//把s注册到/路径
 	mux.Handle("/", s)
 
 	l, err := net.Listen("tcp", addr)
@@ -275,6 +277,7 @@ func (s *Server) tryServingFile(name string, req *http.Request, w http.ResponseW
 	return false
 }
 
+//request输出到log
 func (s *Server) logRequest(ctx Context, sTime time.Time) {
 	//log the request
 	req := ctx.Request
@@ -344,6 +347,7 @@ func (s *Server) routeHandler(req *http.Request, w http.ResponseWriter) (unused 
 
 	ctx.SetHeader("Date", webTime(tm), true)
 
+	//判断是否是静态文件
 	if req.Method == "GET" || req.Method == "HEAD" {
 		if s.tryServingFile(requestPath, req, w) {
 			return
@@ -354,6 +358,7 @@ func (s *Server) routeHandler(req *http.Request, w http.ResponseWriter) (unused 
 		route := s.routes[i]
 		cr := route.cr
 		//if the methods don't match, skip this handler (except HEAD can be used in place of GET)
+		//Head方法可以用Get方法的route
 		if req.Method != route.method && !(req.Method == "HEAD" && route.method == "GET") {
 			continue
 		}
@@ -376,6 +381,7 @@ func (s *Server) routeHandler(req *http.Request, w http.ResponseWriter) (unused 
 		// set the default content-type
 		ctx.SetHeader("Content-Type", "text/html; charset=utf-8", true)
 
+		//判断要传给handler的参数，有的handler第一个参数是context，有的不是
 		var args []reflect.Value
 		handlerType := route.handler.Type()
 		if requiresContext(handlerType) {
@@ -411,6 +417,7 @@ func (s *Server) routeHandler(req *http.Request, w http.ResponseWriter) (unused 
 		return
 	}
 
+	//没有匹配到route的话，看看有没有设置index页面
 	// try serving index.html or index.htm
 	if req.Method == "GET" || req.Method == "HEAD" {
 		if s.tryServingFile(path.Join(requestPath, "index.html"), req, w) {
