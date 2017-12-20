@@ -1,0 +1,6 @@
+hash: c3c65d2082f3737df6f498c5d9b1038468b94d4cb22126c02fe713a39cbca183
+updated: 2017-12-20T11:16:46.3287473+08:00
+imports:
+- name: github.com/mccutchen/go-httpbin
+  version: 273b70dcc766d92228fa61bab08c828710ccff5f
+testImports: []
