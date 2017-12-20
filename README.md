@@ -105,3 +105,4 @@
 |lab101|expvar|
 |lab102|timejump，Time jumper for testing in Go|
 |lab103|go-httpbin，golang实现的httpbin.org|
+|lab104|go.uuid，UUID package for Go|
