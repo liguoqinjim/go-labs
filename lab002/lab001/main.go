@@ -2,7 +2,7 @@ package main
 
 import (
 	"encoding/json"
-	"fmt"
+	"log"
 	"os"
 )
 
@@ -17,18 +17,18 @@ func main() {
 	m := Message{"Alice", "Hello", 1294706395881547000}
 	b, err := json.Marshal(m)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		os.Exit(1)
 	}
-	fmt.Printf("b = %s\n", b)
+	log.Printf("b = %s\n", b)
 
 	//unmarshal json->object
 	b2 := []byte(`{"Name":"Bob","Food":"Pickle"}`)
 	var m2 Message
 	err = json.Unmarshal(b2, &m2)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 		os.Exit(1)
 	}
-	fmt.Printf("m2 = %+v\n", m2)
+	log.Printf("m2 = %+v\n", m2)
 }
