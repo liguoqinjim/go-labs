@@ -1,5 +1,5 @@
 ### go-bindata
-安装：`go get -u github.com/jteeuwen/go-bindata/...`
+安装：`go get -u -v github.com/jteeuwen/go-bindata/...`
 
 |文件夹|简介|
 |---|---|
