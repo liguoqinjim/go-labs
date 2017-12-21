@@ -8,3 +8,4 @@ unmarshal json->object
 |lab002|marshalIndent|
 |lab003|判断是否是合法的json字符串|
 |lab004|格式化json字符串(整理一下json字符串)|
+|lab005|unmarshal to map|
