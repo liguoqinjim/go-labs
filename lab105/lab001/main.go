@@ -14,7 +14,7 @@ func main() {
 	zw := gzip.NewWriter(&buf)
 
 	//setting the header fields is optional
-	//zw.Name = "1.txt"
+	zw.Name = "1.txt"
 	//zw.Comment = "an epic space opera by George Lucas"
 	//zw.ModTime = time.Date(1977, time.May, 25, 0, 0, 0, 0, time.UTC)
 

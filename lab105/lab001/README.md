@@ -8,4 +8,4 @@
 https://golang.org/pkg/compress/gzip/
 
 #### 运行结果
-![Imgur](https://i.imgur.com/9HIrun2.png)
+![Imgur](https://i.imgur.com/MmjugCL.png)
