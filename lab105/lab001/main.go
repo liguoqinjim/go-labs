@@ -14,7 +14,7 @@ func main() {
 	zw := gzip.NewWriter(&buf)
 
 	//setting the header fields is optional
-	zw.Name = "1.txt"
+	//zw.Name = "1.txt"
 	//zw.Comment = "an epic space opera by George Lucas"
 	//zw.ModTime = time.Date(1977, time.May, 25, 0, 0, 0, 0, time.UTC)
 
@@ -23,12 +23,13 @@ func main() {
 	if err != nil {
 		log.Fatalf("zw.write error:%v", err)
 	}
-	log.Println("origin length=", len(content))
-	log.Println("gzip length=", buf.Len())
 
 	if err := zw.Close(); err != nil {
 		log.Printf("zw.Close error:%v", err)
 	}
+
+	log.Println("origin length=", len(content))
+	log.Println("gzip length=", buf.Len())
 
 	//解压
 	zr, err := gzip.NewReader(&buf)
