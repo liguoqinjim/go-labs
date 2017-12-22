@@ -107,3 +107,4 @@
 |lab103|go-httpbin，golang实现的httpbin.org|
 |lab104|go.uuid，UUID package for Go|
 |lab105|压缩|
+|lab106|wechat-go，go version wechat web api and message framework for building wechat robot|

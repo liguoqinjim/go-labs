@@ -1,0 +1,6 @@
+hash: 77a835e7c681c8866a9bc9ef5b21bdde4ff978fbdc0e2147fd16ae785fc329b7
+updated: 2017-12-22T19:27:46.4463156+08:00
+imports:
+- name: github.com/songtianyi/wechat-go
+  version: 7fe6d00af6f456c7ae2a02cd828e8f63279c6e9a
+testImports: []

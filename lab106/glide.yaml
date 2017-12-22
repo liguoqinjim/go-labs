@@ -1,0 +1,3 @@
+package: lab106
+import:
+- package: github.com/songtianyi/wechat-go
