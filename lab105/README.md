@@ -4,3 +4,4 @@
 |---|---|
 |lab001|gzip|
 |lab002|zlib|
+|lab003|deflate，(Dictionary)|
