@@ -8,5 +8,5 @@ import (
 func main() {
 	handler := httpbin.NewHTTPBin().Handler()
 
-	http.ListenAndServe(":9999", handler)
+	http.ListenAndServe("127.0.0.1:9998", handler)
 }
