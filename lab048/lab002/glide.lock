@@ -1,6 +1,10 @@
 hash: 3cfdf29d86709d4f445931b0a0d1742c2fc36afb693e656f4be168af36aaf624
-updated: 2017-05-07T10:39:42.1042844+08:00
+updated: 2017-12-25T13:57:59.3444547+08:00
 imports:
 - name: github.com/yuin/gopher-lua
-  version: b402f3114ec730d8bddb074a6c137309f561aa78
+  version: d819443c5178271c8db41a300b07b843cd632488
+  subpackages:
+  - ast
+  - parse
+  - pm
 testImports: []
