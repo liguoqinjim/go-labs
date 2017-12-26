@@ -1,0 +1,33 @@
+hash: 365cb790c9f7a94ec4c9157f4a7807dfe610a11592b348b2140cc034dc2651c3
+updated: 2017-12-26T16:47:54.0682211+08:00
+imports:
+- name: github.com/go-ole/go-ole
+  version: a41e3c4b706f6ae8dfbff342b06e40fa4d2d0506
+  subpackages:
+  - oleutil
+- name: github.com/google/gops
+  version: e09130d898274b1faa2ecb484b59204e7e372548
+  subpackages:
+  - agent
+  - internal
+  - signal
+- name: github.com/kardianos/osext
+  version: ae77be60afb1dcacde03767a8c37337fad28ac14
+- name: github.com/shirou/gopsutil
+  version: 7ec06ec280df1dd1f08befc535049d49d63ae18a
+  subpackages:
+  - internal/common
+  - mem
+- name: github.com/StackExchange/wmi
+  version: ea383cf3ba6ec950874b8486cd72356d007c768f
+- name: github.com/stackimpact/stackimpact-go
+  version: d1744617919cfa2fd8b9dad9a37ae10b269854c9
+  subpackages:
+  - internal
+  - internal/pprof/profile
+- name: golang.org/x/sys
+  version: 83801418e1b59fb1880e363299581ee543af32ca
+  subpackages:
+  - unix
+  - windows
+testImports: []
