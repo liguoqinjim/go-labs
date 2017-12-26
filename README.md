@@ -109,3 +109,4 @@
 |lab105|压缩|
 |lab106|wechat-go，go version wechat web api and message framework for building wechat robot|
 |lab107|govaluate，Arbitrary expression evaluation for golang|
+|lab108|gopsutil，psutil for golang(Cross-platform lib for process and system monitoring in Python)|

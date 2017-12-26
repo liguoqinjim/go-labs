@@ -1,0 +1,3 @@
+package: lab108
+import:
+- package: github.com/shirou/gopsutil
