@@ -32,7 +32,7 @@
 |lab028|关于unsafe包的几个实验|
 |lab029|signal|
 |lab030|socket|
-|lab031|程序性能分析|
+|lab031|程序性能分析，(gopsutil,gops,go tool trace)|
 |lab032|单元测试|
 |lab033|gops，A tool to list and diagnose Go processes currently running on your system|
 |lab034|Golang比较两个slice是否相等|
