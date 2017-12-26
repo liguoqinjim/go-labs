@@ -1,6 +1,20 @@
 hash: 8a7046fffb326e0784bcbfebe933516049e63d211d148c1e5ff0acabf56de6f4
-updated: 2017-12-26T17:42:49.2278407+08:00
+updated: 2017-12-26T17:49:13.8934761+08:00
 imports:
+- name: github.com/go-ole/go-ole
+  version: a41e3c4b706f6ae8dfbff342b06e40fa4d2d0506
+  subpackages:
+  - oleutil
 - name: github.com/shirou/gopsutil
   version: 7ec06ec280df1dd1f08befc535049d49d63ae18a
+  subpackages:
+  - internal/common
+  - mem
+- name: github.com/StackExchange/wmi
+  version: ea383cf3ba6ec950874b8486cd72356d007c768f
+- name: golang.org/x/sys
+  version: 83801418e1b59fb1880e363299581ee543af32ca
+  subpackages:
+  - unix
+  - windows
 testImports: []
