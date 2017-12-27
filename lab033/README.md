@@ -1,6 +1,10 @@
 ### [gops](https://github.com/google/gops)
 gops is a command to list and diagnose Go processes currently running on your system.
 
+|实验|简介|
+|---|---|
+|lab001|example|
+
 ### gops命令
 #### gops
 显示所有正在运行的go进程，带星号的表示gops可以跟踪的进程
