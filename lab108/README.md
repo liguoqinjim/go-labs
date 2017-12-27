@@ -5,3 +5,4 @@
 |---|---|
 |lab001|example|
 |lab002|host相关|
+|lab003|cpu相关|
