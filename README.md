@@ -110,3 +110,6 @@
 |lab106|wechat-go，go version wechat web api and message framework for building wechat robot|
 |lab107|govaluate，Arbitrary expression evaluation for golang|
 |lab108|gopsutil，psutil for golang(Cross-platform lib for process and system monitoring in Python)|
+|lab109|go tool pprof|
+|lab110|go tool trace|
+|lab111|go-torch，Stochastic flame graph profiler for Go programs|
