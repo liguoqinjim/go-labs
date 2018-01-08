@@ -1,0 +1,7 @@
+register:
+  auto: true
+
+# ------------------------- non-automated configuration -------------------------
+
+custom:
+  true
