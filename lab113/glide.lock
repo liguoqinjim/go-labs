@@ -1,0 +1,6 @@
+hash: 3f774c348521f2b302f0c1cab2faa5a7504bc01bd0a505262b5983b208f7f1ec
+updated: 2018-01-08T10:31:24.6129239+08:00
+imports:
+- name: github.com/henrylee2cn/teleport
+  version: 88dffd8973657cb6eb6e5aa86a228b5b6c70f37e
+testImports: []
