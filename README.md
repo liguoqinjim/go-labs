@@ -116,3 +116,4 @@
 |lab112|cookie|
 |lab113|teleport|
 |lab114|得到完整url|
+|lab115|md5|
