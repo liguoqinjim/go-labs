@@ -1,0 +1,6 @@
+hash: bc739872a1016649ff436cff68ebd5b73f033dd737ef12dc8d105fc2feca689d
+updated: 2018-01-08T15:08:01.2312519+08:00
+imports:
+- name: github.com/abbot/go-http-auth
+  version: b6a92f468f2b01961e796d20e3ec5bbb8a8297d6
+testImports: []
