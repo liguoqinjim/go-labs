@@ -10,6 +10,7 @@ func main() {
 	js2 := `"hello":"world"`
 	js3 := `{"hello"}`
 	js4 := `111`
+	js5 := `[{"key": "value1"}, {"key": "value2"}]`
 
 	//js1
 	if json.Valid([]byte(js1)) {
@@ -37,5 +38,12 @@ func main() {
 		log.Println("js4 is valid")
 	} else {
 		log.Println("js4 is not valid")
+	}
+
+	//js5
+	if json.Valid([]byte(js5)) {
+		log.Println("js5 is valid")
+	} else {
+		log.Println("js5 is not valid")
 	}
 }
