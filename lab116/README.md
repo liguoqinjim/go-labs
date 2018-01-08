@@ -4,3 +4,4 @@
 |实验|简介|
 |---|---|
 |lab001|example:basic auth|
+|lab002|example:digest auth|
