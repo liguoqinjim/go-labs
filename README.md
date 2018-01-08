@@ -117,3 +117,4 @@
 |lab113|teleport|
 |lab114|得到完整url|
 |lab115|md5|
+|lab116|go-http-auth，Basic and Digest HTTP Authentication for golang http|
