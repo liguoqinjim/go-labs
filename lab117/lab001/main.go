@@ -9,11 +9,10 @@ import (
 )
 
 func main() {
-	urli := url.URL{}
-	urlproxy, _ := urli.Parse("https://94.177.250.95:80")
+	urlProxy, _ := url.Parse("https://94.177.250.95:80")
 	c := http.Client{
 		Transport: &http.Transport{
-			Proxy: http.ProxyURL(urlproxy),
+			Proxy: http.ProxyURL(urlProxy),
 		},
 	}
 	if resp, err := c.Get("http://httpbin.org/ip"); err != nil {
