@@ -1,8 +1,8 @@
 package main
 
 import (
+	"errors"
 	"github.com/getsentry/raven-go"
-	"github.com/henrylee2cn/faygo/errors"
 	"os"
 )
 
