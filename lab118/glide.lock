@@ -1,0 +1,6 @@
+hash: 56a51944f39d20ab37ad5cf909a8d80eb7101bdefa79df26c3559be041ef3250
+updated: 2018-01-17T17:10:58.9911061+08:00
+imports:
+- name: github.com/getsentry/raven-go
+  version: 32a13797442ccb601b11761d74232773c1402d14
+testImports: []

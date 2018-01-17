@@ -1,0 +1,3 @@
+package: lab118
+import:
+- package: github.com/getsentry/raven-go
