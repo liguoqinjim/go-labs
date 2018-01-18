@@ -11,6 +11,9 @@ func init() {
 }
 
 func main() {
+	//用户信息
+	raven.SetUserContext(&raven.User{ID: "123", Email: "136542728@qq.com"})
+
 	//错误1
 	f, err := os.Open("1.txt")
 	if err != nil {
@@ -18,9 +21,9 @@ func main() {
 	}
 	_ = f
 
-	//错误2
-	a := 5
-	if a > 3 {
-		raven.CaptureErrorAndWait(errors.New("a > 3"), nil)
+	//错误2(添加标签)
+	a := 10
+	if a > 6 {
+		raven.CaptureErrorAndWait(errors.New("a > 6"), map[string]string{"myErrorCode": "999001"})
 	}
 }
