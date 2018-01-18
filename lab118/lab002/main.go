@@ -9,5 +9,7 @@ func init() {
 }
 
 func main() {
-	raven.CaptureMessageAndWait("this is a test message", nil)
+	raven.CapturePanicAndWait(func() {
+		panic(99999)
+	}, nil)
 }

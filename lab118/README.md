@@ -3,5 +3,5 @@
 
 |实验|简介|
 |---|---|
-|lab001|报告错误，error|
-|lab002|报告消息，message|
+|lab001|error|
+|lab002|panics|
