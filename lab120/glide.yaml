@@ -1,0 +1,3 @@
+package: lab120
+import:
+- package: github.com/pquerna/ffjson
