@@ -1,0 +1,5 @@
+package: lab121
+import:
+- package: github.com/mailru/easyjson
+  subpackages:
+  - '...'

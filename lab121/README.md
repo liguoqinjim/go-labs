@@ -1,0 +1,1 @@
+### easyjson，github.com/mailru/easyjson

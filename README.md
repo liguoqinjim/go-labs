@@ -122,3 +122,4 @@
 |lab118|raven的使用|
 |lab119|utf，gbk，gb2312互转|
 |lab120|ffjson，github.com/pquerna/ffjson|
+|lab121|easyjson，github.com/mailru/easyjson|
