@@ -1,5 +1,6 @@
-### 几个json库对比
+### ffjson，github.com/pquerna/ffjson
+安装：`go get -u -v github.com/pquerna/ffjson`
 
 |实验|简介|
 |---|---|
-|lab001|ffjson(github.com/pquerna/ffjson)|
+|lab001|example|
