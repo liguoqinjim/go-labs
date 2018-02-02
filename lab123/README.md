@@ -5,4 +5,4 @@
 |---|---|
 |lab001|example_phantomjs|
 |lab002|example_chrome|
-|||
+|lab003|example_firefox(暂时不能用)|
