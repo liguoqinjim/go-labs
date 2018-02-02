@@ -4,3 +4,4 @@
 |实验|简介|
 |---|---|
 |lab001|example_phantomjs|
+|lab002|example_chrome|
