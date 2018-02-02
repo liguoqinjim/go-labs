@@ -124,3 +124,4 @@
 |lab120|ffjson，github.com/pquerna/ffjson|
 |lab121|easyjson，github.com/mailru/easyjson|
 |lab122|jsoniter，github.com/json-iterator/go|
+|lab123|agouti，github.com/sclevine/agouti|
