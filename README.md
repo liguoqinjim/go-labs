@@ -123,3 +123,4 @@
 |lab119|utf，gbk，gb2312互转|
 |lab120|ffjson，github.com/pquerna/ffjson|
 |lab121|easyjson，github.com/mailru/easyjson|
+|lab122|jsoniter，github.com/json-iterator/go|
