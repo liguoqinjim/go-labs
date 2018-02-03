@@ -1,0 +1,3 @@
+package: lab124
+import:
+- package: github.com/juju/persistent-cookiejar

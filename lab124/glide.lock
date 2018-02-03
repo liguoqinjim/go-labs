@@ -1,0 +1,6 @@
+hash: 549f1f2a7ddaee69202805f68933dde6ff4ce933d861528b783a2b893e329455
+updated: 2018-02-03T11:18:31.8437336+08:00
+imports:
+- name: github.com/juju/persistent-cookiejar
+  version: d5e5a8405ef9633c84af42fbcc734ec8dd73c198
+testImports: []
