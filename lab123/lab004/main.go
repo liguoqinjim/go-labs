@@ -29,8 +29,9 @@ func main() {
 	if err := page.FindByID("kw").Fill("hello"); err != nil {
 		log.Printf("Failed to fill input:%v", err)
 	}
+	//点击.Click
 
-	//if err := page.Screenshot("E:/Workspace/go-labs/src/lab123/lab004/tmp/chrome_baidu.jpg"); err != nil {
-	//	log.Fatalf("Failed to screenshot:%v", err)
-	//}
+	if err := page.Screenshot("E:/Workspace/go-labs/src/lab123/lab004/tmp/chrome_baidu.jpg"); err != nil {
+		log.Fatalf("Failed to screenshot:%v", err)
+	}
 }
