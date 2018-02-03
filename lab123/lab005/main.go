@@ -1,8 +1,10 @@
 package main
 
 import (
+	"fmt"
 	"github.com/sclevine/agouti"
 	"log"
+	"net/http"
 	"time"
 )
 
@@ -12,7 +14,7 @@ func main() {
 		log.Fatalf("Failed to start driver:%v", err)
 	}
 	defer func() {
-		time.Sleep(time.Second * 10)
+		time.Sleep(time.Hour)
 		driver.Stop()
 	}()
 
@@ -36,5 +38,20 @@ func main() {
 
 	if err := page.Screenshot("E:/Workspace/go-labs/src/lab123/lab004/tmp/chrome_baidu.jpg"); err != nil {
 		log.Fatalf("Failed to screenshot:%v", err)
+	}
+
+	//设置cookie
+	for i := 1; i <= 10; i++ {
+		c := &http.Cookie{
+			Name:     fmt.Sprintf("key%d", i),
+			Value:    fmt.Sprintf("value%d", i),
+			HttpOnly: true,
+			Expires:  time.Now().Add(time.Hour),
+		}
+		if err := page.SetCookie(c); err != nil {
+			log.Printf("page.SetCookie error:%v", err)
+		}
+
+		time.Sleep(time.Second * 10)
 	}
 }
