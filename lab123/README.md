@@ -7,3 +7,4 @@
 |lab002|example_chrome|
 |lab003|example_firefox(暂时不能用)|
 |lab004|chrome模拟点击|
+|lab005|保存cookie，恢复cookie|
