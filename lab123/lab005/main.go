@@ -41,7 +41,7 @@ func main() {
 	}
 
 	//设置cookie
-	for i := 1; i <= 10; i++ {
+	for i := 1; i <= 3; i++ {
 		c := &http.Cookie{
 			Name:     fmt.Sprintf("key%d", i),
 			Value:    fmt.Sprintf("value%d", i),
@@ -52,6 +52,15 @@ func main() {
 			log.Printf("page.SetCookie error:%v", err)
 		}
 
-		time.Sleep(time.Second * 10)
+		time.Sleep(time.Second * 5)
+	}
+
+	//读取cookies
+	cookiesPage, err := page.GetCookies()
+	if err != nil {
+		log.Printf("page.GetCookies error:%v", err)
+	}
+	for n, v := range cookiesPage {
+		log.Printf("cookiesPage[%d],%+v", n, v)
 	}
 }
