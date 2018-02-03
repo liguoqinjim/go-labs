@@ -8,4 +8,4 @@
 |lab003|example_firefox(暂时不能用)|
 |lab004|chrome模拟点击|
 |lab005|设置cookie，读取cookie|
-|lab006|设置cookie|
+|lab006|设置cookie，设置不一样的domain|
