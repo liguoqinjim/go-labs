@@ -1,6 +1,18 @@
 hash: 549f1f2a7ddaee69202805f68933dde6ff4ce933d861528b783a2b893e329455
-updated: 2018-02-03T11:18:31.8437336+08:00
+updated: 2018-02-03T11:23:05.2586284+08:00
 imports:
+- name: github.com/juju/go4
+  version: 40d72ab9641a2a8c36a9c46a51e28367115c8e59
+  subpackages:
+  - lock
 - name: github.com/juju/persistent-cookiejar
   version: d5e5a8405ef9633c84af42fbcc734ec8dd73c198
+- name: golang.org/x/net
+  version: 2fb46b16b8dda405028c50f7c7f0f9dd1fa6bfb1
+  subpackages:
+  - publicsuffix
+- name: gopkg.in/errgo.v1
+  version: 442357a80af5c6bf9b6d51ae791a39c3421004f3
+- name: gopkg.in/retry.v1
+  version: 2d7c7c65cc71d024968d9ff4385d5e7ad3a83fcc
 testImports: []
