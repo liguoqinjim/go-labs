@@ -50,6 +50,11 @@ func main() {
 		log.Fatalf("Failed to open page:%v", err)
 	}
 
+	//先访问example.com
+	if err := page.Navigate("http://example.com"); err != nil {
+		log.Fatalf("page.Navigate error:%v", err)
+	}
+
 	//设置page的cookies
 	for _, v := range cookiesOrigin {
 		page.SetCookie(v)
