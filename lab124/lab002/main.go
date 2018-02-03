@@ -55,6 +55,18 @@ func main() {
 		page.SetCookie(v)
 	}
 
+	//查看page的cookies是否设置成功
+	cookiesPage, err := page.GetCookies()
+	if err != nil {
+		log.Printf("page.GetCookies error:%v", err)
+	} else {
+		log.Println("page.GetCookies success:length=", len(cookiesPage))
+	}
+
+	for n, v := range cookiesPage {
+		log.Printf("cookiesPage[%d]:%+v", n, v)
+	}
+
 	if err := page.Navigate(fmt.Sprintf("http://httpbin.org/cookies/set?%d=%d", keyMax, keyMax)); err != nil {
 		log.Fatalf("Failed to navigate:%v", err)
 	}
