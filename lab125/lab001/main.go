@@ -20,7 +20,19 @@ func A() {
 }
 
 func B() {
-	pc, file, line, ok := runtime.Caller(1)
+	C()
+}
+
+func C() {
+	D()
+}
+
+func D() {
+	E()
+}
+
+func E() {
+	pc, file, line, ok := runtime.Caller(5)
 	log.Println("pc=", pc)
 	log.Println("file=", file)
 	log.Println("line=", line)
