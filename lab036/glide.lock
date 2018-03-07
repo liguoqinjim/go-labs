@@ -1,6 +1,8 @@
-hash: 6cf8d0d87894d2a1e52958c823b0009fb5c418248fe362b735aabfc7ee60c49b
-updated: 2018-03-07T10:39:42.9493075+08:00
+hash: dcf92675b661f2c90846b1b123bc9b96e90151e47d7efe119b1770453cc90796
+updated: 2018-03-07T10:50:21.4319479+08:00
 imports:
+- name: github.com/onrik/logrus
+  version: 6a64e23a4923a8d0d4db2806dcf3e55af1e48f61
 - name: github.com/sirupsen/logrus
   version: f4ee69125072b22721efbe639bd0da9c9d19b8cc
 - name: golang.org/x/crypto

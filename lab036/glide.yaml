@@ -1,3 +1,4 @@
 package: lab036
 import:
 - package: github.com/sirupsen/logrus
+- package: github.com/onrik/logrus
