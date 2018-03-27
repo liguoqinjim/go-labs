@@ -9,3 +9,4 @@
 |lab004|chrome模拟点击|
 |lab005|设置cookie，读取cookie|
 |lab006|设置cookie，设置不一样的domain|
+|lab007|使用phantomjs|
