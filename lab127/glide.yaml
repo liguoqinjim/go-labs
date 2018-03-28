@@ -1,0 +1,5 @@
+package: lab127
+import:
+- package: github.com/boltdb/bolt
+  subpackages:
+  - '...'
