@@ -12,7 +12,7 @@ func main() {
 		log.Fatalf("Failed to start driver:%v", err)
 	}
 	defer func() {
-		time.Sleep(time.Second * 10)
+		time.Sleep(time.Hour)
 		driver.Stop()
 	}()
 
@@ -29,7 +29,11 @@ func main() {
 	if err := page.FindByID("kw").Fill("hello"); err != nil {
 		log.Printf("Failed to fill input:%v", err)
 	}
+
 	//点击.Click
+	if err := page.FindByID("su").Click(); err != nil {
+		log.Printf("Failed to click:%v", err)
+	}
 
 	if err := page.Screenshot("E:/Workspace/go-labs/src/lab123/lab004/tmp/chrome_baidu.jpg"); err != nil {
 		log.Fatalf("Failed to screenshot:%v", err)
