@@ -7,3 +7,11 @@
 |lab002|example02(Autoincrementing integer for the bucket)|
 |lab003|example03(Iterating over keys)|
 |lab004|example04(Scan a key)|
+
+
+#### boltd
+https://github.com/boltdb/boltd
+
+安装:`go get github.com/boltdb/boltd/...`
+
+使用:`blotd path/to/my.db`
