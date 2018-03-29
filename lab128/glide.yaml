@@ -1,0 +1,3 @@
+package: lab128
+import:
+- package: github.com/jinzhu/gorm

@@ -129,3 +129,4 @@
 |lab125|runtime|
 |lab126|delve|
 |lab127|boltdb|
+|lab128|gorm|
