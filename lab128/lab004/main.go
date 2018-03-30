@@ -41,6 +41,16 @@ func main() {
 	defer db.Close()
 
 	db.Debug().AutoMigrate(&User{})
+
+	//insert :Create
+	u1 := &User{Name: "tom", Age: 12}
+	db.Debug().Create(u1)
+	log.Printf("insert:u1=%+v", u1)
+
+	//insert :NewRecord
+	u2 := &User{Name: "kimi", Age: 13}
+	result := db.Debug().NewRecord(u2)
+	log.Printf("newRecord:u2=%+v,result=%t", u2, result)
 }
 
 type User struct {
