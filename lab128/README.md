@@ -7,3 +7,4 @@
 |lab003|建表操作02|
 |lab004|insert|
 |lab005|select|
+|lab006|update&delete|
