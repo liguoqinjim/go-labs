@@ -63,12 +63,27 @@ func main() {
 	db.Create(u6)
 
 	var user User
+	db.First(&user)
 	log.Printf("db.First user:%+v", user)
 
-	//update
+	//update:Save 可以看到save的时候，最终的sql语句是全部update
 	user.Age += 100
 	db.Debug().Save(&user)
 
+	//update:Update/Updates
+	var user2 User
+	db.First(&user2)
+	log.Printf("db.First user2:%+v", user2)
+
+	db.Debug().Model(&user2).Update("age", 212)
+	log.Printf("update user2:%+v", user2)
+
+	db.Debug().Model(&user2).Updates(map[string]interface{}{"name": "Tom2", "age": 312})
+	log.Printf("updates user2:%+v", user2)
+
+	//delete
+	db.Debug().Delete(&user2)
+	log.Printf("db.Delete user2:%+v", user2)
 }
 
 type User struct {
