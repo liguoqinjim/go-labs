@@ -51,7 +51,16 @@ func main() {
 		db.DropTable(TABLE_NAME)
 	}
 
+	//建表
 	db.Debug().AutoMigrate(&User{})
+
+	//insert
+	u1 := &User{LastLogin: time.Now()}
+	db.Debug().Save(u1)
+
+	var u2 User
+	db.Debug().First(&u2)
+	log.Printf("u2=%+v", u2)
 }
 
 type User struct {
