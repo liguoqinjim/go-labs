@@ -130,3 +130,4 @@
 |lab126|delve|
 |lab127|boltdb|
 |lab128|gorm|
+|lab129|sync.Map|
