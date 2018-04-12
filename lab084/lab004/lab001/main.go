@@ -31,6 +31,7 @@ func main() {
 	commentId := "R_SO_4_186016"
 	pageNum := 1
 	commentParams := GetCommentParam(commentId, pageNum)
+	log.Printf("commentParams=%s", commentParams)
 	funcName := fmt.Sprintf("myTest(%s)", commentParams)
 	value, _ := vm.Run(funcName)
 	if !value.IsObject() {
