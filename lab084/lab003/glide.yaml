@@ -1,3 +1,0 @@
-package: lab084/lab003
-import:
-- package: github.com/robertkrimen/otto
