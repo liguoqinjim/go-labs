@@ -1,22 +1,21 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
 )
 
 func main() {
-	resp, err := http.Get("http://g.cn/robots.txt")
+	resp, err := http.Get("http://httpbin.org/get?a=1&b=2")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("http.Get error:%v", err)
 	}
 	defer resp.Body.Close()
 	//读取body数据
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("readAll error:%v", err)
 	}
-	fmt.Println(string(body))
+	log.Printf("\n%s", string(body))
 }
