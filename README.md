@@ -1,7 +1,7 @@
 # go-labs
 
-|实验|简介|
-|---|---|
+|实验|简介|说明|
+|---|---|---|
 |lab001|package flag的使用|
 |lab002|解析json，marshal和unmarshal|
 |lab003|解析json，NewDecoder和NewEncoder|
@@ -133,3 +133,4 @@
 |lab129|sync.Map|
 |lab130|gods，Go Data Structures|
 |lab131|url.ParseQuery|
+|lab132|ping的几个库||
