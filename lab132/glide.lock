@@ -1,8 +1,10 @@
-hash: 3624a3f0a65de5b7fd828fb50b91433d35ce84c98905ea933b41e17c2ad52c19
-updated: 2018-04-22T11:08:53.439343321+08:00
+hash: b0a96394adf4bf1eea4be44b43d01fc1a619894bb0e28bbca2f27fbe1b520636
+updated: 2018-04-22T12:38:38.958630852+08:00
 imports:
 - name: github.com/sparrc/go-ping
   version: 416e72114cd1edce2f287648f935a60dfe6cf40e
+- name: github.com/tatsushid/go-fastping
+  version: d7bb493dee3e090e2ffb6914adddf17c1e7c026c
 - name: golang.org/x/net
   version: 5f9ae10d9af5b1c89ae6904293b14b064d4ada23
   subpackages:
