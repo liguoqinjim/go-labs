@@ -4,4 +4,4 @@
 |---|---|---|
 |lab001|ping|https://github.com/paulstuart/ping/blob/master/ping.go|
 |lab002|go-ping|github.com/sparrc/go-ping|
-|lab003||
+|lab003|go-fastping|github.com/tatsushid/go-fastping|
