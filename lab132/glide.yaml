@@ -1,0 +1,3 @@
+package: lab132
+import:
+- package: github.com/sparrc/go-ping
