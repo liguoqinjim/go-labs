@@ -1,0 +1,3 @@
+package: lab133
+import:
+- package: github.com/hpcloud/tail
