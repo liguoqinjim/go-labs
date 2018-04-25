@@ -1,0 +1,3 @@
+package: lab134
+import:
+- package: github.com/samuel/go-zookeeper
