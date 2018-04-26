@@ -35,9 +35,7 @@ func main() {
 		}
 	}()
 
-	//stat
-	s := conn.State()
-	log.Printf("stat=%+v", s)
+	_ = conn
 
 	<-sigs
 	log.Println("program end")
