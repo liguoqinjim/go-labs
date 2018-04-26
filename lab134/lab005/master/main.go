@@ -6,6 +6,7 @@ import (
 	"log"
 	"os"
 	"os/signal"
+	"strconv"
 	"strings"
 	"syscall"
 	"time"
@@ -35,12 +36,26 @@ func main() {
 		}
 	}()
 
+	//创建节点
 	path := "/" + "lab005"
-	r, err := c.Create(path, []byte("hello"), zk.FlagEphemeral, zk.WorldACL(zk.PermAll))
+	r, err := c.Create(path, nil, zk.FlagEphemeral, zk.WorldACL(zk.PermAll))
 	if err != nil {
 		log.Fatalf("Create error:%v", err)
 	} else {
 		log.Println("r=", r)
+	}
+
+	//修改节点值
+	for i := 1; i <= 7; i++ {
+		v := i * 3
+		_, err := c.Set(path, []byte(strconv.Itoa(v)), -1)
+		if err != nil {
+			log.Printf("Set error:%v", err)
+		} else {
+			log.Printf("Set success:%d", v)
+		}
+
+		time.Sleep(time.Second * 3)
 	}
 
 	<-sigs

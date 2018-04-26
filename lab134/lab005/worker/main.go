@@ -35,6 +35,23 @@ func main() {
 		}
 	}()
 
-	<-sigs
+	path := "/" + "lab005"
+
+DONE:
+	for {
+		d, _, ec, err := c.GetW(path)
+		if err != nil {
+			log.Printf("GetW error:%v", err)
+		} else {
+			log.Printf("GetW data:%s", d)
+		}
+
+		select {
+		case e := <-ec:
+			log.Printf("Get event:%+v", e)
+		case <-sigs:
+			break DONE
+		}
+	}
 	log.Println("worker program end")
 }
