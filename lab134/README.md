@@ -5,3 +5,4 @@
 |lab001|example||
 |lab002|创建组，加入组，查看列表，删除组|
 |lab003|连接zookeeper集群|
+|lab004|watcher|
