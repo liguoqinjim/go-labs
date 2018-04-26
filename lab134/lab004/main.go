@@ -37,12 +37,44 @@ func main() {
 
 	//创建znode
 	path := "/" + "lab004"
-	r, err := c.Create(path, []byte("123"), 0, zk.WorldACL(zk.PermAll))
+	r, err := c.Create(path, []byte("123"), zk.FlagEphemeral, zk.WorldACL(zk.PermAll))
 	if err != nil {
 		log.Fatalf("Create error:%v", err)
 	} else {
 		log.Println("r=", r)
 	}
+
+	//是否存在
+	e, s, err := c.Exists(path)
+	if err != nil {
+		log.Fatalf("Exists error:%v", err)
+	} else {
+		log.Println("exists=", e, s)
+	}
+
+	//是否存在 watch
+	e, s, ew, err := c.ExistsW(path)
+	if err != nil {
+		log.Fatalf("ExistsW error:%v", err)
+	} else {
+		log.Println("existsw=", e, s)
+	}
+	go func() {
+		//接收第一次
+		e := <-ew
+		log.Printf("exists watch:%+v", e)
+
+		//创建新的watcher,因为watcher只能使用一次
+		e2, s2, ew2, err2 := c.ExistsW(path)
+		if err2 != nil {
+			log.Fatalf("ExistsW error2:%+v", err2)
+		} else {
+			log.Println("exists2=", e2, s2)
+		}
+
+		event2 := <-ew2
+		log.Printf("exists watch2:%+v", event2)
+	}()
 
 	<-sigs
 	log.Println("program end")
