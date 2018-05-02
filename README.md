@@ -137,3 +137,4 @@
 |lab133|tail|github.com/hpcloud/tail|
 |lab134|go-zookeeper|github.com/samuel/go-zookeeper|
 |lab135|monkey|github.com/bouk/monkey，猴子补丁|
+|lab136|gomock|github.com/golang/mock/gomock|

@@ -1,0 +1,5 @@
+package: lab136
+import:
+- package: github.com/golang/mock
+  subpackages:
+  - tree/master/gomock
