@@ -6,6 +6,9 @@
  - `gomock.Any()`和`gomock.Eq`相反，也就是可以传入任何值
  - `Return`方法就是给定函数的返回
 
+#### 参考资料
+ - https://segmentfault.com/a/1190000009894570
+
 #### 运行结果
 ##### `t.Log(company.Meeting("王尼玛"))`
 ![Imgur](https://i.imgur.com/HD7YcO9.png)
