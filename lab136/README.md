@@ -6,4 +6,5 @@
 
 |实验|简介|说明|
 |---|---|---|
-|lab001|example01||
+|lab001|example01|
+|lab002|example02|
