@@ -138,3 +138,4 @@
 |lab134|go-zookeeper|github.com/samuel/go-zookeeper|
 |lab135|monkey|github.com/bouk/monkey，猴子补丁|
 |lab136|gomock|github.com/golang/mock/gomock|
+|lab137|etcd|github.com/coreos/etcd/tree/master/clientv3，etcd v3|
