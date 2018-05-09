@@ -1,0 +1,6 @@
+hash: ded68297d4e04eb2d6572049462b6e268f5de43b97122516db6d70078325d22b
+updated: 2018-05-09T14:03:57.6570253+08:00
+imports:
+- name: github.com/golang/geo
+  version: e41ca803f92c4c1770133cfa5b4fc8249a7dbe82
+testImports: []
