@@ -1,3 +1,0 @@
-package: lab138
-import:
-- package: github.com/golang/geo
