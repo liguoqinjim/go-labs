@@ -1,0 +1,6 @@
+hash: f758f5e1370c809199a950ecf77a33fd8bfa99ac632ec9a4d401a61400e9cab1
+updated: 2018-05-10T10:39:56.6484436+08:00
+imports:
+- name: github.com/beevik/etree
+  version: 9d7e8feddccb4ed1b8afb54e368bd323d2ff652c
+testImports: []
