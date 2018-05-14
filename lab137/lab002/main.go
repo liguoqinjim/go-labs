@@ -5,14 +5,22 @@ import (
 	"github.com/coreos/etcd/clientv3"
 	"io/ioutil"
 	"log"
+	"os"
+	"os/signal"
 	"strings"
+	"syscall"
 	"time"
 )
 
+const KEY_NAME = "lab002"
+
 func main() {
+	sigs := make(chan os.Signal, 1)
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+
 	confData, err := ioutil.ReadFile("etcd.conf")
 	if err != nil {
-		log.Fatalf("ioutil.ReadFile error", err)
+		log.Fatalf("ioutil.ReadFile error:%v", err)
 	}
 
 	ips := strings.Split(string(confData), "|")
@@ -35,20 +43,35 @@ func main() {
 	if err != nil {
 		log.Printf("put error:%v", err)
 	} else {
-		log.Printf("%#v", resp.Header)
-		log.Printf("%#v", resp.PrevKv)
+		log.Printf("resp.Header=%#v", resp.Header)
+		log.Printf("resp.PrevKv=%#v", resp.PrevKv)
 		log.Println("put success")
 	}
 
 	//get
 	ctx, cancel = context.WithTimeout(context.Background(), time.Second*2)
-	resp2, err := cli.Get(ctx, "lab002")
+	resp2, err := cli.Get(ctx, KEY_NAME)
 	cancel()
 	if err != nil {
-		log.Printf("get error:%", err)
+		log.Printf("get error:%v", err)
 	} else {
-		log.Printf("%+v", resp2.Header)
-		log.Printf("%+v", resp2.Kvs)
+		log.Printf("resp2.Header=%+v", resp2.Header)
+		log.Printf("resp2.Kvs=%+v", resp2.Kvs)
 		log.Println("get success")
 	}
+
+	//del
+	ctx, cancel = context.WithTimeout(context.Background(), time.Second*2)
+	resp3, err := cli.Delete(ctx, KEY_NAME)
+	cancel()
+	if err != nil {
+		log.Printf("del error:%v", err)
+	} else {
+		log.Printf("resp3.Header=%#v", resp3.Header)
+		log.Printf("resp3.Kvs=%#v", resp3.PrevKvs)
+		log.Println("del success")
+	}
+
+	<-sigs
+	log.Println("program ending")
 }

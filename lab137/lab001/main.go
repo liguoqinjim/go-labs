@@ -11,7 +11,7 @@ import (
 func main() {
 	confData, err := ioutil.ReadFile("etcd.conf")
 	if err != nil {
-		log.Fatalf("ioutil.ReadFile error", err)
+		log.Fatalf("ioutil.ReadFile error:%v", err)
 	}
 
 	ips := strings.Split(string(confData), "|")
