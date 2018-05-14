@@ -5,3 +5,4 @@
 |---|---|---|
 |lab001|example01|连接etcd|
 |lab002|example02|put和get，删除key|
+|lab003|example03|注册服务|
