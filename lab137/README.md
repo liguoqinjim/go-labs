@@ -7,3 +7,4 @@
 |lab002|example02|put和get，删除key|
 |lab003|example03|注册服务，ttl|
 |lab004|example04|获取服务，获取一组值|
+|lab004|example05|watch|
