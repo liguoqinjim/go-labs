@@ -1,0 +1,3 @@
+package: lab140
+import:
+- package: github.com/gocolly/colly
