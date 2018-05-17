@@ -1,6 +1,78 @@
 hash: 9a44f5c6a5bf53884f5b238e4de863acf3dc2eab4891935c571df29ffb7cd97d
-updated: 2018-05-17T18:18:09.1120301+08:00
+updated: 2018-05-17T18:26:32.7356387+08:00
 imports:
+- name: github.com/andybalholm/cascadia
+  version: 901648c87902174f774fac311d7f176f8647bdaa
+- name: github.com/antchfx/htmlquery
+  version: 7afeab9e150c53c8d592d884b0951a5a3b665a13
+- name: github.com/antchfx/xmlquery
+  version: 52ab7c76b916d59fd2fd5dfd8a616ecf9923b7c0
+- name: github.com/antchfx/xpath
+  version: 7148e5d6bb845772731e3979df279a1b0e8e90ac
+- name: github.com/gobwas/glob
+  version: f00a7392b43971b2fdb562418faab1f18da2067a
+  subpackages:
+  - compiler
+  - match
+  - syntax
+  - syntax/ast
+  - syntax/lexer
+  - util/runes
+  - util/strings
 - name: github.com/gocolly/colly
   version: 9a176fe5f869c7062819f7af968c03c662018c06
+  subpackages:
+  - debug
+  - storage
+- name: github.com/golang/protobuf
+  version: 927b65914520a8b7d44f5c9057611cfec6b2e2d0
+  subpackages:
+  - proto
+- name: github.com/kennygrant/sanitize
+  version: 2e6820834a1f36c626bf19a253b7d3cc060e9b8b
+- name: github.com/PuerkitoBio/goquery
+  version: ea1bc64a63088ac2bbf1a2edcae38413794a7710
+- name: github.com/saintfish/chardet
+  version: 3af4cd4741ca4f3eb0c407c034571a6fb0ea529c
+- name: github.com/temoto/robotstxt
+  version: 9e4646fa705336d5b2fa9dddfafbe0a1a965acd7
+- name: golang.org/x/net
+  version: 2491c5de3490fced2f6cff376127c667efeed857
+  subpackages:
+  - context
+  - html
+  - html/atom
+  - html/charset
+- name: golang.org/x/text
+  version: 5c1cf69b5978e5a34c5f9ba09a83e56acc4b7877
+  subpackages:
+  - encoding
+  - encoding/charmap
+  - encoding/htmlindex
+  - encoding/internal
+  - encoding/internal/identifier
+  - encoding/japanese
+  - encoding/korean
+  - encoding/simplifiedchinese
+  - encoding/traditionalchinese
+  - encoding/unicode
+  - internal/language
+  - internal/language/compact
+  - internal/tag
+  - internal/utf8internal
+  - language
+  - runes
+  - transform
+- name: google.golang.org/appengine
+  version: b9aad5d628b283f265adf8d3557faae187a8d015
+  subpackages:
+  - internal
+  - internal/app_identity
+  - internal/base
+  - internal/datastore
+  - internal/log
+  - internal/modules
+  - internal/remote_api
+  - internal/urlfetch
+  - urlfetch
 testImports: []
