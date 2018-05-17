@@ -8,14 +8,25 @@ import (
 func main() {
 	c := colly.NewCollector()
 
-	// Find and visit all links
-	c.OnHTML("a[href]", func(e *colly.HTMLElement) {
-		e.Request.Visit(e.Attr("href"))
-	})
-
 	c.OnRequest(func(r *colly.Request) {
-		log.Println("Visiting", r.URL)
+		log.Println("OnRequest:", r.URL)
 	})
 
-	c.Visit("http://go-colly.org")
+	c.OnError(func(r *colly.Response, e error) {
+		log.Println("OnError:", r.StatusCode, e)
+	})
+
+	c.OnResponse(func(resp *colly.Response) {
+		log.Println("OnResponse:", resp.StatusCode)
+	})
+
+	c.OnHTML(`.ip_text`, func(e *colly.HTMLElement) {
+		log.Println("OnHTML:value=", e.Text)
+	})
+
+	c.OnScraped(func(resp *colly.Response) {
+		log.Println("OnScraped:", resp.StatusCode)
+	})
+
+	c.Visit("https://www.ipip.net/")
 }
