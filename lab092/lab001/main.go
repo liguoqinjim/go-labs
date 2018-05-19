@@ -8,9 +8,9 @@ import (
 func main() {
 	data, err := data.Asset("test.json")
 	if err != nil {
-		// Asset was not found.
+		log.Fatalf("data.Asset error:%v", err)
 	}
 
 	// use asset data
-	log.Println("data=", string(data))
+	log.Printf("data=\n%s", data)
 }

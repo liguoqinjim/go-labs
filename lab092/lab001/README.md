@@ -6,4 +6,8 @@
  - `go-bindata`生成的go文件的package name默认都是main，要用pkg参数指定，参考lab002
 
 #### 运行结果
-![Imgur](https://i.imgur.com/4jqZDR8.png)
+##### go-bindata运行截图
+![Imgur](https://i.imgur.com/Vxrw2YK.png)
+
+##### 运行结果
+![Imgur](https://i.imgur.com/BGgoen7.png)
