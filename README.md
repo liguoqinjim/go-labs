@@ -142,3 +142,4 @@
 |lab138|go.geo|github.com/paulmach/go.geo|
 |lab139|etree|github.com/beevik/etree，xml解析|
 |lab140|colly|github.com/gocolly/colly|
+|lab141|go-bindata-assetfs|github.com/elazarl/go-bindata-assetfs/|
