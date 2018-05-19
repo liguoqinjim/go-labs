@@ -6,17 +6,17 @@ import (
 )
 
 func main() {
-	data1,err := data.Asset("data/test.json")
-	if err != nil{
-		log.Println("Asset test.json error")
-		return
+	//读取test.json
+	data1, err := data.Asset("data/test.json")
+	if err != nil {
+		log.Fatalf("data.Asset error:%v", err)
 	}
-	log.Println("data1=",string(data1))
+	log.Printf("data1=\n%s", data1)
 
-	data2,err := data.Asset("data/hello.js")
-	if err != nil{
-		log.Println("Asset hello.js error")
-		return
+	//读取hello.js
+	data2, err := data.Asset("data/hello.js")
+	if err != nil {
+		log.Fatalf("data.Asset error:%v", err)
 	}
-	log.Println("data2=",string(data2))
+	log.Printf("data2=\n%s", data2)
 }
