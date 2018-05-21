@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/bouk/monkey"
+	"log"
 )
 
 func main() {
@@ -23,7 +24,7 @@ func main() {
 	})
 
 	_, err := http.Get("http://baidu.com")
-	fmt.Println(err) // only https requests allowed
+	log.Println(err) // only https requests allowed
 	resp, err := http.Get("https://baidu.com")
-	fmt.Println(resp.Status, err) // 200 OK <nil>
+	log.Println(resp.Status, err) // 200 OK <nil>
 }
