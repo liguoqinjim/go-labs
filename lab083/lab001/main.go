@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"time"
 
-	elastic "gopkg.in/olivere/elastic.v5"
+	"gopkg.in/olivere/elastic.v5"
 	"io/ioutil"
 	"log"
 )
@@ -72,46 +72,45 @@ func main() {
 	// Starting with elastic.v5, you must pass a context to execute each service
 	ctx := context.Background()
 
-	// Obtain a client and connect to the default Elasticsearch installation
-	// on 127.0.0.1:9200. Of course you can configure your client to connect
-	// to other hosts and configure it in various other ways.
+	// 创建一个连接elasticsearch的client，默认是连接127.0.0.1:9200，也可以设置连接url
 	client, err := elastic.NewClient(elastic.SetURL(url))
 	if err != nil {
 		log.Fatalf("NewClient error:%v", err)
 	}
 
-	// Ping the Elasticsearch server to get e.g. the version number
+	// Ping Elasticsearch，可以得到version number等数据
 	info, code, err := client.Ping(url).Do(ctx)
 	if err != nil {
 		log.Fatalf("client.Ping error:%v", err)
 	}
 	log.Printf("Elasticsearch returned with code %d and version %s\n", code, info.Version.Number)
 
-	// Getting the ES version number is quite common, so there's a shortcut
+	// 得到es version
 	esversion, err := client.ElasticsearchVersion(url)
 	if err != nil {
 		log.Fatalf("ElasticsearchVersion error:%v", err)
 	}
 	log.Printf("Elasticsearch version %s\n", esversion)
 
-	// Use the IndexExists service to check if a specified index exists.
+	// 检查index是否存在
 	exists, err := client.IndexExists("twitter").Do(ctx)
 	if err != nil {
 		log.Fatalf("IndexExists error:%v", err)
 	}
 	if !exists {
-		// Create a new index.
+		// 创建一个新的index
 		createIndex, err := client.CreateIndex("twitter").BodyString(mapping).Do(ctx)
 		if err != nil {
 			log.Fatalf("CreateIndex error:%v", err)
 		}
-		if !createIndex.Acknowledged {
-			// Not acknowledged
-		}
+		log.Printf("CreateIndex result,Acknowledged[%t]ShardsAckonwledged[%t]", createIndex.Acknowledged, createIndex.ShardsAcknowledged)
+	} else {
+		log.Println("index existed")
 	}
 
 	// Index a tweet (using JSON serialization)
-	tweet1 := Tweet{User: "olivere", Message: "Take Five", Retweets: 0}
+	// 就是存入一个document(相当于mysql里面的insert一行数据)
+	tweet1 := Tweet{User: "kimi", Message: "This is the first message", Retweets: 0}
 	put1, err := client.Index().
 		Index("twitter").
 		Type("tweet").
@@ -124,7 +123,8 @@ func main() {
 	log.Printf("Indexed tweet %s to index %s, type %s\n", put1.Id, put1.Index, put1.Type)
 
 	// Index a second tweet (by string)
-	tweet2 := `{"user" : "olivere", "message" : "It's a Raggy Waltz"}`
+	// 存入第二个document
+	tweet2 := `{"user" : "kimi", "message" : "This is the second message"}`
 	put2, err := client.Index().
 		Index("twitter").
 		Type("tweet").
@@ -137,6 +137,7 @@ func main() {
 	log.Printf("Indexed tweet %s to index %s, type %s\n", put2.Id, put2.Index, put2.Type)
 
 	// Get tweet with specified ID
+	// 通过id得到document
 	get1, err := client.Get().
 		Index("twitter").
 		Type("tweet").
@@ -156,7 +157,8 @@ func main() {
 	}
 
 	// Search with a term query
-	termQuery := elastic.NewTermQuery("user", "olivere")
+	// 查询
+	termQuery := elastic.NewTermQuery("user", "kimi")
 	searchResult, err := client.Search().
 		Index("twitter").   // search in index "twitter"
 		Query(termQuery).   // specify the query
@@ -170,12 +172,14 @@ func main() {
 
 	// searchResult is of type SearchResult and returns hits, suggestions,
 	// and all kinds of other information from Elasticsearch.
+	// searchResult里面会有一些查询结果的数据
 	log.Printf("Query took %d milliseconds\n", searchResult.TookInMillis)
 
 	// Each is a convenience function that iterates over hits in a search result.
 	// It makes sure you don't need to check for nil values in the response.
 	// However, it ignores errors in serialization. If you want full control
 	// over iterating the hits, see below.
+	// 查询结果
 	var ttyp Tweet
 	for _, item := range searchResult.Each(reflect.TypeOf(ttyp)) {
 		if t, ok := item.(Tweet); ok {
@@ -210,6 +214,7 @@ func main() {
 
 	// Update a tweet by the update API of Elasticsearch.
 	// We just increment the number of retweets.
+	// 更新
 	update, err := client.Update().Index("twitter").Type("tweet").Id("1").
 		Script(elastic.NewScriptInline("ctx._source.retweets += params.num").Lang("painless").Param("num", 1)).
 		Upsert(map[string]interface{}{"retweets": 0}).
@@ -220,12 +225,15 @@ func main() {
 	log.Printf("New version of tweet %q is now %d\n", update.Id, update.Version)
 
 	// Delete an index.
-	//deleteIndex, err := client.DeleteIndex("twitter").Do(ctx)
-	//if err != nil {
-	//	// Handle error
-	//	panic(err)
-	//}
-	//if !deleteIndex.Acknowledged {
-	//	// Not acknowledged
-	//}
+	// 删除index
+	deleteIndex, err := client.DeleteIndex("twitter").Do(ctx)
+	if err != nil {
+		log.Fatalf("client.Delete error:%v", err)
+	} else {
+		if !deleteIndex.Acknowledged {
+			// Not acknowledged
+		}
+
+		log.Printf("index twitter deleted")
+	}
 }

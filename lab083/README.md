@@ -8,6 +8,6 @@ https://github.com/olivere/elastic
 
 |实验|简介|
 |---|---|
-|lab001|运行example|
-|lab002|模仿example|
+|lab001|example|创建index，创建document，查询，删除，修改等|
+|lab002|example|模仿lab001|
 |lab058->lab009|nsq和elastic结合|
