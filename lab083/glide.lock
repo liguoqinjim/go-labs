@@ -1,0 +1,17 @@
+hash: bf92e3b153b46866ae5d6195bd8220d70909d9514db4f84b812a84d3863d69ac
+updated: 2018-05-23T17:04:30.7932236+08:00
+imports:
+- name: github.com/mailru/easyjson
+  version: 8b799c424f57fa123fc63a99d6383bc6e4c02578
+  subpackages:
+  - buffer
+  - jlexer
+  - jwriter
+- name: github.com/pkg/errors
+  version: 816c9085562cd7ee03e7f8188a1cfd942858cded
+- name: gopkg.in/olivere/elastic.v5
+  version: b708306d715bea9b983685e94ab4602cdc9f988b
+  subpackages:
+  - config
+  - uritemplates
+testImports: []
