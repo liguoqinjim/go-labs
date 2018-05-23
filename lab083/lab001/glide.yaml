@@ -1,4 +1,0 @@
-package: lab083/lab001
-import:
-- package: gopkg.in/olivere/elastic.v5
-  version: v5.0.45
