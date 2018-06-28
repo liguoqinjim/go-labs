@@ -12,7 +12,8 @@ import (
 	"time"
 )
 
-const KEY_NAME = "lab003"
+const TEST_KEY = "key003"
+const TEST_VALUE = "value003"
 
 func main() {
 	sigs := make(chan os.Signal, 1)
@@ -28,25 +29,51 @@ func main() {
 		Endpoints:   ips,
 		DialTimeout: time.Second * 2,
 	})
-	defer cli.Close()
 
 	if err != nil {
 		log.Printf("clientv3.New error:%v", err)
 	} else {
 		log.Println("clientv3.New success")
+		defer cli.Close()
 	}
 
-	//注册服务
-	resp, _ := cli.Grant(context.TODO(), 15)
+	//grant
+	resp, err := cli.Grant(context.TODO(), 15)
+	if err != nil {
+		log.Printf("cli.Grant error:%v", err)
+	} else {
+		log.Printf("cli.Grant success")
+		log.Printf("grant.resp:ID=[%d],TTL[%d]", resp.ID, resp.TTL)
+	}
+
+	//put
 	ctx, _ := context.WithTimeout(context.Background(), 5*time.Second)
-	rsp, err := cli.Put(ctx, KEY_NAME, `{"addr":"192.168.1.1:9999"}`, clientv3.WithLease(resp.ID))
+	rsp, err := cli.Put(ctx, TEST_KEY, TEST_VALUE, clientv3.WithLease(resp.ID))
 	if err != nil {
 		log.Printf("put error:%v", err)
 	} else {
+		log.Println("put success")
 		log.Printf("rsp.Header=%#v", rsp.Header)
 		log.Printf("rsp.PrevKv=%#v", rsp.PrevKv)
-		log.Println("put success")
 	}
+
+	//keepalive
+	kpAliveCh, err := cli.KeepAlive(context.TODO(), resp.ID)
+	if err != nil {
+		log.Printf("cli.KeepAlive error:%v", err)
+	} else {
+		log.Printf("cli.KeepAlive success")
+	}
+
+	//处理keepalive得到的kpAliceCh
+	go func() {
+		for {
+			select {
+			case kpResp := <-kpAliveCh:
+				log.Printf("kpResp.ID=[%d],TTL=[%d]", kpResp.ID, kpResp.TTL)
+			}
+		}
+	}()
 
 	<-sigs
 	log.Println("program end")
