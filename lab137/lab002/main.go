@@ -23,12 +23,12 @@ func main() {
 		log.Fatalf("ioutil.ReadFile error:%v", err)
 	}
 
+	//连接etcd
 	ips := strings.Split(string(confData), "|")
 	cli, err := clientv3.New(clientv3.Config{
 		Endpoints:   ips,
-		DialTimeout: time.Second * 2,
+		DialTimeout: time.Second * 3,
 	})
-
 	if err != nil {
 		log.Printf("clientv3.New error:%v", err)
 	} else {
