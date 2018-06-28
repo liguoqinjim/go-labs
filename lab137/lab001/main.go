@@ -14,16 +14,20 @@ func main() {
 		log.Fatalf("ioutil.ReadFile error:%v", err)
 	}
 
+	log.Println("开始时间:", time.Now())
 	ips := strings.Split(string(confData), "|")
 	cli, err := clientv3.New(clientv3.Config{
 		Endpoints:   ips,
-		DialTimeout: time.Second * 2,
+		DialTimeout: time.Second * 5, //连接超时时间
 	})
-	defer cli.Close()
 
+	log.Println("结束时间:", time.Now())
 	if err != nil {
 		log.Printf("clientv3.New error:%v", err)
 	} else {
+		//close要放在error为空的时候
+		defer cli.Close()
+
 		log.Println("clientv3.New success")
 	}
 }
