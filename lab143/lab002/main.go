@@ -37,12 +37,24 @@ func main() {
 	u := fmt.Sprintf(conf.UrlFormat, conf.EventName, conf.Key)
 	log.Printf("url=%s", u)
 
-	//post
-	values := map[string]string{"value1": conf.Value1, "value2": conf.Value2, "value3": conf.Value3}
+	//client
+	client := &http.Client{}
+	values := map[string]string{
+		"value1": conf.Value1,
+		"value2": conf.Value2,
+		"value3": conf.Value3,
+	}
 	jsonStr, _ := json.Marshal(values)
-	resp, err := http.Post(u, "application/json", bytes.NewBuffer(jsonStr))
+
+	req, err := http.NewRequest(http.MethodPost, u, bytes.NewBuffer(jsonStr))
 	if err != nil {
-		log.Fatalf("http.Post error:%v", err)
+		log.Fatalf("http.NewRequest error:%v", err)
+	}
+	req.Header.Add("Content-Type", "application/json")
+
+	resp, err := client.Do(req)
+	if err != nil {
+		log.Fatalf("client.Do error:%v", err)
 	}
 	d, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
