@@ -1,0 +1,8 @@
+{
+  "key": "your key",
+  "event_name": "event_name",
+  "url_format": "https://maker.ifttt.com/trigger/%s/with/key/%s",
+  "value1": "https://liguoqinjim.github.io/img/markdown/test.jpg",
+  "value2": "",
+  "value3": ""
+}
