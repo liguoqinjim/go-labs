@@ -7,7 +7,6 @@ import (
 	"io/ioutil"
 	"log"
 	"net/http"
-	"net/url"
 )
 
 type ConfStruct struct {
@@ -36,14 +35,11 @@ func main() {
 
 	//拼接url
 	u := fmt.Sprintf(conf.UrlFormat, conf.EventName, conf.Key)
+	log.Printf("url=%s", u)
 
-	form := url.Values{
-		"value1": {conf.Value1},
-		"value2": {conf.Value2},
-		"value3": {conf.Value3},
-	}
-	b := bytes.NewBufferString(form.Encode())
-	resp, err := http.Post(u, "application/json", b)
+	values := map[string]string{"value1": conf.Value1, "value2": conf.Value2, "value3": conf.Value3}
+	jsonStr, _ := json.Marshal(values)
+	resp, err := http.Post(u, "application/json", bytes.NewBuffer(jsonStr))
 	if err != nil {
 		log.Fatalf("http.Post error:%v", err)
 	}
@@ -52,23 +48,4 @@ func main() {
 		log.Fatalf("ioutil.ReadAll error:%v", err)
 	}
 	log.Printf("resp:\n%s", d)
-
-	//在上面的post基础上指定contentType和body
-	//form := url.Values{
-	//	"username": {"xiaoming"},
-	//	"address":  {"beijing"},
-	//	"subject":  {"Hello"},
-	//	"from":     {"china"},
-	//}
-	//postBody := bytes.NewBufferString(form.Encode())
-	//resp2, err2 := http.Post("http://httpbin.org/post", "application/x-www-form-urlencoded", postBody)
-	//if err2 != nil {
-	//	log.Fatalf("post error:%v", err2)
-	//}
-	//body2, err2 := ioutil.ReadAll(resp2.Body)
-	//if err2 != nil {
-	//	log.Fatalf("readAll error:%v", err2)
-	//}
-	//resp2.Body.Close()
-	//log.Printf("post2\n%s", string(body2))
 }
