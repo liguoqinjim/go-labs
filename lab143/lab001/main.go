@@ -37,6 +37,7 @@ func main() {
 	u := fmt.Sprintf(conf.UrlFormat, conf.EventName, conf.Key)
 	log.Printf("url=%s", u)
 
+	//post
 	values := map[string]string{"value1": conf.Value1, "value2": conf.Value2, "value3": conf.Value3}
 	jsonStr, _ := json.Marshal(values)
 	resp, err := http.Post(u, "application/json", bytes.NewBuffer(jsonStr))
