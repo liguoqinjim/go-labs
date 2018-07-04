@@ -1,7 +1,7 @@
 {
   "key": "your key",
   "event_name": "event name",
-  "url_format": "https://maker.ifttt.com/trigger/%s/with/key/%s"
+  "url_format": "https://maker.ifttt.com/trigger/%s/with/key/%s",
   "value1": "value1",
   "value2": "value2",
   "value3": "value3"

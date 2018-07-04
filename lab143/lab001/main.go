@@ -19,7 +19,7 @@ type ConfStruct struct {
 	Value3    string `json:"value3"`
 }
 
-var conf *ConfStruct
+var conf = new(ConfStruct)
 
 func main() {
 	//读取配置文件
