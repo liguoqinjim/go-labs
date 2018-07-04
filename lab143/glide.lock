@@ -1,0 +1,6 @@
+hash: 08bc2359229dd491b0b579e6f87983d3bdd82afea35e153271b867430624cffd
+updated: 2018-07-04T14:15:23.7193043+08:00
+imports:
+- name: github.com/parnurzeal/gorequest
+  version: a578a48e8d6ca8b01a3b18314c43c6716bb5f5a3
+testImports: []
