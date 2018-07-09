@@ -1,8 +1,0 @@
-hash: c534c26de6bd202ae2857a68d557d0666725ecca731232c688befa590f499298
-updated: 2017-08-23T15:35:50.4991209+08:00
-imports:
-- name: github.com/golang/snappy
-  version: 553a641470496b2327abcac10b36396bd98e45c9
-- name: github.com/nsqio/go-nsq
-  version: eee57a3ac4174c55924125bb15eeeda8cffb6e6f
-testImports: []
