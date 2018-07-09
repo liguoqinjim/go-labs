@@ -1,6 +1,0 @@
-hash: cc5c0b7559db3c56841a4a84fdce9ab4d93a9b75fdbde68e5410b4975901cd52
-updated: 2017-06-30T11:19:02.4117665+08:00
-imports:
-- name: github.com/nsqio/nsq
-  version: c22751c7e63cacb28e61c13b84efe95beb192910
-testImports: []
