@@ -2,7 +2,7 @@
 `go get github.com/nsqio/go-nsq`
 
 |实验|简介|说明|
-|---|---|
+|---|---|---|
 |lab001|实验1，照着文档写了一遍|
 |lab002|实验2，自己写了一遍|
 |lab003|实验3，consumer改成连接到nsqlookupd|

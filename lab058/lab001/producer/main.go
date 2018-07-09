@@ -4,13 +4,19 @@ import (
 	"log"
 
 	"github.com/nsqio/go-nsq"
+	"io/ioutil"
 )
 
 func main() {
-	config := nsq.NewConfig()
-	w, _ := nsq.NewProducer("192.168.116.130:4150", config)
+	data, err := ioutil.ReadFile("nsq.conf")
+	if err != nil {
+		log.Fatalf("ioutil.ReadFile error:%v", err)
+	}
 
-	err := w.Publish("write_test", []byte("test"))
+	config := nsq.NewConfig()
+	w, _ := nsq.NewProducer(string(data), config)
+
+	err = w.Publish("write_test", []byte("test"))
 	if err != nil {
 		log.Panic("Could not connect")
 	}

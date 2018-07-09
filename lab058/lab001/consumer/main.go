@@ -5,11 +5,17 @@ import (
 	"sync"
 
 	"github.com/nsqio/go-nsq"
+	"io/ioutil"
 )
 
 func main() {
 	wg := &sync.WaitGroup{}
 	wg.Add(1)
+
+	data, err := ioutil.ReadFile("nqs.conf")
+	if err != nil {
+		log.Fatalf("ioutil.ReadFile error:%v", err)
+	}
 
 	config := nsq.NewConfig()
 	q, _ := nsq.NewConsumer("write_test", "ch", config)
@@ -18,7 +24,7 @@ func main() {
 		wg.Done()
 		return nil
 	}))
-	err := q.ConnectToNSQD("192.168.116.130:4150")
+	err = q.ConnectToNSQD(string(data))
 	if err != nil {
 		log.Panic("Could not connect")
 	}
