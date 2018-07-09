@@ -12,23 +12,22 @@ import (
 )
 
 func main() {
+	sigs := make(chan os.Signal, 1)
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+
 	//读取ip.conf
 	data, err := ioutil.ReadFile("ip.conf")
 	if err != nil {
 		log.Fatalf("readfile error:%v", err)
 	}
-	addr := string(data)
 
 	//连接
 	config := nsq.NewConfig()
-	w, err := nsq.NewProducer(addr, config)
+	w, err := nsq.NewProducer(string(data), config)
 	if err != nil {
 		log.Fatalf("nsq.NewProducer:%v", err)
 	}
 	defer w.Stop()
-
-	sigs := make(chan os.Signal, 1)
-	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 
 	//发送消息
 	i := 0
