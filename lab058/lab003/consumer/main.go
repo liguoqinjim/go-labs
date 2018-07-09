@@ -13,7 +13,7 @@ func main() {
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGTERM, syscall.SIGINT)
 
-	data, err := ioutil.ReadFile("../nsq.conf")
+	data, err := ioutil.ReadFile("nsq.conf")
 	if err != nil {
 		log.Fatalf("ioutil.ReadFile error:%v", err)
 	}

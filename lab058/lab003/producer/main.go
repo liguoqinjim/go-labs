@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	data, err := ioutil.ReadFile("../nsq.conf")
+	data, err := ioutil.ReadFile("nsq.conf")
 	if err != nil {
 		log.Fatalf("ioutil.ReadFile error:%v", err)
 	}
