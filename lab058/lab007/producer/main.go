@@ -5,16 +5,17 @@ import (
 	"github.com/nsqio/go-nsq"
 	"io/ioutil"
 	"log"
-	"os"
 	"time"
 )
 
 func main() {
-	address := readConf()
-	log.Println("address=", address)
+	data, err := ioutil.ReadFile("ip.conf")
+	if err != nil {
+		log.Fatalf("ioutil.ReadFile error:%v", err)
+	}
 
 	config := nsq.NewConfig()
-	w, err := nsq.NewProducer(address, config)
+	w, err := nsq.NewProducer(string(data), config)
 	if err != nil {
 		log.Fatal("NewProducer error:", err)
 	}
@@ -30,18 +31,4 @@ func main() {
 
 		time.Sleep(time.Second * 2)
 	}
-}
-
-func readConf() string {
-	file, err := os.Open("ip.conf")
-	if err != nil {
-		log.Fatal("open file error:", err)
-	}
-
-	data, err := ioutil.ReadAll(file)
-	if err != nil {
-		log.Fatal("readAll error:", err)
-	}
-
-	return string(data)
 }

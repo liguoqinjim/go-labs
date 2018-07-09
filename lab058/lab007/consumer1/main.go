@@ -10,11 +10,13 @@ import (
 )
 
 func main() {
-	address := readConf()
-	log.Println("address=", address)
-
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+
+	data, err := ioutil.ReadFile("ip.conf")
+	if err != nil {
+		log.Fatalf("ioutil.ReadFile error:%v", err)
+	}
 
 	config := nsq.NewConfig()
 	q, err := nsq.NewConsumer("lab007", "a", config)
@@ -23,7 +25,7 @@ func main() {
 	}
 	q.AddHandler(nsq.HandlerFunc(MsgHandler))
 
-	err = q.ConnectToNSQLookupd(address)
+	err = q.ConnectToNSQLookupd(string(data))
 	if err != nil {
 		log.Fatal("ConnectTONSQLookup error:", err)
 	}
@@ -35,18 +37,4 @@ func main() {
 func MsgHandler(message *nsq.Message) error {
 	log.Println("收到消息", string(message.ID[:]), string(message.Body))
 	return nil
-}
-
-func readConf() string {
-	file, err := os.Open("ip.conf")
-	if err != nil {
-		log.Fatal("file open error:", err)
-	}
-
-	data, err := ioutil.ReadAll(file)
-	if err != nil {
-		log.Fatal("readAll error:", err)
-	}
-
-	return string(data)
 }
