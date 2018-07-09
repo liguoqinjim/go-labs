@@ -3,13 +3,19 @@ package main
 import (
 	"fmt"
 	"github.com/nsqio/go-nsq"
+	"io/ioutil"
 	"log"
 	"time"
 )
 
 func main() {
+	data, err := ioutil.ReadFile("../nsq.conf")
+	if err != nil {
+		log.Fatalf("ioutil.ReadFile error:%v", err)
+	}
+
 	config := nsq.NewConfig()
-	w, err := nsq.NewProducer("192.168.116.130:4150", config)
+	w, err := nsq.NewProducer(string(data), config)
 	if err != nil {
 		log.Fatal("NewProducer error ", err)
 	}
