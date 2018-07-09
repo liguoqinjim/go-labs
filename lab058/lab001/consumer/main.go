@@ -12,7 +12,7 @@ func main() {
 	wg := &sync.WaitGroup{}
 	wg.Add(1)
 
-	data, err := ioutil.ReadFile("nqs.conf")
+	data, err := ioutil.ReadFile("../nsq.conf")
 	if err != nil {
 		log.Fatalf("ioutil.ReadFile error:%v", err)
 	}
