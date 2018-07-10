@@ -15,8 +15,6 @@ func main() {
 		log.Fatalf("readFile error:%v", err)
 	}
 
-	addr := string(data)
-
 	//创建连接
 	config := nsq.NewConfig()
 	q, err := nsq.NewConsumer("server900001", "ch", config)
@@ -26,7 +24,7 @@ func main() {
 	q.AddHandler(nsq.HandlerFunc(MsgHandler))
 
 	//连接
-	err = q.ConnectToNSQLookupd(addr)
+	err = q.ConnectToNSQLookupd(string(data))
 	if err != nil {
 		log.Fatalf("ConnnectToNSQLookupd error:%v", err)
 	}

@@ -8,5 +8,5 @@
 |lab003|实验3|consumer连接到nsqlookupd|
 |lab007|实验7|两个消费者在监听同一个topic不同的channel|
 |lab008|实验8|一个程序里面创建两个nsq.Consumer|
-|lab009|实验9，服务器测试代码2|
+|lab009|实验9|各种consumer|
 |lab010|实验10，consumer|
