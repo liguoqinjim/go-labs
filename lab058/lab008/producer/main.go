@@ -50,6 +50,10 @@ func main() {
 
 		i++
 
+		if i == 10 {
+			break
+		}
+
 		time.Sleep(time.Second * 3)
 	}
 
