@@ -12,16 +12,16 @@ TEST = nihao
 `
 
 func main() {
+	//一次读取多个配置文件，可以是byte数字，也可以传入文件名
 	cfg, err := ini.Load(
 		[]byte(rawdata),
 		"full.ini",
 	)
-
 	if err != nil {
 		log.Fatalf("ini.Load error:%v", err)
 	}
 
-	//读取
+	//读取section
 	sec, err := cfg.GetSection("author")
 	if err != nil {
 		log.Fatalf("cfg.GetSection error:%v", err)
