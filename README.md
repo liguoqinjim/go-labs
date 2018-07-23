@@ -146,3 +146,4 @@
 |lab142|logstash_tcp|测试给logstash的input的tcp发送数据|
 |lab143|触发IFTTT的webhooks|
 |lab144|ini|https://github.com/go-ini/ini|
+|lab145|go-cache|github.com/patrickmn/go-cache|
