@@ -1,7 +1,7 @@
 关于channel的几个实验
 
-|实验|简介|
-|---|---|
+|实验|简介|说明|
+|---|---|---|
 |lab022_01|channel的基本使用|
 |lab022_02|channel buffering|
 |lab022_03|channel synchronization|
