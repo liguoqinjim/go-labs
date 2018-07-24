@@ -3,4 +3,4 @@
 
 |实验|简介|说明|
 |---|---|---|
-|lab001|demo||
+|lab001|demo|set,get,delete|
