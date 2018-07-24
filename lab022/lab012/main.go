@@ -7,9 +7,11 @@ import (
 
 func worker(id int, jobs <-chan int, results chan<- int) {
 	for j := range jobs {
-		log.Println("worker", id, "started job", j, "now_time", time.Now().Unix())
+		//log.Println("worker", id, "started job", j, "now_time", time.Now())
+		log.Printf("worker[%d] started job[%d] nowtime[%v]", id, j, time.Now())
 		time.Sleep(time.Second)
-		log.Println("worker", id, "finished job", j, "now_time", time.Now().Unix())
+		log.Println("worker", id, "finished job", j, "now_time", time.Now())
+		log.Printf("workder[%d] finished job[%d] nowtime[%v]", id, j, time.Now())
 		results <- j * 2
 	}
 }

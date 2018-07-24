@@ -2,17 +2,17 @@
 
 |实验|简介|说明|
 |---|---|---|
-|lab022_01|channel的基本使用|
-|lab022_02|channel buffering|
-|lab022_03|channel synchronization|
-|lab022_04|channel directions|
-|lab022_05|select|
-|lab022_06|timeouts|
-|lab022_07|non-blocking channel operations|
-|lab022_08|closing channels|
-|lab022_09|range over channels|
-|lab022_10|timers|
-|lab022_11|tickers|
-|lab022_12|worker pools|
-|lab022_13|rate limiting|
-|lab022_14|测试close chan|
+|lab001|channel的基本使用|
+|lab002|channel buffering|
+|lab003|channel synchronization|
+|lab004|channel directions|
+|lab005|select|
+|lab006|timeouts|
+|lab007|non-blocking channel operations|
+|lab008|closing channels|
+|lab009|range over channels|
+|lab010|timers|
+|lab011|tickers|
+|lab012|worker pools|
+|lab013|rate limiting|
+|lab014|测试close chan|

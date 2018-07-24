@@ -7,10 +7,10 @@ import (
 
 func main() {
 	timer1 := time.NewTimer(time.Second * 2)
-	log.Println("now_time=", time.Now().Unix())
+	log.Println("now_time=", time.Now())
 
 	<-timer1.C
-	log.Println("now_time=", time.Now().Unix())
+	log.Println("now_time=", time.Now())
 
 	timer2 := time.NewTimer(time.Second)
 	go func() {
