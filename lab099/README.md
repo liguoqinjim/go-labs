@@ -1,4 +1,4 @@
-### sync.WaitGroup
+# sync.WaitGroup
 
 |实验|简介|
 |---|---|
