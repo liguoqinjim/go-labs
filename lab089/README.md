@@ -8,3 +8,4 @@
 |lab003|实验02，查看两种surf的默认user-agent|
 |lab004|用来向github.com/henrylee2cn/surfer，提交pr|
 |lab005|两种内核模式下测试cookie|
+|lab006|使用代理|http和ss|
