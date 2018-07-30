@@ -1,5 +1,5 @@
 # gorequest
-安装:`https://github.com/parnurzeal/gorequest`
+安装:`go get -u -v github.com/parnurzeal/gorequest`
 
 |实验|简介|说明|
 |---|---|---|
@@ -7,3 +7,4 @@
 |lab002|example02，例子程序|Callback，Multipart/Form-Data，Proxy，Basic Authentication|
 |lab003|example03，例子程序|EndBytes，EndStruct，Timeout，Retry|
 |lab004|实验cookie|
+|lab005|使用代理|http和ss代理|
