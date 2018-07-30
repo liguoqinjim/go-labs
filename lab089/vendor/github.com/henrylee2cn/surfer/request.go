@@ -69,8 +69,6 @@ type Request struct {
 	// 0为Surf高并发下载器，各种控制功能齐全
 	// 1为PhantomJS下载器，特点破防力强，速度慢，低并发
 	DownloaderID int
-	// PhantomJS 抗反爬超时时间，最小单位是time.Millisecond
-	PhantomTimeout time.Duration
 
 	client *http.Client
 }
@@ -153,11 +151,13 @@ func (r *Request) writeback(resp *http.Response) *http.Response {
 		resp.Request = new(http.Request)
 	}
 
+	if resp.Header == nil {
+		resp.Header = make(http.Header)
+	}
+
 	resp.Request.Method = r.Method
 	resp.Request.Header = r.Header
 	resp.Request.Host = r.url.Host
-
-	// reset url
 	r.url = nil
 
 	return resp

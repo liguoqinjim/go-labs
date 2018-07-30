@@ -90,7 +90,7 @@
 |lab086|排序算法|
 |lab087|golang-geo，Geographical calculations in Go|
 |lab088|简单几何计算|
-|lab089|surfer，henrylee2cn/surfer|
+|lab089|surfer|github.com/henrylee2cn/surfer|
 |lab090|gorequest，Simplified HTTP client|
 |lab091|pony，tidwall/pony|
 |lab092|go-bindata|
