@@ -1,5 +1,5 @@
-### gorequest，Simplified HTTP client
-`https://github.com/parnurzeal/gorequest`
+# gorequest
+安装:`https://github.com/parnurzeal/gorequest`
 
 |实验|简介|说明|
 |---|---|---|
