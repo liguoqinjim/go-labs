@@ -1,16 +1,15 @@
 package main
 
 import (
-	"fmt"
 	"os"
+	"log"
 )
 
 func main() {
 	//os.Getwd
 	pwd, err := os.Getwd()
 	if err != nil {
-		fmt.Println(err)
-		os.Exit(1)
+		log.Fatalln(err)
 	}
-	fmt.Println(pwd)
+	log.Println(pwd)
 }
