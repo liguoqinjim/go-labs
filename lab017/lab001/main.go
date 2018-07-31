@@ -1,20 +1,31 @@
-package lab001
+package main
 
 import (
-	"fmt"
 	"regexp"
+	"log"
 )
 
 func main() {
-	match, _ := regexp.MatchString("p([a-z]+)ch", "peach")
-	fmt.Println(match)
+	//判断是否匹配正则表达式
+	matched, err := regexp.MatchString("p([a-z]+)ch", "peach")
+	if err != nil {
+		log.Fatalln(err)
+	}
+	log.Println(matched)
 
-	r, _ := regexp.Compile("p([a-z]+)ch")
-	fmt.Println(r.MatchString("peach"))
+	//判断是否匹配正则表达式
+	r, err := regexp.Compile("p([a-z]+)ch")
+	if err != nil {
+		log.Fatalln(err)
+	}
+	log.Println(r.MatchString("peach"))
 
-	fmt.Println(r.FindString("peach punch"))
+	//找出第一个匹配的值
+	log.Println(r.FindString("peach punch"))
 
-	fmt.Println(r.FindStringSubmatch("peach punch"))
+	//
+	log.Println(r.FindStringSubmatch("peach punch"))
 
-	fmt.Println(r.FindAllString("peach punch pinch", -1))
+	//找出所有匹配的值
+	log.Println(r.FindAllString("peach punch pinch", -1))
 }
