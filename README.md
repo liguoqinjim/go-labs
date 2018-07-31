@@ -147,3 +147,4 @@
 |lab143|触发IFTTT的webhooks|
 |lab144|ini|https://github.com/go-ini/ini|
 |lab145|go-cache|github.com/patrickmn/go-cache|
+|lab146|gpinyin|github.com/jmz331/gpinyin|
