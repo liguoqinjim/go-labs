@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Go To-Do list</title>
+</head>
+<body>
+<table>
+{{ range . }}
+    <tr>
+        <td>{{index . 0 }}</td>
+        <td>{{index . 1 }}</td>
+        <td>{{index . 2 }}</td>
+        <td>{{index . 3 }}</td>
+        <td>{{index . 4 }}</td>
+        <td>{{index . 5 }}</td>
+    </tr>
+{{ end }}
+</table>
+</body>
+</html>
