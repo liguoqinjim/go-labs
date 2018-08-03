@@ -38,9 +38,13 @@ func main() {
 	clients = append(clients, &Client{Id: "14", Name: "James", Age: "32"})
 	clients = append(clients, &Client{Id: "15", Name: "Danny"})
 	csvContent, err := gocsv.MarshalString(&clients) // Get all clients as CSV string
-	//err = gocsv.MarshalFile(&clients, clientsFile) // Use this to save the CSV back to the file
 	if err != nil {
-		panic(err)
+		log.Fatalf("gocsv.MarshalString error:%v", err)
 	}
 	log.Println(csvContent) // Display all clients as CSV string
+
+	err = gocsv.MarshalFile(&clients, clientsFile) // Use this to save the CSV back to the file
+	if err != nil {
+		log.Fatalf("gocsv.MarshalFile error:%v", err)
+	}
 }
