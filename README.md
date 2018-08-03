@@ -5,7 +5,7 @@
 |lab001|package flag的使用|
 |lab002|解析json，marshal和unmarshal|
 |lab003|解析json，NewDecoder和NewEncoder|
-|lab004|解析json，go-simplejson|github.com/bitly/go-simplejson|
+|lab004|解析json，go-simplejson|https://github.com/bitly/go-simplejson|
 |lab005|得到程序本身的路径|
 |lab006|读取文件，ioutil|
 |lab007|读取文件，os.File|
@@ -90,8 +90,8 @@
 |lab086|排序算法|
 |lab087|golang-geo，Geographical calculations in Go|
 |lab088|简单几何计算|
-|lab089|surfer|github.com/henrylee2cn/surfer|
-|lab090|gorequest，Simplified HTTP client|github.com/parnurzeal/gorequest|
+|lab089|surfer|https://github.com/henrylee2cn/surfer|
+|lab090|gorequest，Simplified HTTP client|https://github.com/parnurzeal/gorequest|
 |lab091|pony，tidwall/pony|
 |lab092|go-bindata|
 |lab093|文件夹相关|
@@ -134,17 +134,17 @@
 |lab130|gods，Go Data Structures|
 |lab131|url.ParseQuery|
 |lab132|ping的几个库||
-|lab133|tail|github.com/hpcloud/tail|
-|lab134|go-zookeeper|github.com/samuel/go-zookeeper|
-|lab135|monkey|github.com/bouk/monkey，猴子补丁|
-|lab136|gomock|github.com/golang/mock/gomock|
+|lab133|tail|https://github.com/hpcloud/tail|
+|lab134|go-zookeeper|https://github.com/samuel/go-zookeeper |
+|lab135|monkey，猴子补丁|https://github.com/bouk/monkey|
+|lab136|gomock|https://github.com/golang/mock/|
 |lab137|etcd|github.com/coreos/etcd/tree/master/clientv3，etcd v3|
-|lab138|go.geo|github.com/paulmach/go.geo|
-|lab139|etree|github.com/beevik/etree，xml解析|
-|lab140|colly|github.com/gocolly/colly|
-|lab141|go-bindata-assetfs|github.com/elazarl/go-bindata-assetfs/|
+|lab138|go.geo|https://github.com/paulmach/go.geo|
+|lab139|etree，xml解析|https://github.com/beevik/etree|
+|lab140|colly|https://github.com/gocolly/colly|
+|lab141|go-bindata-assetfs|https://github.com/elazarl/go-bindata-assetfs/|
 |lab142|logstash_tcp|测试给logstash的input的tcp发送数据|
 |lab143|触发IFTTT的webhooks|
 |lab144|ini|https://github.com/go-ini/ini|
-|lab145|go-cache|github.com/patrickmn/go-cache|
-|lab146|gpinyin|github.com/jmz331/gpinyin，可以繁体简体转换和转换到拼音|
+|lab145|go-cache|https://github.com/patrickmn/go-cache|
+|lab146|gpinyin|https://github.com/jmz331/gpinyin ，可以繁体简体转换和转换到拼音|
