@@ -26,25 +26,6 @@ func main() {
 		log.Fatalf("goscv.UnmarshalFile error:%v", err)
 	}
 	for _, client := range clients {
-		log.Println("Hello", client.Name)
-	}
-
-	if _, err := clientsFile.Seek(0, 0); err != nil { // Go to the start of the file
-		log.Fatalf("clientsFile.Seek error:%v", err)
-	}
-
-	clients = append(clients, &Client{Id: "12", Name: "John", Age: "21"}) // Add clients
-	clients = append(clients, &Client{Id: "13", Name: "Fred"})
-	clients = append(clients, &Client{Id: "14", Name: "James", Age: "32"})
-	clients = append(clients, &Client{Id: "15", Name: "Danny"})
-	csvContent, err := gocsv.MarshalString(&clients) // Get all clients as CSV string
-	if err != nil {
-		log.Fatalf("gocsv.MarshalString error:%v", err)
-	}
-	log.Println(csvContent) // Display all clients as CSV string
-
-	err = gocsv.MarshalFile(&clients, clientsFile) // Use this to save the CSV back to the file
-	if err != nil {
-		log.Fatalf("gocsv.MarshalFile error:%v", err)
+		log.Printf("Id[%s],Name[%s],Age[%s]", client.Id, client.Name, client.Age)
 	}
 }
