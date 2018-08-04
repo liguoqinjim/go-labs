@@ -7,6 +7,7 @@
 |lab003|ParseFiles|
 |lab004|ParseGlob|
 |lab005|遍历slice|{{index . 3}}|
+|lab006|遍历map|
 
 ## 注意点
  - `text/template`和`html/template`差不多，但是在用于网页的时候`html/template`会更安全，可以防止代码注入

@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Go To-Do list</title>
+</head>
+<body>
+<table>
+{{ range $key, $value := . }}
+    <li><strong>{{ $key }}</strong>: {{ $value }}</li>
+{{ end }}
+</table>
+</body>
+</html>
