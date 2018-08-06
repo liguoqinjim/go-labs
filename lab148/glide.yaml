@@ -1,0 +1,3 @@
+package: lab148
+import:
+- package: gopkg.in/russross/blackfriday.v2

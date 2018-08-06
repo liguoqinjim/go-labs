@@ -149,3 +149,4 @@
 |lab145|go-cache|https://github.com/patrickmn/go-cache|
 |lab146|gpinyin|https://github.com/jmz331/gpinyin ，可以繁体简体转换和转换到拼音|
 |lab147|gocsv，csv库|https://github.com/gocarina/gocsv|
+|lab148|blackfriday，a markdown processor for Go|https://github.com/russross/blackfriday|
