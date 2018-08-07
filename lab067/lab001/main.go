@@ -1,16 +1,21 @@
 package main
 
 import (
-	"fmt"
 	"log"
 
 	"github.com/PuerkitoBio/goquery"
+	"net/http"
 )
 
 func ExampleScrape() {
-	doc, err := goquery.NewDocument("http://metalsucks.net")
+	resp, err := http.Get("http://metalsucks.net")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("http.Get error:%v", err)
+	}
+
+	doc, err := goquery.NewDocumentFromReader(resp.Body)
+	if err != nil {
+		log.Fatalf("goquery.NewDocumentFromReader error:%v", err)
 	}
 
 	// Find the review items
@@ -18,7 +23,7 @@ func ExampleScrape() {
 		// For each item found, get the band and title
 		band := s.Find("a").Text()
 		title := s.Find("i").Text()
-		fmt.Printf("Review %d: %s - %s\n", i, band, title)
+		log.Printf("Review %d: %s - %s\n", i, band, title)
 	})
 }
 
