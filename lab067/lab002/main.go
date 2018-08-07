@@ -20,14 +20,21 @@ func main() {
 	}
 	log.Println("doc.Length()=", doc.Length())
 	log.Println("doc.Children().Length()=", doc.Children().Length())
-	log.Println(doc.Html())
-	log.Println(doc.Children().Text())
+	h, err := doc.Html()
+	if err != nil {
+		log.Fatalf("doc.Html() error:%v", err)
+	}
+	log.Println("doc.Html()=", h)
 
 	log.Println("body")
 	body := doc.Find("body")
-	log.Println(body.Html())
-	log.Println(body.Length())
-	log.Println(body.Children().Length())
+	hb, err := body.Html()
+	if err != nil {
+		log.Fatalf("body.Html() error:%v", err)
+	}
+	log.Println("body.Html()=", hb)
+	log.Println("body.Length()=", body.Length())
+	log.Println("body.Children().Length()=", body.Children().Length())
 	for i := 0; i < body.Children().Length(); i++ {
 		s := body.Children().Get(i)
 		log.Println(s.Data)
@@ -35,4 +42,5 @@ func main() {
 	body.Children().Each(func(i int, selection *goquery.Selection) {
 		log.Println(selection.Html())
 	})
+	log.Println(goquery.OuterHtml(body))
 }
