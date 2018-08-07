@@ -4,4 +4,4 @@
 |实验|简介|说明|
 |---|---|---|
 |lab001|demo|Find()要是没有找到，得到的node也不会是nil，只会是Length()为0|
-|lab002|demo||
+|lab002|demo|解析单个标签，如`<strong>hello</strong>`|
