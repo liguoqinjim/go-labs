@@ -1,3 +1,0 @@
-package: lab067/lab001
-import:
-- package: github.com/PuerkitoBio/goquery

@@ -68,7 +68,7 @@
 |lab064|mgo，MongoDB driver|
 |lab065|lxn/walk，A Windows GUI toolkit|
 |lab066|net/http client相关|
-|lab067|goquery|
+|lab067|goquery|https://github.com/PuerkitoBio/goquery|
 |lab068|对象池 sync.Pool|
 |lab069|funny/slab|
 |lab070|golang的值传递和引用传递|
