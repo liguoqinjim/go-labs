@@ -1,4 +1,4 @@
-### string和byte array转换
+# string和[]byte转换
 
-#### 运行结果
-![Imgur](http://i.imgur.com/07Hv2qU.png)
+## 运行结果
+![Imgur](https://i.imgur.com/DdJgSLT.png)

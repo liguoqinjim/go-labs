@@ -1,21 +1,20 @@
 package main
 
 import (
-	"fmt"
 	"reflect"
+	"log"
 )
 
 func main() {
-	//string to byte array
-	a := "helloworld"
-	fmt.Println("a.type=", reflect.TypeOf(a))
+	//string -> []byte
+	a := "Hello World"
+	log.Println("a.type=", reflect.TypeOf(a))
 	b := []byte(a)
-	fmt.Println("b.type=", reflect.TypeOf(b))
-	fmt.Printf("%s\n", b)
+	log.Println("b.type=", reflect.TypeOf(b))
+	log.Println("b=", b)
 
-	//byte array to string
-
+	//[]byte -> string
 	c := string(b[:])
-	fmt.Println("c.type=", reflect.TypeOf(c))
-	fmt.Println(c)
+	log.Println("c.type=", reflect.TypeOf(c))
+	log.Println("c=", c)
 }
