@@ -3,15 +3,10 @@ package main
 import (
 	"github.com/onrik/logrus/filename"
 	log "github.com/sirupsen/logrus"
+	"fmt"
 )
 
 func init() {
-	//log.SetFormatter(&log.JSONFormatter{})
-
-	//设置output
-	//log.SetOutput(os.Stdout)
-
-	//设置最低的日志等级，低于这个等级会被忽略
 	log.SetLevel(log.DebugLevel)
 }
 
@@ -29,16 +24,14 @@ func main() {
 	Test2()
 }
 
+func MyLog(format string, detail ...interface{}) {
+	log.Info(fmt.Sprintf(format, detail...))
+}
+
 func Test1() {
-	log.WithFields(log.Fields{
-		"omg":    true,
-		"number": 122,
-	}).Warn("The group's number increased tremendously!")
+	MyLog("Test:%d", 1)
 }
 
 func Test2() {
-	log.WithFields(log.Fields{
-		"omg":    true,
-		"number": 100,
-	}).Error("The ice breaks!")
+	MyLog("Test:%d", 2)
 }

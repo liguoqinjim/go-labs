@@ -37,7 +37,7 @@
 |lab033|gops，A tool to list and diagnose Go processes currently running on your system|
 |lab034|Golang比较两个slice是否相等|
 |lab035|包依赖管理|
-|lab036|logrus，日志库|
+|lab036|logrus，日志库|https://github.com/sirupsen/logrus|
 |lab037|funny/link|
 |lab038|protobuf|
 |lab039|内存数据库事务demo|
