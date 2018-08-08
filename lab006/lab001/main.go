@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"io/ioutil"
 	"log"
 )
@@ -9,7 +8,7 @@ import (
 func main() {
 	data, err := ioutil.ReadFile("test.json")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("ioutil.ReadFile error:%v", err)
 	}
-	fmt.Printf("data = %s\n", data)
+	log.Printf("data = %s\n", data)
 }

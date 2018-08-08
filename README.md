@@ -7,9 +7,7 @@
 |lab003|解析json，NewDecoder和NewEncoder|
 |lab004|解析json，go-simplejson|https://github.com/bitly/go-simplejson|
 |lab005|得到程序本身的路径|
-|lab006|读取文件，ioutil|
-|lab007|读取文件，os.File|
-|lab008|读取文件，bufio|
+|lab006|读取文件|
 |lab009|mysql，go-sql-driver|
 |lab010|写文件，ioutil|
 |lab011|写文件，os.File|
