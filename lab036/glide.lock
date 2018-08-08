@@ -1,16 +1,18 @@
 hash: dcf92675b661f2c90846b1b123bc9b96e90151e47d7efe119b1770453cc90796
-updated: 2018-03-07T10:50:21.4319479+08:00
+updated: 2018-08-08T11:34:51.2172584+08:00
 imports:
 - name: github.com/onrik/logrus
-  version: 6a64e23a4923a8d0d4db2806dcf3e55af1e48f61
+  version: ca0a758702be2ae04725ba88dcd27a71949faf33
+  subpackages:
+  - filename
 - name: github.com/sirupsen/logrus
-  version: f4ee69125072b22721efbe639bd0da9c9d19b8cc
+  version: d329d24db4313262a3b0a24d8aeb1dc4bd294fb0
 - name: golang.org/x/crypto
-  version: 85f98707c97e11569271e4d9b3d397e079c4f4d0
+  version: f027049dab0ad238e394a753dba2d14753473a04
   subpackages:
   - ssh/terminal
 - name: golang.org/x/sys
-  version: dd2ff4accc098aceecb86b36eaa7829b2a17b1c9
+  version: acbc56fc7007d2a01796d5bde54f39e3b3e95945
   subpackages:
   - unix
   - windows
