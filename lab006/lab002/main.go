@@ -1,40 +1,38 @@
 package main
 
 import (
-	"fmt"
 	"io"
 	"log"
 	"os"
 )
 
-func checkError(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
-
 func main() {
 	//open a file
 	f, err := os.Open("test.json")
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("os.Open error:%v", err)
 	}
-	//close a file
 	defer f.Close()
 
 	//读取5个字节
 	b1 := make([]byte, 5)
 	n1, err := f.Read(b1)
-	checkError(err)
-	fmt.Printf("%d bytes: %s\n", n1, string(b1))
+	if err != nil {
+		log.Fatalf("f.Read error:%v", err)
+	}
+	log.Printf("%d bytes: %s\n", n1, string(b1))
 
 	//偏移位置，但是Read方法也会把游标移动到读取完的位置
 	o2, err := f.Seek(6, 0)
-	checkError(err)
+	if err != nil {
+		log.Fatalf("f.Seek error:%v", err)
+	}
 	b2 := make([]byte, 2)
 	n2, err := f.Read(b2)
-	checkError(err)
-	fmt.Printf("%d bytes @ %d: %s\n", n2, o2, string(b2))
+	if err != nil {
+		log.Fatalf("f.Read error:%v", err)
+	}
+	log.Printf("%d bytes @ %d: %s\n", n2, o2, string(b2))
 
 	//归位到0
 	f.Seek(0, 0)
@@ -44,11 +42,13 @@ func main() {
 	for {
 		n, err := f.Read(buf)
 		if n > 0 {
-			fmt.Print(string(buf[:n]))
+			log.Print(string(buf[:n]))
 		}
 		if err == io.EOF {
 			break
 		}
-		checkError(err)
+		if err != nil {
+			log.Fatalf("f.Read error:%v", err)
+		}
 	}
 }

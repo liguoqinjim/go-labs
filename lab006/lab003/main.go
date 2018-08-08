@@ -2,27 +2,22 @@ package main
 
 import (
 	"bufio"
-	"fmt"
 	"io"
 	"os"
+	"log"
 )
-
-func checkError(e error) {
-	if e != nil {
-		panic(e)
-	}
-}
 
 func main() {
 	f, err := os.Open("test.json")
-	checkError(err)
+	if err != nil {
+		log.Fatalf("os.Open error:%v", err)
+	}
 	defer f.Close()
 
 	buf := bufio.NewReaderSize(f, 0)
-
 	for {
 		line, err := buf.ReadBytes('\n')
-		fmt.Printf("%s", line)
+		log.Printf("%s", line)
 
 		if err == io.EOF {
 			break
