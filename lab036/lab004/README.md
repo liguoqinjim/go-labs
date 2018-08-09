@@ -4,6 +4,7 @@ logrus本身没有方法可以打印行号，这里要使用hook才行。目前�
 ## 注意点
  - 我们可以控制hook的skip参数，也就是hook里面调用runtime.caller的参数
  - hook里面的逻辑是一旦runtime.caller的file不是logrus，就退出逻辑了。如果有需要的话，是要自己改源码的
+ - 安装：`go get -u -v github.com/onrik/logrus`
 
 ## 运行结果
 ![Imgur](https://i.imgur.com/wk1NS7M.png)
