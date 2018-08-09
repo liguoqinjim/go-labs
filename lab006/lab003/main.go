@@ -14,6 +14,7 @@ func main() {
 	}
 	defer f.Close()
 
+	//按行读取
 	buf := bufio.NewReaderSize(f, 0)
 	for {
 		line, err := buf.ReadBytes('\n')
