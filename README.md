@@ -80,7 +80,7 @@
 |lab078|map和slice的内存和速度分析|
 |lab079|interface|
 |lab080|golang的label(标签)|
-|lab081|time|
+|lab081|time，时间|时间戳，时间格式的一些操作|
 |lab082|得到goroutine id|
 |lab083|elastic，Elasticsearch client for Go|
 |lab084|otto，A JavaScript interpreter in Go|
