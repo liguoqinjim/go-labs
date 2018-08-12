@@ -10,5 +10,11 @@ func main() {
 		})
 	})
 
+	//得到路径里的参数
+	app.Get("/user/{name}", func(ctx iris.Context) {
+		name := ctx.Params().Get("name")
+		ctx.Writef("Hello %s", name)
+	})
+
 	app.Run(iris.Addr(":8080"))
 }
