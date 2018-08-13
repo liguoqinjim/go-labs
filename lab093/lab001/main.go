@@ -12,6 +12,10 @@ func main() {
 		return
 	}
 	for _, v := range dir {
-		log.Println(v.Name())
+		if v.IsDir() {
+			log.Printf("文件夹:%s", v.Name())
+		} else {
+			log.Println(v.Name())
+		}
 	}
 }

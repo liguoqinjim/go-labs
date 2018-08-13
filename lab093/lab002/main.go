@@ -6,18 +6,35 @@ import (
 )
 
 func main() {
-	var path string
-	if os.IsPathSeparator('\\') { //前边的判断是否是系统的分隔符
-		path = "\\"
+	//选择路径分割符，windows和linux不一样
+	var pathSeparator string
+	if os.IsPathSeparator('\\') { //windows
+		pathSeparator = "\\"
 	} else {
-		path = "/"
+		pathSeparator = "/"
 	}
-	log.Println(path)
+	log.Println("pathSeparator=", pathSeparator)
 
-	dir, _ := os.Getwd()                        //当前的目录
-	err := os.Mkdir(dir+path+"md", os.ModePerm) //在当前目录下生成md目录
+	//当前路径
+	pwd, err := os.Getwd()
 	if err != nil {
-		log.Println(err)
+		log.Fatalf("os.Getwd error:%v", err)
 	}
-	log.Println("创建目录" + dir + path + "md成功")
+	log.Println("pwd=", pwd)
+
+	//创建文件夹
+	newDir := pwd + pathSeparator + "md"
+	err = os.Mkdir(newDir, os.ModePerm) //在当前目录下生成md目录
+	if err != nil {
+		log.Fatalf("os.Mkdir error:%v", err)
+	}
+	log.Printf("mkdir:%s", newDir)
+
+	//创建多级目录
+	newDir2 := pwd + pathSeparator + "a" + pathSeparator + "b"
+	err = os.MkdirAll(newDir2, os.ModePerm) //生成多级目录
+	if err != nil {
+		log.Fatalf("os.MkdirAll error:%v", err)
+	}
+	log.Printf("mkdirAll:%s", newDir2)
 }

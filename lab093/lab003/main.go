@@ -1,15 +1,34 @@
 package main
 
 import (
-	"log"
 	"os"
+	"path/filepath"
+	"log"
 )
 
-func main() {
-	dir, _ := os.Getwd()
-	err := os.MkdirAll(dir+"/a/b/c", os.ModePerm) //生成多级目录
+func visit(path string, f os.FileInfo, err error) error {
 	if err != nil {
-		log.Println(err)
+		return err
 	}
-	log.Println("创建文件夹" + dir + "/a/b/c成功")
+
+	if f.IsDir() {
+		log.Printf("visited dir: %s", path)
+	} else {
+		log.Printf("visited: %s", path)
+	}
+	return nil
+}
+
+func main() {
+	pwd, err := os.Getwd()
+	if err != nil {
+		log.Fatalf("os.Getwd error:%v", err)
+	}
+	log.Printf("pwd=%s", pwd)
+
+	//遍历路径
+	err = filepath.Walk(pwd, visit)
+	if err != nil {
+		log.Printf("filepath.Walk error:%v", err)
+	}
 }
