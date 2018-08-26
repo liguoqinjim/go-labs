@@ -1,4 +1,4 @@
-### 示例
+# 生成xml
 生成和下面例子一样的xml
 
 ```
@@ -20,5 +20,5 @@
 </config>
 ```
 
-#### 运行结果
+## 运行结果
 ![Imgur](https://i.imgur.com/9BxCIbd.png)
