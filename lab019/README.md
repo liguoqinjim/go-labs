@@ -1,5 +1,7 @@
-### 解析xml
-xml->struct
+# 解析xml
 
-#### 运行结果
-![Imgur](http://i.imgur.com/cc0k9zk.png)
+|实验|简介|说明|
+|---|---|---|
+|lab001|unmarshal，xml->struct|
+|lab002|解析xml，struct->xml|
+|lab003|解析xml，struct->xml|
