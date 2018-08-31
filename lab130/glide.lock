@@ -1,6 +1,11 @@
 hash: 65aeaeee80fc950e7963093668e37e45c0850d2e799b8c1f4e00879dce8ffd1b
-updated: 2018-04-09T10:32:14.3263029+08:00
+updated: 2018-08-31T11:02:41.8669802+08:00
 imports:
 - name: github.com/emirpasic/gods
-  version: b2394dfbb6314eeb616db55d1e01928f287da4b4
+  version: bba54c718c4e39e4db35f73e0c660df44a4de4cd
+  subpackages:
+  - containers
+  - lists
+  - lists/arraylist
+  - utils
 testImports: []

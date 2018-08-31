@@ -127,7 +127,7 @@
 |lab127|boltdb|
 |lab128|gorm|
 |lab129|sync.Map|
-|lab130|gods，Go Data Structures|
+|lab130|gods，Go Data Structures|https://github.com/emirpasic/gods|
 |lab131|url.ParseQuery|
 |lab132|ping的几个库||
 |lab133|tail|https://github.com/hpcloud/tail|
