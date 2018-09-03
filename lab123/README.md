@@ -1,4 +1,4 @@
-# agouti，github.com/sclevine/agouti
+# agouti，A WebDriver client and acceptance testing library for Go
 安装：`go get -u -v github.com/sclevine/agouti`
 
 |实验|简介|说明|
@@ -9,4 +9,4 @@
 |lab004|chrome模拟点击|
 |lab005|设置cookie，读取cookie|
 |lab006|设置cookie，设置不一样的domain|
-|lab007|使用phantomjs|
+|lab007|phantomjs使用代理|

@@ -43,4 +43,17 @@ func main() {
 			log.Println("page.SetCookie success")
 		}
 	}
+
+	if err := page.Navigate("http://www.baidu.com/"); err != nil {
+		log.Fatalf("Failed to navigate:%v", err)
+	}
+
+	//读取cookies
+	cookiesPage, err := page.GetCookies()
+	if err != nil {
+		log.Printf("page.GetCookies error:%v", err)
+	}
+	for n, v := range cookiesPage {
+		log.Printf("cookiesPage[%d],%+v", n, v)
+	}
 }
