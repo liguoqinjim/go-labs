@@ -1,8 +1,8 @@
-### agouti，github.com/sclevine/agouti
+# agouti，github.com/sclevine/agouti
 安装：`go get -u -v github.com/sclevine/agouti`
 
-|实验|简介|
-|---|---|
+|实验|简介|说明|
+|---|---|---|
 |lab001|example_phantomjs|
 |lab002|example_chrome|
 |lab003|example_firefox(暂时不能用)|
