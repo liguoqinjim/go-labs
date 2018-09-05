@@ -10,3 +10,5 @@
 |lab005|设置cookie，读取cookie|
 |lab006|设置cookie，设置不一样的domain|
 |lab007|phantomjs使用代理|
+|lab008|chrome点击后等待界面加载完毕|
+|lab009|iframe|
