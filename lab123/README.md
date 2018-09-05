@@ -12,3 +12,4 @@
 |lab007|phantomjs使用代理|
 |lab008|chrome点击后等待界面加载完毕|
 |lab009|iframe|
+|lab010|tab页切换|未完成todo|
