@@ -30,7 +30,19 @@ func main() {
 		log.Fatalf("Failed to navigate:%v", err)
 	}
 
+	//time.Sleep(time.Second * 10)
+
+	cnt, _ := page.WindowCount()
+	log.Println("window cnt=", cnt)
+
 	if err := page.NextWindow(); err != nil {
 		log.Fatalf("NextWindow error:%v", err)
 	}
+
+	page2, err := agouti.JoinPage()
+	if err != nil {
+		log.Fatalf("NewPage error:%v", err)
+	}
+	_ = page2
+
 }

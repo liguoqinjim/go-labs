@@ -26,8 +26,6 @@ func main() {
 		log.Fatalf("Failed to navigate:%v", err)
 	}
 
-	time.Sleep(time.Second * 3)
-
 	f := page.Find("#intro > iframe")
 	if err := f.SwitchToFrame(); err != nil {
 		log.Fatalf("f.SwitchToFrame error:%v", err)
