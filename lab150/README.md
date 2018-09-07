@@ -5,3 +5,9 @@
 |---|---|---|
 |lab001|demo||
 |lab002|tutorial|
+
+## NOTICE
+ - func (router *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+ - rp.Describe("router: %v", app.Router.BuildRouter(app.ContextPool, routerHandler, app.APIBuilder))
+ - unc (h *routerHandler) HandleRequest(ctx context.Context) {
+ - func (nodes Nodes) findChild(path string, params []string) (*node, []string) {

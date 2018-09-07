@@ -20,6 +20,7 @@ func main() {
 	})
 
 	//不会处理(/user/tom/)
+	//POST http://localhost:8080/user/tom/swim
 	app.Post("/user/{name:string}/{action:path}", func(ctx iris.Context) {
 		name := ctx.Params().Get("name")
 		action := ctx.Params().Get("action")
@@ -38,6 +39,7 @@ func main() {
 	})
 
 	//form表单
+	//POST http://localhost:8080/form_post
 	app.Post("/form_post", func(ctx iris.Context) {
 		message := ctx.FormValue("message")
 		nick := ctx.FormValueDefault("nick", "anonymous")
@@ -50,6 +52,7 @@ func main() {
 	})
 
 	//得到referer
+	//GET http://localhost:8080/referer
 	app.Get("/referer", func(ctx context.Context) {
 		r := ctx.GetReferrer()
 

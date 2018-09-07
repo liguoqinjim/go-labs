@@ -147,6 +147,6 @@
 |lab147|gocsv，csv库|https://github.com/gocarina/gocsv|
 |lab148|blackfriday，a markdown processor for Go|https://github.com/russross/blackfriday|
 |lab149|string相关||
-|lab150|iris|https://github.com/kataras/iris|
+|lab150|iris，web framework|https://github.com/kataras/iris|
 |lab151|joy4，视频音频|https://github.com/nareix/joy4|
 |lab152|sego，分词|https://github.com/huichen/sego|

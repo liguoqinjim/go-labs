@@ -2,13 +2,13 @@ package main
 
 import (
 	"github.com/kataras/iris"
-	"github.com/kataras/iris/middleware/recover"
 	"github.com/kataras/iris/middleware/logger"
+	"github.com/kataras/iris/middleware/recover"
 )
 
 func main() {
 	app := iris.New()
-	app.Logger().SetLevel("debug")
+	//app.Logger().SetLevel("debug")
 
 	//middleware
 	app.Use(recover.New())
