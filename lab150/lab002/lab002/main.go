@@ -6,7 +6,7 @@ import (
 
 //用来绑定的struct
 type User struct {
-	Username  string `json:"username"`
+	Username  string `json:"username" form:"username"`
 	Firstname string `json:"firstname"`
 	Lastname  string `json:"lastname"`
 	City      string `json:"city"`
@@ -60,9 +60,13 @@ func main() {
 	//GET http://localhost:8080/profile/anytypeofstring
 	app.Get("/profile/{username:string}", profileUsername)
 
+	//app.Party
 	userRoutes := app.Party("/users", logThisMiddleware)
 	{
+		//GET http://localhost:8080/users/1
 		userRoutes.Get("/{id:int min(1)}", getUserById)
+
+		//POST http://localhost:8080/users/create
 		userRoutes.Post("/create", createUser)
 	}
 
@@ -100,7 +104,6 @@ func getUserById(ctx iris.Context) {
 }
 
 func createUser(ctx iris.Context) {
-	//var user User
 	user := User{}
 	err := ctx.ReadForm(&user)
 	if err != nil {
