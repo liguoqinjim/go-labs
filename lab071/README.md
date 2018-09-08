@@ -11,6 +11,7 @@
 
 ## 注意点
  - `text/template`和`html/template`差不多，但是在用于网页的时候`html/template`会更安全，可以防止代码注入
+ - `html/template`会转义字符，比如+号会改成`&#43:`，要是不想转义就使用`text/template`
 
 
 ## 参考资料
