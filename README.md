@@ -150,3 +150,4 @@
 |lab150|iris，web framework|https://github.com/kataras/iris|
 |lab151|joy4，视频音频|https://github.com/nareix/joy4|
 |lab152|sego，分词|https://github.com/huichen/sego|
+|lab153|selenium，Selenium/Webdriver client for Go|https://github.com/tebeka/selenium|
