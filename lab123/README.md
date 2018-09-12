@@ -11,4 +11,4 @@
 |lab006|设置cookie，设置不一样的domain|
 |lab007|phantomjs使用代理|
 |lab009|iframe|
-|lab010|tab页切换|暂时不能用|
+|lab010|得到图片，不是通过取得src的方式||
