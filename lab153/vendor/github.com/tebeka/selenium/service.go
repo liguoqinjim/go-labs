@@ -224,7 +224,8 @@ func (s *Service) start(port int) error {
 
 	for i := 0; i < 30; i++ {
 		time.Sleep(time.Second)
-		resp, err := http.Get(s.addr + "/status")
+		//resp, err := http.Get(s.addr + "/status")
+		resp, err := http.Get(s.addr)
 		if err == nil {
 			resp.Body.Close()
 			switch resp.StatusCode {
