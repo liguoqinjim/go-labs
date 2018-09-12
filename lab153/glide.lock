@@ -1,6 +1,13 @@
 hash: 1d1cbe2b05c3ccca461d75c9fc749113d7d3eaa58e3c39c72f89d368de5106a2
-updated: 2018-09-11T23:47:37.6414226+08:00
+updated: 2018-09-12T11:03:44.6124833+08:00
 imports:
+- name: github.com/blang/semver
+  version: 3c1074078d32d767e08ab2c8564867292da86926
 - name: github.com/tebeka/selenium
   version: a49cf4b98a36c2b21b1ccb012852bd142d5fc04a
+  subpackages:
+  - chrome
+  - firefox
+  - internal/zip
+  - log
 testImports: []
