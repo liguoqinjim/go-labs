@@ -1,14 +1,20 @@
-hash: dcf92675b661f2c90846b1b123bc9b96e90151e47d7efe119b1770453cc90796
-updated: 2018-09-17T16:14:15.6755275+08:00
+hash: b5ca565c8b336883a15f669dc69235478c130ef3b62dd4249b64fec596feb6bd
+updated: 2018-09-17T16:44:00.8092197+08:00
 imports:
 - name: github.com/konsorten/go-windows-terminal-sequences
   version: b729f2633dfe35f4d1d8a32385f6685610ce1cb5
+- name: github.com/mattn/go-colorable
+  version: efa589957cd060542a26d2dd7832fd6a6c6c3ade
+- name: github.com/mattn/go-isatty
+  version: 3fb116b820352b7f0c281308a4d6250c22d94e27
 - name: github.com/onrik/logrus
   version: ca0a758702be2ae04725ba88dcd27a71949faf33
   subpackages:
   - filename
 - name: github.com/sirupsen/logrus
   version: d23a0f20d429b5da960216daca3b37e075cbdcd1
+- name: github.com/snowzach/rotatefilehook
+  version: 2f64f265f58cb742f59d68b12f956c9296746e2d
 - name: golang.org/x/crypto
   version: 0e37d006457bf46f9e6692014ba72ef82c33022c
   subpackages:
@@ -18,4 +24,6 @@ imports:
   subpackages:
   - unix
   - windows
+- name: gopkg.in/natefinch/lumberjack.v2
+  version: a96e63847dc3c67d17befa69c303767e2f84e54f
 testImports: []
