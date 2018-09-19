@@ -20,6 +20,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to open page:%v", err)
 	}
+	if err := page.Size(1024, 768); err != nil {
+		log.Fatalf("page.Size error:%v", err)
+	}
 
 	//打开url
 	if err := page.Navigate("http://httpbin.org/get"); err != nil {
@@ -27,7 +30,7 @@ func main() {
 	}
 
 	//截图
-	if err := page.Screenshot("E:/Workspace/go-labs/src/lab123/lab011/tmp/phantomjs_baidu.jpg"); err != nil {
+	if err := page.Screenshot("E:/Workspace/go-labs/src/lab123/lab011/tmp/phantomjs.jpg"); err != nil {
 		log.Fatalf("Failed to screenshot:%v", err)
 	}
 }
