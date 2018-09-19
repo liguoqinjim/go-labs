@@ -12,3 +12,4 @@
 |lab007|phantomjs使用代理|
 |lab009|iframe|
 |lab010|得到图片，不是通过取得src的方式||
+|lab011|操作phantomjs|
