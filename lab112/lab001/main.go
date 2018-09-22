@@ -7,6 +7,7 @@ import (
 	"time"
 )
 
+//给response添加cookie
 func setCookieHandle(w http.ResponseWriter, req *http.Request) {
 	//设置到期时间
 	c1 := http.Cookie{
@@ -27,6 +28,7 @@ func setCookieHandle(w http.ResponseWriter, req *http.Request) {
 	http.SetCookie(w, &c2)
 }
 
+//得到request的cookie
 func getCookieHandle(w http.ResponseWriter, req *http.Request) {
 	c, err := req.Cookie("flash")
 	if err != nil {

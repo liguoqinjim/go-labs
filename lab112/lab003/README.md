@@ -1,0 +1,2 @@
+# 本地保存cookie并读取
+我们在使用http client的时候，可能会需要保存cookie，以便之后的请求使用

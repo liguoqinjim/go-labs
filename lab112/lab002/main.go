@@ -13,6 +13,7 @@ func setCookieHandle(w http.ResponseWriter, req *http.Request) {
 	http.SetCookie(w, &c2)
 }
 
+//删除cookie
 func delCookieHandle(w http.ResponseWriter, req *http.Request) {
 	c, err := req.Cookie("key1")
 	if err != nil {
