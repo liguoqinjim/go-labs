@@ -152,3 +152,4 @@
 |lab152|sego，分词|https://github.com/huichen/sego|
 |lab153|selenium，Selenium/Webdriver client for Go|https://github.com/tebeka/selenium|
 |lab154|image包||
+|lab155|godoc|
