@@ -153,3 +153,4 @@
 |lab153|selenium，Selenium/Webdriver client for Go|https://github.com/tebeka/selenium|
 |lab154|image包||
 |lab155|godoc|
+|lab156|webloop|https://github.com/sourcegraph/webloop|
