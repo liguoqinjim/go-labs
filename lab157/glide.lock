@@ -1,0 +1,6 @@
+hash: 339ef6d8a2223dcf507ee83f0e19991672bf1e02aa0cc730b1e4eb71599cc9ba
+updated: 2018-10-08T12:52:11.080853+08:00
+imports:
+- name: github.com/rockisch/appigo
+  version: 006e347031228386e7407f5efa8971ccf0b354f3
+testImports: []
