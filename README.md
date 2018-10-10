@@ -154,4 +154,5 @@
 |lab154|image包||
 |lab155|godoc|
 |lab156|webloop|https://github.com/sourcegraph/webloop|
-|lab157|appigo，appium的golang版本|https://github.com/rockisch/appigo
+|lab157|appigo，appium的golang版本|https://github.com/rockisch/appigo|
+|lab158|gzip|

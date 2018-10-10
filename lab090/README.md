@@ -10,3 +10,4 @@
 |lab005|使用代理|http和ss代理|
 |lab006|下载图片||
 |lab007|get参数测试|
+|lab008|gzip|
