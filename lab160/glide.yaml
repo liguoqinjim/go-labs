@@ -1,0 +1,3 @@
+package: lab160
+import:
+- package: github.com/vansante/go-ffprobe

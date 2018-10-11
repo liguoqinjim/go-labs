@@ -1,0 +1,6 @@
+hash: 132b7ffddb016d9cc67bf871091f9b98e4b45952465b7ff6c246049ec39f7871
+updated: 2018-10-11T20:10:37.7334164+08:00
+imports:
+- name: github.com/vansante/go-ffprobe
+  version: d08148e08305593fc67862f9d927ca8daeb8d2df
+testImports: []
