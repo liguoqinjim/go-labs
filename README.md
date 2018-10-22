@@ -159,3 +159,4 @@
 |lab159|随机数|
 |lab160|go-ffprobe，Library to easily get the ffprobe output of a given file|https://github.com/vansante/go-ffprobe|
 |lab161|散列哈希|
+|lab162|grequests|https://github.com/levigross/grequests|
