@@ -1,0 +1,6 @@
+hash: eebb936b1383a840732325b7582ba045dd5584077857a7af71549925f7061d4c
+updated: 2018-10-24T13:51:32.253355+08:00
+imports:
+- name: github.com/atotto/clipboard
+  version: aa9549103943c05f3e8951009cdb6a0bec2c8949
+testImports: []
