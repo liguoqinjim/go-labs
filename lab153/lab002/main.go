@@ -15,11 +15,12 @@ func main() {
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 
 	const (
-		seleniumPath     = "../vendor/selenium-server-standalone-3.14.0.jar"
+		seleniumPath     = "../selenium-server-standalone-3.14.0.jar"
 		chromeDriverPath = "D:/Coding/chromedriver_win32/chromedriver.exe"
-		port             = 8080
+		port             = 8087
 	)
 	opts := []selenium.ServiceOption{
+		selenium.ChromeDriver(chromeDriverPath),
 		selenium.Output(ioutil.Discard), // Output debug information to STDERR.
 	}
 	selenium.SetDebug(false)

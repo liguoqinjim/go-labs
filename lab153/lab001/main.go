@@ -14,12 +14,9 @@ func main() {
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 
-	// Start a Selenium WebDriver server instance (if one is not already
-	//	// running).
 	const (
-		// These paths will be different on your system.
-		seleniumPath    = "../vendor/selenium-server-standalone-3.14.0.jar"
-		geckoDriverPath = "../vendor/geckodriver.exe"
+		seleniumPath    = "../selenium-server-standalone-3.14.0.jar"
+		geckoDriverPath = "../geckodriver.exe"
 		port            = 8080
 	)
 	opts := []selenium.ServiceOption{
@@ -31,7 +28,7 @@ func main() {
 
 	service, err := selenium.NewSeleniumService(seleniumPath, port, opts...)
 	if err != nil {
-		panic(err) // panic is used only as an example and is not otherwise recommended.
+		log.Fatalf("selenium.NewSeleniumService error:%v", err)
 	}
 	defer func() {
 		log.Println("stop service")
@@ -44,7 +41,7 @@ func main() {
 	caps := selenium.Capabilities{"browserName": "firefox"}
 	wd, err := selenium.NewRemote(caps, fmt.Sprintf("http://localhost:%d/wd/hub", port))
 	if err != nil {
-		panic(err)
+		log.Fatalf("selenium.NewRemote error:%v", err)
 	}
 	defer func() {
 		log.Println("wd quit")
