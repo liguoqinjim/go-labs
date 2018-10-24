@@ -1,4 +1,6 @@
-// Binary init downloads the necessary files to perform an integration test between this WebDriver client and multiple versions of Selenium and browsers.
+// Binary init downloads the necessary files to perform an integration test
+// between this WebDriver client and multiple versions of Selenium and
+// browsers.
 package main
 
 import (
@@ -36,35 +38,35 @@ type file struct {
 
 var files = []file{
 	{
-		url:  "https://selenium-release.storage.googleapis.com/3.8/selenium-server-standalone-3.8.1.jar",
-		name: "selenium-server-standalone-3.8.1.jar",
-		hash: "2ca30da4a482688263b0eed5c73d1a4bbf3116316a1f2ffb96310a1643dbe663",
+		url:  "https://selenium-release.storage.googleapis.com/3.14/selenium-server-standalone-3.14.0.jar",
+		name: "selenium-server-standalone-3.14.0.jar",
+		hash: "d38decb0a2ca9196e404838cd3866cd0129af5ee167c592b690e502f0b3d01ad",
 	},
 	{
-		url:    "https://chromedriver.storage.googleapis.com/2.35/chromedriver_linux64.zip",
-		name:   "chromedriver_2.35_linux64.zip",
-		hash:   "67fad24c4a85e3f33f51c97924a98b619722db15ce92dcd27484fb748af93e8e",
-		rename: []string{"chromedriver", "chromedriver-linux64-2.35"},
+		url:    "https://chromedriver.storage.googleapis.com/2.42/chromedriver_linux64.zip",
+		name:   "chromedriver_2.42_linux64.zip",
+		hash:   "ced920ea978a658d915a960ed7bff62c37c9b7d62dfabbb42ffd7fe7cef7f082",
+		rename: []string{"chromedriver", "chromedriver-linux64-2.42"},
 	},
 	{
-		url:    "https://github.com/mozilla/geckodriver/releases/download/v0.19.1/geckodriver-v0.19.1-linux64.tar.gz",
-		name:   "geckodriver-v0.19.1-linux64.tar.gz",
-		hash:   "7f55c4c89695fd1e6f8fc7372345acc1e2dbaa4a8003cee4bd282eed88145937",
-		rename: []string{"geckodriver", "geckodriver-v0.19.1-linux64"},
+		url:    "https://github.com/mozilla/geckodriver/releases/download/v0.23.0/geckodriver-v0.23.0-linux64.tar.gz",
+		name:   "geckodriver-v0.23.0-linux64.tar.gz",
+		hash:   "2abf02cb69b48f2ba65ea344b752ff547e5431659aad80b03bf68cdb4f8df14b",
+		rename: []string{"geckodriver", "geckodriver-v0.23.0-linux64"},
 	},
 	{
 		// This is a recent nightly. Update this path periodically.
-		url:     "https://archive.mozilla.org/pub/firefox/nightly/2017/08/2017-08-21-10-03-50-mozilla-central/firefox-57.0a1.en-US.linux-x86_64.tar.bz2",
-		name:    "firefox-57.0a1.en-US.linux-x86_64.tar.bz2",
-		hash:    "77c57356935f66a5a59b1b2cffeaa53b70204195e6a7b15ee828fd3308561e46",
+		url:     "https://archive.mozilla.org/pub/firefox/nightly/2018/09/2018-09-14-10-01-56-mozilla-central/firefox-64.0a1.en-US.linux-x86_64.tar.bz2",
+		name:    "firefox-64.0a1.en-US.linux-x86_64.tar.bz2",
+		hash:    "8b7eb6a0c9985e9baf4adb6e557ec25e63cd6d55aa8c23718c1f126d3c5e6bc0",
 		browser: true,
 		rename:  []string{"firefox", "firefox-nightly"},
 	},
 	{
-		url:    "https://saucelabs.com/downloads/sc-4.4.9-linux.tar.gz",
-		name:   "sauce-connect-4.4.9-linux.tar.gz",
-		hash:   "b1bedccc2690b48d6708ac71f23189c85b0da62c56ee943a1b20d8f17fa8bbde",
-		rename: []string{"sc-4.4.9-linux", "sauce-connect"},
+		url:    "https://saucelabs.com/downloads/sc-4.5.1-linux.tar.gz",
+		name:   "sauce-connect-4.5.1-linux.tar.gz",
+		hash:   "dd53f2cdcec489fbc2443942b853b51bf44af39f230600573119cdd315ddee52",
+		rename: []string{"sc-4.5.1-linux", "sauce-connect"},
 	},
 }
 
