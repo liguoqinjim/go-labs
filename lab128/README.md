@@ -3,8 +3,8 @@
 |实验|简介|
 |---|---|
 |lab001|连接数据库||
-|lab002|对表的操作，创建表，新增字段，创建索引|
-|lab003|建表操作02|
+|lab002|对表的操作，创建表，对column操作，创建索引|
+|lab003|CRUD|
 |lab004|insert|
 |lab005|select|
 |lab006|update&delete|
