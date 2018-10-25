@@ -60,9 +60,46 @@ func insert() {
 }
 
 func Select() {
+	//查看第一个值
 	user := &User{}
 	db.Debug().First(user)
 	log.Printf("user:%v", user)
+
+	//按主键查找(First有两个参数)
+	user2 := &User{}
+	db.Debug().First(user2, 2)
+	log.Printf("user2:%v", user2)
+
+	//查看最后一个值
+	user3 := &User{}
+	db.Debug().Last(user3)
+	log.Printf("user3:%v", user3)
+
+	//查询所有
+	var users []User
+	db.Debug().Find(&users)
+	log.Printf("users:%v", users)
+
+	//where plain sql
+	//这里用first，就会返回第一个match where条件的值
+	var user4 User
+	db.Debug().Where("name = ?", "Tom").First(&user4)
+	log.Printf("where name=? First user4:%+v", user4)
+
+	//查找多个用Find
+	var users2 []User
+	db.Debug().Where("name = ?", "Tom").Find(&users2)
+	log.Printf("where name=? Find users2:%+v", users2)
+
+	//多个条件
+	var user5 User
+	db.Debug().Where("name = ? and age = ?", "Tom", 1).First(&user5)
+	log.Printf("where name=? and age=? First user5:%+v", user5)
+
+	//where in的条件
+	var users3 []User
+	db.Debug().Where("name in (?)", []string{"Kimi", "Alice"}).Find(&users3)
+	log.Printf("where name in (?) Find users3:%+v", &users3)
 }
 
 type User struct {
