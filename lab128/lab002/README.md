@@ -22,20 +22,35 @@ type User struct {
 ```
 ```mysql
 CREATE TABLE `users` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  `deleted_at` timestamp NULL DEFAULT NULL,
+  `id` varchar(255) NOT NULL DEFAULT '',
   `uid` int(11) DEFAULT NULL,
   `uname` varchar(255) DEFAULT NULL,
   `uage` int(11) DEFAULT NULL,
   `stu_id` int(11) DEFAULT NULL,
   `udes` varchar(255) DEFAULT NULL,
   `u_address` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `idx_users_deleted_at` (`deleted_at`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+```
 
+<hr>
+
+```golang
+type Student struct {
+	Id    int
+	Sno   int
+	Sname string
+	Sage  int
+}
+```
+```mysql
+CREATE TABLE `students` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sno` int(11) DEFAULT NULL,
+  `sname` varchar(255) DEFAULT NULL,
+  `sage` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ```
 
 ## 参考资料

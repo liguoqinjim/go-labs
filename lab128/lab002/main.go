@@ -26,15 +26,15 @@ func main() {
 	createTable()
 	dropTable()
 
-	modifyColumn()
-	dropColumn()
+	//modifyColumn()
+	//dropColumn()
 
 	//修改默认的表命规则
 	gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
 		return "t_" + defaultTableName
 	}
 
-	db.AutoMigrate(&User{}, &Email{}, &Address{}, &Language{}, &CreditCard{})
+	db.AutoMigrate(&User2{}, &Email{}, &Address{}, &Language{}, &CreditCard{})
 
 	db.Close()
 }
