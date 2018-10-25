@@ -1,5 +1,8 @@
-### 连接数据库
+# 连接数据库
+连接mysql,postgresql,sqlite3
 
-#### 注意点
- - 数据库连接`username:password@tcp(host:port)/dbname?charset=utf8&parseTime=True&loc=Local`
- - import里面一定要加`_ "github.com/jinzhu/gorm/dialects/mysql"`
+## NOTICE
+ - import里面一定要加每个数据库对应的dialects
+
+## 参考资料
+ - http://gorm.io/docs/connecting_to_the_database.html
