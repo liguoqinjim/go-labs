@@ -1,4 +1,4 @@
-# 对表的操作，创建表，新增字段，创建索引
+# 对表的操作，创建表，新增字段，创建索引，gorm的错误处理
 
 ## NOTICE
 1. 结构体里面的字段名的小写如果是id的话，gorm会默认这个为主键
@@ -207,4 +207,5 @@ CREATE TABLE `t_user_languages` (
 ```
 
 ## 参考资料
-http://doc.gorm.io/models.html#conventions
+ - http://doc.gorm.io/models.html#conventions
+ - http://gorm.io/docs/error_handling.html
