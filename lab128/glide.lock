@@ -1,5 +1,5 @@
 hash: fd6bbf74f1e28d9cbffdf523e7d95ed19a30bbbf6a44441553ffc9aff420d56a
-updated: 2018-10-24T20:22:51.8400109+08:00
+updated: 2018-10-25T13:53:08.7115894+08:00
 imports:
 - name: github.com/go-sql-driver/mysql
   version: 7daee5be2a29576f4bada53f3754b8cf886772a6
@@ -7,8 +7,17 @@ imports:
   version: 742154be9a26e849f02d296073c077e0a7c23828
   subpackages:
   - dialects/mysql
+  - dialects/postgres
+  - dialects/sqlite
 - name: github.com/jinzhu/inflection
   version: 04140366298a54a039076d798123ffa108fff46c
+- name: github.com/lib/pq
+  version: 9eb73efc1fcc404148b56765b0d3f61d9a5ef8ee
+  subpackages:
+  - hstore
+  - oid
+- name: github.com/mattn/go-sqlite3
+  version: c7c4067b79cc51e6dfdcef5c702e74b1e0fa7c75
 - name: google.golang.org/appengine
   version: ae0ab99deb4dc413a2b4bd6c8bdd0eb67f1e4d06
   subpackages:
