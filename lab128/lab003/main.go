@@ -1,18 +1,18 @@
 package main
 
 import (
-	"database/sql"
 	"encoding/json"
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	"io/ioutil"
 	"log"
-	"time"
 )
 
 var dbConfig *DBConfig
 var db *gorm.DB
+
+var users = make(map[int]*User)
 
 func init() {
 	readConf()
@@ -22,19 +22,10 @@ func main() {
 	connectDB()
 
 	migration()
-	tableExists()
-	createTable()
-	dropTable()
 
-	//modifyColumn()
-	//dropColumn()
-
-	//修改默认的表命规则
-	gorm.DefaultTableNameHandler = func(db *gorm.DB, defaultTableName string) string {
-		return "t_" + defaultTableName
-	}
-
-	db.AutoMigrate(&User2{}, &Email{}, &Address{}, &Language{}, &CreditCard{})
+	insert()
+	update()
+	delete()
 
 	db.Close()
 }
@@ -51,119 +42,65 @@ func connectDB() {
 
 func migration() {
 	db.AutoMigrate(&User{})
-
-	db.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(&Student{})
-
-	db.Debug().AutoMigrate(&Class{})
 }
 
-func tableExists() {
-	result := db.HasTable(&User{})
-	log.Println("has table &User{}", result)
-
-	result = db.HasTable("users")
-	log.Println("has table user")
-}
-
-func createTable() {
-	if err := db.Debug().CreateTable(&Temp{}).Error; err != nil {
-		log.Printf("create table error:%v", err)
+func insert() {
+	user := &User{Uid: 90001, Name: "tom", Age: 12}
+	if db.NewRecord(user) {
+		log.Printf("user is newRecord")
 	} else {
-		log.Println("create table success")
+		log.Printf("user is not newRecord")
 	}
-}
 
-func dropTable() {
-	if err := db.Debug().DropTable(&Temp{}).Error; err != nil {
-		log.Printf("drop table error:%v", err)
+	if err := db.Create(user).Error; err != nil {
+		log.Printf("insert error:%v", err)
 	} else {
-		log.Println("drop table success")
+		log.Printf("insert success")
 	}
+	log.Printf("insert:user=%+v", user)
+
+	if db.NewRecord(user) {
+		log.Printf("user is newRecord")
+	} else {
+		log.Printf("user is not newRecord")
+	}
+
+	user2 := &User{Uid: 90002, Name: "kimi", Age: 14}
+	user3 := &User{Uid: 90003, Name: "Kitty", Age: 15}
+	db.Create(user2)
+	db.Create(user3)
+
+	users[user.Uid] = user
+	users[user2.Uid] = user2
+	users[user3.Uid] = user3
 }
 
-func modifyColumn() {
-	db.Model(&User{}).ModifyColumn("udes", "int")
+func update() {
+	user := users[90001]
+	user.Age += 100
+	db.Save(&user)
+
+	user2 := users[90002]
+	log.Printf("db.First user2:%+v", user2)
+
+	db.Model(&user2).Update("age", 212)
+	log.Printf("update user2:%+v", user2)
+
+	db.Model(&user2).Updates(map[string]interface{}{"name": "Kimi_changed", "age": 312})
+	log.Printf("updates user2:%+v", user2)
 }
 
-func dropColumn() {
-	db.Model(&User{}).DropColumn("u_address")
+func delete() {
+	user3 := users[90003]
+	db.Delete(&user3)
+	log.Printf("db.Delete user3:%+v", user3)
 }
 
 type User struct {
-	ID       string
-	Uid      int
-	Uname    string
-	Uage     int
-	StuId    int
-	Udes     string
-	UAddress string
-}
-
-type Student struct {
-	Id    int
-	Sno   int
-	Sname string
-	Sage  int
-}
-
-type Class struct {
-	Id  int `gorm:"AUTO_INCREMENT"`
-	Cno string
-}
-
-func (Class) TableName() string {
-	return "t_class"
-}
-
-type Temp struct {
-	Id  int
-	Tid int
-}
-
-type User2 struct {
-	gorm.Model
-	Birthday time.Time
-	Age      int
-	Name     string `gorm:"size:255"` // Default size for string is 255, reset it with this tag
-	Num      int    `gorm:"AUTO_INCREMENT"`
-
-	CreditCard CreditCard // One-To-One relationship (has one - use CreditCard's UserID as foreign key)
-	Emails     []Email    // One-To-Many relationship (has many - use Email's UserID as foreign key)
-
-	BillingAddress   Address // One-To-One relationship (belongs to - use BillingAddressID as foreign key)
-	BillingAddressID sql.NullInt64
-
-	ShippingAddress   Address // One-To-One relationship (belongs to - use ShippingAddressID as foreign key)
-	ShippingAddressID int
-
-	IgnoreMe  int        `gorm:"-"`                         // Ignore this field
-	Languages []Language `gorm:"many2many:user_languages;"` // Many-To-Many relationship, 'user_languages' is join table
-}
-
-type Email struct {
-	ID         int
-	UserID     int    `gorm:"index"`                          // Foreign key (belongs to), tag `index` will create index for this column
-	Email      string `gorm:"type:varchar(100);unique_index"` // `type` set sql type, `unique_index` will create unique index for this column
-	Subscribed bool
-}
-
-type Address struct {
-	ID       int
-	Address1 string         `gorm:"not null;unique"` // Set field as not nullable and unique
-	Address2 string         `gorm:"type:varchar(100);unique"`
-	Post     sql.NullString `gorm:"not null"`
-}
-
-type Language struct {
 	ID   int
-	Name string `gorm:"index:idx_name_code"` // Create index with name, and will create combined index if find other fields defined same name
-	Code string `gorm:"index:idx_name_code"` // `unique_index` also works
-}
-
-type CreditCard struct {
-	gorm.Model
-	UserID uint
-	Number string
+	Uid  int
+	Name string
+	Age  int
 }
 
 func readConf() {
