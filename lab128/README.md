@@ -7,8 +7,5 @@
 |lab002|对表的操作，创建表，对column操作，创建索引|
 |lab003|插入，更新，删除|
 |lab004|查询|
-<!--|lab004|insert|-->
-<!--|lab005|select|-->
-|lab006|update&delete|
 |lab007|时间型数据|todo ，合并|
 |lab008|gorm的错误处理|todo|
