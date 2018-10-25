@@ -7,6 +7,7 @@
 4. `TableName()`的返回可以当做表名
 5. 可以在属性后面加上`gorm:Auto_InCrement`等，这样就会转换成我们自增，或者unique key等，具体的字段可以查看资料
 6. DefaultTableNameHandler，可以修改默认的表名规则
+7. golang的`time.Time`会对应sql里面的timestamp
 
 ## struct和对应的表结构
 ```golang
