@@ -16,26 +16,24 @@ func init() {
 
 func main() {
 	log.WithFields(log.Fields{
-		"animal": "walrus",
-		"size":   10,
-	}).Info("A group of walrus emerges from the ocean")
+		"id": "1",
+	}).Info("this is 1st log")
 
 	log.WithFields(log.Fields{
-		"omg":    true,
-		"number": 122,
-	}).Warn("The group's number increased tremendously!")
+		"id": "2",
+	}).Warn("this is 2nd log")
 
 	log.WithFields(log.Fields{
-		"omg":    true,
-		"number": 100,
-	}).Error("The ice breaks!")
+		"id": "3",
+	}).Error("this is 3rd log")
+
+	log.Println("this is a 4th without fields")
 
 	//A common pattern
 	contextLogger := log.WithFields(log.Fields{
-		"common": "this is a common field",
-		"other":  "I also should be logged always",
+		"common": "pattern",
 	})
 
-	contextLogger.Info("I'll be logged with common and other field")
-	contextLogger.Info("Me too")
+	contextLogger.Info("this is 5th log")
+	contextLogger.Info("this is 6th log")
 }

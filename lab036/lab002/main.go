@@ -18,7 +18,14 @@ func main() {
 	}
 
 	log.WithFields(logrus.Fields{
-		"animal": "walrus",
-		"size":   10,
-	}).Info("A group of walrus emerges from the ocean")
+		"id": "1",
+	}).Info("this is 1st log")
+
+	log.WithFields(logrus.Fields{
+		"id": "2",
+	}).Warn("this is 2nd log")
+
+	log.WithFields(logrus.Fields{
+		"id": "3",
+	}).Error("this is 3rd log")
 }

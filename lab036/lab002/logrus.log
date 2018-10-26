@@ -1,1 +1,3 @@
-time="2018-01-18T15:40:49+08:00" level=info msg="A group of walrus emerges from the ocean" animal=walrus size=10
+time="2018-10-26T19:01:17+08:00" level=info msg="this is 1st log" id=1
+time="2018-10-26T19:01:17+08:00" level=warning msg="this is 2nd log" id=2
+time="2018-10-26T19:01:17+08:00" level=error msg="this is 3rd log" id=3
