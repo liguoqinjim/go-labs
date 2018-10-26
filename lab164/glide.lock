@@ -1,6 +1,18 @@
 hash: 7e16ef4ce3cfa966edf3265bb96b4132503fd9cf62b663e94a46a52805149ff4
-updated: 2018-10-26T17:42:20.2152707+08:00
+updated: 2018-10-26T17:50:57.7560073+08:00
 imports:
 - name: github.com/uber-go/zap
   version: 67bc79d13d155c02fd008f721863ff8cc5f30659
+- name: go.uber.org/atomic
+  version: 1ea20fb1cbb1cc08cbd0d913a96dead89aa18289
+- name: go.uber.org/multierr
+  version: 3c4937480c32f4c13a875a1829af76c98ca3d40a
+- name: go.uber.org/zap
+  version: 67bc79d13d155c02fd008f721863ff8cc5f30659
+  subpackages:
+  - buffer
+  - internal/bufferpool
+  - internal/color
+  - internal/exit
+  - zapcore
 testImports: []
