@@ -161,3 +161,4 @@
 |lab161|散列哈希|
 |lab162|grequests|https://github.com/levigross/grequests|
 |lab163|clipboard，clipboard for golang|https://github.com/atotto/clipboard|
+|lab164|zap，Blazing fast, structured, leveled logging in Go|https://github.com/uber-go/zap|

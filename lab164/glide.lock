@@ -1,0 +1,6 @@
+hash: 7e16ef4ce3cfa966edf3265bb96b4132503fd9cf62b663e94a46a52805149ff4
+updated: 2018-10-26T17:42:20.2152707+08:00
+imports:
+- name: github.com/uber-go/zap
+  version: 67bc79d13d155c02fd008f721863ff8cc5f30659
+testImports: []
