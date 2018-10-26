@@ -21,6 +21,10 @@ func main() {
 		log.Fatalf("ini.Load error:%v", err)
 	}
 
+	//读取值
+	flo := cfg.Section("types").Key("FLOAT64").MustFloat64(0)
+	log.Println("flo=", flo)
+
 	//读取section
 	sec, err := cfg.GetSection("author")
 	if err != nil {
