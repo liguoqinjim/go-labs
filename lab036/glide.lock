@@ -1,26 +1,26 @@
 hash: b5ca565c8b336883a15f669dc69235478c130ef3b62dd4249b64fec596feb6bd
-updated: 2018-09-17T16:44:00.8092197+08:00
+updated: 2018-10-26T18:08:26.2423764+08:00
 imports:
 - name: github.com/konsorten/go-windows-terminal-sequences
-  version: b729f2633dfe35f4d1d8a32385f6685610ce1cb5
+  version: 5c8c8bd35d3832f5d134ae1e1e375b69a4d25242
 - name: github.com/mattn/go-colorable
   version: efa589957cd060542a26d2dd7832fd6a6c6c3ade
 - name: github.com/mattn/go-isatty
   version: 3fb116b820352b7f0c281308a4d6250c22d94e27
 - name: github.com/onrik/logrus
-  version: ca0a758702be2ae04725ba88dcd27a71949faf33
+  version: c9849815bc7c2abf20d58e4bc06c242198ebb741
   subpackages:
   - filename
 - name: github.com/sirupsen/logrus
-  version: d23a0f20d429b5da960216daca3b37e075cbdcd1
+  version: 4fabf2fffcecfd47f802869b7b92d75e43c5a095
 - name: github.com/snowzach/rotatefilehook
   version: 2f64f265f58cb742f59d68b12f956c9296746e2d
 - name: golang.org/x/crypto
-  version: 0e37d006457bf46f9e6692014ba72ef82c33022c
+  version: e84da0312774c21d64ee2317962ef669b27ffb41
   subpackages:
   - ssh/terminal
 - name: golang.org/x/sys
-  version: d0be0721c37eeb5299f245a996a483160fc36940
+  version: 731415f00dce967a133e841b3079eda31c996761
   subpackages:
   - unix
   - windows
