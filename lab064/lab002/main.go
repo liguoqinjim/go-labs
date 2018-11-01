@@ -7,77 +7,27 @@ import (
 	"github.com/globalsign/mgo/bson"
 	"io/ioutil"
 	"log"
-	"os"
 	"time"
 )
 
-type ConnectInfo struct {
-	Username string
-	Pwd      string
-	Hostname string
-	Port     string
-	DB       string
-}
-
-var connectInfo *ConnectInfo
-
-func readConf() *ConnectInfo {
-	file, err := os.Open("mongo.json")
-	handleError(err)
-
-	data, err := ioutil.ReadAll(file)
-	handleError(err)
-
-	ci := new(ConnectInfo)
-	err = json.Unmarshal(data, ci)
-	handleError(err)
-
-	return ci
-}
-
-type Game struct {
-	ID           bson.ObjectId `bson:"_id,omitempty"` //_id这样可以收到mongodb的id，omitempty可以在insert时候不插入这个值，而是由mongodb自动生成
-	Winner       string        `bson:"winner"`
-	OfficialGame bool          `bson:"official_game"`
-	Location     string        `bson:"location"`
-	StartTime    time.Time     `bson:"start"`
-	EndTime      time.Time     `bson:"end"`
-	Players      []Player      `bson:"players"`
-}
-
-type Player struct {
-	Name   string    `bson:"name"`
-	Decks  [2]string `bson:"decks"`
-	Points uint8     `bson:"points"`
-	Place  uint8     `bson:"place"`
-}
-
-func NewPlayer(name, firstDeck, secondDeck string, points, place uint8) Player {
-	return Player{
-		Name:   name,
-		Decks:  [2]string{firstDeck, secondDeck},
-		Points: points,
-		Place:  place,
-	}
-}
+var connectInfo = &ConnectInfo{}
 
 const colName = "lab002"
 const dbName = "test"
 
 func init() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
+
+	readConf()
 }
 
 func main() {
-	connectInfo = readConf()
-
 	session, err := mgo.DialWithInfo(&mgo.DialInfo{
 		Addrs:    []string{fmt.Sprintf("%s:%s", connectInfo.Hostname, connectInfo.Port)},
 		Username: connectInfo.Username,
 		Password: connectInfo.Pwd,
 		Database: connectInfo.DB,
 	})
-	handleError(err)
 	defer session.Close()
 
 	gameA := Game{
@@ -120,62 +70,97 @@ func main() {
 	//insert document
 	coll := session.DB(dbName).C(colName)
 	if err = coll.Insert(gameA); err != nil {
-		log.Fatal(err)
+		log.Fatalf("insert error:%v", err)
 	} else {
-		fmt.Println("insert success")
+		log.Println("insert success")
 	}
 	if err = coll.Insert(gameB); err != nil {
-		log.Fatal(err)
+		log.Fatalf("insert error:%v", err)
 	} else {
-		fmt.Println("insert success")
+		log.Println("insert success")
 	}
 
 	//read document
 	official_game := true
-	gamesWonCount, err := coll.Find(bson.M{"official_game": official_game}).Count()
-	if err != nil {
-		log.Fatal(err)
+	if gamesWonCount, err := coll.Find(bson.M{"official_game": official_game}).Count(); err != nil {
+		log.Fatalf("coll.Find error:%v", err)
 	} else {
-		fmt.Println("gamesWonCount=", gamesWonCount)
+		log.Println("gamesWonCount=", gamesWonCount)
 	}
 
 	//read document
 	var gamesWon *Game
 	playerName := "Dave"
-	err = coll.Find(bson.M{"winner": playerName}).One(&gamesWon)
-	if err != nil {
-		log.Fatal(err)
+	if err = coll.Find(bson.M{"winner": playerName}).One(&gamesWon); err != nil {
+		log.Fatalf("coll.Find error:%v", err)
 	} else {
-		// fmt.Printf("gamesWon=%+v\n", gamesWon)
-		fmt.Println("gamesWon.Winner=", gamesWon.Winner)
+		log.Println("gamesWon.Winner=", gamesWon.Winner)
 	}
 
 	//updating a document
 	newWinner := "Seth"
 	update := bson.M{"$set": bson.M{"winner": newWinner}}
 	if err := coll.UpdateId(gamesWon.ID, update); err != nil {
-		log.Fatal(err)
+		log.Fatalf("coll.UpdateId error:%v", err)
 	}
 	//check update result
 	err = coll.FindId(gamesWon.ID).One(&gamesWon)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("coll.FindId error:%v", err)
 	} else {
-		// fmt.Println("gamesWon=%+v\n", gamesWon)
-		fmt.Println("gamesWon.Winner=", gamesWon.Winner)
+		log.Println("gamesWon.Winner=", gamesWon.Winner)
 	}
 
 	//deleting a document
 	info, err := coll.RemoveAll(bson.M{"winner": gamesWon.Winner})
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("coll.RemoveAll error:%v", err)
 	} else {
-		fmt.Println("remove info.Removed=", info.Removed) //info.Removed就是删除了几个
+		log.Println("remove info.Removed=", info.Removed) //info.Removed就是删除了几个
 	}
 }
 
-func handleError(err error) {
-	if err != nil {
-		panic(err)
+type Game struct {
+	ID           bson.ObjectId `bson:"_id,omitempty"` //_id这样可以收到mongodb的id，omitempty可以在insert时候不插入这个值，而是由mongodb自动生成
+	Winner       string        `bson:"winner"`
+	OfficialGame bool          `bson:"official_game"`
+	Location     string        `bson:"location"`
+	StartTime    time.Time     `bson:"start"`
+	EndTime      time.Time     `bson:"end"`
+	Players      []Player      `bson:"players"`
+}
+
+type Player struct {
+	Name   string    `bson:"name"`
+	Decks  [2]string `bson:"decks"`
+	Points uint8     `bson:"points"`
+	Place  uint8     `bson:"place"`
+}
+
+func NewPlayer(name, firstDeck, secondDeck string, points, place uint8) Player {
+	return Player{
+		Name:   name,
+		Decks:  [2]string{firstDeck, secondDeck},
+		Points: points,
+		Place:  place,
 	}
+}
+
+func readConf() {
+	data, err := ioutil.ReadFile("mongo.json")
+	if err != nil {
+		log.Fatalf("ioutil.ReadFile error:%v", err)
+	}
+
+	if json.Unmarshal(data, connectInfo); err != nil {
+		log.Fatalf("json.Unmarshal error:%v", err)
+	}
+}
+
+type ConnectInfo struct {
+	Username string
+	Pwd      string
+	Hostname string
+	Port     string
+	DB       string
 }

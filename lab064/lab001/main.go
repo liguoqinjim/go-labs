@@ -7,12 +7,57 @@ import (
 	"github.com/globalsign/mgo/bson"
 	"io/ioutil"
 	"log"
-	"os"
 )
+
+var connectInfo = &ConnectInfo{}
+
+func init() {
+	readConf()
+}
+
+func main() {
+	session, err := mgo.DialWithInfo(&mgo.DialInfo{
+		Addrs:    []string{fmt.Sprintf("%s:%s", connectInfo.Hostname, connectInfo.Port)},
+		Username: connectInfo.Username,
+		Password: connectInfo.Pwd,
+		Database: connectInfo.DB,
+	})
+	if err != nil {
+		log.Fatalf("mgo.DialWithInfo error:%v", err)
+	}
+	defer session.Close()
+
+	// Optional. Switch the session to a monotonic behavior.
+	session.SetMode(mgo.Monotonic, true)
+
+	c := session.DB("test").C("people")
+	if err = c.Insert(&Person{"Ale", "+55 53 8116 9639"},
+		&Person{"Cla", "+55 53 8402 8510"}); err != nil {
+		log.Fatalf("c.Insert error:%v", err)
+	}
+
+	result := Person{}
+	if err := c.Find(bson.M{"name": "Ale"}).One(&result); err != nil {
+		log.Fatalf("c.Find error:%v", err)
+	}
+
+	log.Println("Phone:", result.Phone)
+}
 
 type Person struct {
 	Name  string
 	Phone string
+}
+
+func readConf() {
+	data, err := ioutil.ReadFile("mongo.json")
+	if err != nil {
+		log.Fatalf("ioutil.ReadFile error:%v", err)
+	}
+
+	if err := json.Unmarshal(data, connectInfo); err != nil {
+		log.Fatalf("json.Unmarshal error:%v", err)
+	}
 }
 
 type ConnectInfo struct {
@@ -21,59 +66,4 @@ type ConnectInfo struct {
 	Hostname string
 	Port     string
 	DB       string
-}
-
-func readConf() *ConnectInfo {
-	file, err := os.Open("mongo.json")
-	handleError(err)
-
-	data, err := ioutil.ReadAll(file)
-	handleError(err)
-
-	var ci ConnectInfo
-	err = json.Unmarshal(data, &ci)
-	handleError(err)
-	return &ci
-}
-
-var connectInfo *ConnectInfo
-
-func main() {
-	//读取连接配置
-	connectInfo = readConf()
-
-	session, err := mgo.DialWithInfo(&mgo.DialInfo{
-		Addrs:    []string{fmt.Sprintf("%s:%s", connectInfo.Hostname, connectInfo.Port)},
-		Username: connectInfo.Username,
-		Password: connectInfo.Pwd,
-		Database: connectInfo.DB,
-	})
-	if err != nil {
-		panic(err)
-	}
-	defer session.Close()
-
-	// Optional. Switch the session to a monotonic behavior.
-	session.SetMode(mgo.Monotonic, true)
-
-	c := session.DB("test").C("people")
-	err = c.Insert(&Person{"Ale", "+55 53 8116 9639"},
-		&Person{"Cla", "+55 53 8402 8510"})
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	result := Person{}
-	err = c.Find(bson.M{"name": "Ale"}).One(&result)
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	fmt.Println("Phone:", result.Phone)
-}
-
-func handleError(err error) {
-	if err != nil {
-		log.Fatal(err)
-	}
 }
