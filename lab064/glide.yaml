@@ -1,0 +1,5 @@
+package: lab064
+import:
+- package: github.com/globalsign/mgo
+  subpackages:
+  - bson

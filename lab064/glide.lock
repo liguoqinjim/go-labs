@@ -1,0 +1,11 @@
+hash: f9271af4a5ff06a816b1f34b84edeee3973399964d4128d970aa8f3868bd3b01
+updated: 2018-11-01T18:43:38.1047536+08:00
+imports:
+- name: github.com/globalsign/mgo
+  version: eeefdecb41b842af6dc652aaea4026e8403e62df
+  subpackages:
+  - bson
+  - internal/json
+  - internal/sasl
+  - internal/scram
+testImports: []
