@@ -9,21 +9,22 @@ import (
 	"time"
 )
 
+var (
+	u = &url.URL{Host: "baidu.com", Scheme: "http"}
+)
+
 func main() {
-	//查看默认保存位置
+	//default file
 	filePath := cookiejar.DefaultCookieFile()
-	log.Println("默认保存位置:", filePath)
+	log.Println("default filePath:", filePath)
 
 	//创建一个新的cookieJar，并制定保存的文件
 	jar, err := cookiejar.New(&cookiejar.Options{
-		Filename: "E:/Workspace/go-labs/src/lab124/lab001/tmp/cookie", //自定义保存文件
+		Filename: "tmp/cookie.json", //自定义保存文件
 	})
 	if err != nil {
 		log.Fatalf("cookieJar.New error:%v", err)
 	}
-
-	//url
-	u := &url.URL{Host: "baidu.com", Scheme: "http"}
 
 	//查看文件里面是否有cookie
 	cookiesOrigin := jar.Cookies(u)
@@ -44,7 +45,7 @@ func main() {
 		Name:     strconv.Itoa(len(cookiesOrigin) + 1),
 		Value:    strconv.Itoa(cookieValueMax + 5),
 		HttpOnly: true,
-		Expires:  time.Now().Add(time.Hour),
+		Expires:  time.Now().Add(time.Hour * 24 * 365),
 	}
 	cookies := []*http.Cookie{c1}
 	jar.SetCookies(u, cookies)

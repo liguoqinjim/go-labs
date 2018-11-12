@@ -121,7 +121,7 @@
 |lab121|easyjson，github.com/mailru/easyjson|
 |lab122|jsoniter，github.com/json-iterator/go|
 |lab123|agouti，A WebDriver client and acceptance testing library for Go|https://github.com/sclevine/agouti|
-|lab124|prersistent-cookiejar，github.com/juju/persistent-cookiejar|
+|lab124|prersistent-cookiejar|https://github.com/juju/persistent-cookiejar|
 |lab125|runtime|
 |lab126|delve|
 |lab127|boltdb|
