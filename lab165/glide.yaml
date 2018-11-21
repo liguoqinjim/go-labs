@@ -1,0 +1,3 @@
+package: lab165
+import:
+- package: github.com/willf/bloom
