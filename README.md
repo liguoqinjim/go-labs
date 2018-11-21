@@ -163,3 +163,4 @@
 |lab163|clipboard，clipboard for golang|https://github.com/atotto/clipboard|
 |lab164|zap，Blazing fast, structured, leveled logging in Go|https://github.com/uber-go/zap|
 |lab165|Go package implementing Bloom filters|https://github.com/willf/bloom|
+|lab166|Bloom filter for go, backed by redis|https://github.com/bculberson/bloom|

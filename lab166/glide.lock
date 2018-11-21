@@ -1,0 +1,13 @@
+hash: 0b4941433d15d690616ae0f562c09ae86e72ab9ffce54944a26053b02006926d
+updated: 2018-11-21T16:18:01.7510218+08:00
+imports:
+- name: github.com/bculberson/bloom
+  version: 8ae6b4d72da49c5a0fc6c241bacf84685bbf33ff
+- name: github.com/garyburd/redigo
+  version: a69d19351219b6dd56f274f96d85a7014a2ec34e
+  subpackages:
+  - internal
+  - redis
+- name: github.com/willf/bitset
+  version: e553b05586428962bf7058d1044519d87ca72d74
+testImports: []

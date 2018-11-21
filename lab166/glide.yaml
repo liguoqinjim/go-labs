@@ -1,0 +1,4 @@
+package: lab166
+import:
+- package: github.com/bculberson/bloom
+- package: github.com/garyburd/redigo
