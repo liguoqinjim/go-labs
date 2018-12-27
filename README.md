@@ -162,7 +162,7 @@
 |lab162|grequests|https://github.com/levigross/grequests|
 |lab163|clipboard，clipboard for golang|https://github.com/atotto/clipboard|
 |lab164|zap,Blazing fast, structured, leveled logging in Go|https://github.com/uber-go/zap|
-|lab165|Go package implementing Bloom filters|https://github.com/willf/bloom|
+|lab165|bloom,Go package implementing Bloom filters|https://github.com/willf/bloom|
 |lab166|Bloom filter for go, backed by redis|https://github.com/bculberson/bloom|
 |lab167|lorca,Build cross-platform modern desktop apps in Go + HTML5|https://github.com/zserge/lorca|
 |lab168|murmur3,Native MurmurHash3 Go implementation|https://github.com/spaolacci/murmur3|
