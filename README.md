@@ -53,7 +53,7 @@
 |lab053|web.go|
 |lab054|gjson|
 |lab055|goworker|
-|lab056|go redis|
+|lab056|redis,Type-safe Redis client for Golang|https://github.com/go-redis/redis|
 |lab057|leaf|
 |lab058|nsq|
 |lab059|得到本机ip和公网ip|
