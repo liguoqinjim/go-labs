@@ -1,41 +1,73 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
 	"github.com/go-redis/redis"
-	"lab056/lab001/conf"
+	"io/ioutil"
+	"log"
 )
 
 func main() {
-	conf.ReadConf()
+	example()
+}
+
+func example() {
+	conf := readConf()
+	if conf == nil {
+		log.Fatalf("conf is nil")
+	}
+	log.Println(conf)
 
 	client := redis.NewClient(&redis.Options{
-		Addr:     conf.ConnConf.Addr,
-		Password: "", // no password set
-		DB:       0,  // use default DB
+		Addr:     conf.Addr,
+		Password: conf.Password, // no password set
+		DB:       conf.DB,       // use default DB
 	})
 
 	//ping
 	pong, err := client.Ping().Result()
-	fmt.Println(pong, err)
+	if err != nil {
+		log.Fatalf("client.Ping error:%v", err)
+	}
+	log.Println(pong)
 
 	//set get
-	err = client.Set("key", "value", 0).Err()
+	err = client.Set("key", "value123", 0).Err()
 	if err != nil {
-		panic(err)
+		log.Fatalf("client.Set error:%v", err)
 	}
 	val, err := client.Get("key").Result()
 	if err != nil {
-		panic(err)
+		log.Fatalf("client.Get error:%v", err)
 	}
-	fmt.Println("key", val)
+	log.Println("key", val)
 
 	val2, err := client.Get("key2").Result()
 	if err == redis.Nil {
-		fmt.Println("key2 does not exist")
+		log.Println("key2 does not exist")
 	} else if err != nil {
-		panic(err)
+		log.Fatalf("client.Get error:%v", err)
 	} else {
-		fmt.Println("key2", val2)
+		log.Println("key2", val2)
 	}
+}
+
+func readConf() *Conf {
+	data, err := ioutil.ReadFile("conf.json")
+	if err != nil {
+		log.Fatalf("ioutil.ReadFile error:%v", err)
+	}
+
+	var conf = &Conf{}
+	if err := json.Unmarshal(data, conf); err != nil {
+		log.Fatalf("json.Unmarshal error:%v", err)
+	}
+
+	return conf
+}
+
+type Conf struct {
+	Addr     string `json:"addr"`
+	Password string `json:"password"`
+	DB       int    `json:"DB"`
 }

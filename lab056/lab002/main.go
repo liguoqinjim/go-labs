@@ -1,17 +1,26 @@
 package main
 
 import (
-	"fmt"
-	"lab056/lab002/conf"
-
+	"encoding/json"
 	"github.com/go-redis/redis"
+	"io/ioutil"
+	"log"
 )
 
 func main() {
-	conf.ReadConf()
+	example()
+}
+
+func example() {
+	conf := readConf()
+	if conf == nil {
+		log.Fatalf("conf is nil")
+	}
 
 	client := redis.NewClient(&redis.Options{
-		Addr: conf.ConnConf.Addr,
+		Addr:     conf.Addr,
+		Password: conf.Password,
+		DB:       conf.DB,
 	})
 
 	Get := func(client *redis.Client, key string) *redis.StringCmd {
@@ -22,10 +31,30 @@ func main() {
 
 	v, err := Get(client, "key2").Result()
 	if err == redis.Nil {
-		fmt.Println("key dose not exits")
+		log.Println("key dose not exits")
 	} else if err != nil {
-		panic(err)
+		log.Fatalf("Get error:%v", err)
 	} else {
-		fmt.Println("v", v)
+		log.Println("v", v)
 	}
+}
+
+func readConf() *Conf {
+	data, err := ioutil.ReadFile("conf.json")
+	if err != nil {
+		log.Fatalf("ioutil.ReadFile error:%v", err)
+	}
+
+	var conf = &Conf{}
+	if err := json.Unmarshal(data, conf); err != nil {
+		log.Fatalf("json.Unmarshal error:%v", err)
+	}
+
+	return conf
+}
+
+type Conf struct {
+	Addr     string `json:"addr"`
+	Password string `json:"password"`
+	DB       int    `json:"DB"`
 }
