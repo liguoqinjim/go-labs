@@ -14,3 +14,4 @@
 |lab010|得到图片，不是通过取得src的方式||
 |lab011|操作phantomjs|
 |lab012|chrome使用代理|
+|lab013|mac下操作chrome|:heavy_check_mark:|
