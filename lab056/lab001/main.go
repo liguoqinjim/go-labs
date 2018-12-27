@@ -29,7 +29,7 @@ func example() {
 	if err != nil {
 		log.Fatalf("client.Ping error:%v", err)
 	}
-	log.Println(pong)
+	log.Println("pong=", pong)
 
 	//set get
 	err = client.Set("key", "value123", 0).Err()
@@ -40,8 +40,9 @@ func example() {
 	if err != nil {
 		log.Fatalf("client.Get error:%v", err)
 	}
-	log.Println("key", val)
+	log.Println("get key=", val)
 
+	//get key not exist
 	val2, err := client.Get("key2").Result()
 	if err == redis.Nil {
 		log.Println("key2 does not exist")
