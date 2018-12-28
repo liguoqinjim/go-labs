@@ -166,3 +166,4 @@
 |lab166|Bloom filter for go, backed by redis|https://github.com/bculberson/bloom|
 |lab167|lorca,Build cross-platform modern desktop apps in Go + HTML5|https://github.com/zserge/lorca|
 |lab168|murmur3,Native MurmurHash3 Go implementation|https://github.com/spaolacci/murmur3|
+|lab169|golang内存对齐|
