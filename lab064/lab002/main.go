@@ -10,24 +10,29 @@ import (
 	"time"
 )
 
-var connectInfo = &ConnectInfo{}
-
 const colName = "lab002"
-const dbName = "test"
+const dbName = "go-labs-test"
 
 func init() {
 	log.SetFlags(log.LstdFlags | log.Lshortfile)
-
-	readConf()
 }
 
 func main() {
+	conf := readConf()
+	if conf == nil {
+		log.Fatalf("conf is nil")
+	}
+
+	//打开连接
 	session, err := mgo.DialWithInfo(&mgo.DialInfo{
-		Addrs:    []string{fmt.Sprintf("%s:%s", connectInfo.Hostname, connectInfo.Port)},
-		Username: connectInfo.Username,
-		Password: connectInfo.Pwd,
-		Database: connectInfo.DB,
+		Addrs:    []string{fmt.Sprintf("%s:%s", conf.Host, conf.Port)},
+		Username: conf.Username,
+		Password: conf.Password,
+		Database: conf.Db,
 	})
+	if err != nil {
+		log.Fatalf("mgo.DialWithInfo error:%v", err)
+	}
 	defer session.Close()
 
 	gameA := Game{
@@ -146,21 +151,24 @@ func NewPlayer(name, firstDeck, secondDeck string, points, place uint8) Player {
 	}
 }
 
-func readConf() {
-	data, err := ioutil.ReadFile("conf.json")
+//读取配置文件
+func readConf() *Conf {
+	data, err := ioutil.ReadFile("../conf.json")
 	if err != nil {
 		log.Fatalf("ioutil.ReadFile error:%v", err)
 	}
 
-	if json.Unmarshal(data, connectInfo); err != nil {
+	var conf = &Conf{}
+	if err := json.Unmarshal(data, conf); err != nil {
 		log.Fatalf("json.Unmarshal error:%v", err)
 	}
+	return conf
 }
 
-type ConnectInfo struct {
-	Username string
-	Pwd      string
-	Hostname string
-	Port     string
-	DB       string
+type Conf struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+	Host     string `json:"host"`
+	Port     string `json:"port"`
+	Db       string `json:"db"`
 }
