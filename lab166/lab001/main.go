@@ -20,24 +20,19 @@ func example() {
 		Dial:        func() (redis.Conn, error) { return redis.Dial("tcp", readAddr()) },
 	}
 
+	//创建bloomFilter
 	conn := pool.Get()
 	m, k := bloom.EstimateParameters(1000, .01)
+	//test_key是在redis的key的name的前缀
 	bitSet := bloom.NewRedisBitSet("test_key", m, conn)
 	b := bloom.New(m, k, bitSet)
-	b.Add([]byte("some key"))
-	exists, _ := b.Exists([]byte("some key"))
-	log.Println(exists)
-	doesNotExist, _ := b.Exists([]byte("some other key"))
-	log.Println(doesNotExist)
 
-	b.Add([]byte("helloworld"))
-	log.Println(b.Exists([]byte("helloworld")))
-
-	b.Add([]byte("helloworld1"))
-	log.Println(b.Exists([]byte("helloworld1")))
-
-	b.Add([]byte("iris"))
-	log.Println(b.Exists([]byte("iris")))
+	//判断是否exist
+	b.Add([]byte("key1"))
+	exists, _ := b.Exists([]byte("key1"))
+	log.Println("key exists:", exists)
+	doesNotExist, _ := b.Exists([]byte("key2"))
+	log.Println("key2 exists:", doesNotExist)
 }
 
 func readAddr() string {
