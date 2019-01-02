@@ -147,7 +147,7 @@ func NewPlayer(name, firstDeck, secondDeck string, points, place uint8) Player {
 }
 
 func readConf() {
-	data, err := ioutil.ReadFile("mongo.json")
+	data, err := ioutil.ReadFile("conf.json")
 	if err != nil {
 		log.Fatalf("ioutil.ReadFile error:%v", err)
 	}
