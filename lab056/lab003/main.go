@@ -7,11 +7,15 @@ import (
 	"log"
 )
 
+const (
+	KeyName = "go-labs-set"
+)
+
 func main() {
-	example()
+	demo()
 }
 
-func example() {
+func demo() {
 	conf := readConf()
 	if conf == nil {
 		log.Fatalf("conf is nil")
@@ -31,26 +35,26 @@ func example() {
 	}
 	log.Println("pong=", pong)
 
-	//set get
-	err = client.Set("key", "value123", 0).Err()
+	//添加到set
+	r, err := client.SAdd("", 1, 2, 3).Result()
 	if err != nil {
-		log.Fatalf("client.Set error:%v", err)
+		log.Fatalf("client.SAdd error:%v", err)
 	}
-	val, err := client.Get("key").Result()
-	if err != nil {
-		log.Fatalf("client.Get error:%v", err)
-	}
-	log.Println("get key=", val)
+	log.Printf("client.SAdd result:%d", r)
 
-	//get key not exist
-	val2, err := client.Get("key2").Result()
-	if err == redis.Nil {
-		log.Println("key2 does not exist")
-	} else if err != nil {
-		log.Fatalf("client.Get error:%v", err)
-	} else {
-		log.Println("key2", val2)
+	//添加一个重复的
+	r, err = client.SAdd(KeyName, 1).Result()
+	if err != nil {
+		log.Fatalf("client.SAdd error:%v", err)
 	}
+	log.Printf("client.SAdd result:%d", r)
+
+	//添加一个不重复的
+	r, err = client.SAdd(KeyName, 5).Result()
+	if err != nil {
+		log.Fatalf("client.SAdd error:%v", err)
+	}
+	log.Printf("client.SAdd result:%d", r)
 }
 
 func readConf() *Conf {

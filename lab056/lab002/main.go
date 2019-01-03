@@ -40,7 +40,7 @@ func example() {
 }
 
 func readConf() *Conf {
-	data, err := ioutil.ReadFile("conf.json")
+	data, err := ioutil.ReadFile("../conf.json")
 	if err != nil {
 		log.Fatalf("ioutil.ReadFile error:%v", err)
 	}
