@@ -167,3 +167,4 @@
 |lab167|lorca,Build cross-platform modern desktop apps in Go + HTML5|https://github.com/zserge/lorca|
 |lab168|murmur3,Native MurmurHash3 Go implementation|https://github.com/spaolacci/murmur3|
 |lab169|golang内存对齐|
+|lab170|archiver,Easily create and extract .zip, .tar, .tar.gz, .tar.bz2, .tar.xz, .tar.lz4, .tar.sz, and .rar (extract-only) files with Go|https://github.com/mholt/archiver|
