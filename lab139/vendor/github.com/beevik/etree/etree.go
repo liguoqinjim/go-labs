@@ -34,11 +34,19 @@ type ReadSettings struct {
 	// Permissive allows input containing common mistakes such as missing tags
 	// or attribute values. Default: false.
 	Permissive bool
+
+	// Entity to be passed to standard xml.Decoder. Default: nil.
+	Entity map[string]string
 }
 
 // newReadSettings creates a default ReadSettings record.
 func newReadSettings() ReadSettings {
-	return ReadSettings{}
+	return ReadSettings{
+		CharsetReader: func(label string, input io.Reader) (io.Reader, error) {
+			return input, nil
+		},
+		Permissive: false,
+	}
 }
 
 // WriteSettings allow for changing the serialization behavior of the WriteTo*
@@ -101,11 +109,23 @@ type Attr struct {
 	Value      string // The attribute value string
 }
 
-// CharData represents character data within XML.
+// charDataFlags are used with CharData tokens to store additional settings.
+type charDataFlags uint8
+
+const (
+	// The CharData was created as whitespace.
+	whitespaceFlag charDataFlags = 1 << iota
+
+	// The CharData contains a CDATA section.
+	cdataFlag
+)
+
+// CharData can be used to represent a character data entity or CDATA section
+// within an XML document.
 type CharData struct {
-	Data       string
-	parent     *Element
-	whitespace bool
+	Data   string
+	parent *Element
+	flags  charDataFlags
 }
 
 // A Comment represents an XML comment.
@@ -301,27 +321,48 @@ func (e *Element) Copy() *Element {
 	return e.dup(parent).(*Element)
 }
 
-// Text returns the characters immediately following the element's
-// opening tag.
+// Text returns the characters immediately following the element's opening
+// tag.
 func (e *Element) Text() string {
 	if len(e.Child) == 0 {
 		return ""
 	}
-	if cd, ok := e.Child[0].(*CharData); ok {
-		return cd.Data
+
+	text := ""
+	for _, ch := range e.Child {
+		if cd, ok := ch.(*CharData); ok {
+			if text == "" {
+				text = cd.Data
+			} else {
+				text = text + cd.Data
+			}
+		} else {
+			break
+		}
 	}
-	return ""
+	return text
 }
 
 // SetText replaces an element's subsidiary CharData text with a new string.
 func (e *Element) SetText(text string) {
+	e.setCharData(text, 0)
+}
+
+// SetCData replaces an element's subsidiary CharData text with a new string
+// encoded into a CDATA section.
+func (e *Element) SetCData(text string) {
+	e.setCharData(text, cdataFlag)
+}
+
+// setCharData is a helper function used by SetText and SetCData.
+func (e *Element) setCharData(text string, flags charDataFlags) {
 	if len(e.Child) > 0 {
 		if cd, ok := e.Child[0].(*CharData); ok {
-			cd.Data = text
+			cd.Data, cd.flags = text, flags
 			return
 		}
 	}
-	cd := newCharData(text, false, e)
+	cd := newCharData(text, flags, e)
 	copy(e.Child[1:], e.Child[0:])
 	e.Child[0] = cd
 }
@@ -387,6 +428,7 @@ func (e *Element) readFrom(ri io.Reader, settings ReadSettings) (n int64, err er
 	dec := xml.NewDecoder(r)
 	dec.CharsetReader = settings.CharsetReader
 	dec.Strict = !settings.Permissive
+	dec.Entity = settings.Entity
 	var stack stack
 	stack.push(e)
 	for {
@@ -413,7 +455,11 @@ func (e *Element) readFrom(ri io.Reader, settings ReadSettings) (n int64, err er
 			stack.pop()
 		case xml.CharData:
 			data := string(t)
-			newCharData(data, isWhitespace(data), top)
+			var flags charDataFlags
+			if isWhitespace(data) {
+				flags = whitespaceFlag
+			}
+			newCharData(data, flags, top)
 		case xml.Comment:
 			newComment(string(t), top)
 		case xml.Directive:
@@ -627,7 +673,7 @@ func (e *Element) indent(depth int, indent indentFunc) {
 		_, isCharData = c.(*CharData)
 		if !isCharData {
 			if !firstNonCharData || depth > 0 {
-				newCharData(indent(depth), true, e)
+				newCharData(indent(depth), whitespaceFlag, e)
 			}
 			firstNonCharData = false
 		}
@@ -643,7 +689,7 @@ func (e *Element) indent(depth int, indent indentFunc) {
 	// Insert CR+indent before the last child.
 	if !isCharData {
 		if !firstNonCharData || depth > 0 {
-			newCharData(indent(depth-1), true, e)
+			newCharData(indent(depth-1), whitespaceFlag, e)
 		}
 	}
 }
@@ -653,7 +699,7 @@ func (e *Element) stripIndent() {
 	// Count the number of non-indent child tokens
 	n := len(e.Child)
 	for _, c := range e.Child {
-		if cd, ok := c.(*CharData); ok && cd.whitespace {
+		if cd, ok := c.(*CharData); ok && cd.IsWhitespace() {
 			n--
 		}
 	}
@@ -665,7 +711,7 @@ func (e *Element) stripIndent() {
 	newChild := make([]Token, n)
 	j := 0
 	for _, c := range e.Child {
-		if cd, ok := c.(*CharData); ok && cd.whitespace {
+		if cd, ok := c.(*CharData); ok && cd.IsWhitespace() {
 			continue
 		}
 		newChild[j] = c
@@ -805,30 +851,6 @@ func (a byAttr) Less(i, j int) bool {
 	return sp < 0
 }
 
-var xmlReplacerNormal = strings.NewReplacer(
-	"&", "&amp;",
-	"<", "&lt;",
-	">", "&gt;",
-	"'", "&apos;",
-	`"`, "&quot;",
-)
-
-var xmlReplacerCanonicalText = strings.NewReplacer(
-	"&", "&amp;",
-	"<", "&lt;",
-	">", "&gt;",
-	"\r", "&#xD;",
-)
-
-var xmlReplacerCanonicalAttrVal = strings.NewReplacer(
-	"&", "&amp;",
-	"<", "&lt;",
-	`"`, "&quot;",
-	"\t", "&#x9;",
-	"\n", "&#xA;",
-	"\r", "&#xD;",
-)
-
 // writeTo serializes the attribute to the writer.
 func (a *Attr) writeTo(w *bufio.Writer, s *WriteSettings) {
 	if a.Space != "" {
@@ -837,28 +859,43 @@ func (a *Attr) writeTo(w *bufio.Writer, s *WriteSettings) {
 	}
 	w.WriteString(a.Key)
 	w.WriteString(`="`)
-	var r *strings.Replacer
+	var m escapeMode
 	if s.CanonicalAttrVal {
-		r = xmlReplacerCanonicalAttrVal
+		m = escapeCanonicalAttr
 	} else {
-		r = xmlReplacerNormal
+		m = escapeNormal
 	}
-	w.WriteString(r.Replace(a.Value))
+	escapeString(w, a.Value, m)
 	w.WriteByte('"')
 }
 
-// NewCharData creates a parentless XML character data entity.
+// NewText creates a parentless CharData token containing an XML character
+// data entity.
+func NewText(text string) *CharData {
+	return newCharData(text, 0, nil)
+}
+
+// NewCData creates a parentless XML character CDATA section.
+func NewCData(data string) *CharData {
+	return newCharData(data, cdataFlag, nil)
+}
+
+// NewCharData creates a parentless CharData token containing an XML character
+// data entity.
+//
+// Deprecated: NewCharData is deprecated. Use NewText, which does the same
+// thing, instead.
 func NewCharData(data string) *CharData {
-	return newCharData(data, false, nil)
+	return newCharData(data, 0, nil)
 }
 
 // newCharData creates an XML character data entity and binds it to a parent
 // element. If parent is nil, the CharData token remains unbound.
-func newCharData(data string, whitespace bool, parent *Element) *CharData {
+func newCharData(data string, flags charDataFlags, parent *Element) *CharData {
 	c := &CharData{
-		Data:       data,
-		whitespace: whitespace,
-		parent:     parent,
+		Data:   data,
+		parent: parent,
+		flags:  flags,
 	}
 	if parent != nil {
 		parent.addChild(c)
@@ -866,19 +903,37 @@ func newCharData(data string, whitespace bool, parent *Element) *CharData {
 	return c
 }
 
-// CreateCharData creates an XML character data entity and adds it as a child
-// of element e.
+// CreateCharData creates a CharData token containing an XML character data
+// entity and adds it as a child of element e.
 func (e *Element) CreateCharData(data string) *CharData {
-	return newCharData(data, false, e)
+	return newCharData(data, 0, e)
+}
+
+// CreateCData creates a CharData token containing a CDATA section and adds it
+// as a child of element e.
+func (e *Element) CreateCData(data string) *CharData {
+	return newCharData(data, cdataFlag, e)
 }
 
 // dup duplicates the character data.
 func (c *CharData) dup(parent *Element) Token {
 	return &CharData{
-		Data:       c.Data,
-		whitespace: c.whitespace,
-		parent:     parent,
+		Data:   c.Data,
+		flags:  c.flags,
+		parent: parent,
 	}
+}
+
+// IsWhitespace returns true if the character data token was created to
+// contain only whitespace.
+func (c *CharData) IsWhitespace() bool {
+	return (c.flags & whitespaceFlag) != 0
+}
+
+// IsCData returns true if the character data token is to be encoded as a
+// CDATA section.
+func (c *CharData) IsCData() bool {
+	return (c.flags & cdataFlag) != 0
 }
 
 // Parent returns the character data token's parent element, or nil if it has
@@ -894,13 +949,19 @@ func (c *CharData) setParent(parent *Element) {
 
 // writeTo serializes the character data entity to the writer.
 func (c *CharData) writeTo(w *bufio.Writer, s *WriteSettings) {
-	var r *strings.Replacer
-	if s.CanonicalText {
-		r = xmlReplacerCanonicalText
+	if c.IsCData() {
+		w.WriteString(`<![CDATA[`)
+		w.WriteString(c.Data)
+		w.WriteString(`]]>`)
 	} else {
-		r = xmlReplacerNormal
+		var m escapeMode
+		if s.CanonicalText {
+			m = escapeCanonicalText
+		} else {
+			m = escapeNormal
+		}
+		escapeString(w, c.Data, m)
 	}
-	w.WriteString(r.Replace(c.Data))
 }
 
 // NewComment creates a parentless XML comment.
