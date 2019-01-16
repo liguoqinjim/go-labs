@@ -1,0 +1,3 @@
+package: lab173
+import:
+- package: github.com/confluentinc/confluent-kafka-go
