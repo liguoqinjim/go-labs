@@ -1,0 +1,3 @@
+package: lab176
+import:
+- package: github.com/uber-go/ratelimit

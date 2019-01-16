@@ -1,0 +1,10 @@
+hash: c6d54a21b9e06a5ed176626d8cd28420a3c4274095fd4a6dfd11e1746486276b
+updated: 2019-01-16T20:54:03.126813+08:00
+imports:
+- name: github.com/uber-go/ratelimit
+  version: c15da02342779cb6dc027fc95ee2277787698f36
+- name: go.uber.org/ratelimit
+  version: c15da02342779cb6dc027fc95ee2277787698f36
+  subpackages:
+  - internal/clock
+testImports: []
