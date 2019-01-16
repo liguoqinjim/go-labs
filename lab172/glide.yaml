@@ -1,0 +1,3 @@
+package: lab172
+import:
+- package: github.com/fsnotify/fsnotify
