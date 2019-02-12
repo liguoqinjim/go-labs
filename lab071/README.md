@@ -16,3 +16,11 @@
 
 ## 参考资料
 https://blog.gopheracademy.com/advent-2017/using-go-templates/
+
+## 例子
+这个可以遍历一个struct的slice,AttrName就是struct的字段
+```
+|-|数据|简介|例子|说明|
+|:---|---|---|---|---|{{ range $index, $element := .Fields }}
+|{{$index}}|{{$element.AttrName}}|{{$element.Desc}}|{{$element.Example}}||{{ end }}
+```
