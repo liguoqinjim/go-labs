@@ -12,8 +12,10 @@
  ```
 
  2. mac可能需要安装pkg-config,`brew install pkg-config`
+ 
+ 3. centos，可以先使用`yum install librdkafka-devel`，这样好了之后还是不行的话。再把1的步骤做一遍
 
 |实验|简介|说明|
 |---|---|---|
-|lab001|example_client||
-|lab002|example_server||
+|lab001|example_client| |
+|lab002|example_server| |
