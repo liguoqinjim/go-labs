@@ -174,5 +174,5 @@
 |lab174|copier,Copier for golang, copy value from struct to struct and more|https://github.com/jinzhu/copier|
 |lab175|复制文件| |
 |lab176|ratelimit,A Golang blocking leaky-bucket rate limit implementation|https://github.com/uber-go/ratelimit|
-|lab177|移动文件|
-|lab178| | |
+|lab177|移动文件| |
+|lab178|sarama,Sarama is a Go library for Apache Kafka 0.8, and up.|https://github.com/Shopify/sarama|
