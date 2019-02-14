@@ -18,7 +18,7 @@
 |lab016|调用go fmt| |
 |lab017|正则表达式| |
 |lab018|string和[]byte的转换| |
-|lab019|解析xml|encoding/xml| |
+|lab019|解析xml|encoding/xml|
 |lab022|关于channel的几个实验| |
 |lab023|websocket| |
 |lab024|xls操作| |
