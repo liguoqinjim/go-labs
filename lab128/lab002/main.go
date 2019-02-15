@@ -167,7 +167,7 @@ type CreditCard struct {
 }
 
 func readConf() {
-	data, err := ioutil.ReadFile("db_config.json")
+	data, err := ioutil.ReadFile("../db_config.json")
 	if err != nil {
 		log.Fatalf("readFile error:%v", err)
 	}

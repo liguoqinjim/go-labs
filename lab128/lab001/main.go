@@ -26,7 +26,7 @@ func main() {
 }
 
 func mysql() {
-	//username:password@tcp(host:port)/dbname?charset=utf8&parseTime=True&loc=Local&tls=skip-verify&autocommit=true
+	//mysql链接样例：username:password@tcp(host:port)/dbname?charset=utf8&parseTime=True&loc=Local&tls=skip-verify&autocommit=true
 	connectInfo := fmt.Sprintf("%s:%s@tcp(%s:%d)/%s?charset=utf8&parseTime=True&loc=Local", dbConfig.Mysql.User, dbConfig.Mysql.Password, dbConfig.Mysql.Host, dbConfig.Mysql.Port, dbConfig.Mysql.DBName)
 	db, err := gorm.Open("mysql", connectInfo)
 	if err != nil {
@@ -58,7 +58,7 @@ func sqlite3() {
 }
 
 func readConf() {
-	data, err := ioutil.ReadFile("db_config.json")
+	data, err := ioutil.ReadFile("../db_config.json")
 	if err != nil {
 		log.Fatalf("readFile error:%v", err)
 	}
