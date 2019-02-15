@@ -1,10 +1,10 @@
 hash: fd6bbf74f1e28d9cbffdf523e7d95ed19a30bbbf6a44441553ffc9aff420d56a
-updated: 2019-01-22T17:39:47.883691+08:00
+updated: 2019-02-15T11:21:17.111892+08:00
 imports:
 - name: github.com/go-sql-driver/mysql
-  version: c45f530f8e7fe40f4687eaa50d0c8c5f1b66f9e0
+  version: 1b9eda25029c206f36637dde8e2acad26df99dab
 - name: github.com/jinzhu/gorm
-  version: 9f1a7f53511168c0567b4b4b4f10ab7d21265174
+  version: 906799fef2f895116d915e1793314ab9053b400d
   subpackages:
   - dialects/mysql
   - dialects/postgres
@@ -17,9 +17,9 @@ imports:
   - hstore
   - oid
 - name: github.com/mattn/go-sqlite3
-  version: 3fa1c550ffa69b74dc4bfd5109b4e218f32c87cf
+  version: 4cb37250b60d3254997cc8b53d9951278bdf3059
 - name: google.golang.org/appengine
-  version: e9657d882bb81064595ca3b56cbe2546bbabf7b1
+  version: 99bc4335fe23898c0a61f5b35afabb6d11f29094
   subpackages:
   - cloudsql
 testImports: []
