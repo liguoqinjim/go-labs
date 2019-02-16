@@ -1,5 +1,4 @@
-### mysql
-`go get github.com/go-sql-driver/mysql`
+# mysql
 
 |实验|简介|
 |---|---|
