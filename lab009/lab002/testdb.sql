@@ -1,4 +1,4 @@
-create database test3;
+create database go_sql_lab;
 
 create table student(
     id int not null primary key auto_increment comment '无关逻辑的主键',

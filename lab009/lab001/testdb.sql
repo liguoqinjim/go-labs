@@ -1,4 +1,4 @@
-create database test2;
+create database go_sql_lab;
 
 create table squareNum(
   number int not null primary key,

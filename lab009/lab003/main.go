@@ -7,68 +7,39 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"io/ioutil"
 	"log"
-	"os"
 )
 
-type DBConf struct {
-	DBHost string
-	DBUser string
-	DBPwd  string
-	DBName string
-}
-
-var Conf *DBConf
+var dbConfig *DBConfig
 
 func init() {
 	readConf()
 }
 
-func readConf() *DBConf {
-	file, err := os.Open("db_config.json")
-	if err != nil {
-		log.Fatalln("failed to open file:", err)
-	}
-
-	data, err := ioutil.ReadAll(file)
-	if err != nil {
-		log.Fatalln("failed to read data:", err)
-	}
-
-	dbConf := new(DBConf)
-	if err := json.Unmarshal(data, dbConf); err != nil {
-		log.Fatalln("failed to parse json:", err)
-	}
-
-	Conf = dbConf
-
-	return dbConf
-}
-
 func main() {
-	connectInfo := fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?charset=utf8&parseTime=True&loc=Local", Conf.DBUser, Conf.DBPwd, Conf.DBHost, Conf.DBName)
+	connectInfo := fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?charset=utf8&parseTime=True&loc=Local", dbConfig.DBUser, dbConfig.DBPwd, dbConfig.DBHost, dbConfig.DBName)
 	db, err := sql.Open("mysql", connectInfo)
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("sql.Open error:%v", err)
 	}
 	defer db.Close()
 
 	err = db.Ping()
 	if err != nil {
-		log.Fatal(err)
+		log.Fatalf("db.Ping error:%v", err)
 	}
 	fmt.Println("数据库连接成功")
 
 	//insert blob类型
 	stmtIns, err := db.Prepare("insert into t_test_blob(mailData) value(?)")
 	if err != nil {
-		panic(err.Error())
+		log.Fatalf("db.Prepare error:%v", err)
 	}
 	defer stmtIns.Close()
 	data := []byte("helloworld")
 	fmt.Println("data=", data)
 	_, err = stmtIns.Exec(data)
 	if err != nil {
-		panic(err.Error())
+		log.Fatalf("stmtIns.Exec error:%v", err)
 	}
 
 	//读
@@ -76,13 +47,13 @@ func main() {
 	fmt.Println()
 	rows, err := db.Query("select * from t_test_blob limit 2")
 	if err != nil {
-		panic(err.Error()) // proper error handling instead of panic in your app
+		log.Fatalf("db.Query error:%v", err)
 	}
 
 	// Get column names
 	columns, err := rows.Columns()
 	if err != nil {
-		panic(err.Error()) // proper error handling instead of panic in your app
+		log.Fatalf("rows.Columns error:%v", err)
 	}
 
 	// Make a slice for the values
@@ -101,7 +72,7 @@ func main() {
 		// get RawBytes from data
 		err = rows.Scan(scanArgs...)
 		if err != nil {
-			panic(err.Error()) // proper error handling instead of panic in your app
+			log.Fatalf("rows.Scan error:%v", err)
 		}
 
 		var value string
@@ -116,6 +87,26 @@ func main() {
 		}
 	}
 	if err = rows.Err(); err != nil {
-		panic(err.Error()) // proper error handling instead of panic in your app
+		log.Fatalf("rows.Err error:%v", err)
 	}
+}
+
+func readConf() {
+	//读取数据库配置文件
+	data, err := ioutil.ReadFile("../db_config.json")
+	if err != nil {
+		log.Fatalf("ioutil.ReadFile error:%v", err)
+	}
+
+	dbConfig = &DBConfig{}
+	if err := json.Unmarshal(data, dbConfig); err != nil {
+		log.Fatalf("json.Unmarshal error:%v", err)
+	}
+}
+
+type DBConfig struct {
+	DBHost string
+	DBUser string
+	DBPwd  string
+	DBName string
 }

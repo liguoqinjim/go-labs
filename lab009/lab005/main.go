@@ -8,45 +8,16 @@ import (
 	_ "github.com/go-sql-driver/mysql"
 	"io/ioutil"
 	"log"
-	"os"
 )
 
-type DBConf struct {
-	DBHost string
-	DBUser string
-	DBPwd  string
-	DBName string
-}
-
-var Conf *DBConf
+var dbConfig *DBConfig
 
 func init() {
 	readConf()
 }
 
-func readConf() *DBConf {
-	file, err := os.Open("db_config.json")
-	if err != nil {
-		log.Fatalln("failed to open file:", err)
-	}
-
-	data, err := ioutil.ReadAll(file)
-	if err != nil {
-		log.Fatalln("failed to read data:", err)
-	}
-
-	dbConf := new(DBConf)
-	if err := json.Unmarshal(data, dbConf); err != nil {
-		log.Fatalln("failed to parse json:", err)
-	}
-
-	Conf = dbConf
-
-	return dbConf
-}
-
 func main() {
-	connectInfo := fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?charset=utf8&parseTime=True&loc=Local", Conf.DBUser, Conf.DBPwd, Conf.DBHost, Conf.DBName)
+	connectInfo := fmt.Sprintf("%s:%s@tcp(%s:3306)/%s?charset=utf8&parseTime=True&loc=Local", dbConfig.DBUser, dbConfig.DBPwd, dbConfig.DBHost, dbConfig.DBName)
 	db, err := sql.Open("mysql", connectInfo)
 	if err != nil {
 		log.Fatal(err)
@@ -184,4 +155,24 @@ type Mail struct {
 	MailId      string
 	MailMessage string
 	MailData    string
+}
+
+func readConf() {
+	//读取数据库配置文件
+	data, err := ioutil.ReadFile("../db_config.json")
+	if err != nil {
+		log.Fatalf("ioutil.ReadFile error:%v", err)
+	}
+
+	dbConfig = &DBConfig{}
+	if err := json.Unmarshal(data, dbConfig); err != nil {
+		log.Fatalf("json.Unmarshal error:%v", err)
+	}
+}
+
+type DBConfig struct {
+	DBHost string
+	DBUser string
+	DBPwd  string
+	DBName string
 }
