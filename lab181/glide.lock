@@ -1,0 +1,6 @@
+hash: 3131bbf3899a04ae155065f903614d414ff2e314528bfab395dca263d0796e6f
+updated: 2019-02-20T23:29:37.2084382+08:00
+imports:
+- name: github.com/tsuna/gohbase
+  version: d3184c1526df62f5be8378ba25175dce5a9c6a1d
+testImports: []

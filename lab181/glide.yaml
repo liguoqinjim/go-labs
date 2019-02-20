@@ -1,0 +1,3 @@
+package: lab181
+import:
+- package: github.com/tsuna/gohbase
