@@ -1,0 +1,21 @@
+# 创建表
+create 'FileTable','fileInfo','saveInfo'
+
+# 获得表的描述
+describe 'FileTable'
+# 添加一个列族
+alter 'FileTable', 'cf'
+# 删除一个列族
+alter 'FileTable', {NAME => 'cf', METHOD => 'delete'}
+
+# 插入数据
+put 'FileTable', 'rowkey1','fileInfo:name','file1.txt'
+put 'FileTable', 'rowkey1','fileInfo:type','txt'
+put 'FileTable', 'rowkey1','fileInfo:size','1024'
+put 'FileTable', 'rowkey1','saveInfo:path','/home'
+put 'FileTable', 'rowkey1','saveInfo:creator','tom'
+put 'FileTable', 'rowkey2','fileInfo:name','file2.jpg'
+put 'FileTable', 'rowkey2','fileInfo:type','jpg'
+put 'FileTable', 'rowkey2','fileInfo:size','2048'
+put 'FileTable', 'rowkey2','saveInfo:path','/home/pic'
+put 'FileTable', 'rowkey2','saveInfo:creator','jerry'
