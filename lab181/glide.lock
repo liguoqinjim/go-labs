@@ -1,6 +1,39 @@
 hash: 3131bbf3899a04ae155065f903614d414ff2e314528bfab395dca263d0796e6f
-updated: 2019-02-20T23:29:37.2084382+08:00
+updated: 2019-02-22T11:23:47.981539+08:00
 imports:
+- name: github.com/cznic/b
+  version: a26611c4d92dc9181cdb5e8d67fb712700fcd4a3
+- name: github.com/golang/protobuf
+  version: c823c79ea1570fb5ff454033735a8e68575d1d0f
+  subpackages:
+  - proto
+- name: github.com/konsorten/go-windows-terminal-sequences
+  version: 5c8c8bd35d3832f5d134ae1e1e375b69a4d25242
+- name: github.com/samuel/go-zookeeper
+  version: c4fab1ac1bec58281ad0667dc3f0907a9476ac47
+  subpackages:
+  - zk
+- name: github.com/sirupsen/logrus
+  version: 4f5fd631f16452fbd023813c1eb7dbd67130cb0c
 - name: github.com/tsuna/gohbase
   version: d3184c1526df62f5be8378ba25175dce5a9c6a1d
+  subpackages:
+  - filter
+  - hrpc
+  - pb
+  - region
+  - zk
+- name: golang.org/x/crypto
+  version: a4c6cb3142f211c99e4bf4cd769535b29a9b616f
+  subpackages:
+  - ssh/terminal
+- name: golang.org/x/sys
+  version: ec7b60b042fd2c54ad5ceaac0c891bd88843f4a2
+  subpackages:
+  - unix
+  - windows
+- name: golang.org/x/time
+  version: 85acf8d2951cb2a3bde7632f9ff273ef0379bcbd
+  subpackages:
+  - rate
 testImports: []
