@@ -1,0 +1,6 @@
+hash: 5d39786a5b3558bedd08ef10689f30f08a391ea6b93cd43794b641feef4de2a8
+updated: 2019-03-05T16:25:05.549347+08:00
+imports:
+- name: github.com/anvie/port-scanner
+  version: 8159197d3770eb6dbf3a9706a6d40462ebb69cec
+testImports: []
