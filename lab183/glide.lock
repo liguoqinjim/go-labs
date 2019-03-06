@@ -1,0 +1,6 @@
+hash: bff59dc6e68788960be40b2619489a3ab076492c5724658593f02b702a5c251a
+updated: 2019-03-06T23:45:25.7858111+08:00
+imports:
+- name: github.com/natefinch/lumberjack
+  version: 7d6a1875575e09256dc552b4c0e450dcd02bd10e
+testImports: []
