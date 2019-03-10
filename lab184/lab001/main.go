@@ -1,16 +1,19 @@
 package main
 
 import (
-	"fmt"
 	"github.com/robfig/cron"
+	"log"
 	"time"
 )
 
 func main() {
 	c := cron.New()
-	c.AddFunc("0 30 * * * *", func() { fmt.Println("Every hour on the half hour") })
-	c.AddFunc("@hourly", func() { fmt.Println("Every hour") })
-	c.AddFunc("@every 1h30m", func() { fmt.Println("Every hour thirty") })
+	c.AddFunc("0 0/5 * * * ? ", func() {
+		log.Println("Every 5 minutes")
+	})
+	c.AddFunc("@hourly", func() {
+		log.Println("Every hour")
+	})
 	c.Start()
 
 	time.Sleep(time.Hour)
