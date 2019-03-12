@@ -1,0 +1,6 @@
+hash: 99c7b01396504930e2ab71f3bc289229fbd9e61a68c19ff4ae60f5fa32f6b1a2
+updated: 2019-03-12T11:39:43.486947+08:00
+imports:
+- name: github.com/siddontang/go-mysql
+  version: 7fc3b28d61044c8d3ee4062c3b96ed4a1307b862
+testImports: []
