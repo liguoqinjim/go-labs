@@ -2,46 +2,52 @@ package main
 
 import (
 	"encoding/json"
+	"fmt"
+	"github.com/siddontang/go-mysql/canal"
 	"io/ioutil"
 	"log"
+	"time"
 )
 
 func main() {
 	dbConfig := readConf()
-	log.Println("dbConfig=", dbConfig)
+	log.Println("dbConfig=", dbConfig.Mysql)
 
-	return
+	cfg := canal.NewDefaultConfig()
+	cfg.Addr = fmt.Sprintf("%s:%d", dbConfig.Mysql.Host, dbConfig.Mysql.Port)
+	cfg.User = dbConfig.Mysql.User
+	cfg.Password = fmt.Sprintf("'%s'", dbConfig.Mysql.Password)
 
-	//cfg := canal.NewDefaultConfig()
-	//cfg.Addr = "hp-112:3306"
-	//cfg.User = "root"
-	//
-	//// We only care table canal_test in test db
-	//cfg.Dump.TableDB = "test"
-	//cfg.Dump.Tables = []string{"canal_test"}
-	//
-	//c, err := NewCanal(cfg)
-	//
-	//type MyEventHandler struct {
-	//	DummyEventHandler
-	//}
-	//
-	//func(h *MyEventHandler) OnRow(e * RowsEvent)
-	//error{
-	//	log.Infof("%s %v\n", e.Action, e.Rows)
-	//	return nil
-	//}
-	//
-	//func(h *MyEventHandler) String()
-	//string{
-	//	return "MyEventHandler"
-	//}
-	//
-	//// Register a handler to handle RowsEvent
-	//c.SetEventHandler(&MyEventHandler{})
-	//
-	//// Start canal
-	//c.Start()
+	cfg.Dump.TableDB = "hp_wifi"
+	cfg.Dump.Tables = []string{"t_heat_map_hour"}
+
+	c, err := canal.NewCanal(cfg)
+	if err != nil {
+		log.Fatalf("canal.NewCanal error:%v", err)
+	}
+
+	// Register a handler to handle RowsEvent
+	c.SetEventHandler(&MyEventHandler{})
+
+	// Start canal
+	if err := c.Run(); err != nil {
+		log.Fatalf("c.Run error:%v", err)
+	}
+
+	time.Sleep(time.Hour)
+}
+
+type MyEventHandler struct {
+	canal.DummyEventHandler
+}
+
+func (h *MyEventHandler) OnRow(e *canal.RowsEvent) error {
+	log.Printf("%s %v\n", e.Action, e.Rows)
+	return nil
+}
+
+func (h *MyEventHandler) String() string {
+	return "MyEventHandler"
 }
 
 func readConf() *DBConfig {
