@@ -1,0 +1,19 @@
+{
+  "mysql": {
+    "Host": "127.0.0.1",
+    "Port": 3306,
+    "User": "root",
+    "Password": "root",
+    "DBName": "test"
+  },
+  "postgresql": {
+    "Host": "Host",
+    "Port": 5432,
+    "User": "User",
+    "Password": "Password",
+    "DBName": "DBName"
+  },
+  "sqlite3": {
+    "Path": "gorm.db"
+  }
+}

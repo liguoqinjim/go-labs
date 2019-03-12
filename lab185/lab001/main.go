@@ -1,51 +1,80 @@
 package main
 
 import (
-	"context"
-	"github.com/siddontang/go-mysql/mysql"
-	"github.com/siddontang/go-mysql/replication"
-	"os"
-	"time"
+	"encoding/json"
+	"io/ioutil"
+	"log"
 )
 
 func main() {
-	// Create a binlog syncer with a unique server id, the server id must be different from other MySQL's.
-	// flavor is mysql or mariadb
-	cfg := replication.BinlogSyncerConfig{
-		ServerID: 100,
-		Flavor:   "mysql",
-		Host:     "127.0.0.1",
-		Port:     3306,
-		User:     "root",
-		Password: "",
+	dbConfig := readConf()
+	log.Println("dbConfig=", dbConfig)
+
+	return
+
+	//cfg := canal.NewDefaultConfig()
+	//cfg.Addr = "hp-112:3306"
+	//cfg.User = "root"
+	//
+	//// We only care table canal_test in test db
+	//cfg.Dump.TableDB = "test"
+	//cfg.Dump.Tables = []string{"canal_test"}
+	//
+	//c, err := NewCanal(cfg)
+	//
+	//type MyEventHandler struct {
+	//	DummyEventHandler
+	//}
+	//
+	//func(h *MyEventHandler) OnRow(e * RowsEvent)
+	//error{
+	//	log.Infof("%s %v\n", e.Action, e.Rows)
+	//	return nil
+	//}
+	//
+	//func(h *MyEventHandler) String()
+	//string{
+	//	return "MyEventHandler"
+	//}
+	//
+	//// Register a handler to handle RowsEvent
+	//c.SetEventHandler(&MyEventHandler{})
+	//
+	//// Start canal
+	//c.Start()
+}
+
+func readConf() *DBConfig {
+	data, err := ioutil.ReadFile("../db_config.json")
+	if err != nil {
+		log.Fatalf("readFile error:%v", err)
 	}
-	syncer := replication.NewBinlogSyncer(cfg)
 
-	// Start sync with specified binlog file and position
-	streamer, _ := syncer.StartSync(mysql.Position{binlogFile, binlogPos})
-
-	// or you can start a gtid replication like
-	// streamer, _ := syncer.StartSyncGTID(gtidSet)
-	// the mysql GTID set likes this "de278ad0-2106-11e4-9f8e-6edd0ca20947:1-2"
-	// the mariadb GTID set likes this "0-1-100"
-
-	for {
-		ev, _ := streamer.GetEvent(context.Background())
-		// Dump event
-		ev.Dump(os.Stdout)
+	dbConfig := &DBConfig{}
+	err = json.Unmarshal(data, dbConfig)
+	if err != nil {
+		log.Fatalf("GetDBConfig error:%v", err)
 	}
 
-	// or we can use a timeout context
-	for {
-		ctx, cancel := context.WithTimeout(context.Background(), 2*time.Second)
-		ev, err := s.GetEvent(ctx)
-		cancel()
+	return dbConfig
+}
 
-		if err == context.DeadlineExceeded {
-			// meet timeout
-			continue
-		}
-
-		ev.Dump(os.Stdout)
-	}
+type DBConfig struct {
+	Mysql struct {
+		Host     string `json:"Host"`
+		Port     int    `json:"Port"`
+		User     string `json:"User"`
+		Password string `json:"Password"`
+		DBName   string `json:"DBName"`
+	} `json:"mysql"`
+	Postgresql struct {
+		Host     string `json:"Host"`
+		Port     int    `json:"Port"`
+		User     string `json:"User"`
+		Password string `json:"Password"`
+		DBName   string `json:"DBName"`
+	} `json:"postgresql"`
+	Sqlite3 struct {
+		Path string `json:"Path"`
+	} `json:"sqlite3"`
 }
