@@ -4,7 +4,7 @@ import (
 	"context"
 
 	"fmt"
-	elastic "gopkg.in/olivere/elastic.v5"
+	elastic "github.com/olivere/elastic"
 	"io/ioutil"
 	"log"
 	"math/rand"

@@ -6,7 +6,7 @@ import (
 	"reflect"
 	"time"
 
-	"gopkg.in/olivere/elastic.v5"
+	"github.com/olivere/elastic"
 	"io/ioutil"
 	"log"
 )
