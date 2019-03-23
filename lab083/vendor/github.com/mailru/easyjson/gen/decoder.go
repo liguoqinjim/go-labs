@@ -114,7 +114,7 @@ func (g *Generator) genTypeDecoderNoCheck(t reflect.Type, out string, tags field
 		tmpVar := g.uniqueVarName()
 		elem := t.Elem()
 
-		if elem.Kind() == reflect.Uint8 {
+		if elem.Kind() == reflect.Uint8 && elem.Name() == "uint8" {
 			fmt.Fprintln(g.out, ws+"if in.IsNull() {")
 			fmt.Fprintln(g.out, ws+"  in.Skip()")
 			fmt.Fprintln(g.out, ws+"  "+out+" = nil")
@@ -161,7 +161,7 @@ func (g *Generator) genTypeDecoderNoCheck(t reflect.Type, out string, tags field
 		iterVar := g.uniqueVarName()
 		elem := t.Elem()
 
-		if elem.Kind() == reflect.Uint8 {
+		if elem.Kind() == reflect.Uint8 && elem.Name() == "uint8" {
 			fmt.Fprintln(g.out, ws+"if in.IsNull() {")
 			fmt.Fprintln(g.out, ws+"  in.Skip()")
 			fmt.Fprintln(g.out, ws+"} else {")
@@ -198,7 +198,12 @@ func (g *Generator) genTypeDecoderNoCheck(t reflect.Type, out string, tags field
 		dec := g.getDecoderName(t)
 		g.addType(t)
 
-		fmt.Fprintln(g.out, ws+dec+"(in, &"+out+")")
+		if len(out) > 0 && out[0] == '*' {
+			// NOTE: In order to remove an extra reference to a pointer
+			fmt.Fprintln(g.out, ws+dec+"(in, "+out[1:]+")")
+		} else {
+			fmt.Fprintln(g.out, ws+dec+"(in, &"+out+")")
+		}
 
 	case reflect.Ptr:
 		fmt.Fprintln(g.out, ws+"if in.IsNull() {")
@@ -343,7 +348,8 @@ func getStructFields(t reflect.Type) ([]reflect.StructField, error) {
 	var efields []reflect.StructField
 	for i := 0; i < t.NumField(); i++ {
 		f := t.Field(i)
-		if !f.Anonymous {
+		tags := parseFieldTags(f)
+		if !f.Anonymous || tags.name != "" {
 			continue
 		}
 
@@ -362,7 +368,8 @@ func getStructFields(t reflect.Type) ([]reflect.StructField, error) {
 	var fields []reflect.StructField
 	for i := 0; i < t.NumField(); i++ {
 		f := t.Field(i)
-		if f.Anonymous {
+		tags := parseFieldTags(f)
+		if f.Anonymous && tags.name == "" {
 			continue
 		}
 
@@ -461,7 +468,15 @@ func (g *Generator) genStructDecoder(t reflect.Type) error {
 	}
 
 	fmt.Fprintln(g.out, "    default:")
-	fmt.Fprintln(g.out, "      in.SkipRecursive()")
+	if g.disallowUnknownFields {
+		fmt.Fprintln(g.out, `      in.AddError(&jlexer.LexerError{
+          Offset: in.GetPos(),
+          Reason: "unknown field",
+          Data: key,
+      })`)
+	} else {
+		fmt.Fprintln(g.out, "      in.SkipRecursive()")
+	}
 	fmt.Fprintln(g.out, "    }")
 	fmt.Fprintln(g.out, "    in.WantComma()")
 	fmt.Fprintln(g.out, "  }")
