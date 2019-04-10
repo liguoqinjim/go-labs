@@ -9,3 +9,4 @@
 |lab004|查询| |
 |lab005|数据库连接测试| |
 |lab006|测试update操作| |
+|lab007|mysql的json数据格式| |
