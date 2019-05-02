@@ -1,4 +1,4 @@
-FROM debian:stretch
+FROM ubuntu:16.04
 
 RUN apt-get update -qq
 RUN apt-get install -yq \
@@ -9,7 +9,7 @@ RUN apt-get install -yq \
   libtool \
   pkg-config \
   libpng-dev \
-  libjpeg62-turbo-dev \
+  libjpeg8-dev \
   libtiff5-dev \
   zlib1g-dev
 RUN apt-get install -yq \
@@ -20,7 +20,7 @@ RUN apt-get install -yq \
   wget \
   git
 
-ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib
+ENV LD_LIBRARY_PATH=${LD_LIBRARY_PATH}:/usr/local/lib 
 
 # Compile Leptonica
 WORKDIR /
@@ -47,6 +47,7 @@ RUN ./autogen.sh \
   && make --quiet \
   && make install
 
+
 # Recover location
 WORKDIR /
 
@@ -63,11 +64,11 @@ ENV GOROOT=/go
 RUN mkdir /gopath
 ENV GOPATH=/gopath
 ENV PATH=${PATH}:${GOROOT}/bin:${GOPATH}/bin
-
+ 
 # Dependencies for tests
 RUN go get github.com/otiai10/mint
 RUN go get golang.org/x/net/html
-
+ 
 # Mount source code of gosseract project
 ADD . ${GOPATH}/src/github.com/otiai10/gosseract
 

@@ -1,8 +1,8 @@
 package main
 
 import (
-	"fmt"
 	"github.com/otiai10/gosseract"
+	"log"
 )
 
 func main() {
@@ -10,6 +10,6 @@ func main() {
 	defer client.Close()
 	client.SetImage("test.png")
 	text, _ := client.Text()
-	fmt.Println(text)
+	log.Println(text)
 	// Hello, World!
 }

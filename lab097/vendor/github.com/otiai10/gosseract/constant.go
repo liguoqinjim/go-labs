@@ -38,3 +38,41 @@ const (
 	// PSM_COUNT - Just a number of enum entries. This is NOT a member of PSM ;)
 	PSM_COUNT
 )
+
+// PageIteratorLevel maps directly to tesseracts enum tesseract::PageIteratorLevel
+// represents the hierarchy of the page elements used in ResultIterator.
+// https://github.com/tesseract-ocr/tesseract/blob/a18620cfea33d03032b71fe1b9fc424777e34252/ccstruct/publictypes.h#L219-L225
+type PageIteratorLevel int
+
+const (
+	// RIL_BLOCK - Block of text/image/separator line.
+	RIL_BLOCK PageIteratorLevel = iota
+	// RIL_PARA - Paragraph within a block.
+	RIL_PARA
+	// RIL_TEXTLINE - Line within a paragraph.
+	RIL_TEXTLINE
+	// RIL_WORD - Word within a textline.
+	RIL_WORD
+	// RIL_SYMBOL - Symbol/character within a word.
+	RIL_SYMBOL
+)
+
+// SettableVariable represents available strings for TessBaseAPI::SetVariable.
+// See https://groups.google.com/forum/#!topic/tesseract-ocr/eHTBzrBiwvQ
+// and https://github.com/tesseract-ocr/tesseract/blob/master/ccmain/tesseractclass.h
+type SettableVariable string
+
+// Followings are variables which can be used for TessBaseAPI::SetVariable.
+// If anything missing (I know there are many), please add one below.
+const (
+	// DEBUG_FILE - File to send output to.
+	DEBUG_FILE SettableVariable = "debug_file"
+	// TESSEDIT_CHAR_WHITELIST - Whitelist of chars to recognize
+	// There is a known issue in 4.00 with LSTM
+	// https://github.com/tesseract-ocr/tesseract/issues/751
+	TESSEDIT_CHAR_WHITELIST SettableVariable = "tessedit_char_whitelist"
+	// TESSEDIT_CHAR_BLACKLIST - Blacklist of chars not to recognize
+	// There is a known issue in 4.00 with LSTM
+	// https://github.com/tesseract-ocr/tesseract/issues/751
+	TESSEDIT_CHAR_BLACKLIST SettableVariable = "tessedit_char_blacklist"
+)
