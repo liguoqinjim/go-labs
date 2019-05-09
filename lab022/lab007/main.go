@@ -18,7 +18,7 @@ func main() {
 	case messages <- msg:
 		log.Println("send message", msg)
 	default:
-		//这里因为没人在receive,所有会走default
+		//这里因为没人在receive,所以会走default
 		log.Println("no message sent")
 	}
 
