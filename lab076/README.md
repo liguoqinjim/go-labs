@@ -4,3 +4,4 @@
 |---|---|
 |lab001|base64|
 |lab002|hex，官方example|
+|lab003|ascii，例:`\x66\x69\x72\x73\x74\x53\x74\x61\x74\x65`| |
