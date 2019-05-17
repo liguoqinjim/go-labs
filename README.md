@@ -73,7 +73,7 @@
 |lab073|testify，测试框架| |
 |lab074|AES加密算法| |
 |lab075|goroutine| |
-|lab076|编码相关(base64，hex)| |
+|lab076|编码相关|base64,hex,`0xNN` |
 |lab077|锁| |
 |lab078|map和slice的内存和速度分析| |
 |lab079|interface| |
