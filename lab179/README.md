@@ -4,6 +4,7 @@
 |---|---|---|
 |lab001| example low-api | |
 |lab002| example high-api| |
+|lab003| 测试consumer的速度| |
 
 
 
