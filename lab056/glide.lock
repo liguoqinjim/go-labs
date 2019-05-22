@@ -1,8 +1,8 @@
 hash: 6ce147ba75a7e878bfa6139501e47c94ac732ef330e5d36e9cf9321eb55bdf54
-updated: 2019-03-24T23:33:43.3123872+08:00
+updated: 2019-05-22T18:58:34.844046+08:00
 imports:
 - name: github.com/go-redis/redis
-  version: 9ecae37814bc6623672ec8967e2b322b23fd4540
+  version: 75795aa4236dc7341eefac3bbe945e68c99ef9df
   subpackages:
   - internal
   - internal/consistenthash
