@@ -28,6 +28,8 @@ const (
 	TextNode
 	// CommentNode a comment (for example, <!-- my comment --> ).
 	CommentNode
+	// AttributeNode is an attribute of element.
+	AttributeNode
 )
 
 // A Node consists of a NodeType and some Data (tag name for
@@ -66,14 +68,24 @@ func (n *Node) InnerText() string {
 }
 
 func outputXML(buf *bytes.Buffer, n *Node) {
-	if n.Type == TextNode || n.Type == CommentNode {
+	if n.Type == TextNode {
 		xml.EscapeText(buf, []byte(strings.TrimSpace(n.Data)))
+		return
+	}
+	if n.Type == CommentNode {
+		buf.WriteString("<!--")
+		buf.WriteString(n.Data)
+		buf.WriteString("-->")
 		return
 	}
 	if n.Type == DeclarationNode {
 		buf.WriteString("<?" + n.Data)
 	} else {
-		buf.WriteString("<" + n.Data)
+		if n.Prefix == "" {
+			buf.WriteString("<" + n.Data)
+		} else {
+			buf.WriteString("<" + n.Prefix + ":" + n.Data)
+		}
 	}
 
 	for _, attr := range n.Attr {
@@ -92,7 +104,11 @@ func outputXML(buf *bytes.Buffer, n *Node) {
 		outputXML(buf, child)
 	}
 	if n.Type != DeclarationNode {
-		buf.WriteString(fmt.Sprintf("</%s>", n.Data))
+		if n.Prefix == "" {
+			buf.WriteString(fmt.Sprintf("</%s>", n.Data))
+		} else {
+			buf.WriteString(fmt.Sprintf("</%s:%s>", n.Prefix, n.Data))
+		}
 	}
 }
 
@@ -168,6 +184,8 @@ func parse(r io.Reader) (*Node, error) {
 		space2prefix = make(map[string]string)
 		level        = 0
 	)
+	// http://www.w3.org/XML/1998/namespace is bound by definition to the prefix xml.
+	space2prefix["http://www.w3.org/XML/1998/namespace"] = "xml"
 	decoder.CharsetReader = charset.NewReaderLabel
 	prev := doc
 	for {
@@ -202,6 +220,14 @@ func parse(r io.Reader) (*Node, error) {
 					return nil, errors.New("xmlquery: invalid XML document, namespace is missing")
 				}
 			}
+
+			for i := 0; i < len(tok.Attr); i++ {
+				att := &tok.Attr[i]
+				if prefix, ok := space2prefix[att.Name.Space]; ok {
+					att.Name.Space = prefix
+				}
+			}
+
 			node := &Node{
 				Type:         ElementNode,
 				Data:         tok.Name.Local,
@@ -231,6 +257,11 @@ func parse(r io.Reader) (*Node, error) {
 				addSibling(prev, node)
 			} else if level > prev.level {
 				addChild(prev, node)
+			} else if level < prev.level {
+				for i := prev.level - level; i > 1; i-- {
+					prev = prev.Parent
+				}
+				addSibling(prev.Parent, node)
 			}
 		case xml.Comment:
 			node := &Node{Type: CommentNode, Data: string(tok), level: level}
@@ -238,6 +269,11 @@ func parse(r io.Reader) (*Node, error) {
 				addSibling(prev, node)
 			} else if level > prev.level {
 				addChild(prev, node)
+			} else if level < prev.level {
+				for i := prev.level - level; i > 1; i-- {
+					prev = prev.Parent
+				}
+				addSibling(prev.Parent, node)
 			}
 		case xml.ProcInst: // Processing Instruction
 			if prev.Type != DeclarationNode {

@@ -1,16 +1,16 @@
 hash: 9a44f5c6a5bf53884f5b238e4de863acf3dc2eab4891935c571df29ffb7cd97d
-updated: 2018-05-17T18:26:32.7356387+08:00
+updated: 2019-06-06T14:38:54.483908+08:00
 imports:
 - name: github.com/andybalholm/cascadia
-  version: 901648c87902174f774fac311d7f176f8647bdaa
+  version: 680b6a57bda4f657485ad44bdea42342ead737bc
 - name: github.com/antchfx/htmlquery
-  version: 7afeab9e150c53c8d592d884b0951a5a3b665a13
+  version: b8d36292614567671decfe6f96c7b8c432d3249b
 - name: github.com/antchfx/xmlquery
-  version: 52ab7c76b916d59fd2fd5dfd8a616ecf9923b7c0
+  version: e401210509ad0f0492855c2066285c790860bd38
 - name: github.com/antchfx/xpath
-  version: 7148e5d6bb845772731e3979df279a1b0e8e90ac
+  version: ce1d48779e67a1ddfb380995fe532b2e0015919c
 - name: github.com/gobwas/glob
-  version: f00a7392b43971b2fdb562418faab1f18da2067a
+  version: e7a84e9525fe90abcda167b604e483cc959ad4aa
   subpackages:
   - compiler
   - match
@@ -20,31 +20,31 @@ imports:
   - util/runes
   - util/strings
 - name: github.com/gocolly/colly
-  version: 9a176fe5f869c7062819f7af968c03c662018c06
+  version: d360e4bd7c2735a0349af154d1857b22cb84f492
   subpackages:
   - debug
   - storage
 - name: github.com/golang/protobuf
-  version: 927b65914520a8b7d44f5c9057611cfec6b2e2d0
+  version: b285ee9cfc6c881bb20c0d8dc73370ea9b9ec90f
   subpackages:
   - proto
 - name: github.com/kennygrant/sanitize
-  version: 2e6820834a1f36c626bf19a253b7d3cc060e9b8b
+  version: 06ec0d0dbcd497d01e5189b16f5263f712e61a8e
 - name: github.com/PuerkitoBio/goquery
-  version: ea1bc64a63088ac2bbf1a2edcae38413794a7710
+  version: 3dcf72e6c17f694381a21592651ca1464ded0e10
 - name: github.com/saintfish/chardet
   version: 3af4cd4741ca4f3eb0c407c034571a6fb0ea529c
 - name: github.com/temoto/robotstxt
-  version: 9e4646fa705336d5b2fa9dddfafbe0a1a965acd7
+  version: 97ee4a9ee6ea01ed0bbf0325dd789f74cac6cb94
 - name: golang.org/x/net
-  version: 2491c5de3490fced2f6cff376127c667efeed857
+  version: 60506f45cf65977eb3a9c6e30f995f54a721c271
   subpackages:
   - context
   - html
   - html/atom
   - html/charset
 - name: golang.org/x/text
-  version: 5c1cf69b5978e5a34c5f9ba09a83e56acc4b7877
+  version: 342b2e1fbaa52c93f31447ad2c6abc048c63e475
   subpackages:
   - encoding
   - encoding/charmap
@@ -64,14 +64,12 @@ imports:
   - runes
   - transform
 - name: google.golang.org/appengine
-  version: b9aad5d628b283f265adf8d3557faae187a8d015
+  version: de285f9b71d302e953472c27f2152dfe8fac5195
   subpackages:
   - internal
-  - internal/app_identity
   - internal/base
   - internal/datastore
   - internal/log
-  - internal/modules
   - internal/remote_api
   - internal/urlfetch
   - urlfetch

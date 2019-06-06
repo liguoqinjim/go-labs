@@ -1,44 +1,11 @@
 package xmlquery
 
 import (
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"strings"
 	"testing"
 )
-
-func ExampleQuery() {
-	s := `<?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0">
-<channel>
-  <title>W3Schools Home Page</title>
-  <link>https://www.w3schools.com</link>
-  <description>Free web building tutorials</description>
-  <item>
-    <title>RSS Tutorial</title>
-    <link>https://www.w3schools.com/xml/xml_rss.asp</link>
-    <description>New RSS tutorial on W3Schools</description>
-  </item>
-  <item>
-    <title>XML Tutorial</title>
-    <link>https://www.w3schools.com/xml</link>
-    <description>New XML tutorial on W3Schools</description>
-  </item>
-</channel>
-</rss>`
-
-	doc, err := Parse(strings.NewReader(s))
-	if err != nil {
-		panic(err)
-	}
-	channel := FindOne(doc, "//channel")
-	fmt.Printf("title: %s\n", channel.SelectElement("title").InnerText())
-	fmt.Printf("link: %s\n", channel.SelectElement("link").InnerText())
-	for i, n := range Find(doc, "//item") {
-		fmt.Printf("#%d %s\n", i, n.SelectElement("title"))
-	}
-}
 
 func findNode(root *Node, name string) *Node {
 	node := root.FirstChild
@@ -268,17 +235,17 @@ func TestTooNested(t *testing.T) {
 	if aaa == nil {
 		t.Fatal("AAA node not exists")
 	}
-	ccc := aaa.LastChild
+	ccc := aaa.LastChild.PrevSibling
 	if ccc.Data != "CCC" {
 		t.Fatalf("expected node is CCC,but got %s", ccc.Data)
 	}
-	bbb := ccc.PrevSibling
+	bbb := ccc.PrevSibling.PrevSibling
 	if bbb.Data != "BBB" {
 		t.Fatalf("expected node is bbb,but got %s", bbb.Data)
 	}
 	ddd := findNode(bbb, "DDD")
 	testNode(t, ddd, "DDD")
-	testNode(t, ddd.LastChild, "CCC")
+	testNode(t, ddd.LastChild.PrevSibling, "CCC")
 }
 
 func TestSelectElement(t *testing.T) {
@@ -331,4 +298,49 @@ func TestEscapeOutputValue(t *testing.T) {
 		t.Fatal("Inner Text has not been escaped")
 	}
 
+}
+func TestOutputXMLWithNamespacePrefix(t *testing.T) {
+	s := `<?xml version="1.0" encoding="UTF-8"?><S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/"><S:Body></S:Body></S:Envelope>`
+	doc, _ := Parse(strings.NewReader(s))
+	if s != doc.OutputXML(false) {
+		t.Fatal("xml document missing some characters")
+	}
+}
+
+func TestAttributeWithNamespace(t *testing.T) {
+	s := `<?xml version="1.0" encoding="UTF-8"?><root xmlns:n1="http://www.w3.org">
+   <good a="1" b="2" />
+   <good a="1" n1:a="2" /></root>`
+	doc, _ := Parse(strings.NewReader(s))
+	n := FindOne(doc, "//good[@n1:a='2']")
+	if n == nil {
+		t.Fatal("n is nil")
+	}
+}
+
+func TestOutputXMLWithCommentNode(t *testing.T) {
+	s := `<?xml version="1.0" encoding="utf-8"?>
+	<!-- Students grades are updated bi-monthly -->
+	<class_list>
+		<student>
+			<name>Robert</name>
+			<grade>A+</grade>
+		</student>
+	<!--
+		<student>
+			<name>Lenard</name>
+			<grade>A-</grade>
+		</student> 
+	-->
+	</class_list>`
+	doc, _ := Parse(strings.NewReader(s))
+	t.Log(doc.OutputXML(true))
+	if e, g := "<!-- Students grades are updated bi-monthly -->", doc.OutputXML(true); strings.Index(g, e) == -1 {
+		t.Fatal("missing some comment-node.")
+	}
+	n := FindOne(doc, "//class_list")
+	t.Log(n.OutputXML(false))
+	if e, g := "<name>Lenard</name>", n.OutputXML(false); strings.Index(g, e) == -1 {
+		t.Fatal("missing some comment-node")
+	}
 }

@@ -6,7 +6,10 @@ import (
 	"testing"
 )
 
-var html *TNode = example()
+var (
+	html  = example()
+	html2 = example2()
+)
 
 func TestCompile(t *testing.T) {
 	var err error
@@ -22,8 +25,11 @@ func TestCompile(t *testing.T) {
 	if err != nil {
 		t.Fatalf("//ul/li/@class should be correct but got error %s", err)
 	}
+	_, err = Compile("/a/b/(c, .[not(c)])")
+	if err != nil {
+		t.Fatalf("/a/b/(c, .[not(c)]) should be correct but got error %s", err)
+	}
 }
-
 func TestSelf(t *testing.T) {
 	testXPath(t, html, ".", "html")
 	testXPath(t, html.FirstChild, ".", "head")
@@ -45,6 +51,11 @@ func TestAttribute(t *testing.T) {
 	testXPath2(t, html, "@lang='zh'", 0)
 	testXPath2(t, html, "//@href", 3)
 	testXPath2(t, html, "//a[@*]", 3)
+}
+
+func TestSequence(t *testing.T) {
+	testXPath2(t, html2, "//table/tbody/tr/td/(para, .[not(para)])", 9)
+	testXPath2(t, html2, "//table/tbody/tr/td/(para, .[not(para)], ..)", 12)
 }
 
 func TestRelativePath(t *testing.T) {
@@ -178,11 +189,21 @@ func TestOr_And(t *testing.T) {
 	if list[1] != selectNode(html, "//a[@id=2]") {
 		t.Fatal("node is not equal")
 	}
+	list = selectNodes(html, "//a[@id or @href]")
+	if list[0] != selectNode(html, "//a[@id=1]") {
+		t.Fatal("node is not equal")
+	}
+	if list[1] != selectNode(html, "//a[@id=2]") {
+		t.Fatal("node is not equal")
+	}
 	testXPath3(t, html, "//a[@id=1 and @href='/']", selectNode(html, "//a[1]"))
 	testXPath3(t, html, "//a[text()='Home' and @id='1']", selectNode(html, "//a[1]"))
 }
 
 func TestFunction(t *testing.T) {
+	testEval(t, html, "boolean(//*[@id])", true)
+	testEval(t, html, "boolean(//*[@x])", false)
+	testEval(t, html, "name(//title)", "title")
 	testXPath2(t, html, "//*[name()='a']", 3)
 	testXPath(t, html, "//*[starts-with(name(),'h1')]", "h1")
 	testXPath(t, html, "//*[ends-with(name(),'itle')]", "title") // Head title
@@ -190,11 +211,11 @@ func TestFunction(t *testing.T) {
 	testXPath2(t, html, "//*[starts-with(@href,'/a')]", 2) // a links: `/account`,`/about`
 	testXPath2(t, html, "//*[ends-with(@href,'t')]", 2)    // a links: `/account`,`/about`
 	testXPath3(t, html, "//h1[normalize-space(text())='This is a H1']", selectNode(html, "//h1"))
-	testXPath3(t, html, "//title[substring(.,0)='Hello']", selectNode(html, "//title"))
-	testXPath3(t, html, "//title[substring(text(),0,4)='Hell']", selectNode(html, "//title"))
-	testXPath3(t, html, "//title[substring(self::*,0,4)='Hell']", selectNode(html, "//title"))
-	testXPath2(t, html, "//title[substring(child::*,0)]", 0) // Here substring return boolen (false), should it?
-	testXPath2(t, html, "//title[substring(child::*,0) = '']", 1)
+	testXPath3(t, html, "//title[substring(.,1)='Hello']", selectNode(html, "//title"))
+	testXPath3(t, html, "//title[substring(text(),1,4)='Hell']", selectNode(html, "//title"))
+	testXPath3(t, html, "//title[substring(self::*,1,4)='Hell']", selectNode(html, "//title"))
+	testXPath2(t, html, "//title[substring(child::*,1)]", 0) // Here substring return boolen (false), should it?
+	testXPath2(t, html, "//title[substring(child::*,1) = '']", 1)
 	testXPath3(t, html, "//li[not(a)]", selectNode(html, "//ul/li[4]"))
 	testXPath2(t, html, "//li/a[not(@id='1')]", 2) //  //li/a[@id!=1]
 	testXPath2(t, html, "//h1[string-length(normalize-space(' abc ')) = 3]", 1)
@@ -203,19 +224,34 @@ func TestFunction(t *testing.T) {
 	testXPath2(t, html, "//title[string-length(self::text()) = 5]", 1) // Hello = 5
 	testXPath2(t, html, "//title[string-length(child::*) = 5]", 0)
 	testXPath2(t, html, "//ul[count(li)=4]", 1)
-	if MustCompile("sum(1+2)").Evaluate(createNavigator(html)).(float64) != 3 { // 1+2+3
-		t.Fatal("sum(1+2) != 3")
-	}
-	if MustCompile("sum(//a/@id)").Evaluate(createNavigator(html)).(float64) != 6 { // 1+2+3
-		t.Fatal("sum(//a/@id) != 6")
-	}
-	if MustCompile(`concat("1","2","3")`).Evaluate(createNavigator(html)).(string) != "123" {
-		t.Fatal(`concat("1","2","3") != "123"`)
-	}
-
-	if MustCompile(`concat(" ",//a[@id='1']/@href," ")`).Evaluate(createNavigator(html)).(string) != " / " {
-		t.Fatal("concat()")
-	}
+	testEval(t, html, "true()", true)
+	testEval(t, html, "false()", false)
+	testEval(t, html, "boolean(0)", false)
+	testEval(t, html, "boolean(1)", true)
+	testEval(t, html, "sum(1+2)", float64(3))
+	testEval(t, html, "string(sum(1+2))", "3")
+	testEval(t, html, "sum(1.1+2)", float64(3.1))
+	testEval(t, html, "sum(//a/@id)", float64(6)) // 1+2+3
+	testEval(t, html, `concat("1","2","3")`, "123")
+	testEval(t, html, `concat(" ",//a[@id='1']/@href," ")`, " / ")
+	testEval(t, html, "ceiling(5.2)", float64(6))
+	testEval(t, html, "floor(5.2)", float64(5))
+	testEval(t, html, `substring-before('aa-bb','-')`, "aa")
+	testEval(t, html, `substring-before('aa-bb','a')`, "")
+	testEval(t, html, `substring-before('aa-bb','b')`, "aa-")
+	testEval(t, html, `substring-before('aa-bb','q')`, "")
+	testEval(t, html, `substring-after('aa-bb','-')`, "bb")
+	testEval(t, html, `substring-after('aa-bb','a')`, "a-bb")
+	testEval(t, html, `substring-after('aa-bb','b')`, "b")
+	testEval(t, html, `substring-after('aa-bb','q')`, "")
+	testEval(t, html,
+		`translate('The quick brown fox.', 'abcdefghijklmnopqrstuvwxyz', 'ABCDEFGHIJKLMNOPQRSTUVWXYZ')`,
+		"THE QUICK BROWN FOX.",
+	)
+	testEval(t, html,
+		`translate('The quick brown fox.', 'brown', 'red')`,
+		"The quick red fdx.",
+	)
 }
 
 func TestPanic(t *testing.T) {
@@ -248,21 +284,9 @@ func assertPanic(t *testing.T, f func()) {
 }
 
 func TestEvaluate(t *testing.T) {
-	if MustCompile("count(//ul/li)").Evaluate(createNavigator(html)).(float64) != 4 {
-		t.Fatal("count(//ul/li) != 4")
-	}
-	if iter, ok := MustCompile("//html/@lang").Evaluate(createNavigator(html)).(*NodeIterator); ok {
-		iter.MoveNext()
-		if iter.Current().Value() != "en" {
-			t.Fatal("//html/@lang value not equal en")
-		}
-	}
-	if iter, ok := MustCompile("//title/text()").Evaluate(createNavigator(html)).(*NodeIterator); ok {
-		iter.MoveNext()
-		if iter.Current().Value() != "Hello" {
-			t.Fatal("//title/text() != Hello")
-		}
-	}
+	testEval(t, html, "count(//ul/li)", float64(4))
+	testEval(t, html, "//html/@lang", []string{"en"})
+	testEval(t, html, "//title/text()", []string{"Hello"})
 }
 
 func TestOperationOrLogical(t *testing.T) {
@@ -277,6 +301,30 @@ func TestOperationOrLogical(t *testing.T) {
 	testXPath2(t, html, "//a[@id!=2]", 2)                 // //a[@id>=1] == a[1],a[3]
 	testXPath2(t, html, "//a[@id=1 or @id=3]", 2)         // //a[@id>=1] == a[1],a[3]
 	testXPath3(t, html, "//a[@id=1 and @href='/']", selectNode(html, "//a[1]"))
+}
+
+func testEval(t *testing.T, root *TNode, expr string, expected interface{}) {
+	v := MustCompile(expr).Evaluate(createNavigator(root))
+	if it, ok := v.(*NodeIterator); ok {
+		exp, ok := expected.([]string)
+		if !ok {
+			t.Fatalf("expected value, got: %#v", v)
+		}
+		got := iterateNavs(it)
+		if len(exp) != len(got) {
+			t.Fatalf("expected: %#v, got: %#v", exp, got)
+		}
+		for i, n1 := range exp {
+			n2 := got[i]
+			if n1 != n2.Value() {
+				t.Fatalf("expected: %#v, got: %#v", n1, n2)
+			}
+		}
+		return
+	}
+	if v != expected {
+		t.Fatalf("expected: %#v, got: %#v", expected, v)
+	}
 }
 
 func testXPath(t *testing.T, root *TNode, expr string, expected string) {
@@ -306,6 +354,24 @@ func testXPath3(t *testing.T, root *TNode, expr string, expected *TNode) {
 	}
 }
 
+func iterateNavs(t *NodeIterator) []*TNodeNavigator {
+	var nodes []*TNodeNavigator
+	for t.MoveNext() {
+		node := t.Current().(*TNodeNavigator)
+		nodes = append(nodes, node)
+	}
+	return nodes
+}
+
+func iterateNodes(t *NodeIterator) []*TNode {
+	var nodes []*TNode
+	for t.MoveNext() {
+		node := (t.Current().(*TNodeNavigator)).curr
+		nodes = append(nodes, node)
+	}
+	return nodes
+}
+
 func selectNode(root *TNode, expr string) (n *TNode) {
 	t := Select(createNavigator(root), expr)
 	if t.MoveNext() {
@@ -316,12 +382,7 @@ func selectNode(root *TNode, expr string) (n *TNode) {
 
 func selectNodes(root *TNode, expr string) []*TNode {
 	t := Select(createNavigator(root), expr)
-	var nodes []*TNode
-	for t.MoveNext() {
-		node := (t.Current().(*TNodeNavigator)).curr
-		nodes = append(nodes, node)
-	}
-	return nodes
+	return iterateNodes(t)
 }
 
 func createNavigator(n *TNode) *TNodeNavigator {
@@ -516,7 +577,7 @@ func (n *TNode) addAttribute(k, v string) {
 	n.Attr = append(n.Attr, Attribute{k, v})
 }
 
-func example() *TNode {
+func example2() *TNode {
 	/*
 		<html lang="en">
 		   <head>
@@ -525,6 +586,73 @@ func example() *TNode {
 		   </head>
 		   <body>
 				<h1> This is a H1 </h1>
+				<table>
+					<tbody>
+						<tr>
+							<td>row1-val1</td>
+							<td>row1-val2</td>
+							<td>row1-val3</td>
+						</tr>
+						<tr>
+							<td><para>row2-val1</para></td>
+							<td><para>row2-val2</para></td>
+							<td><para>row2-val3</para></td>
+						</tr>
+						<tr>
+							<td>row3-val1</td>
+							<td><para>row3-val2</para></td>
+							<td>row3-val3</td>
+						</tr>
+					</tbody>
+				</table>
+		   </body>
+		</html>
+	*/
+	doc := createNode("", RootNode)
+	xhtml := doc.createChildNode("html", ElementNode)
+	xhtml.addAttribute("lang", "en")
+
+	// The HTML head section.
+	head := xhtml.createChildNode("head", ElementNode)
+	n := head.createChildNode("title", ElementNode)
+	n = n.createChildNode("Hello", TextNode)
+	n = head.createChildNode("meta", ElementNode)
+	n.addAttribute("name", "language")
+	n.addAttribute("content", "en")
+	// The HTML body section.
+	body := xhtml.createChildNode("body", ElementNode)
+	n = body.createChildNode("h1", ElementNode)
+	n = n.createChildNode(" This is a H1 ", TextNode)
+
+	n = body.createChildNode("table", ElementNode)
+	tbody := n.createChildNode("tbody", ElementNode)
+	n = tbody.createChildNode("tr", ElementNode)
+	n.createChildNode("td", ElementNode).createChildNode("row1-val1", TextNode)
+	n.createChildNode("td", ElementNode).createChildNode("row1-val2", TextNode)
+	n.createChildNode("td", ElementNode).createChildNode("row1-val3", TextNode)
+	n = tbody.createChildNode("tr", ElementNode)
+	n.createChildNode("td", ElementNode).createChildNode("para", ElementNode).createChildNode("row2-val1", TextNode)
+	n.createChildNode("td", ElementNode).createChildNode("para", ElementNode).createChildNode("row2-val2", TextNode)
+	n.createChildNode("td", ElementNode).createChildNode("para", ElementNode).createChildNode("row2-val3", TextNode)
+	n = tbody.createChildNode("tr", ElementNode)
+	n.createChildNode("td", ElementNode).createChildNode("row3-val1", TextNode)
+	n.createChildNode("td", ElementNode).createChildNode("para", ElementNode).createChildNode("row3-val2", TextNode)
+	n.createChildNode("td", ElementNode).createChildNode("row3-val3", TextNode)
+
+	return xhtml
+}
+
+func example() *TNode {
+	/*
+		<html lang="en">
+		   <head>
+			   <title>Hello</title>
+			   <meta name="language" content="en"/>
+		   </head>
+		   <body>
+				<h1>
+				This is a H1
+				</h1>
 				<ul>
 					<li><a id="1" href="/">Home</a></li>
 					<li><a id="2" href="/about">about</a></li>
@@ -552,7 +680,7 @@ func example() *TNode {
 	// The HTML body section.
 	body := xhtml.createChildNode("body", ElementNode)
 	n = body.createChildNode("h1", ElementNode)
-	n = n.createChildNode(" This is a H1 ", TextNode)
+	n = n.createChildNode("\nThis is a H1\n", TextNode)
 	ul := body.createChildNode("ul", ElementNode)
 	n = ul.createChildNode("li", ElementNode)
 	n = n.createChildNode("a", ElementNode)

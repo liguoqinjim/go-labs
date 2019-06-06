@@ -23,14 +23,21 @@ func CreateXPathNavigator(top *html.Node) *NodeNavigator {
 
 // Find searches the html.Node that matches by the specified XPath expr.
 func Find(top *html.Node, expr string) []*html.Node {
-	var elems []*html.Node
 	exp, err := xpath.Compile(expr)
 	if err != nil {
 		panic(err)
 	}
+	var elems []*html.Node
 	t := exp.Select(CreateXPathNavigator(top))
 	for t.MoveNext() {
-		elems = append(elems, (t.Current().(*NodeNavigator)).curr)
+		nav := t.Current().(*NodeNavigator)
+		n := getCurrentNode(nav)
+		// avoid adding duplicate nodes.
+		if len(elems) > 0 && (elems[0] == n || (nav.NodeType() == xpath.AttributeNode &&
+			nav.LocalName() == elems[0].Data && nav.Value() == InnerText(elems[0]))) {
+			continue
+		}
+		elems = append(elems, n)
 	}
 	return elems
 }
@@ -45,23 +52,9 @@ func FindOne(top *html.Node, expr string) *html.Node {
 	}
 	t := exp.Select(CreateXPathNavigator(top))
 	if t.MoveNext() {
-		elem = (t.Current().(*NodeNavigator)).curr
+		elem = getCurrentNode(t.Current().(*NodeNavigator))
 	}
 	return elem
-}
-
-// FindEach searches the html.Node and calls functions cb.
-func FindEach(top *html.Node, expr string, cb func(int, *html.Node)) {
-	exp, err := xpath.Compile(expr)
-	if err != nil {
-		panic(err)
-	}
-	t := exp.Select(CreateXPathNavigator(top))
-	i := 0
-	for t.MoveNext() {
-		cb(i, (t.Current().(*NodeNavigator)).curr)
-		i++
-	}
 }
 
 // LoadURL loads the HTML document from the specified URL.
@@ -77,6 +70,23 @@ func LoadURL(url string) (*html.Node, error) {
 		return nil, err
 	}
 	return html.Parse(r)
+}
+
+func getCurrentNode(n *NodeNavigator) *html.Node {
+	if n.NodeType() == xpath.AttributeNode {
+		childNode := &html.Node{
+			Type: html.TextNode,
+			Data: n.Value(),
+		}
+		return &html.Node{
+			Type:       html.ElementNode,
+			Data:       n.LocalName(),
+			FirstChild: childNode,
+			LastChild:  childNode,
+		}
+
+	}
+	return n.curr
 }
 
 // Parse returns the parse tree for the HTML from the given Reader.
@@ -109,6 +119,9 @@ func InnerText(n *html.Node) string {
 func SelectAttr(n *html.Node, name string) (val string) {
 	if n == nil {
 		return
+	}
+	if n.Type == html.ElementNode && n.Parent == nil && name == n.Data {
+		return InnerText(n)
 	}
 	for _, attr := range n.Attr {
 		if attr.Key == name {

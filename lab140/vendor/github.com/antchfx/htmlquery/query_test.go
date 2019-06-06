@@ -2,6 +2,8 @@ package htmlquery
 
 import (
 	"fmt"
+	"net/http"
+	"net/http/httptest"
 	"strings"
 	"testing"
 
@@ -21,9 +23,9 @@ const htmlSample = `<!DOCTYPE html><html lang="en-US">
 </header>  
 <nav>
   <ul>
-    <li><a href="#">London</a></li>
-    <li><a href="#">Paris</a></li>
-    <li><a href="#">Tokyo</a></li>
+    <li><a href="/London">London</a></li>
+    <li><a href="/Paris">Paris</a></li>
+    <li><a href="/Tokyo">Tokyo</a></li>
   </ul>
 </nav>
 <article>
@@ -40,25 +42,15 @@ const htmlSample = `<!DOCTYPE html><html lang="en-US">
 
 var testDoc = loadHTML(htmlSample)
 
-func ExampleQuery() {
-	doc, err := LoadURL("https://www.bing.com/search?q=golang")
-	if err != nil {
-		panic(err)
-	}
-	// Find all news item.
-	for i, n := range Find(doc, "//ol/li") {
-		n2 := FindOne(n, "//a")
-		fmt.Println("%d %s(%s)", i, InnerText(n2), SelectAttr(n2, "href"))
-	}
-}
+func TestLoadURL(t *testing.T) {
+	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		fmt.Fprintln(w, htmlSample)
+	}))
+	defer ts.Close()
 
-func TestHttpLoad(t *testing.T) {
-	doc, err := LoadURL("http://www.bing.com")
+	_, err := LoadURL(ts.URL)
 	if err != nil {
 		t.Fatal(err)
-	}
-	if doc == nil {
-		t.Fatal("doc is nil")
 	}
 }
 
@@ -68,7 +60,7 @@ func TestNavigator(t *testing.T) {
 	nav.MoveToChild() // HEAD
 	nav.MoveToNext()
 	if nav.NodeType() != xpath.TextNode {
-		t.Fatalf("expectd node type is TextNode,but got %s", nav.NodeType())
+		t.Fatalf("expectd node type is TextNode,but got %vs", nav.NodeType())
 	}
 	nav.MoveToNext() // <BODY>
 	if nav.Value() != InnerText(FindOne(testDoc, "//body")) {
@@ -97,13 +89,6 @@ func TestXPath(t *testing.T) {
 		t.Fatal("//html[@lang] != en-Us")
 	}
 
-	var c int
-	FindEach(testDoc, "//li", func(i int, node *html.Node) {
-		c++
-	})
-	if c != len(Find(testDoc, "//li")) {
-		t.Fatal("li node count != 3")
-	}
 	node = FindOne(testDoc, "//header")
 	if strings.Index(InnerText(node), "Logo") > 0 {
 		t.Fatal("InnerText() have comment node text")
@@ -111,6 +96,14 @@ func TestXPath(t *testing.T) {
 	if strings.Index(OutputHTML(node, true), "Logo") == -1 {
 		t.Fatal("OutputHTML() shoud have comment node text")
 	}
+	link := FindOne(testDoc, "//a[1]/@href")
+	if link == nil {
+		t.Fatal("link is nil")
+	}
+	if v := InnerText(link); v != "/London" {
+		t.Fatalf("expect value is /London, but got %s", v)
+	}
+
 }
 
 func TestXPathCdUp(t *testing.T) {

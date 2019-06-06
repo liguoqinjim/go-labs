@@ -22,6 +22,12 @@ func (n *Node) SelectElement(name string) *Node {
 
 // SelectAttr returns the attribute value with the specified name.
 func (n *Node) SelectAttr(name string) string {
+	if n.Type == AttributeNode {
+		if n.Data == name {
+			return n.InnerText()
+		}
+		return ""
+	}
 	var local, space string
 	local = name
 	if i := strings.Index(name, ":"); i > 0 {
@@ -43,6 +49,23 @@ func CreateXPathNavigator(top *Node) *NodeNavigator {
 	return &NodeNavigator{curr: top, root: top, attr: -1}
 }
 
+func getCurrentNode(it *xpath.NodeIterator) *Node {
+	n := it.Current().(*NodeNavigator)
+	if n.NodeType() == xpath.AttributeNode {
+		childNode := &Node{
+			Type: TextNode,
+			Data: n.Value(),
+		}
+		return &Node{
+			Type:       AttributeNode,
+			Data:       n.LocalName(),
+			FirstChild: childNode,
+			LastChild:  childNode,
+		}
+	}
+	return n.curr
+}
+
 // Find searches the Node that matches by the specified XPath expr.
 func Find(top *Node, expr string) []*Node {
 	exp, err := xpath.Compile(expr)
@@ -52,7 +75,7 @@ func Find(top *Node, expr string) []*Node {
 	t := exp.Select(CreateXPathNavigator(top))
 	var elems []*Node
 	for t.MoveNext() {
-		elems = append(elems, (t.Current().(*NodeNavigator)).curr)
+		elems = append(elems, getCurrentNode(t))
 	}
 	return elems
 }
@@ -67,22 +90,27 @@ func FindOne(top *Node, expr string) *Node {
 	t := exp.Select(CreateXPathNavigator(top))
 	var elem *Node
 	if t.MoveNext() {
-		elem = (t.Current().(*NodeNavigator)).curr
+		elem = getCurrentNode(t)
 	}
 	return elem
 }
 
 // FindEach searches the html.Node and calls functions cb.
+// Important: this method has deprecated, recommend use for .. = range Find(){}.
 func FindEach(top *Node, expr string, cb func(int, *Node)) {
-	exp, err := xpath.Compile(expr)
-	if err != nil {
-		panic(err)
+	for i, n := range Find(top, expr) {
+		cb(i, n)
 	}
-	t := exp.Select(CreateXPathNavigator(top))
-	var i int
-	for t.MoveNext() {
-		cb(i, (t.Current().(*NodeNavigator)).curr)
-		i++
+}
+
+// FindEachWithBreak functions the same as FindEach but allows you
+// to break the loop by returning false from your callback function, cb.
+// Important: this method has deprecated, recommend use for .. = range Find(){}.
+func FindEachWithBreak(top *Node, expr string, cb func(int, *Node) bool) {
+	for i, n := range Find(top, expr) {
+		if !cb(i, n) {
+			break
+		}
 	}
 }
 
@@ -122,6 +150,9 @@ func (x *NodeNavigator) LocalName() string {
 
 func (x *NodeNavigator) Prefix() string {
 	if x.NodeType() == xpath.AttributeNode {
+		if x.attr != -1 {
+			return x.curr.Attr[x.attr].Name.Space
+		}
 		return ""
 	}
 	return x.curr.Prefix

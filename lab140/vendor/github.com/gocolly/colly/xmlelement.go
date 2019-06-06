@@ -89,13 +89,18 @@ func (h *XMLElement) Attr(k string) string {
 // elements.
 func (h *XMLElement) ChildText(xpathQuery string) string {
 	if h.isHTML {
-		return strings.TrimSpace(htmlquery.InnerText(htmlquery.FindOne(h.DOM.(*html.Node), xpathQuery)))
+		child := htmlquery.FindOne(h.DOM.(*html.Node), xpathQuery)
+		if child == nil {
+			return ""
+		}
+		return strings.TrimSpace(htmlquery.InnerText(child))
 	}
-	n := xmlquery.FindOne(h.DOM.(*xmlquery.Node), xpathQuery)
-	if n == nil {
+	child := xmlquery.FindOne(h.DOM.(*xmlquery.Node), xpathQuery)
+	if child == nil {
 		return ""
 	}
-	return strings.TrimSpace(n.InnerText())
+	return strings.TrimSpace(child.InnerText())
+
 }
 
 // ChildAttr returns the stripped text content of the first matching
@@ -129,13 +134,13 @@ func (h *XMLElement) ChildAttr(xpathQuery, attrName string) string {
 func (h *XMLElement) ChildAttrs(xpathQuery, attrName string) []string {
 	var res []string
 	if h.isHTML {
-		htmlquery.FindEach(h.DOM.(*html.Node), xpathQuery, func(i int, child *html.Node) {
+		for _, child := range htmlquery.Find(h.DOM.(*html.Node), xpathQuery) {
 			for _, attr := range child.Attr {
 				if attr.Key == attrName {
 					res = append(res, strings.TrimSpace(attr.Val))
 				}
 			}
-		})
+		}
 	} else {
 		xmlquery.FindEach(h.DOM.(*xmlquery.Node), xpathQuery, func(i int, child *xmlquery.Node) {
 			for _, attr := range child.Attr {
@@ -146,4 +151,20 @@ func (h *XMLElement) ChildAttrs(xpathQuery, attrName string) []string {
 		})
 	}
 	return res
+}
+
+// ChildTexts returns an array of strings corresponding to child elements that match the xpath query.
+// Each item in the array is the stripped text content of the corresponding matching child element.
+func (h *XMLElement) ChildTexts(xpathQuery string) []string {
+	texts := make([]string, 0)
+	if h.isHTML {
+		for _, child := range htmlquery.Find(h.DOM.(*html.Node), xpathQuery) {
+			texts = append(texts, strings.TrimSpace(htmlquery.InnerText(child)))
+		}
+	} else {
+		xmlquery.FindEach(h.DOM.(*xmlquery.Node), xpathQuery, func(i int, child *xmlquery.Node) {
+			texts = append(texts, strings.TrimSpace(child.InnerText()))
+		})
+	}
+	return texts
 }

@@ -8,83 +8,95 @@ htmlquery
 Overview
 ====
 
-**htmlquery** is an HTML Parser and XPath package, supports extract data or evaluate from HTML documents using XPath expression.
+htmlquery is an XPath query package for HTML, lets you extract data or evaluate from HTML documents by an XPath expression.
 
-[xmlquery](https://github.com/antchfx/xmlquery) is similar to this package, but supports XML document using XPath expression.
+Changelogs
+===
+
+2019-02-04
+- [#7](https://github.com/antchfx/htmlquery/issues/7) Removed deprecated `FindEach()` and `FindEachWithBreak()` methods.
+
+2018-12-28
+- Avoid adding duplicate elements to list for `Find()` method. [#6](https://github.com/antchfx/htmlquery/issues/6)
 
 Installation
 ====
 
-$ go get github.com/antchfx/htmlquery
+> $ go get github.com/antchfx/htmlquery
 
-Dependencies
+Getting Started
 ====
 
-- [html](https://golang.org/x/net/html)
-- [xpath](https://github.com/antchfx/xpath)
-
-Getting started
-====
-
-#### Load HTML document from URL
+#### Load HTML document from URL.
 
 ```go
-doc, _ := htmlquery.LoadURL("http://example.com/")
-fmt.Println(htmlquery.OutputHTML(doc, true))
+doc, err := htmlquery.LoadURL("http://example.com/")
 ```
 
-#### Load HTML document from string
+#### Load HTML document from string.
 
 ```go
 s := `<html>....</html>`
-doc, _ := htmlquery.Parse(strings.NewReader(s))
-fmt.Println(htmlquery.OutputHTML(doc, true))
+doc, err := htmlquery.Parse(strings.NewReader(s))
 ```
 
-#### List all matched elements
+#### Find all A elements.
 
 ```go
-doc := loadTestHTML()
-for _, n := range htmlquery.Find(doc, "//a") {
-	fmt.Printf("%s \n", n.Data)
-}
+list := htmlquery.Find(doc, "//a")
 ```
 
-#### List all matched elements with specific attribute
+#### Find all A elements that have `href` attribute.
 
 ```go
-doc := loadTestHTML()
-for _, n := range htmlquery.Find(doc, "//a/@href") {
-	fmt.Printf("%s \n", htmlquery.SelectAttr(n, "href"))
-}
+list := range htmlquery.Find(doc, "//a[@href]")	
 ```
 
-#### Select first of all matched elements
+#### Find all A elements and only get `href` attribute self.
 
 ```go
-doc := loadTestHTML()
-n := htmlquery.FindOne(doc, "//a")
-fmt.Printf("%s \n", htmlquery.OutputHTML(n, true))
+list := range htmlquery.Find(doc, "//a/@href")	
 ```
 
-### Gets an element text or attribute value
+### Find the third A element.
 
 ```go
-doc := loadTestHTML()
-n := htmlquery.FindOne(doc, "//a")
-fmt.Printf("%s \n", htmlquery.InnerText)
-fmt.Println("%s \n", htmlquery.SelectAttr(n, "href"))
+a := htmlquery.FindOne(doc, "//a[3]")
 ```
 
-#### Evaluate element count
+#### Evaluate the number of all IMG element.
 
 ```go
-doc := loadTestHTML()
 expr, _ := xpath.Compile("count(//img)")
 v := expr.Evaluate(htmlquery.CreateXPathNavigator(doc)).(float64)
 fmt.Printf("total count is %f", v)
 ```
 
+Quick Tutorial
+===
+
+```go
+func main() {
+	doc, err := htmlquery.LoadURL("https://www.bing.com/search?q=golang")
+	if err != nil {
+		panic(err)
+	}
+	// Find all news item.
+	for i, n := range htmlquery.Find(doc, "//ol/li") {
+		a := htmlquery.FindOne(n, "//a")
+		fmt.Printf("%d %s(%s)\n", i, htmlquery.InnerText(a), htmlquery.SelectAttr(a, "href"))
+	}
+}
+```
+
+List of supported XPath query packages
+===
+|Name |Description |
+|--------------------------|----------------|
+|[htmlquery](https://github.com/antchfx/htmlquery) | XPath query package for the HTML document|
+|[xmlquery](https://github.com/antchfx/xmlquery) | XPath query package for the XML document|
+|[jsonquery](https://github.com/antchfx/jsonquery) | XPath query package for the JSON document|
+
 Questions
 ===
-If you have any questions, create an issue and welcome to contribute.
+Please let me know if you have any questions.

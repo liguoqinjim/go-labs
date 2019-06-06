@@ -35,6 +35,7 @@ var robotsFile = `
 User-agent: *
 Allow: /allowed
 Disallow: /disallowed
+Disallow: /allowed*q=
 `
 
 func newTestServer() *httptest.Server {
@@ -349,6 +350,43 @@ func TestCollectorVisit(t *testing.T) {
 	}
 }
 
+func TestCollectorVisitWithAllowedDomains(t *testing.T) {
+	ts := newTestServer()
+	defer ts.Close()
+
+	c := NewCollector(AllowedDomains("localhost", "127.0.0.1", "::1"))
+	err := c.Visit(ts.URL)
+	if err != nil {
+		t.Errorf("Failed to visit url %s", ts.URL)
+	}
+
+	err = c.Visit("http://example.com")
+	if err != ErrForbiddenDomain {
+		t.Errorf("c.Visit should return ErrForbiddenDomain, but got %v", err)
+	}
+}
+
+func TestCollectorVisitWithDisallowedDomains(t *testing.T) {
+	ts := newTestServer()
+	defer ts.Close()
+
+	c := NewCollector(DisallowedDomains("localhost", "127.0.0.1", "::1"))
+	err := c.Visit(ts.URL)
+	if err != ErrForbiddenDomain {
+		t.Errorf("c.Visit should return ErrForbiddenDomain, but got %v", err)
+	}
+
+	c2 := NewCollector(DisallowedDomains("example.com"))
+	err = c2.Visit("http://example.com:8080")
+	if err != ErrForbiddenDomain {
+		t.Errorf("c.Visit should return ErrForbiddenDomain, but got %v", err)
+	}
+	err = c2.Visit(ts.URL)
+	if err != nil {
+		t.Errorf("Failed to visit url %s", ts.URL)
+	}
+}
+
 func TestCollectorOnHTML(t *testing.T) {
 	ts := newTestServer()
 	defer ts.Close()
@@ -473,7 +511,7 @@ func TestBaseTag(t *testing.T) {
 	c.Visit(ts.URL + "/base")
 
 	c2 := NewCollector()
-	c2.OnXML("//a/@href", func(e *XMLElement) {
+	c2.OnXML("//a", func(e *XMLElement) {
 		u := e.Request.AbsoluteURL(e.Attr("href"))
 		if u != "http://xy.com/z" {
 			t.Error("Invalid <base /> tag handling in OnXML: expected https://xy.com/z, got " + u)
@@ -529,6 +567,23 @@ func TestRobotsWhenDisallowed(t *testing.T) {
 	})
 
 	err := c.Visit(ts.URL + "/disallowed")
+	if err.Error() != "URL blocked by robots.txt" {
+		t.Fatalf("wrong error message: %v", err)
+	}
+}
+
+func TestRobotsWhenDisallowedWithQueryParameter(t *testing.T) {
+	ts := newTestServer()
+	defer ts.Close()
+
+	c := NewCollector()
+	c.IgnoreRobotsTxt = false
+
+	c.OnResponse(func(resp *Response) {
+		t.Fatalf("Received response: %d", resp.StatusCode)
+	})
+
+	err := c.Visit(ts.URL + "/allowed?q=1")
 	if err.Error() != "URL blocked by robots.txt" {
 		t.Fatalf("wrong error message: %v", err)
 	}
@@ -639,9 +694,11 @@ func TestHTMLElement(t *testing.T) {
 		t.Fatal(err)
 	}
 	elements := []*HTMLElement{}
-	doc.Find(sel).Each(func(i int, s *goquery.Selection) {
+	i := 0
+	doc.Find(sel).Each(func(_ int, s *goquery.Selection) {
 		for _, n := range s.Nodes {
-			elements = append(elements, NewHTMLElementFromSelectionNode(resp, s, n))
+			elements = append(elements, NewHTMLElementFromSelectionNode(resp, s, n, i))
+			i++
 		}
 	})
 	elementsLen := len(elements)
