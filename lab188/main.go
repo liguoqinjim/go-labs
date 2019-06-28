@@ -6,12 +6,13 @@ import (
 )
 
 func main() {
-	db := ouidb.New("oui.txt")
+	//db := ouidb.New("oui.txt")
+	db := ouidb.New("oui2.txt")
 	if db == nil {
 		log.Fatalf("db is nil")
 	}
 
-	mac:="00:16:e0:3d:f4:4c"
+	mac := "38-29-5A-28-E3-8F" //D0-C7-C0-9A-EC-C8
 	v, err := db.VendorLookup(mac)
 	if err != nil {
 		log.Fatalf("parse: %s: %s", mac, err.Error())
