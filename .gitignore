@@ -52,3 +52,4 @@ sh.exe.stackdump
 lab140/vendor/github.com/gocolly/colly/_examples/local_files
 lab188/oui.txt
 lab188/oui2.txt
+lab188/oui_database.txt
