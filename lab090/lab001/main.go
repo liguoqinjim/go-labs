@@ -22,8 +22,7 @@ func main() {
 
 	//Post
 	log.Println("Post" + HR)
-	request = gorequest.New()
-	resp, body, errs = request.Post("http://httpbin.org/post").End()
+
 	handleErrors(errs)
 	log.Println("resp.Status=", resp.Status)
 	log.Println("body.length=", len(body))
@@ -50,6 +49,19 @@ func main() {
 	ver := BrowserVersionSupport{Chrome: "37.0.2041.6", Firefox: "30.0"}
 	request = gorequest.New()
 	resp, body, errs = request.Post("http://httpbin.org/post").
+		Send(ver).
+		End()
+	handleErrors(errs)
+	log.Println("resp.Status=", resp.Status)
+	log.Println("body.length=", len(body))
+	log.Println("body=", body)
+
+	//form
+	//要加上Type("form")才行，不然是发送的JSON
+	log.Println("form" + HR)
+	request = gorequest.New()
+	resp, body, errs = request.Post("http://httpbin.org/post").
+		Type("form").
 		Send(ver).
 		End()
 	handleErrors(errs)
