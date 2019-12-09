@@ -7,12 +7,10 @@ package md4_test
 import (
 	"fmt"
 	"io"
-
-	"golang.org/x/crypto/md4"
 )
 
 func ExampleNew() {
-	h := md4.New()
+	h := New()
 	data := "These pretzels are making me thirsty."
 	io.WriteString(h, data)
 	fmt.Printf("%x", h.Sum(nil))

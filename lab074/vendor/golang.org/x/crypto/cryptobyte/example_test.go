@@ -7,7 +7,6 @@ package cryptobyte_test
 import (
 	"encoding/asn1"
 	"fmt"
-	"golang.org/x/crypto/cryptobyte"
 )
 
 func ExampleString_lengthPrefixed() {
@@ -15,17 +14,17 @@ func ExampleString_lengthPrefixed() {
 	// example, TLS). Imagine a 16-bit prefixed series of 8-bit prefixed
 	// strings.
 
-	input := cryptobyte.String([]byte{0, 12, 5, 'h', 'e', 'l', 'l', 'o', 5, 'w', 'o', 'r', 'l', 'd'})
+	input := String([]byte{0, 12, 5, 'h', 'e', 'l', 'l', 'o', 5, 'w', 'o', 'r', 'l', 'd'})
 	var result []string
 
-	var values cryptobyte.String
+	var values String
 	if !input.ReadUint16LengthPrefixed(&values) ||
 		!input.Empty() {
 		panic("bad format")
 	}
 
 	for !values.Empty() {
-		var value cryptobyte.String
+		var value String
 		if !values.ReadUint8LengthPrefixed(&value) {
 			panic("bad format")
 		}
@@ -44,16 +43,16 @@ func ExampleString_asn1() {
 	//      data OCTET STRING
 	//    }
 
-	input := cryptobyte.String([]byte{0x30, 12, 0xa6, 3, 2, 1, 2, 4, 5, 'h', 'e', 'l', 'l', 'o'})
+	input := String([]byte{0x30, 12, 0xa6, 3, 2, 1, 2, 4, 5, 'h', 'e', 'l', 'l', 'o'})
 
 	var (
 		version                   int64
-		data, inner, versionBytes cryptobyte.String
+		data, inner, versionBytes String
 		haveVersion               bool
 	)
-	if !input.ReadASN1(&inner, cryptobyte.Tag(asn1.TagSequence).Constructed()) ||
+	if !input.ReadASN1(&inner, Tag(asn1.TagSequence).Constructed()) ||
 		!input.Empty() ||
-		!inner.ReadOptionalASN1(&versionBytes, &haveVersion, cryptobyte.Tag(6).Constructed().ContextSpecific()) ||
+		!inner.ReadOptionalASN1(&versionBytes, &haveVersion, Tag(6).Constructed().ContextSpecific()) ||
 		(haveVersion && !versionBytes.ReadASN1Integer(&version)) ||
 		(haveVersion && !versionBytes.Empty()) ||
 		!inner.ReadASN1(&data, asn1.TagOctetString) ||
@@ -76,10 +75,10 @@ func ExampleBuilder_asn1() {
 	data := []byte("hello")
 	const defaultVersion = 0
 
-	var b cryptobyte.Builder
-	b.AddASN1(cryptobyte.Tag(asn1.TagSequence).Constructed(), func(b *cryptobyte.Builder) {
+	var b Builder
+	b.AddASN1(Tag(asn1.TagSequence).Constructed(), func(b *Builder) {
 		if version != defaultVersion {
-			b.AddASN1(cryptobyte.Tag(6).Constructed().ContextSpecific(), func(b *cryptobyte.Builder) {
+			b.AddASN1(Tag(6).Constructed().ContextSpecific(), func(b *Builder) {
 				b.AddASN1Int64(version)
 			})
 		}
@@ -101,10 +100,10 @@ func ExampleBuilder_lengthPrefixed() {
 	// prefixed strings.
 	input := []string{"hello", "world"}
 
-	var b cryptobyte.Builder
-	b.AddUint16LengthPrefixed(func(b *cryptobyte.Builder) {
+	var b Builder
+	b.AddUint16LengthPrefixed(func(b *Builder) {
 		for _, value := range input {
-			b.AddUint8LengthPrefixed(func(b *cryptobyte.Builder) {
+			b.AddUint8LengthPrefixed(func(b *Builder) {
 				b.AddBytes([]byte(value))
 			})
 		}

@@ -10,7 +10,6 @@ import (
 	"os"
 
 	"golang.org/x/crypto/ssh"
-	"golang.org/x/crypto/ssh/agent"
 )
 
 func ExampleClientAgent() {
@@ -20,7 +19,7 @@ func ExampleClientAgent() {
 	if err != nil {
 		log.Fatalf("net.Dial: %v", err)
 	}
-	agentClient := agent.NewClient(conn)
+	agentClient := NewClient(conn)
 	config := &ssh.ClientConfig{
 		User: "username",
 		Auth: []ssh.AuthMethod{

@@ -9,7 +9,6 @@ import (
 	"crypto/rand"
 	"crypto/sha256"
 	"fmt"
-	"golang.org/x/crypto/hkdf"
 	"io"
 )
 
@@ -36,7 +35,7 @@ func Example_usage() {
 	info := []byte{0x03, 0x14, 0x15, 0x92, 0x65}
 
 	// Create the key derivation function
-	hkdf := hkdf.New(hash, master, salt, info)
+	hkdf := New(hash, master, salt, info)
 
 	// Generate the required keys
 	keys := make([][]byte, 3)

@@ -9,8 +9,6 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-
-	"golang.org/x/crypto/acme/autocert"
 )
 
 func ExampleNewListener() {
@@ -18,13 +16,13 @@ func ExampleNewListener() {
 	mux.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "Hello, TLS user! Your config: %+v", r.TLS)
 	})
-	log.Fatal(http.Serve(autocert.NewListener("example.com"), mux))
+	log.Fatal(http.Serve(NewListener("example.com"), mux))
 }
 
 func ExampleManager() {
-	m := autocert.Manager{
-		Prompt:     autocert.AcceptTOS,
-		HostPolicy: autocert.HostWhitelist("example.org"),
+	m := Manager{
+		Prompt:     AcceptTOS,
+		HostPolicy: HostWhitelist("example.org"),
 	}
 	s := &http.Server{
 		Addr:      ":https",

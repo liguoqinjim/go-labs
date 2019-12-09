@@ -4,17 +4,15 @@ import (
 	crypto_rand "crypto/rand" // Custom so it's clear which rand we're using.
 	"fmt"
 	"io"
-
-	"golang.org/x/crypto/nacl/box"
 )
 
 func Example() {
-	senderPublicKey, senderPrivateKey, err := box.GenerateKey(crypto_rand.Reader)
+	senderPublicKey, senderPrivateKey, err := GenerateKey(crypto_rand.Reader)
 	if err != nil {
 		panic(err)
 	}
 
-	recipientPublicKey, recipientPrivateKey, err := box.GenerateKey(crypto_rand.Reader)
+	recipientPublicKey, recipientPrivateKey, err := GenerateKey(crypto_rand.Reader)
 	if err != nil {
 		panic(err)
 	}
@@ -29,7 +27,7 @@ func Example() {
 
 	msg := []byte("Alas, poor Yorick! I knew him, Horatio")
 	// This encrypts msg and appends the result to the nonce.
-	encrypted := box.Seal(nonce[:], msg, &nonce, recipientPublicKey, senderPrivateKey)
+	encrypted := Seal(nonce[:], msg, &nonce, recipientPublicKey, senderPrivateKey)
 
 	// The recipient can decrypt the message using their private key and the
 	// sender's public key. When you decrypt, you must use the same nonce you
@@ -38,7 +36,7 @@ func Example() {
 	// first 24 bytes of the encrypted text.
 	var decryptNonce [24]byte
 	copy(decryptNonce[:], encrypted[:24])
-	decrypted, ok := box.Open(nil, encrypted[24:], &decryptNonce, senderPublicKey, recipientPrivateKey)
+	decrypted, ok := Open(nil, encrypted[24:], &decryptNonce, senderPublicKey, recipientPrivateKey)
 	if !ok {
 		panic("decryption error")
 	}
@@ -47,12 +45,12 @@ func Example() {
 }
 
 func Example_precompute() {
-	senderPublicKey, senderPrivateKey, err := box.GenerateKey(crypto_rand.Reader)
+	senderPublicKey, senderPrivateKey, err := GenerateKey(crypto_rand.Reader)
 	if err != nil {
 		panic(err)
 	}
 
-	recipientPublicKey, recipientPrivateKey, err := box.GenerateKey(crypto_rand.Reader)
+	recipientPublicKey, recipientPrivateKey, err := GenerateKey(crypto_rand.Reader)
 	if err != nil {
 		panic(err)
 	}
@@ -60,7 +58,7 @@ func Example_precompute() {
 	// The shared key can be used to speed up processing when using the same
 	// pair of keys repeatedly.
 	sharedEncryptKey := new([32]byte)
-	box.Precompute(sharedEncryptKey, recipientPublicKey, senderPrivateKey)
+	Precompute(sharedEncryptKey, recipientPublicKey, senderPrivateKey)
 
 	// You must use a different nonce for each message you encrypt with the
 	// same key. Since the nonce here is 192 bits long, a random value
@@ -72,12 +70,12 @@ func Example_precompute() {
 
 	msg := []byte("A fellow of infinite jest, of most excellent fancy")
 	// This encrypts msg and appends the result to the nonce.
-	encrypted := box.SealAfterPrecomputation(nonce[:], msg, &nonce, sharedEncryptKey)
+	encrypted := SealAfterPrecomputation(nonce[:], msg, &nonce, sharedEncryptKey)
 
 	// The shared key can be used to speed up processing when using the same
 	// pair of keys repeatedly.
 	var sharedDecryptKey [32]byte
-	box.Precompute(&sharedDecryptKey, senderPublicKey, recipientPrivateKey)
+	Precompute(&sharedDecryptKey, senderPublicKey, recipientPrivateKey)
 
 	// The recipient can decrypt the message using the shared key. When you
 	// decrypt, you must use the same nonce you used to encrypt the message.
@@ -86,7 +84,7 @@ func Example_precompute() {
 	// encrypted text.
 	var decryptNonce [24]byte
 	copy(decryptNonce[:], encrypted[:24])
-	decrypted, ok := box.OpenAfterPrecomputation(nil, encrypted[24:], &decryptNonce, &sharedDecryptKey)
+	decrypted, ok := OpenAfterPrecomputation(nil, encrypted[24:], &decryptNonce, &sharedDecryptKey)
 	if !ok {
 		panic("decryption error")
 	}

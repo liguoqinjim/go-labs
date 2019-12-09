@@ -9,8 +9,6 @@ import (
 	"encoding/hex"
 	"fmt"
 	"io"
-
-	"golang.org/x/crypto/nacl/secretbox"
 )
 
 func Example() {
@@ -35,7 +33,7 @@ func Example() {
 	}
 
 	// This encrypts "hello world" and appends the result to the nonce.
-	encrypted := secretbox.Seal(nonce[:], []byte("hello world"), &nonce, &secretKey)
+	encrypted := Seal(nonce[:], []byte("hello world"), &nonce, &secretKey)
 
 	// When you decrypt, you must use the same nonce and key you used to
 	// encrypt the message. One way to achieve this is to store the nonce
@@ -43,7 +41,7 @@ func Example() {
 	// 24 bytes of the encrypted text.
 	var decryptNonce [24]byte
 	copy(decryptNonce[:], encrypted[:24])
-	decrypted, ok := secretbox.Open(nil, encrypted[24:], &decryptNonce, &secretKey)
+	decrypted, ok := Open(nil, encrypted[24:], &decryptNonce, &secretKey)
 	if !ok {
 		panic("decryption error")
 	}
