@@ -3,22 +3,23 @@ package main
 import (
 	"crypto/aes"
 	"crypto/cipher"
-	"fmt"
+	"log"
 )
 
 func main() {
 	aesEnc := AesEncrypt{}
 	arrEncrypt, err := aesEnc.Encrypt("abcde")
 	if err != nil {
-		fmt.Println(arrEncrypt)
-		return
+		log.Fatalf("aesEns error:%v", err)
 	}
+	log.Println(len(arrEncrypt))
+	log.Printf("%x\n", arrEncrypt)
+
 	strMsg, err := aesEnc.Decrypt(arrEncrypt)
 	if err != nil {
-		fmt.Println(arrEncrypt)
-		return
+		log.Fatalf("aesEnc error:%v", err)
 	}
-	fmt.Println(strMsg)
+	log.Println(strMsg)
 }
 
 type AesEncrypt struct {
