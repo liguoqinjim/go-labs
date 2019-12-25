@@ -23,7 +23,7 @@ func main() {
 		}
 		return true // will get requests
 	}
-	client, err := elastic.NewClient(elastic.SetSnifferCallback(callback), elastic.SetURL(url))
+	client, err := elastic.NewClient(elastic.SetSnifferCallback(callback), elastic.SetURL(url), elastic.SetSniff(false))
 	if err != nil {
 		log.Fatalf("elastic.NewClient error:%v", err)
 	}
@@ -33,5 +33,5 @@ func main() {
 		log.Fatalf("client.Ping error:%v", err)
 	}
 	log.Println("code=", code)
-	log.Println("info=", info)
+	log.Printf("info=%+v", info)
 }
