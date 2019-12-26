@@ -188,3 +188,4 @@
 |lab188|go-ouitools,Golang tools to work with Mac addresses and oui database|https://github.com/dutchcoders/go-ouitools|
 |lab189|fyne,Cross platform GUI in Go based on Material Design|https://github.com/fyne-io/fyne|
 |lab190|squirrel,Fluent SQL generation for golang|https://github.com/Masterminds/squirrel|
+|lab191|gosoap,SOAP package for Go|https://github.com/tiaguinho/gosoap|
