@@ -189,3 +189,4 @@
 |lab189|fyne,Cross platform GUI in Go based on Material Design|https://github.com/fyne-io/fyne|
 |lab190|squirrel,Fluent SQL generation for golang|https://github.com/Masterminds/squirrel|
 |lab191|gosoap,SOAP package for Go|https://github.com/tiaguinho/gosoap|
+|lab192|ratelimit,A Golang blocking leaky-bucket rate limit implementation|https://github.com/uber-go/ratelimit/|
