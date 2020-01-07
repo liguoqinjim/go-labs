@@ -190,3 +190,4 @@
 |lab190|squirrel,Fluent SQL generation for golang|https://github.com/Masterminds/squirrel|
 |lab191|gosoap,SOAP package for Go|https://github.com/tiaguinho/gosoap|
 |lab192|ratelimit,A Golang blocking leaky-bucket rate limit implementation|https://github.com/uber-go/ratelimit/|
+|lab193|time/rate|golang原生的限流器|
