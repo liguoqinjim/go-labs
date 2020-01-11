@@ -191,3 +191,4 @@
 |lab191|gosoap,SOAP package for Go|https://github.com/tiaguinho/gosoap|
 |lab192|ratelimit,A Golang blocking leaky-bucket rate limit implementation|https://github.com/uber-go/ratelimit/|
 |lab193|time/rate|golang原生的限流器|
+|lab194|发送邮件| |
