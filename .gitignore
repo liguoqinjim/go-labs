@@ -53,3 +53,6 @@ lab140/vendor/github.com/gocolly/colly/_examples/local_files
 lab188/oui.txt
 lab188/oui2.txt
 lab188/oui_database.txt
+lab195/lab001/greetercl/greetercl
+lab195/lab001/greetersvc/greetersvc
+lab195/lab001/greetersvr/greetersvr
