@@ -193,3 +193,4 @@
 |lab193|time/rate|golang原生的限流器|
 |lab194|发送邮件| |
 |lab195|go-micro,A Go microservices development framework|https://github.com/micro/go-micro/|
+|lab196|显示图片| |
