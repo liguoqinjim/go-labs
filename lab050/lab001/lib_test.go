@@ -14,8 +14,8 @@ func TestSpec(t *testing.T) {
 			x++
 
 			Convey("The value should be greater by one", func() {
-				//So(x, ShouldEqual, 2) //测试成功
-				So(x, ShouldEqual, 3) //测试失败
+				So(x, ShouldEqual, 2) //测试成功
+				//So(x, ShouldEqual, 3) //测试失败
 			})
 		})
 	})

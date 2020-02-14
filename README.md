@@ -47,7 +47,7 @@
 |lab047|pixel，一个2D引擎| |
 |lab048|gopher-lua，A Lua VM in Go| |
 |lab049|gobevtree，Behavior Tree in Go| |
-|lab050|goconvey，测试框架| |
+|lab050|goconvey，测试框架|https://github.com/smartystreets/goconvey |
 |lab051|behavior3go，golang behavior tree，行为树| |
 |lab052|snappy| |
 |lab053|web.go| |
