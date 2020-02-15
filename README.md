@@ -70,7 +70,7 @@
 |lab070|golang的值传递和引用传递| |
 |lab071|golang/template| |
 |lab072|golang小数的计算，float，浮点数| |
-|lab073|testify，测试框架| |
+|lab073|testify|https://github.com/stretchr/testify |
 |lab074|AES加密算法| |
 |lab075|goroutine| |
 |lab076|编码相关|base64,hex,`0xNN` |

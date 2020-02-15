@@ -1,3 +1,0 @@
-package: lab073
-import:
-- package: github.com/stretchr/testify

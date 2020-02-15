@@ -5,6 +5,11 @@ import (
 	"testing"
 )
 
+type Student struct {
+	Sid   int
+	Sname string
+}
+
 func TestSomething(t *testing.T) {
 	//assert equality
 	assert.Equal(t, 123, 123, "they should be equal")
