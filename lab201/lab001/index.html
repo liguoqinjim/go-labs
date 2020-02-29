@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/neffos.js@latest/dist/neffos.min.js"></script>
+</head>
+<body>
+    <script>
+        async function f() {
+            try {
+                // const conn = await neffos.dial("/echo", { v1: {
+                const conn = await neffos.dial("ws://localhost:8080/echo", { v1: {
+                        echo: function(nsConn, msg) {
+                            window.alert(msg.Body);
+                        }
+                    }});
+
+                const nsConn = await conn.connect("v1");
+                nsConn.emit("echo", "Greetings!");
+
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        f()
+    </script>
+</body>
+</html>
