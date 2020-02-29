@@ -1,7 +1,7 @@
-### 连接websocket
+# 连接websocket
 
-#### 注意点
-##### 连接参数
+## NOTICE
+### 连接参数
 ```
 conn, _, err := dialer.Dial("wss://io.sosobtc.com/socket.io/?EIO=3&transport=websocket",
 		map[string][]string{"Origin": []string{"https://k.sosobtc.com"},
