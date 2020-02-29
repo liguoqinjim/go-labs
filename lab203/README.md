@@ -4,3 +4,4 @@
 |---|---|---|
 |lab001|example/command| |
 |lab002|example/filewatch| |
+|lab003|example/chat| |
