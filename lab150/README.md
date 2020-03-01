@@ -6,6 +6,7 @@
 |lab001|demo| |
 |lab002|tutorial| |
 |lab003|websocket| |
+|lab004|swagger| |
 
 ## NOTICE
  - func (router *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
