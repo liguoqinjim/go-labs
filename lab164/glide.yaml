@@ -1,3 +1,0 @@
-package: lab164
-import:
-- package: github.com/uber-go/zap
