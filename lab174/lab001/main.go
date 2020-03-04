@@ -6,7 +6,7 @@ import (
 )
 
 type User struct {
-	Name string
+	Name string `json:name1`
 	Role string
 	Age  int32
 }
@@ -16,7 +16,7 @@ func (user *User) DoubleAge() int32 {
 }
 
 type Employee struct {
-	Name      string
+	Name      string `json:name2`
 	Age       int32
 	DoubleAge int32
 	EmployeId int64

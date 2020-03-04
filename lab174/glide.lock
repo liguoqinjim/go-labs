@@ -1,6 +1,0 @@
-hash: ce0b4328f0918414bc7f4b74110abd1099657a69212fe7e8930163b3c3b21ce0
-updated: 2019-01-16T19:43:51.848471+08:00
-imports:
-- name: github.com/jinzhu/copier
-  version: 7e38e58719c33e0d44d585c4ab477a30f8cb82dd
-testImports: []

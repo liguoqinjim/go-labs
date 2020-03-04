@@ -1,3 +1,0 @@
-package: lab174
-import:
-- package: github.com/jinzhu/copier
