@@ -8,6 +8,7 @@ import (
 func main() {
 	logger, _ := zap.NewProduction()
 	defer logger.Sync() // flushes buffer, if any
+
 	sugar := logger.Sugar()
 	url := "http://liguoqinjim.com"
 	sugar.Infow("failed to fetch URL",
@@ -16,6 +17,7 @@ func main() {
 		"attempt", 3,
 		"backoff", time.Second,
 	)
+	
 	sugar.Infof("Failed to fetch URL: %s", url)
 
 	logger2, _ := zap.NewProduction()
