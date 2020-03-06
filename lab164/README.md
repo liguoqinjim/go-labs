@@ -5,3 +5,4 @@
 |lab001|demo| |
 |lab002|example/AdvancedConfiguration| |
 |lab003|example/BasicConfiguration| |
+|lab004|实验| |
