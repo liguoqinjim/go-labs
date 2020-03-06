@@ -33,7 +33,7 @@
 |lab033|gops，A tool to list and diagnose Go processes currently running on your system| |
 |lab034|Golang比较两个slice是否相等| |
 |lab035|包依赖管理| |
-|lab036|logrus，日志库|https://github.com/sirupsen/logrus|
+|lab036|logrus，Structured, pluggable logging for Go|https://github.com/sirupsen/logrus|
 |lab037|funny/link| |
 |lab038|protobuf| |
 |lab039|内存数据库事务demo| |
@@ -203,3 +203,4 @@
 |lab203|websocket,A fast, well-tested and widely used WebSocket implementation for Go|https://github.com/gorilla/websocket|
 |lab204|validator,Go Struct and Field validation, including Cross Field, Cross Struct, Map, Slice and Array diving.验证|https://github.com/go-playground/validator|
 |lab205|errors,Simple error handling primitives|https://github.com/pkg/errors|
+|lab206|go-homedir,Go library for detecting and expanding the user's home directory without cgo.|https://github.com/mitchellh/go-homedir|
