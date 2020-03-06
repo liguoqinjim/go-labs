@@ -1,9 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"github.com/onrik/logrus/filename"
 	log "github.com/sirupsen/logrus"
-	"fmt"
 )
 
 func init() {
