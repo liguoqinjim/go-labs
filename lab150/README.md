@@ -7,7 +7,7 @@
 |lab002|tutorial| |
 |lab003|websocket| |
 |lab004|swagger| |
-|lab005|结合zap使用| |
+|lab005|zap,日志中间件| |
 
 ## NOTICE
  - func (router *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
