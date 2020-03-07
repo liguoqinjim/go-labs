@@ -2,10 +2,10 @@ package main
 
 import (
 	"bytes"
+	"fmt"
 	"golang.org/x/text/encoding/simplifiedchinese"
 	"golang.org/x/text/transform"
 	"io/ioutil"
-	"log"
 )
 
 func GBKToUTF8(s []byte) ([]byte, error) {
@@ -28,18 +28,18 @@ func UTF8ToGBK(s []byte) ([]byte, error) {
 }
 
 func main() {
-	s := "GBK 与 UTF-8 编码转换测试"
+	s := "这是一段测试"
 	gbk, err := UTF8ToGBK([]byte(s))
 	if err != nil {
-		log.Printf("UTF8ToGBK error:%v", err)
+		panic(err)
 	} else {
-		log.Println("gbk=", string(gbk))
+		fmt.Printf("gbk=%s\n", gbk)
 	}
 
 	utf8, err := GBKToUTF8(gbk)
 	if err != nil {
-		log.Printf("GBKToUTF8 error:%v", err)
+		fmt.Printf("GBKToUTF8 error:%v", err)
 	} else {
-		log.Println("utf8=", string(utf8))
+		fmt.Printf("utf8=%s\n", utf8)
 	}
 }

@@ -28,7 +28,7 @@ func UTF8ToGB2312(s []byte) ([]byte, error) {
 }
 
 func main() {
-	s := "GB2312 与 UTF-8 编码转换测试"
+	s := "这是一段测试"
 
 	gb2312, err := UTF8ToGB2312([]byte(s))
 	if err != nil {

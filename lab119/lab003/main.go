@@ -2,7 +2,9 @@ package main
 
 import (
 	"bufio"
+	"bytes"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
 
@@ -19,12 +21,41 @@ var enc = simplifiedchinese.GBK
 
 func main() {
 	const filename = "data/1.html"
+
 	//exampleWriteGBK(filename)
-	exampleReadGBK(filename)
+	//exampleReadGBK(filename)
+
+	//exampleRead(filename)
+	exampleReadGBK01(filename)
 }
 
-func exampleReadGBK(filename string) {
-	// Read UTF-8 from a GBK encoded file.
+//直接读会有乱码
+func exampleRead(filename string) {
+	data, err := ioutil.ReadFile(filename)
+	if err != nil {
+		panic(data)
+	}
+
+	fmt.Printf("%s", data)
+}
+
+func exampleReadGBK01(filename string) {
+	data, err := ioutil.ReadFile(filename)
+	if err != nil {
+		panic(data)
+	}
+
+	//data里面是gbk，所有用decoder
+	reader := transform.NewReader(bytes.NewReader(data), simplifiedchinese.GBK.NewDecoder())
+	d, e := ioutil.ReadAll(reader)
+	if e != nil {
+		panic(e)
+	}
+
+	fmt.Printf("%s", d)
+}
+
+func exampleReadGBK02(filename string) {
 	f, err := os.Open(filename)
 	if err != nil {
 		log.Fatal(err)
