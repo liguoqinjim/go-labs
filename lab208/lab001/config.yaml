@@ -1,0 +1,13 @@
+TimeStamp: "2018-10-18 10:09:23"
+Address: "Shanghai"
+Postcode: 518000
+CompanyInfomation:
+  Name: "Sunny"
+  MarketCapitalization: 50000000
+  EmployeeNum: 200
+  Department:
+    - "Finance"
+    - "Design"
+    - "Program"
+    - "Sales"
+  IsOpen: false
