@@ -10,7 +10,9 @@ func main() {
 	app := iris.New()
 
 	//logger_middleware
-	app.Use(middleware.LoggerHandler)
+	app.Use(middleware.RequestId)
+	//app.Use(middleware.LoggerHandler)
+	app.Use(middleware.LoggerHandler2)
 
 	app.Handle("GET", "/", func(ctx iris.Context) {
 		config.Log.Debug("handling...")
