@@ -1,3 +1,0 @@
-package: lab090
-import:
-- package: github.com/parnurzeal/gorequest
