@@ -152,7 +152,7 @@
 |lab152|sego，分词|https://github.com/huichen/sego|
 |lab153|selenium，Selenium/Webdriver client for Go|https://github.com/tebeka/selenium|
 |lab154|image包| |
-|lab155|godoc| |
+|lab155|godoc的使用| |
 |lab156|webloop|https://github.com/sourcegraph/webloop|
 |lab157|appigo，appium的golang版本|https://github.com/rockisch/appigo|
 |lab158|gzip| |
