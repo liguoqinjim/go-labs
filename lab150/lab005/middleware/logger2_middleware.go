@@ -23,13 +23,15 @@ func LoggerHandler2(ctx iris.Context) {
 	ip := ctx.RemoteAddr()
 	dumpReq, _ := httputil.DumpRequest(ctx.Request(), true)
 	if dumpReq != nil {
-		config.Log.Debug("Request start", "requestId", core.GetReqID(ctx), "description", string(dumpReq))
+		config.Log.Debugf("Request start", "requestId", core.GetReqID(ctx), "description", string(dumpReq))
 	}
 
+	ctx.Record()
 	ctx.Next()
 
 	end := time.Now().UTC()
 	latency := end.Sub(start).String()
 
-	config.Log.Info("Request end", "requestId", core.GetReqID(ctx), "latency", latency, "ip", ip, "path", path)
+	//要使用ctx.Recorder()，需要先调用ctx.Record()
+	config.Log.Infof("Request end", "requestId", core.GetReqID(ctx), "latency", latency, "ip", ip, "path", path, "body", ctx.Recorder().Body())
 }

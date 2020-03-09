@@ -14,6 +14,7 @@ func main() {
 	//app.Use(middleware.LoggerHandler)
 	app.Use(middleware.LoggerHandler2)
 
+
 	app.Handle("GET", "/", func(ctx iris.Context) {
 		config.Log.Debug("handling...")
 		ctx.HTML("<h1>Welcome</h1>")
