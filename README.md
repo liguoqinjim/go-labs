@@ -125,7 +125,7 @@
 |lab125|runtime| |
 |lab126|delve| |
 |lab127|boltdb| |
-|lab128|gorm| |
+|lab128|gorm,The fantastic ORM library for Golang|https://github.com/jinzhu/gorm|
 |lab129|sync.Map| |
 |lab130|gods，Go Data Structures|https://github.com/emirpasic/gods|
 |lab131|url.ParseQuery| |
