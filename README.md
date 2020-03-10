@@ -208,3 +208,4 @@
 |lab208|viper,Go configuration with fangs|https://github.com/spf13/viper|
 |lab209|aliyun-oss-go-sdk,Aliyun OSS SDK for Go|https://github.com/aliyun/aliyun-oss-go-sdk|
 |lab210|jwt-go,Golang implementation of JSON Web Tokens (JWT)|https://github.com/dgrijalva/jwt-go|
+|lab211|casbin,An authorization library that supports access control models like ACL, RBAC, ABAC in Golang|https://github.com/casbin/casbin|
