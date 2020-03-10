@@ -1,5 +1,4 @@
 # [iris](https://github.com/kataras/iris)
-安装:`go get -u -v github.com/kataras/iris`，这个库太大了，就不用单独的vendor了
 
 |实验|简介|说明|
 |---|---|---|
@@ -8,6 +7,7 @@
 |lab003|websocket| |
 |lab004|swagger| |
 |lab005|zap,日志中间件| |
+|lab006|单元测试| |
 
 ## NOTICE
  - func (router *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
