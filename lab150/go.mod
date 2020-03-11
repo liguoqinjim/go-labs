@@ -13,6 +13,7 @@ require (
 	github.com/googollee/go-socket.io v1.4.2
 	github.com/gorilla/websocket v1.4.1
 	github.com/imkira/go-interpol v1.1.0 // indirect
+	github.com/iris-contrib/middleware/casbin v0.0.0-20191219204441-78279b78a367
 	github.com/iris-contrib/middleware/cors v0.0.0-20191219204441-78279b78a367
 	github.com/iris-contrib/middleware/jwt v0.0.0-20191219204441-78279b78a367
 	github.com/iris-contrib/swagger/v12 v12.0.0

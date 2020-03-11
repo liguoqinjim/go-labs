@@ -8,6 +8,7 @@
 |lab004|swagger| |
 |lab005|zap,日志中间件| |
 |lab006|单元测试| |
+|lab007|casbin中间件| |
 
 ## NOTICE
  - func (router *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
