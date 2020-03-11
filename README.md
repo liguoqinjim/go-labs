@@ -1,5 +1,10 @@
 # go-labs
 
+---
+[![Go Report Card](https://goreportcard.com/badge/github.com/liguoqinjim/go-labs)](https://goreportcard.com/report/github.com/liguoqinjim/go-labs)
+
+---
+
 |实验|简介|说明|
 |---|---|---|
 |lab001|package flag的使用| |
@@ -22,7 +27,7 @@
 |lab022|关于channel的几个实验| |
 |lab023|websocket| |
 |lab024|xls操作| |
-|lab025|关于sync的几个实验| |
+|lab025|sync package|sync/atomic,sync.Mutex,sync.Once |
 |lab026|signal| |
 |lab027|匿名字段和内嵌结构体| |
 |lab028|关于unsafe包的几个实验| |
