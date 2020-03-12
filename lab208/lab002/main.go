@@ -58,18 +58,3 @@ type Config struct {
 	}
 	Hosts []interface{}
 }
-
-//type CompanyInfomation struct {
-//	Name                 string
-//	MarketCapitalization int64
-//	EmployeeNum          int64
-//	Department           []interface{}
-//	IsOpen               bool
-//}
-//
-//type YamlSetting struct {
-//	TimeStamp         string
-//	Address           string
-//	Postcode          int64
-//	CompanyInfomation CompanyInfomation
-//}

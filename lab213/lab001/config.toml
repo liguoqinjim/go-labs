@@ -26,15 +26,16 @@ enabled = true
   dc = "eqdc10"
 
 [clients]
-data = [ ["gamma", "delta"], [1, 2] ]
+#data = [ ["gamma", "delta"], [1, 2] ]
 
 # 数组中是可以换行的
 # hosts = [
 #   "alpha",
 #   "omega"
 # ]
-# todo 这行读不出是go-toml的一个bug
 hosts = ["alpha", "omega"]
+
+port = 18080
 
 # 测试viper的默认值
 [server]
