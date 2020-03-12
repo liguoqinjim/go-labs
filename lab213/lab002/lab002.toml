@@ -1,0 +1,21 @@
+debug = true
+new_title = "this is new title"
+# 关闭swag的标志
+swagger_max = "wx_swag"
+port = 80
+
+[database]
+host = "1"
+port = 2
+user = "3"
+password = "4"
+db_name = "5"
+
+[web]
+port = 18080
+page_size = 10
+
+[wx]
+appid = "1"
+sign_key = "2"
+server = "3"

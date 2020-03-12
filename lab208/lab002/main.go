@@ -75,7 +75,7 @@ type Config struct {
 	Database struct {
 		Server        string
 		Ports         []int
-		ConnectionMax int
+		ConnectionMax int `toml:"connection_max"`
 		Enabled       bool
 	}
 	Servers map[string]struct {

@@ -47,7 +47,6 @@ Password = "mypassword"`)
 	log.Println("user=", config.Postgres.User)
 }
 
-//todo 这里go-toml有个bug需要修改
 func lab003() {
 	data, err := ioutil.ReadFile("config.toml")
 	if err != nil {
@@ -64,7 +63,7 @@ func lab003() {
 		Database struct {
 			Server        string
 			Ports         []int
-			ConnectionMax int
+			ConnectionMax int `toml:"connection_max"`
 			Enabled       bool
 		}
 		Servers map[string]struct {
