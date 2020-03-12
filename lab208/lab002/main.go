@@ -1,16 +1,24 @@
 package main
 
 import (
+	"github.com/fsnotify/fsnotify"
 	"github.com/spf13/viper"
 	"log"
 	"time"
 )
+
+var GlobalConfig *Config
 
 func main() {
 	v := viper.New()
 	v.SetConfigName("config")
 	v.AddConfigPath(".")
 	v.SetConfigType("toml")
+
+	//设置默认值
+	v.SetDefault("port", "13131")
+	v.SetDefault("hosts", "a b")
+	v.SetDefault("server.port", 18082)
 
 	if err := v.ReadInConfig(); err != nil {
 		log.Fatalf("v.ReadInConfig error:%v", err)
@@ -26,11 +34,35 @@ func main() {
 	}
 
 	//读取到对应的struct
-	config := new(Config)
+	GlobalConfig = new(Config)
+	config := GlobalConfig
 	if err := v.Unmarshal(config); err != nil {
 		log.Fatalf("v.Unmarshal error:%v", err)
 	}
 	log.Printf("%+v", config)
+
+	//监听变化
+	v.OnConfigChange(func(in fsnotify.Event) {
+		//解析到map
+		if err := v.Unmarshal(&mapConfig); err != nil {
+			log.Fatalf("v.Unmarshal error:%v", err)
+		}
+		for k, v := range mapConfig {
+			log.Println(k, v)
+		}
+
+		//解析到struct
+		config := new(Config)
+		if err := v.Unmarshal(config); err != nil {
+			log.Fatalf("v.Unmarshal error:%v", err)
+		}
+		log.Printf("config:%+v", config)
+		GlobalConfig = config
+		log.Printf("globalConfig:%+v", GlobalConfig)
+	})
+	v.WatchConfig()
+
+	time.Sleep(time.Hour)
 }
 
 type Config struct {
