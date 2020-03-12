@@ -3,4 +3,7 @@
 
 ## NOTICE
  - `v.SetDefault`设置默认值
- - go-toml库有个bug，具体看lab213/lab001，之后准备修复
+ - 注意，go-toml库中下划线使用*`toml:"connection_max"`*这种格式，但是viper中使用*`mapstructure:"connection_max"`*，也就是不能使用库本身的。
+ 
+## 参考资料
+ -  https://github.com/spf13/viper#unmarshaling
