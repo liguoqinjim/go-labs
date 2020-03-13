@@ -2,11 +2,13 @@ package main
 
 import (
 	"fmt"
-
-	"github.com/go-playground/locales/en"
+	"github.com/go-playground/locales/zh"
 	ut "github.com/go-playground/universal-translator"
 	"github.com/go-playground/validator/v10"
-	en_translations "github.com/go-playground/validator/v10/translations/en"
+	"reflect"
+
+	//en_translations "github.com/go-playground/validator/v10/translations/en"
+	zh_translations "github.com/go-playground/validator/v10/translations/zh"
 )
 
 // User contains user information
@@ -36,15 +38,16 @@ var (
 func main() {
 	// NOTE: ommitting allot of error checking for brevity
 
-	en := en.New()
-	uni = ut.New(en, en)
+	//en := en.New()
+	zh := zh.New()
+	uni = ut.New(zh, zh)
 
 	// this is usually know or extracted from http 'Accept-Language' header
 	// also see uni.FindTranslator(...)
-	trans, _ := uni.GetTranslator("en")
+	trans, _ := uni.GetTranslator("zh")
 
 	validate = validator.New()
-	en_translations.RegisterDefaultTranslations(validate, trans)
+	zh_translations.RegisterDefaultTranslations(validate, trans)
 
 	translateAll(trans)
 	translateIndividual(trans)
@@ -99,15 +102,28 @@ func translateIndividual(trans ut.Translator) {
 
 func translateOverride(trans ut.Translator) {
 	validate.RegisterTranslation("required", trans, func(ut ut.Translator) error {
-		return ut.Add("required", "{0} must have a value!", true) // see universal-translator for details
+		return ut.Add("required", "{0} 不能为空!", true) // see universal-translator for details
 	}, func(ut ut.Translator, fe validator.FieldError) string {
 		t, _ := ut.T("required", fe.Field())
 
 		return t
 	})
 
+	validate.RegisterTranslation("email", trans, func(ut ut.Translator) error {
+		return ut.Add("email", "{0} 须为合法电邮", true)
+	}, func(ut ut.Translator, fe validator.FieldError) string {
+		t, _ := ut.T("email", fe.Field())
+
+		return t
+	})
+
+	validate.RegisterTagNameFunc(func(fld reflect.StructField) string {
+		return fld.Tag.Get("comment")
+	})
+
 	type User struct {
-		Username string `validate:"required"`
+		Username string `validate:"required" comment:"用户名"`
+		Email    string `validate:"required,email" comment:"电邮"`
 	}
 
 	var user User

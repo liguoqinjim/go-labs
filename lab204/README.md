@@ -3,3 +3,5 @@
 |实验|简介|说明|
 |---|---|---|
 |lab001|example/simple| |
+|lab002|example/Translations & Custom Errors| |
+|lab003|002的修改，使用zh的translation| |

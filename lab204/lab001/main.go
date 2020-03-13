@@ -82,8 +82,6 @@ func validateStruct() {
 		// from here you can create your own error messages in whatever language you wish
 		return
 	}
-
-	// save user to database
 }
 
 func validateVariable() {
