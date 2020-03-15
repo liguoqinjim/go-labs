@@ -65,7 +65,7 @@
 |lab052|snappy| |
 |lab053|web.go| |
 |lab054|gjson| |
-|lab055|goworker| |
+|lab055|goworker,goworker is a Go-based background worker that runs 10 to 100,000* times faster than Ruby-based workers.|https://github.com/benmanns/goworker |
 |lab056|redis,Type-safe Redis client for Golang|https://github.com/go-redis/redis|
 |lab057|leaf| |
 |lab058|nsq| |

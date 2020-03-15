@@ -1,6 +1,0 @@
-package: lab055/lab001
-import:
-- package: github.com/benmanns/goworker
-  version: v0.1.2
-- package: github.com/cihub/seelog
-  version: v2.6
