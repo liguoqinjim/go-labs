@@ -1,3 +1,0 @@
-package: lab147
-import:
-- package: github.com/gocarina/gocsv

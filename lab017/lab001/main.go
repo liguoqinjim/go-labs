@@ -1,8 +1,8 @@
 package main
 
 import (
-	"regexp"
 	"log"
+	"regexp"
 )
 
 func main() {

@@ -1,4 +1,0 @@
-package: lab047/lab005
-import:
-- package: github.com/faiface/pixel
-  version: v0.6

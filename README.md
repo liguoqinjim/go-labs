@@ -2,8 +2,14 @@
 
 ---
 [![Go Report Card](https://goreportcard.com/badge/github.com/liguoqinjim/go-labs)](https://goreportcard.com/report/github.com/liguoqinjim/go-labs)
+[![Language](https://img.shields.io/badge/Language-Go-blue.svg)](https://golang.org/)
 ![GitHub repo size](https://img.shields.io/github/repo-size/liguoqinjim/go-labs)
 ![GitHub](https://img.shields.io/github/license/liguoqinjim/go-labs)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/liguoqinjim/go-labs)
+![GitHub last commit](https://img.shields.io/github/last-commit/liguoqinjim/go-labs)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/liguoqinjim/go-labs)
+[![TODOs](https://badgen.net/https/api.tickgit.com/badgen/github.com/liguoqinjim/go-labs)](https://www.tickgit.com/browse?repo=github.com/liguoqinjim/go-labs)
+
 ---
 
 |实验|简介|说明|

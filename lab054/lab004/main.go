@@ -26,7 +26,7 @@ func main() {
 
 	//返回所有匹配到的值，区别是所有匹配的时候要用两个#号
 	value2 := gjson.Get(testJson, `friends.#[last="Murphy"]#.first`)
-	log.Println(`firends.#[last="Murphy"]#.first=`, value2)
+	log.Println(`friends.#[last="Murphy"]#.first=`, value2)
 	if value2.IsArray() {
 		for n, v := range value2.Array() {
 			log.Printf("value2[%d]=%s", n, v.String())
@@ -34,7 +34,7 @@ func main() {
 	}
 
 	value3 := gjson.Get(testJson, `friends.#[age>45]#.first`)
-	log.Println(`firends.#[age>45]#.first`, value3)
+	log.Println(`friends.#[age>45]#.first`, value3)
 	if value3.IsArray() {
 		for n, v := range value3.Array() {
 			log.Printf("value3[%d]=%s", n, v.String())
@@ -43,7 +43,7 @@ func main() {
 
 	//注意：就算结果只有一个，但是返回的还是数组
 	value4 := gjson.Get(testJson, `friends.#[age>47]#.first`)
-	log.Println(`firends.#[age>47]#.first`, value4)
+	log.Println(`friends.#[age>47]#.first`, value4)
 	if value4.IsArray() {
 		for n, v := range value4.Array() {
 			log.Printf("value4[%d]=%s", n, v.String())

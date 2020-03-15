@@ -1,8 +1,8 @@
 package main
 
 import (
-	"reflect"
 	"log"
+	"reflect"
 )
 
 func main() {

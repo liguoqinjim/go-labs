@@ -19,7 +19,7 @@ type MyMethod int
 
 func (this *MyMethod) Mult(args *Args, reply *int) error {
 	if args == nil || reply == nil {
-		return errors.New("nil paramters !")
+		return errors.New("nil parameters !")
 	}
 	fmt.Println("Mult方法收到参数", args.I, args.J)
 	*reply = args.I * args.J
@@ -32,7 +32,7 @@ type DivResult struct {
 
 func (this *MyMethod) Div(args *Args, reply *DivResult) error {
 	if args == nil || reply == nil {
-		return errors.New("nil paramters !")
+		return errors.New("nil parameters !")
 	}
 	if args.J == 0 {
 		return errors.New("/0 !")

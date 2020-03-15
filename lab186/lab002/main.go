@@ -34,7 +34,7 @@ func main() {
 	}
 	fmt.Printf("CREATED ROWS: %d\n", numResult) // CREATED ROWS: 1
 
-	// Closing the statment will also close the rows
+	// Closing the statement will also close the rows
 	stmt.Close()
 
 	// Lets get the node. Once again I can cancel this with no penalty

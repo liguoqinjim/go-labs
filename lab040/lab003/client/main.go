@@ -12,7 +12,7 @@ type Args struct {
 
 //func (this *MyMethod) Mult(args *Args, reply *int) error {
 //	if args == nil || reply == nil {
-//		return errors.New("nil paramters !")
+//		return errors.New("nil parameters !")
 //	}
 //	*reply = args.I*args.J
 //	return nil

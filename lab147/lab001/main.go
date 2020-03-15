@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/gocarina/gocsv"
-	"os"
 	"log"
+	"os"
 )
 
 type Client struct {

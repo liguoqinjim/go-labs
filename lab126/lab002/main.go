@@ -12,7 +12,7 @@ const port = "8000"
 func main() {
 	http.HandleFunc("/hi", hi)
 
-	fmt.Println("runing on port: " + port)
+	fmt.Println("running on port: " + port)
 	log.Fatal(http.ListenAndServe(":"+port, nil))
 }
 
