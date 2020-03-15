@@ -9,6 +9,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/liguoqinjim/go-labs)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/liguoqinjim/go-labs)
 [![TODOs](https://badgen.net/https/api.tickgit.com/badgen/github.com/liguoqinjim/go-labs)](https://www.tickgit.com/browse?repo=github.com/liguoqinjim/go-labs)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fliguoqinjim%2Fgo-labs.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fliguoqinjim%2Fgo-labs?ref=badge_shield)
 
 ---
 
@@ -223,3 +224,6 @@
 |lab212|gorm-adapter,Gorm adapter for Casbin|https://github.com/casbin/gorm-adapter|
 |lab213|go-toml,Go library for the TOML language|https://github.com/pelletier/go-toml|
 |lab214|在docker中运行go项目| |
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fliguoqinjim%2Fgo-labs.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fliguoqinjim%2Fgo-labs?ref=badge_large)
