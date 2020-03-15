@@ -1,6 +1,7 @@
 # go-labs
 
 ---
+[![Build Status](https://travis-ci.org/liguoqinjim/go-labs.svg?branch=master)](https://travis-ci.org/liguoqinjim/go-labs)
 [![Go Report Card](https://goreportcard.com/badge/github.com/liguoqinjim/go-labs)](https://goreportcard.com/report/github.com/liguoqinjim/go-labs)
 [![Language](https://img.shields.io/badge/Language-Go-blue.svg)](https://golang.org/)
 ![GitHub repo size](https://img.shields.io/github/repo-size/liguoqinjim/go-labs)
@@ -42,11 +43,11 @@
 |lab030|socket| |
 |lab031|程序性能分析，(gopsutil,gops,go tool trace)| |
 |lab032|单元测试| |
-|lab033|gops，A tool to list and diagnose Go processes currently running on your system| |
+|lab033|gops,A tool to list and diagnose Go processes currently running on your system|https://github.com/google/gops |
 |lab034|Golang比较两个slice是否相等| |
 |lab035|包依赖管理| |
-|lab036|logrus，Structured, pluggable logging for Go|https://github.com/sirupsen/logrus|
-|lab037|funny/link| |
+|lab036|logrus,Structured, pluggable logging for Go|https://github.com/sirupsen/logrus|
+|lab037|link,Go语言网络层脚手架|https://github.com/funny/link |
 |lab038|protobuf| |
 |lab039|内存数据库事务demo| |
 |lab040|rpc| |

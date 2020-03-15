@@ -1,4 +1,4 @@
-### funny/snet
+# [funny/snet](https://github.com/funny/snet)
 
 |实验|简介|
 |---|---|

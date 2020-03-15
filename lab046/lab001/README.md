@@ -1,11 +1,11 @@
-### 简单实验1
+# 简单实验1
 照着conn_test文件写一个demo来运行起来
 
-#### 注意点
-##### 客户端连接生成
+## NOTICE
+### 客户端连接生成
 客户端连接生成的时候就会自动发送DH64加密的信息给服务器。
 
-##### io.Copy
+### io.Copy
 ```
 var wg sync.WaitGroup
 	wg.Add(1)
@@ -24,8 +24,8 @@ var wg sync.WaitGroup
 ```
 这里的`io.Copy`要注意一下
 
-#### 运行截图
+## 运行截图
 ![Imgur](http://i.imgur.com/BvR0xVa.png)
 
-#### 参考资料
-https://github.com/funny/snet
+## 参考资料
+ - https://github.com/funny/snet
