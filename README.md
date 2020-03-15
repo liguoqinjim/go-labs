@@ -66,8 +66,8 @@
 |lab061|metricbeat,elastic| |
 |lab062|中文字符串长度| |
 |lab063|chromedp，drive browsers| |
-|lab064|mgo，MongoDB driver|https://github.com/globalsign/mgo|
-|lab065|lxn/walk，A Windows GUI toolkit| |
+|lab064|mgo,MongoDB driver|https://github.com/globalsign/mgo|
+|lab065|lxn/walk,A Windows GUI toolkit| |
 |lab066|net/http client相关| |
 |lab067|goquery|https://github.com/PuerkitoBio/goquery|
 |lab068|对象池 sync.Pool| |
@@ -80,7 +80,6 @@
 |lab075|goroutine| |
 |lab076|编码相关|base64,hex,`0xNN` |
 |lab077|锁| |
-|lab078|map和slice的内存和速度分析| |
 |lab079|interface| |
 |lab080|golang的label(标签)| |
 |lab081|time,时间|时间戳，时间格式的一些操作|

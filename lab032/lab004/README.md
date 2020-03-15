@@ -1,4 +1,4 @@
-### Subtests and Sub-benchmarks，go1.7新特性
+# Subtests and Sub-benchmarks，go1.7新特性
 
-#### 参考资料
-https://blog.golang.org/subtests
+## 参考资料
+ - https://blog.golang.org/subtests
