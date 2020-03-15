@@ -2,7 +2,8 @@
 
 ---
 [![Go Report Card](https://goreportcard.com/badge/github.com/liguoqinjim/go-labs)](https://goreportcard.com/report/github.com/liguoqinjim/go-labs)
-
+![GitHub repo size](https://img.shields.io/github/repo-size/liguoqinjim/go-labs)
+![GitHub](https://img.shields.io/github/license/liguoqinjim/go-labs)
 ---
 
 |实验|简介|说明|
