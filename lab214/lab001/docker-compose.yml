@@ -1,0 +1,9 @@
+version: '3'
+services:
+  app:
+    image: golang:latest
+    volumes:
+      - $PWD:/go/src/examplecom/http_demo
+    ports:
+      - "8000:8080"
+    command: go run /go/src/examplecom/http_demo/main.go
