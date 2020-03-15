@@ -1,7 +1,7 @@
 # go-labs
 
 ---
-[![Build Status](https://travis-ci.org/liguoqinjim/go-labs.svg?branch=master)](https://travis-ci.org/liguoqinjim/go-labs)
+<!--[![Build Status](https://travis-ci.org/liguoqinjim/go-labs.svg?branch=master)](https://travis-ci.org/liguoqinjim/go-labs)-->
 [![Go Report Card](https://goreportcard.com/badge/github.com/liguoqinjim/go-labs)](https://goreportcard.com/report/github.com/liguoqinjim/go-labs)
 [![Language](https://img.shields.io/badge/Language-Go-blue.svg)](https://golang.org/)
 ![GitHub repo size](https://img.shields.io/github/repo-size/liguoqinjim/go-labs)
