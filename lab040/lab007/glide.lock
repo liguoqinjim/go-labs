@@ -1,8 +1,0 @@
-hash: 711747605883c936f3a9b054d561b26905497021794e86fcefe8c1a32c9a11a7
-updated: 2017-05-24T15:28:31.1896378+08:00
-imports:
-- name: git.apache.org/thrift.git
-  version: b2a4d4ae21c789b689dd162deb819665567f481c
-  subpackages:
-  - lib/go/thrift
-testImports: []
