@@ -10,7 +10,7 @@
 ![GitHub last commit](https://img.shields.io/github/last-commit/liguoqinjim/go-labs)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/liguoqinjim/go-labs)
 [![TODOs](https://badgen.net/https/api.tickgit.com/badgen/github.com/liguoqinjim/go-labs)](https://www.tickgit.com/browse?repo=github.com/liguoqinjim/go-labs)
-
+[![codebeat badge](https://codebeat.co/badges/1551548b-45ed-4bf3-8ec2-07ca97924a67)](https://codebeat.co/projects/github-com-liguoqinjim-go-labs-master)
 ---
 
 |实验|简介|说明|
@@ -79,11 +79,11 @@
 |lab066|net/http client相关| |
 |lab067|goquery|https://github.com/PuerkitoBio/goquery|
 |lab068|对象池 sync.Pool| |
-|lab069|funny/slab| |
+|lab069|funny/slab,Slab allocation memory pools for Go.|https://github.com/funny/slab |
 |lab070|golang的值传递和引用传递| |
 |lab071|golang/template| |
 |lab072|golang小数的计算，float，浮点数| |
-|lab073|testify|https://github.com/stretchr/testify |
+|lab073|testify,A toolkit with common assertions and mocks that plays nicely with the standard library|https://github.com/stretchr/testify |
 |lab074|AES加密算法| |
 |lab075|goroutine| |
 |lab076|编码相关|base64,hex,`0xNN` |
@@ -93,10 +93,10 @@
 |lab081|time,时间|时间戳，时间格式的一些操作|
 |lab082|得到goroutine id| |
 |lab083|elastic,Elasticsearch client for Go|https://github.com/olivere/elastic|
-|lab084|otto,A JavaScript interpreter in Go| |
-|lab085|snowflake，生成唯一id| |
+|lab084|otto,A JavaScript interpreter in Go|https://github.com/robertkrimen/otto |
+|lab085|snowflake,A simple to use Go (golang) package to generate or parse Twitter snowflake IDs|https://github.com/bwmarrin/snowflake |
 |lab086|排序算法| |
-|lab087|golang-geo，Geographical calculations in Go| |
+|lab087|golang-geo，Geographical calculations in Go|https://github.com/kellydunn/golang-geo |
 |lab088|简单几何计算| |
 |lab089|surfer|https://github.com/henrylee2cn/surfer|
 |lab090|gorequest，Simplified HTTP client|https://github.com/parnurzeal/gorequest|

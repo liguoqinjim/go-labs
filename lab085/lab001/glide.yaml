@@ -1,3 +1,0 @@
-package: lab085/lab001
-import:
-- package: github.com/bwmarrin/snowflake

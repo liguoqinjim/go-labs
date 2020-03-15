@@ -1,5 +1,4 @@
-### otto
-https://github.com/robertkrimen/otto
+# [otto](https://github.com/robertkrimen/otto)
 
 `go get github.com/robertkrimen/otto`
 

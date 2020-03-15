@@ -1,3 +1,0 @@
-package: lab083
-import:
-- package: github.com/olivere/elastic

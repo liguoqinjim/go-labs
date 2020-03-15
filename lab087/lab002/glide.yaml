@@ -1,3 +1,0 @@
-package: lab087/lab002
-import:
-- package: github.com/kellydunn/golang-geo
