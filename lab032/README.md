@@ -9,3 +9,4 @@
 |lab005|查看代码覆盖率| |
 |lab006|package内部的测试用例，查看启动顺序| |
 |lab007|go test| |
+|lab008|skip,short| |
