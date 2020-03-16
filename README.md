@@ -42,7 +42,7 @@
 |lab029|signal| |
 |lab030|socket| |
 |lab031|程序性能分析，(gopsutil,gops,go tool trace)| |
-|lab032|单元测试| |
+|lab032|go test| |
 |lab033|gops,A tool to list and diagnose Go processes currently running on your system|https://github.com/google/gops |
 |lab034|Golang比较两个slice是否相等| |
 |lab035|包依赖管理| |
