@@ -6,10 +6,11 @@ import (
 )
 
 func TestAdd(t *testing.T) {
-	fmt.Println(testing.Short())
+	fmt.Println("short:", testing.Short())
 	if testing.Short() {
 		t.Skip("skipping testing in short mode")
 	}
+	fmt.Println("testing...")
 
 	cases := []struct {
 		a, b, result int
