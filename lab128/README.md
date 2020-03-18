@@ -11,3 +11,6 @@
 |lab006|测试update操作| |
 |lab007|mysql的json数据格式| |
 |lab008|事务| |
+
+## NOTICE
+ - gorm的tag在有auto_increment的情况下，要是还有type，auto_increment会不生效。参考资料：https://github.com/jinzhu/gorm/issues/2755
