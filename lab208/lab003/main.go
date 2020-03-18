@@ -7,5 +7,5 @@ import (
 
 func main() {
 	viper.AutomaticEnv()
-	log.Println(viper.Get("http_proxy"))
+	log.Println(viper.Get("wx_test"))
 }
