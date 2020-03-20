@@ -18,7 +18,7 @@ func main() {
 		c.Start()
 		log.Println("start2")
 	}
-	log.Println(c.Entries()[0].Next)
+	log.Println("next:", c.Entries()[0].Next)
 
 	time.Sleep(time.Hour)
 }

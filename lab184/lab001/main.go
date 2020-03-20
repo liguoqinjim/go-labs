@@ -8,12 +8,17 @@ import (
 
 func main() {
 	c := cron.New()
-	c.AddFunc("0 0/5 * * * ? ", func() {
+	if err := c.AddFunc("0 0/5 * * * ? ", func() {
 		log.Println("Every 5 minutes")
-	})
-	c.AddFunc("@hourly", func() {
+	}); err != nil {
+		log.Fatalf("c.AddFunc error:%v", err)
+	}
+
+	if err := c.AddFunc("@hourly", func() {
 		log.Println("Every hour")
-	})
+	}); err != nil {
+		log.Fatalf("c.AddFunc error:%v", err)
+	}
 	c.Start()
 
 	time.Sleep(time.Hour)
