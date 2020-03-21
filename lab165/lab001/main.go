@@ -7,7 +7,9 @@ import (
 
 func main() {
 	n := uint(1000)
-	filter := bloom.New(20*n, 5) // load of 20, 5 keys
+	filter := bloom.NewWithEstimates(20*n, 5) // load of 20, 5 keys
+
+	log.Println(filter.EstimateFalsePositiveRate(n))
 
 	filter.Add([]byte("Love"))
 	if filter.Test([]byte("Love")) {
