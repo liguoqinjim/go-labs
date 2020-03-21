@@ -1,54 +1,89 @@
 package main
 
 import (
-	"encoding/json"
+	"flag"
 	"github.com/bculberson/bloom"
 	"github.com/garyburd/redigo/redis"
-	"io/ioutil"
+	"github.com/spf13/pflag"
+	"github.com/spf13/viper"
 	"log"
 	"time"
 )
 
-func main() {
-	example()
+var (
+	n    = 100000
+	fp   = 0.001
+	info string
+)
+
+func init() {
+	flag.String("redis", "127.0.0.1:6379", "redis connection info")
+	pflag.CommandLine.AddGoFlagSet(flag.CommandLine)
+	pflag.Parse()
+	viper.BindPFlags(pflag.CommandLine)
+
+	info = viper.GetString("redis") // retrieve value from viper
 }
 
-func example() {
+func main() {
+	//demo1()
+
+	demo2()
+}
+
+func demo1() {
+	//redis连接池
 	pool := &redis.Pool{
 		MaxIdle:     3,
 		IdleTimeout: 240 * time.Second,
-		Dial:        func() (redis.Conn, error) { return redis.Dial("tcp", readAddr()) },
+		Dial:        func() (redis.Conn, error) { return redis.Dial("tcp", info) },
 	}
 
-	//创建bloomFilter
+	//创建过滤器
 	conn := pool.Get()
-	m, k := bloom.EstimateParameters(1000000, .00001)
-	//test_key是在redis的key的name的前缀
-	bitSet := bloom.NewRedisBitSet("test_key", m, conn)
-	b := bloom.New(m, k, bitSet)
+	m, k := bloom.EstimateParameters(uint(n), fp)
+	//bf_prefix_是在redis的key的name的前缀
+	bitSet := bloom.NewRedisBitSet("bf_prefix_", m, conn)
+	filter := bloom.New(m, k, bitSet)
 
-	//判断是否exist
-	b.Add([]byte("key1"))
-	exists, _ := b.Exists([]byte("key1"))
-	log.Println("key exists:", exists)
-	doesNotExist, _ := b.Exists([]byte("key2"))
-	log.Println("key2 exists:", doesNotExist)
+	filter.Add([]byte("hello"))
+	filter.Add([]byte("world"))
+
+	//判断是否存在
+	if ok, err := filter.Exists([]byte("hello")); err != nil {
+		log.Fatalf("filter.Exists error:%v", err)
+	} else {
+		if ok {
+			log.Println("hello is in the filter")
+		} else {
+			log.Println("hello not in the filter")
+		}
+	}
 }
 
-func readAddr() string {
-	data, err := ioutil.ReadFile("../conf.json")
-	if err != nil {
-		log.Fatalf("ioutil.ReadFile error:%v", err)
+func demo2() {
+	//redis连接池
+	pool := &redis.Pool{
+		MaxIdle:     3,
+		IdleTimeout: 240 * time.Second,
+		Dial:        func() (redis.Conn, error) { return redis.Dial("tcp", info) },
 	}
 
-	var conf = &Conf{}
-	if err := json.Unmarshal(data, conf); err != nil {
-		log.Fatalf("json.Unmarshal error:%v", err)
+	//创建过滤器
+	conn := pool.Get()
+	m, k := bloom.EstimateParameters(uint(n), fp)
+	//bf_prefix_是在redis的key的name的前缀
+	bitSet := bloom.NewRedisBitSet("bf_prefix_", m, conn)
+	filter := bloom.New(m, k, bitSet)
+
+	//判断是否存在
+	if ok, err := filter.Exists([]byte("hello")); err != nil {
+		log.Fatalf("filter.Exists error:%v", err)
+	} else {
+		if ok {
+			log.Println("hello is in the filter")
+		} else {
+			log.Println("hello not in the filter")
+		}
 	}
-
-	return conf.Addr
-}
-
-type Conf struct {
-	Addr string `json:"addr"`
 }
