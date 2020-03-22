@@ -57,11 +57,11 @@
 |lab044|go-fuzz| |
 |lab045|reflect| |
 |lab046|funny/snet| |
-|lab047|pixel，一个2D引擎| |
-|lab048|gopher-lua，A Lua VM in Go| |
-|lab049|gobevtree，Behavior Tree in Go| |
-|lab050|goconvey，Go testing in the browser|https://github.com/smartystreets/goconvey |
-|lab051|behavior3go，golang behavior tree，行为树| |
+|lab047|pixel,一个2D引擎| |
+|lab048|gopher-lua,A Lua VM in Go| |
+|lab049|gobevtree,Behavior Tree in Go| |
+|lab050|goconvey,Go testing in the browser|https://github.com/smartystreets/goconvey |
+|lab051|behavior3go,golang behavior tree，行为树| |
 |lab052|snappy| |
 |lab053|web.go| |
 |lab054|gjson| |
