@@ -7,9 +7,12 @@ import (
 	"log"
 )
 
+var p string
+
 func main() {
 	flag.Int("flagName", 1234, "help message for flagname")
 	pflag.BoolP("testMode", "t", true, "是否进入测试模式")
+	pflag.StringVarP(&p, "str", "s", "123", "测试var")
 
 	pflag.CommandLine.AddGoFlagSet(flag.CommandLine)
 	pflag.Parse()
@@ -20,4 +23,6 @@ func main() {
 
 	t := viper.Get("testMode")
 	log.Println("t=", t)
+
+	log.Println("p=", p)
 }
