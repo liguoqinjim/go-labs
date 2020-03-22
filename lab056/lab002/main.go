@@ -1,60 +1,68 @@
 package main
 
 import (
-	"encoding/json"
-	"github.com/go-redis/redis"
-	"io/ioutil"
+	"flag"
+	"github.com/go-redis/redis/v7"
+	"github.com/spf13/pflag"
+	"github.com/spf13/viper"
 	"log"
 )
+
+var (
+	address  string
+	password string
+	db       int
+)
+
+func init() {
+	pflag.StringVarP(&address, "address", "a", "localhost:6379", "redis address")
+	pflag.StringVarP(&password, "password", "p", "", "redis auth")
+	pflag.IntVarP(&db, "db", "d", 0, "db")
+
+	pflag.CommandLine.AddGoFlagSet(flag.CommandLine)
+	pflag.Parse()
+	if err := viper.BindPFlags(pflag.CommandLine); err != nil {
+		log.Fatalf("viper.BindPFlags error:%v", err)
+	}
+}
 
 func main() {
 	example()
 }
 
 func example() {
-	conf := readConf()
-	if conf == nil {
-		log.Fatalf("conf is nil")
-	}
-
 	client := redis.NewClient(&redis.Options{
-		Addr:     conf.Addr,
-		Password: conf.Password,
-		DB:       conf.DB,
+		Addr:     address,
+		Password: password, // no password set
+		DB:       db,       // use default DB
 	})
 
+	//custom cmd
 	Get := func(client *redis.Client, key string) *redis.StringCmd {
 		cmd := redis.NewStringCmd("get", key)
 		client.Process(cmd)
 		return cmd
 	}
 
-	v, err := Get(client, "key2").Result()
-	if err == redis.Nil {
-		log.Println("key dose not exits")
-	} else if err != nil {
-		log.Fatalf("Get error:%v", err)
+	//call custom cmd 01
+	if v, err := Get(client, "key2").Result(); err != nil {
+		if err == redis.Nil {
+			log.Println("key2 not exist")
+		} else {
+			log.Fatalf("Get error:%v", err)
+		}
 	} else {
-		log.Println("v", v)
-	}
-}
-
-func readConf() *Conf {
-	data, err := ioutil.ReadFile("../conf.json")
-	if err != nil {
-		log.Fatalf("ioutil.ReadFile error:%v", err)
+		log.Println("key2=", v)
 	}
 
-	var conf = &Conf{}
-	if err := json.Unmarshal(data, conf); err != nil {
-		log.Fatalf("json.Unmarshal error:%v", err)
+	//call custom cmd 02
+	if v, err := client.Do("get", "key2").Result(); err != nil {
+		if err == redis.Nil {
+			log.Println("key2 not exist")
+		} else {
+			log.Fatalf("Get error:%v", err)
+		}
+	} else {
+		log.Println("key2=", v.(string))
 	}
-
-	return conf
-}
-
-type Conf struct {
-	Addr     string `json:"addr"`
-	Password string `json:"password"`
-	DB       int    `json:"DB"`
 }

@@ -1,3 +1,0 @@
-package: lab056
-import:
-- package: github.com/go-redis/redis

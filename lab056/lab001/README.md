@@ -5,4 +5,4 @@ github首页的例子
 ![Imgur](http://i.imgur.com/h8km1Bb.png)
 
 ## 参考资料
-https://github.com/go-redis/redis
+ - https://github.com/go-redis/redis

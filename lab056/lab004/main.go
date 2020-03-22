@@ -1,70 +1,89 @@
 package main
 
 import (
-	"encoding/json"
-	"github.com/go-redis/redis"
-	"io/ioutil"
+	"flag"
+	"github.com/go-redis/redis/v7"
+	"github.com/spf13/pflag"
+	"github.com/spf13/viper"
 	"log"
+	"os"
+	"os/signal"
+	"syscall"
 )
 
-const (
-	KeyName = "go-labs-set"
+var (
+	address  string
+	password string
+	db       int
+	client   *redis.Client
 )
+
+func init() {
+	pflag.StringVarP(&address, "address", "a", "localhost:6379", "redis address")
+	pflag.StringVarP(&password, "password", "p", "", "redis auth")
+	pflag.IntVarP(&db, "db", "d", 0, "db")
+
+	pflag.CommandLine.AddGoFlagSet(flag.CommandLine)
+	pflag.Parse()
+	if err := viper.BindPFlags(pflag.CommandLine); err != nil {
+		log.Fatalf("viper.BindPFlags error:%v", err)
+	}
+
+	client = redis.NewClient(&redis.Options{
+		Addr:     address,
+		Password: password, // no password set
+		DB:       db,       // use default DB
+	})
+}
 
 func main() {
-	demo()
+	//demo()
+
+	concurrent()
 }
 
 func demo() {
-	conf := readConf()
-	if conf == nil {
-		log.Fatalf("conf is nil")
-	}
-	log.Println(conf)
-
-	client := redis.NewClient(&redis.Options{
-		Addr:     conf.Addr,
-		Password: conf.Password, // no password set
-		DB:       1,             // 可以指定redis使用的db
-	})
-
-	//ping
-	pong, err := client.Ping().Result()
-	if err != nil {
-		log.Fatalf("client.Ping error:%v", err)
-	}
-	log.Println("pong=", pong)
+	key := "key_incr"
 
 	//incr
-	result, err := client.Incr(KeyName).Result()
-	if err != nil {
-		log.Fatalf("client.Incr error:%v", err)
+	if r, err := client.Incr(key).Result(); err != nil {
+		log.Fatalf("incr error:%v", err)
+	} else {
+		log.Println("incr result:", r)
 	}
-	log.Println("result=", result)
 
-	result, err = client.IncrBy(KeyName, 5).Result()
-	if err != nil {
-		log.Fatalf("client.IncrBy error:%v", err)
+	//incrby
+	if r, err := client.IncrBy(key, 5).Result(); err != nil {
+		log.Fatalf("incrby error:%v", err)
+	} else {
+		log.Println("incrby result:", r)
 	}
-	log.Println("result=", result)
+
+	//get
+	if r, err := client.Get(key).Result(); err != nil {
+		log.Fatalf("get error:%v", err)
+	} else {
+		log.Println("get result:", r)
+	}
 }
 
-func readConf() *Conf {
-	data, err := ioutil.ReadFile("../conf.json")
-	if err != nil {
-		log.Fatalf("ioutil.ReadFile error:%v", err)
+func concurrent() {
+	sigs := make(chan os.Signal, 1)
+	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
+
+	key := "key_incr2"
+
+	for i := 0; i < 100; i++ {
+		go func() {
+			for i := 0; i < 10; i++ {
+				if _, err := client.Incr(key).Result(); err != nil {
+					log.Fatalf("incr error:%v", err)
+				}
+			}
+		}()
 	}
 
-	var conf = &Conf{}
-	if err := json.Unmarshal(data, conf); err != nil {
-		log.Fatalf("json.Unmarshal error:%v", err)
-	}
+	log.Println("key=", client.Get(key).String())
 
-	return conf
-}
-
-type Conf struct {
-	Addr     string `json:"addr"`
-	Password string `json:"password"`
-	DB       int    `json:"DB"`
+	<-sigs
 }
