@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/fsnotify/fsnotify"
+	"github.com/liguoqinjim/fsnotify/v2"
 	"log"
 )
 
@@ -24,9 +24,8 @@ func example() {
 				if !ok {
 					return
 				}
-				log.Println("event:", event)
-				if event.Op&fsnotify.Write == fsnotify.Write {
-					log.Println("modified file:", event.Name)
+				if event.Op == fsnotify.CloseWrite { //linux
+					log.Println("write closed file:", event.Name, event.Op)
 				}
 			case err, ok := <-watcher.Errors:
 				if !ok {
