@@ -11,6 +11,10 @@
 |lab007|casbin中间件| |
 |lab008|testing| |
 
+## iris模板
+ - 模板在github里面有一个专门的库，TODO
+ - 之后模板可能会用到iris-cli，但是现在这个库还在测试阶段还没有完成(https://github.com/kataras/iris-cli)
+
 ## NOTICE
  - func (router *Router) ServeHTTP(w http.ResponseWriter, r *http.Request) {
  - rp.Describe("router: %v", app.Router.BuildRouter(app.ContextPool, routerHandler, app.APIBuilder))
