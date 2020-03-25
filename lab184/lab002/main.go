@@ -20,5 +20,14 @@ func main() {
 	}
 	log.Println("next:", c.Entries()[0].Next)
 
+	//添加秒级的cron
+	if err := c.AddFunc("0/10 * * * * ? *", func() {
+		log.Println(1)
+	}); err != nil {
+		log.Fatalf("c.AddFunc error:%v", err)
+	}else{
+		log.Println("秒级cron success")
+	}
+
 	time.Sleep(time.Hour)
 }

@@ -39,7 +39,9 @@ func init() {
 func main() {
 	//demo()
 
-	concurrent()
+	//concurrent()
+
+	keyNotExist()
 }
 
 func demo() {
@@ -86,4 +88,20 @@ func concurrent() {
 	log.Println("key=", client.Get(key).String())
 
 	<-sigs
+}
+
+func keyNotExist() {
+	if r, err := client.FlushDB().Result(); err != nil {
+		log.Fatalf("flushdb error:%v", err)
+	} else {
+		log.Println("flushdb result:", r)
+	}
+
+	key := "not_exist_key"
+
+	if r, err := client.Incr(key).Result(); err != nil {
+		log.Fatalf("incr error:%v", err)
+	} else {
+		log.Println("incr result:", r)
+	}
 }
