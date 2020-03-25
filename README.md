@@ -138,7 +138,7 @@
 |lab126|delve| |
 |lab127|boltdb| |
 |lab128|gorm,The fantastic ORM library for Golang|https://github.com/jinzhu/gorm|
-|lab129|sync.Map| |
+|lab129|sync.Map和map| |
 |lab130|gods，Go Data Structures|https://github.com/emirpasic/gods|
 |lab131|url.ParseQuery| |
 |lab132|ping的几个库| |
@@ -228,3 +228,4 @@
 |lab216|numcn,中文数字与Go语言数字的相互转换|https://github.com/pkumza/numcn|
 |lab217|交叉编译| |
 |lab218|wechat,WeChat SDK for Go|https://github.com/silenceper/wechat|
+|lab219|mysql相关测试| |

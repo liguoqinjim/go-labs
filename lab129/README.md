@@ -7,3 +7,7 @@
 |lab003|sync.Map的range| |
 |lab004|sync.Map的使用| |
 |lab005|sync.Map的传递| |
+|lab006|map并发读| |
+
+## NOTICE
+ - golang的map并发读是没有问题的，只要保证读的时候没有写的操作

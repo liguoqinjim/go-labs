@@ -7,3 +7,6 @@
 |lab002|customCommand| |
 |lab003|list,set,hash| |
 |lab004|incr,incrby| |
+
+## 运行命令
+ - `go run main.go --redis=127.0.0.1:6379`
