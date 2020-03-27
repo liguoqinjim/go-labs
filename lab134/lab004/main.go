@@ -1,81 +1,94 @@
 package main
 
 import (
+	"flag"
 	"github.com/samuel/go-zookeeper/zk"
-	"io/ioutil"
+	"github.com/spf13/pflag"
+	"github.com/spf13/viper"
 	"log"
 	"os"
 	"os/signal"
-	"strings"
 	"syscall"
 	"time"
 )
+
+var (
+	conn []string
+	c    *zk.Conn
+)
+
+func init() {
+	pflag.StringArrayVarP(&conn, "conn", "c", []string{"127.0.0.1:2181"}, "zookeeper connection")
+
+	pflag.CommandLine.AddGoFlagSet(flag.CommandLine)
+	pflag.Parse()
+	viper.BindPFlags(pflag.CommandLine)
+}
 
 func main() {
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 
-	//读取数据，用|隔开
-	conf, err := ioutil.ReadFile("zk.conf")
+	//连接集群
+	var err error
+	var ch <-chan zk.Event
+	c, ch, err = zk.Connect(conn, time.Second, zk.WithLogInfo(false))
 	if err != nil {
-		log.Fatalf("readFile error:%v", err)
+		log.Fatalf("zk.Connet error:%v", err)
 	}
 
-	conns := strings.Split(string(conf), "|")
-	c, ech, err := zk.Connect(conns, time.Second)
-	if err != nil {
-		log.Fatalf("zk.Connect error:%v", err)
-	}
 	go func() {
 		for {
 			select {
-			case e := <-ech:
-				log.Printf("get Event :%+v", e)
+			case e := <-ch:
+				log.Printf("get event:%+v", e)
 			}
 		}
 	}()
 
 	//创建znode
-	path := "/" + "lab004"
-	r, err := c.Create(path, []byte("123"), zk.FlagEphemeral, zk.WorldACL(zk.PermAll))
-	if err != nil {
+	path := "/lab004"
+	if r, err := c.Create(path, []byte("123"), zk.FlagEphemeral, zk.WorldACL(zk.PermAll)); err != nil {
 		log.Fatalf("Create error:%v", err)
 	} else {
-		log.Println("r=", r)
+		log.Printf("create node result:%s", r)
 	}
 
-	//是否存在
-	e, s, err := c.Exists(path)
-	if err != nil {
+	//znode是否存在
+	if exist, stat, err := c.Exists(path); err != nil {
 		log.Fatalf("Exists error:%v", err)
 	} else {
-		log.Println("exists=", e, s)
+		log.Printf("exist result:%t,%+v", exist, stat)
 	}
 
+	//观察模式
 	//是否存在 watch
-	e, s, ew, err := c.ExistsW(path)
+	exist, stat, watchChan, err := c.ExistsW(path)
 	if err != nil {
 		log.Fatalf("ExistsW error:%v", err)
 	} else {
-		log.Println("existsw=", e, s)
+		log.Printf("existsw result:%t,%+v", exist, stat)
 	}
+
+	//监听ch
 	go func() {
 		//接收第一次
-		e := <-ew
-		log.Printf("exists watch:%+v", e)
+		e := <-watchChan
+		log.Printf("exists watch channel event:%+v", e)
 
 		//创建新的watcher,因为watcher只能使用一次
-		e2, s2, ew2, err2 := c.ExistsW(path)
-		if err2 != nil {
-			log.Fatalf("ExistsW error2:%+v", err2)
+		exist, stat, watchChan2, err := c.ExistsW(path)
+		if err != nil {
+			log.Fatalf("ExistsW error:%v", err)
 		} else {
-			log.Println("exists2=", e2, s2)
+			log.Printf("existsw result:%t,%+v", exist, stat)
 		}
 
-		event2 := <-ew2
-		log.Printf("exists watch2:%+v", event2)
+		event2 := <-watchChan2
+		log.Printf("exists watch channel event:%+v", event2)
 	}()
 
 	<-sigs
+	c.Close()
 	log.Println("program end")
 }

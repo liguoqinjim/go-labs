@@ -1,26 +1,46 @@
 package main
 
 import (
+	"flag"
+	"github.com/spf13/pflag"
+	"github.com/spf13/viper"
 	"time"
 
 	"github.com/samuel/go-zookeeper/zk"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/signal"
 	"syscall"
 )
 
+var (
+	conn []string
+	c    *zk.Conn
+)
+
+func init() {
+	pflag.StringArrayVarP(&conn, "conn", "c", []string{"127.0.0.1:2181"}, "zookeeper connection")
+
+	pflag.CommandLine.AddGoFlagSet(flag.CommandLine)
+	pflag.Parse()
+	viper.BindPFlags(pflag.CommandLine)
+}
+
 func main() {
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 
-	conf, err := ioutil.ReadFile("zk.conf")
-	if err != nil {
-		log.Fatalf("readAll error:%v", err)
-	}
+	demo()
 
-	c, ch, err := zk.Connect([]string{string(conf)}, time.Second) //*10)
+	<-sigs
+	c.Close()
+	log.Println("program end")
+}
+
+func demo() {
+	var err error
+	var ch <-chan zk.Event
+	c, ch, err = zk.Connect(conn, time.Second, zk.WithLogInfo(false))
 	if err != nil {
 		log.Fatalf("zk.Connet error:%v", err)
 	}
@@ -28,39 +48,58 @@ func main() {
 	go func() {
 		for {
 			select {
-			case event := <-ch:
-				log.Printf("get a event:%+v", event)
+			case e := <-ch:
+				log.Printf("get event:%+v", e)
 			}
 		}
 	}()
 
-	//创建分组
-	path := "/" + "zoo"
-	r, err := c.Create(path, []byte("123"), 0, zk.WorldACL(zk.PermAll))
-	if err != nil {
+	//创建临时node
+	//zk.FlagEphemeral表示创建的node是临时节点
+	pathEphemeral := "/zoo_temp"
+	if r, err := c.Create(pathEphemeral, []byte("123"), zk.FlagEphemeral, zk.WorldACL(zk.PermAll)); err != nil {
 		log.Fatalf("c.Create error:%v", err)
+	} else {
+		log.Printf("create ephemeral node result:%s", r)
 	}
-	log.Println("r=", r)
-	data, _, err := c.Get(path)
-	if err != nil {
+
+	//查询
+	if data, _, err := c.Get(pathEphemeral); err != nil {
 		log.Fatalf("Get returned error: %+v", err)
+	} else {
+		log.Printf("get [%s]=%s", pathEphemeral, data)
 	}
-	log.Printf("data=%s", data)
+
+	//创建永久空node
+	path := "/zoo"
+	if r, err := c.Create(path, nil, 0, zk.WorldACL(zk.PermAll)); err != nil {
+		log.Fatalf("c.Create error:%v", err)
+	} else {
+		log.Printf("create note result:%s", r)
+	}
+
+	//查询空节点
+	if data, _, err := c.Get(path); err != nil {
+		log.Fatalf("Get returned error: %+v", err)
+	} else {
+		log.Printf("get [%s]=%s", path, data)
+	}
 
 	//加入组
 	names := []string{"cat", "dog", "dolphin"}
 	for _, name := range names {
 		p := path + "/" + name
-		r, err = c.Create(p, []byte(name), 0, zk.WorldACL(zk.PermAll))
-		if err != nil {
+		if r, err := c.Create(p, []byte(name), 0, zk.WorldACL(zk.PermAll)); err != nil {
 			log.Fatalf("c.Create error:%v", err)
+		} else {
+			log.Printf("create noed result:%s", r)
 		}
-		log.Println("r=", r)
-		data, _, err = c.Get(p)
-		if err != nil {
+
+		if data, _, err := c.Get(p); err != nil {
 			log.Fatalf("Get returned error: %+v", err)
+		} else {
+			log.Printf("get [%s]=%s", p, data)
 		}
-		log.Printf("data=%s", data)
 	}
 
 	//成员列表
@@ -81,6 +120,7 @@ func main() {
 			log.Println("delete success")
 		}
 	}
+
 	//删除的时候要没有children
 	err = c.Delete(path, -1)
 	if err != nil {
@@ -88,7 +128,4 @@ func main() {
 	} else {
 		log.Println("delete success")
 	}
-
-	<-sigs
-	log.Println("program end")
 }

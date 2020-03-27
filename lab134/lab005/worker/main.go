@@ -1,57 +1,67 @@
 package main
 
 import (
+	"flag"
 	"github.com/samuel/go-zookeeper/zk"
-	"io/ioutil"
+	"github.com/spf13/pflag"
+	"github.com/spf13/viper"
 	"log"
 	"os"
 	"os/signal"
-	"strings"
 	"syscall"
 	"time"
 )
+
+var (
+	conn []string
+	c    *zk.Conn
+)
+
+func init() {
+	pflag.StringArrayVarP(&conn, "conn", "c", []string{"127.0.0.1:2181"}, "zookeeper connection")
+
+	pflag.CommandLine.AddGoFlagSet(flag.CommandLine)
+	pflag.Parse()
+	viper.BindPFlags(pflag.CommandLine)
+}
 
 func main() {
 	sigs := make(chan os.Signal, 1)
 	signal.Notify(sigs, syscall.SIGINT, syscall.SIGTERM)
 
-	//读取数据，用|隔开
-	conf, err := ioutil.ReadFile("../zk.conf")
-	if err != nil {
-		log.Fatalf("readFile error:%v", err)
-	}
-
-	conns := strings.Split(string(conf), "|")
-	c, ech, err := zk.Connect(conns, time.Second)
+	var err error
+	var ch <-chan zk.Event
+	c, ch, err = zk.Connect(conn, time.Second, zk.WithLogInfo(false))
 	if err != nil {
 		log.Fatalf("zk.Connect error:%v", err)
 	}
 	go func() {
 		for {
 			select {
-			case e := <-ech:
+			case e := <-ch:
 				log.Printf("get Event :%+v", e)
 			}
 		}
 	}()
 
-	path := "/" + "lab005"
+	path := "/lab005"
 
 DONE:
 	for {
-		d, _, ec, err := c.GetW(path)
+		data, stat, eventChan, err := c.GetW(path)
 		if err != nil {
-			log.Printf("GetW error:%v", err)
+			log.Fatalf("GetW error:%v", err)
 		} else {
-			log.Printf("GetW data:%s", d)
+			log.Printf("GetW data:%s,%+v", data, stat)
 		}
 
 		select {
-		case e := <-ec:
-			log.Printf("Get event:%+v", e)
+		case e := <-eventChan:
+			log.Printf("GetW event:%+v", e)
 		case <-sigs:
 			break DONE
 		}
 	}
+
 	log.Println("worker program end")
 }
