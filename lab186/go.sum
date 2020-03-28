@@ -1,2 +1,4 @@
 github.com/johnnadratowski/golang-neo4j-bolt-driver v0.0.0-20181101021923-6b24c0085aae h1:YovtHFY2RXA6muqKixVlJlLBvBNNjiLTYeCYZTn/QDo=
 github.com/johnnadratowski/golang-neo4j-bolt-driver v0.0.0-20181101021923-6b24c0085aae/go.mod h1:xwUw3ZE1/D9drQgpluhRs4peTMKm1tQEZ4p7DrpyqwE=
+github.com/johnnadratowski/golang-neo4j-bolt-driver v0.0.0-20200323142034-807201386efa h1:wSh58UKA2FPr3+rEO/lNfdYdXjgp6pguauIGWa3mHf0=
+github.com/johnnadratowski/golang-neo4j-bolt-driver v0.0.0-20200323142034-807201386efa/go.mod h1:xwUw3ZE1/D9drQgpluhRs4peTMKm1tQEZ4p7DrpyqwE=
