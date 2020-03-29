@@ -3,5 +3,8 @@
 
 |实验|简介|说明|
 |---|---|---|
-|lab001|读取csv||
-|lab002|生成csv||
+|lab001|读取csv| |
+|lab002|生成csv| |
+
+## NOTICE
+ - map生成还是用encoding/csv，参看lab098/lab003

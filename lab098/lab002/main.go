@@ -13,6 +13,7 @@ func main() {
 	if err != nil {
 		log.Fatalf("open file error:%v", err)
 	}
+	defer f.Close()
 
 	reader := csv.NewReader(bufio.NewReader(f))
 

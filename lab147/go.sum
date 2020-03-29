@@ -1,2 +1,4 @@
 github.com/gocarina/gocsv v0.0.0-20200309095354-8a990db7f06b h1:99p364CtBAErEKMGzzsXWpaldxEh/uKCscoC2jzP6x8=
 github.com/gocarina/gocsv v0.0.0-20200309095354-8a990db7f06b/go.mod h1:5YoVOkjYAQumqlV356Hj3xeYh4BdZuLE0/nRkf2NKkI=
+github.com/gocarina/gocsv v0.0.0-20200324105150-9eab084b7a45 h1:qvwLAjTsN/G4YvphQxrda+DmbPfpKYg4K3Je9LH6gxQ=
+github.com/gocarina/gocsv v0.0.0-20200324105150-9eab084b7a45/go.mod h1:5YoVOkjYAQumqlV356Hj3xeYh4BdZuLE0/nRkf2NKkI=

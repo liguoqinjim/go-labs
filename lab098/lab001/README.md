@@ -1,7 +1,7 @@
 # 生成csv
 
-## 注意点
- - `f.WriteString("\xEF\xBB\xBF") // 写入UTF-8 BOM`，这个要加在开头，不然在excel里面打开的时候会乱码
+## NOTICE
+ - `\xEF\xBB\xBF`，这个加在开头可以解决excel里面打开的时候乱码
 
 ## 参考资料
-https://studygolang.com/articles/555
+ - https://studygolang.com/articles/555
