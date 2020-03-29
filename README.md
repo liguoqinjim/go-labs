@@ -149,7 +149,7 @@
 |lab137|etcd|github.com/coreos/etcd/tree/master/clientv3，etcd v3|
 |lab138|go.geo|https://github.com/paulmach/go.geo|
 |lab139|etree，xml解析|https://github.com/beevik/etree|
-|lab140|colly|https://github.com/gocolly/colly|
+|lab140|colly,Elegant Scraper and Crawler Framework for Golang|https://github.com/gocolly/colly|
 |lab141|go-bindata-assetfs|https://github.com/elazarl/go-bindata-assetfs/|
 |lab142|logstash_tcp|测试给logstash的input的tcp发送数据|
 |lab143|触发IFTTT的webhooks| |
