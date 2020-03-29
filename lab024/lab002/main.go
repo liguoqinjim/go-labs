@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/tealeg/xlsx"
+	"github.com/tealeg/xlsx/v2"
 	"log"
 )
 
@@ -14,15 +14,15 @@ func main() {
 	file = xlsx.NewFile()
 	sheet, err = file.AddSheet("Sheet1")
 	if err != nil {
-		log.Println("AddSheet error:", err)
+		log.Fatalf("AddSheet error:%v", err)
 	}
+
 	row = sheet.AddRow()
 	cell := row.AddCell()
 	cell.Value = "I am a cell"
-	err = file.Save("MyXlsxFile.xlsx")
-	if err != nil {
-		log.Println("Save error:", err)
-	} else {
-		log.Println("Save success")
+
+	//保存文件
+	if err := file.Save("test.xlsx"); err != nil {
+		log.Fatalf("file Save error:%v", err)
 	}
 }

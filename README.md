@@ -34,7 +34,7 @@
 |lab019|解析xml|encoding/xml|
 |lab022|关于channel的几个实验| |
 |lab023|websocket| |
-|lab024|xls操作| |
+|lab024|xlsx,Go (golang) library for reading and writing XLSX files.|https://github.com/tealeg/xlsx |
 |lab025|sync package|sync/atomic,sync.Mutex,sync.Once |
 |lab026|signal| |
 |lab027|匿名字段和内嵌结构体| |
@@ -229,3 +229,4 @@
 |lab217|交叉编译| |
 |lab218|wechat,WeChat SDK for Go|https://github.com/silenceper/wechat|
 |lab219|mysql相关测试| |
+|lab220|excelize,Golang library for reading and writing Microsoft Excel™ (XLSX) files.|https://github.com/360EntSecGroup-Skylar/excelize|

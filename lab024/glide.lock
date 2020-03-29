@@ -1,8 +1,0 @@
-hash: 0650ae35ae1553d606b60546eee5558a28d337fb4b8f84c97e31ecbed7fe13c7
-updated: 2017-10-11T15:16:33.0045642+08:00
-imports:
-- name: github.com/tealeg/xlsx
-  version: 8be35264fa75a1bbe954ce51eba04f273e2c59e5
-- name: github.com/xuri/excelize
-  version: 1ec2661dda1ef16f58b2a3d614b11a2bcd0a2f2f
-testImports: []

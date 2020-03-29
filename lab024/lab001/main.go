@@ -1,25 +1,23 @@
 package main
 
 import (
-	"fmt"
-	"github.com/tealeg/xlsx"
+	"github.com/tealeg/xlsx/v2"
 	"log"
 )
 
 func main() {
-	excelFileName := "testFile.xlsx"
+	excelFileName := "test.xlsx"
 	xlFile, err := xlsx.OpenFile(excelFileName)
 	if err != nil {
-		log.Println("OpenFile error:", err)
+		log.Fatalf("xlsx.OpenFile error:%v", err)
 	}
 
 	for _, sheet := range xlFile.Sheets {
 		for _, row := range sheet.Rows {
 			for _, cell := range row.Cells {
 				text := cell.String()
-				fmt.Printf("%s\t", text)
+				log.Printf("%s", text)
 			}
-			fmt.Println()
 		}
 	}
 }
