@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/gocolly/colly"
+	"github.com/gocolly/colly/v2"
 	"log"
 )
 
@@ -20,7 +20,7 @@ func main() {
 		log.Println("OnResponse:", resp.StatusCode)
 	})
 
-	c.OnHTML(`.ip_text`, func(e *colly.HTMLElement) {
+	c.OnHTML(`body > p:nth-child(1)`, func(e *colly.HTMLElement) {
 		log.Println("OnHTML:value=", e.Text)
 	})
 
@@ -28,5 +28,7 @@ func main() {
 		log.Println("OnScraped:", resp.StatusCode)
 	})
 
-	c.Visit("https://www.ipip.net/")
+	if err := c.Visit("https://2020.ip138.com/"); err != nil {
+		log.Fatalf("c.Visit error:%v", err)
+	}
 }
