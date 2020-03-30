@@ -230,3 +230,4 @@
 |lab218|wechat,WeChat SDK for Go|https://github.com/silenceper/wechat|
 |lab219|mysql相关测试| |
 |lab220|excelize,Golang library for reading and writing Microsoft Excel™ (XLSX) files.|https://github.com/360EntSecGroup-Skylar/excelize|
+|lab221|go-opentaobao,淘宝Api、淘宝开放平台Api请求基础SDK|https://github.com/nilorg/go-opentaobao|
