@@ -6,3 +6,4 @@
 |lab001|demo|Collector的使用|
 |lab002|demo|修改Collector的配置|
 |lab003|example|Debugging|
+|lab004|demo||

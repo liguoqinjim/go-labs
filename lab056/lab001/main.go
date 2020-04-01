@@ -30,8 +30,8 @@ func init() {
 
 	client = redis.NewClient(&redis.Options{
 		Addr:     address,
-		Password: password, // no password set
-		DB:       db,       // use default DB
+		Password: password,
+		DB:       db,
 	})
 }
 
