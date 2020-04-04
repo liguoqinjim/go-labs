@@ -1,6 +1,0 @@
-hash: ae76951416e92b0869fd143419209074fa85149910af2bae130bc99614b70fc0
-updated: 2018-07-31T14:19:29.992156+08:00
-imports:
-- name: github.com/jmz331/gpinyin
-  version: c4a0503fb352c92d56cc3583c17e1d0589a9cf2d
-testImports: []

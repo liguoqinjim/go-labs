@@ -1,3 +1,0 @@
-package: lab146
-import:
-- package: github.com/jmz331/gpinyin
