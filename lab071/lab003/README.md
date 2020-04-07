@@ -1,6 +1,6 @@
 # html/template01
 
-## 注意点
+## NOTICE
  - 注意最后调用execute的两种方法，第一个是报错
 
 ## 运行结果

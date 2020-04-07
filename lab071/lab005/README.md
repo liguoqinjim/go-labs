@@ -1,6 +1,6 @@
 # 遍历slice
 
-## 注意点
+## NOTICE
  - `{{index . 3}}`，这样就可以得到slice里面index为3的值
 
 ## 运行结果
