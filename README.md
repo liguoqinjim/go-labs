@@ -21,10 +21,8 @@
 |lab004|解析json，go-simplejson|https://github.com/bitly/go-simplejson|
 |lab005|得到程序本身的路径| |
 |lab006|读取文件| |
+|lab007|写入文件| |
 |lab009|mysql，原生sql操作| |
-|lab010|写文件，ioutil| |
-|lab011|写文件，os.File| |
-|lab012|写文件，bufio| |
 |lab013|读取StructTag| |
 |lab014|环境变量| |
 |lab015|调用外部命令| |

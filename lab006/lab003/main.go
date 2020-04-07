@@ -3,8 +3,8 @@ package main
 import (
 	"bufio"
 	"io"
-	"os"
 	"log"
+	"os"
 )
 
 func main() {
