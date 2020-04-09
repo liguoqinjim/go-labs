@@ -231,3 +231,4 @@
 |lab221|go-opentaobao,淘宝Api、淘宝开放平台Api请求基础SDK|https://github.com/nilorg/go-opentaobao|
 |lab222|unipdf,Golang PDF library for creating and processing PDF files (pure go)|https://github.com/unidoc/unipdf|
 |lab223|go-humanize,Go Humans! (formatters for units to human friendly sizes) |https://github.com/dustin/go-humanize|
+|lab224|gota,Gota: DataFrames and data wrangling in Go (Golang)|https://github.com/go-gota/gota|
