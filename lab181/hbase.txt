@@ -1,13 +1,6 @@
 # 创建表
 create 'FileTable','fileInfo','saveInfo'
 
-# 获得表的描述
-describe 'FileTable'
-# 添加一个列族
-alter 'FileTable', 'cf'
-# 删除一个列族
-alter 'FileTable', {NAME => 'cf', METHOD => 'delete'}
-
 # 插入数据
 put 'FileTable', 'rowkey1','fileInfo:name','file1.txt'
 put 'FileTable', 'rowkey1','fileInfo:type','txt'
@@ -19,3 +12,6 @@ put 'FileTable', 'rowkey2','fileInfo:type','jpg'
 put 'FileTable', 'rowkey2','fileInfo:size','2048'
 put 'FileTable', 'rowkey2','saveInfo:path','/home/pic'
 put 'FileTable', 'rowkey2','saveInfo:creator','jerry'
+
+# 插入数据，并设置TTL，单位(毫秒)
+put 'FileTable', 'rowkey6','fileInfo:name','file5.txt', {'TTL'=>30000}
