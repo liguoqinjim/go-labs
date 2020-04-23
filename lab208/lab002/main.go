@@ -89,4 +89,12 @@ type Config struct {
 		Port int
 	}
 	Hosts []interface{}
+
+	As struct {
+		Contributors []struct {
+			Name  string
+			Email string
+			Url   string
+		}
+	}
 }

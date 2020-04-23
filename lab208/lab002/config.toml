@@ -40,5 +40,13 @@ hosts = ["alpha", "omega"]
 #[server]
 #port = 18080
 
+# 数组
+
+[as]
+contributors = [
+  { name = "Baz Qux", email = "bazqux@example.com", url = "https://example.com/bazqux" },
+  { name = "Baz Qux2", email = "bazqux2@example.com", url = "https://example.com/bazqux2" }
+]
+
 
 
