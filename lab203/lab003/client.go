@@ -121,6 +121,8 @@ func serverWs(hub *Hub, w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	log.Printf("params:%s", r.RequestURI)
+
 	client := &Client{hub: hub, conn: conn, send: make(chan []byte, 256)}
 	client.hub.register <- client
 
