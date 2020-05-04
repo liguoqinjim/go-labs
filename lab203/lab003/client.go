@@ -104,12 +104,18 @@ func (c *Client) writePump() {
 				return
 			}
 		}
-
 	}
 }
 
 func serverWs(hub *Hub, w http.ResponseWriter, r *http.Request) {
+	//conn, err := upgrader.Upgrade(w, r, nil)
+
+	//跨域
+	upgrader := websocket.Upgrader{CheckOrigin: func(r *http.Request) bool {
+		return true
+	}}
 	conn, err := upgrader.Upgrade(w, r, nil)
+
 	if err != nil {
 		log.Println(err)
 		return
