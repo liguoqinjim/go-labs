@@ -11,6 +11,7 @@
 |lab006|测试update操作| |
 |lab007|mysql的json数据格式| |
 |lab008|事务| |
+|lab009|查询为空| |
 
 ## NOTICE
  - gorm的tag在有auto_increment的情况下，要是还有type，auto_increment会不生效。

@@ -10,4 +10,4 @@
 |lab006|map并发读| |
 
 ## NOTICE
- - golang的map并发读是没有问题的，只要保证读的时候没有写的操作
+ - golang的map并发读是没有问题的，只要保证读的时候没有写和delete的操作
