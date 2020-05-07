@@ -63,7 +63,6 @@ func (manager *ClientManager) InClient(client *Client) (ok bool) {
 
 // GetClients
 func (manager *ClientManager) GetClients() (clients map[*Client]bool) {
-
 	clients = make(map[*Client]bool)
 
 	manager.ClientsRange(func(client *Client, value bool) (result bool) {
@@ -77,7 +76,6 @@ func (manager *ClientManager) GetClients() (clients map[*Client]bool) {
 
 // 遍历
 func (manager *ClientManager) ClientsRange(f func(client *Client, value bool) (result bool)) {
-
 	manager.ClientsLock.RLock()
 	defer manager.ClientsLock.RUnlock()
 

@@ -74,7 +74,6 @@ func DelServerInfo(server *models.Server) (err error) {
 }
 
 func GetServerAll(currentTime uint64) (servers []*models.Server, err error) {
-
 	servers = make([]*models.Server, 0)
 	key := getServersHashKey()
 

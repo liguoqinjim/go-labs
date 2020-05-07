@@ -42,7 +42,6 @@ func getHandlers(key string) (value DisposeFunc, ok bool) {
 
 // 处理数据
 func ProcessData(client *Client, message []byte) {
-
 	log.Println("处理数据", client.Addr, string(message))
 
 	defer func() {
@@ -52,12 +51,10 @@ func ProcessData(client *Client, message []byte) {
 	}()
 
 	request := &models.Request{}
-
 	err := json.Unmarshal(message, request)
 	if err != nil {
 		log.Println("处理数据 json Unmarshal", err)
 		client.SendMsg([]byte("数据不合法"))
-
 		return
 	}
 

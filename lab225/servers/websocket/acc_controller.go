@@ -19,7 +19,6 @@ import (
 
 // ping
 func PingController(client *Client, seq string, message []byte) (code uint32, msg string, data interface{}) {
-
 	code = common.OK
 	log.Println("webSocket_request ping接口", client.Addr, seq, message)
 

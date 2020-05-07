@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+        }
+
+        #url,
+        #msg {
+            width: 500px;
+        }
+
+        #ul,
+        #send {
+            border: 1px solid;
+            margin: 0;
+        }
+
+        .header {
+            height: 60px;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-around;
+            height: calc(100% - 80px);
+            margin: 10px;
+        }
+
+        .content ul {
+            flex: 1;
+        }
+    </style>
+</head>
+
+<body>
+<div class="header">
+    <label for="url">地址</label>
+    <input id="url" value="ws://localhost:8080/ws" type="text">
+    <button onclick="initWebsocket()">连接</button>
+    <button onclick="websockclose()">关闭连接</button>
+    <br/>
+    <label for="">发送消息:</label>
+    <input id="msg" type="text">
+    <button onclick="websocketSend()">发送消息</button>
+    <hr/>
+</div>
+<div class="content">
+    <ul id="ul">
+        <label for="ul">历史消息</label>
+    </ul>
+    <ul id="send">
+        <label for="send">发送的消息</label>
+    </ul>
+</div>
+</body>
+<script>
+    window.onload = () => {
+        initWebsocket()
+    }
+    let websocket
+    let timer
+
+    function websockclose() {
+        if (websocket.close) {
+            websocket.close()
+        }
+    }
+
+    function websocketSend() {
+        const msg = document.querySelector('#msg').value
+        websocket.send(msg)
+        pushSend(msg)
+    }
+
+    function initWebsocket() {
+        const url = document.querySelector('#url').value
+        try {
+            websocket = new WebSocket(url)
+            if (timer) {
+                clearInterval(timer)
+            }
+        } catch (e) {
+            pushUl(e)
+            reconnect()
+        }
+        websocket.onopen = websocketOnopen
+        websocket.onmessage = websocketonmessage
+        websocket.onclose = websockonclose
+        websocket.onerror = websocketonerror
+    }
+
+    function reconnect() {
+        if (timer) {
+            clearInterval(timer)
+        }
+        timer = setInterval(() => {
+            pushUl('重连中')
+            initWebsocket()
+        }, 2000)
+    }
+
+    function websocketOnopen() {
+        pushUl('建立链接')
+    }
+
+    function websocketonmessage(e) {
+        pushUl(e.data)
+    }
+
+    function websockonclose() {
+        pushUl('断开连接')
+    }
+
+    function websocketonerror(e) {
+        console.log(e)
+        pushUl(e)
+    }
+
+    function pushSend(val) {
+        const s = document.querySelector('#send')
+        const newLi = document.createElement('li')
+        newLi.innerHTML = val
+        s.appendChild(newLi)
+    }
+
+    function pushUl(val) {
+        const ul = document.querySelector('#ul')
+        const newLi = document.createElement('li')
+        newLi.innerHTML = val
+        ul.appendChild(newLi)
+    }
+</script>
+
+</html>
