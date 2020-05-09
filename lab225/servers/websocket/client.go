@@ -15,7 +15,8 @@ import (
 
 const (
 	// 用户连接超时时间
-	heartbeatExpirationTime = 6 * 60
+	//heartbeatExpirationTime = 6 * 60
+	heartbeatExpirationTime = 60
 )
 
 // 用户登录
@@ -81,7 +82,6 @@ func (c *Client) read() {
 		_, message, err := c.Socket.ReadMessage()
 		if err != nil {
 			log.Println("读取客户端数据 错误", c.Addr, err)
-
 			return
 		}
 
@@ -111,7 +111,7 @@ func (c *Client) write() {
 		case message, ok := <-c.Send:
 			if !ok {
 				// 发送数据错误 关闭连接
-				log.Println("Client发送数据 关闭连接", c.Addr, "ok", ok)
+				log.Println("Client发送数据 关闭连接", c.Addr, "ok:", ok)
 
 				return
 			}

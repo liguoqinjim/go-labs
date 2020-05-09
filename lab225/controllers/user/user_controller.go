@@ -20,7 +20,6 @@ import (
 
 // 查看全部在线用户
 func List(c *gin.Context) {
-
 	appIdStr := c.Query("appId")
 	appId, _ := strconv.ParseInt(appIdStr, 10, 32)
 

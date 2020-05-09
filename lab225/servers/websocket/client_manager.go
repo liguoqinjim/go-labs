@@ -117,7 +117,6 @@ func (manager *ClientManager) DelClients(client *Client) {
 
 // 获取用户的连接
 func (manager *ClientManager) GetUserClient(appId uint32, userId string) (client *Client) {
-
 	manager.UserLock.RLock()
 	defer manager.UserLock.RUnlock()
 
@@ -178,7 +177,6 @@ func (manager *ClientManager) GetUserKeys() (userKeys []string) {
 
 // 获取用户的key
 func (manager *ClientManager) GetUserList() (userList []string) {
-
 	userList = make([]string, 0)
 
 	clientManager.UserLock.RLock()
@@ -196,7 +194,6 @@ func (manager *ClientManager) GetUserList() (userList []string) {
 
 // 获取用户的key
 func (manager *ClientManager) GetUserClients() (clients []*Client) {
-
 	clients = make([]*Client, 0)
 	manager.UserLock.RLock()
 	defer manager.UserLock.RUnlock()
@@ -209,7 +206,6 @@ func (manager *ClientManager) GetUserClients() (clients []*Client) {
 
 // 向全部成员(除了自己)发送数据
 func (manager *ClientManager) sendAll(message []byte, ignore *Client) {
-
 	clients := manager.GetUserClients()
 	for _, conn := range clients {
 		if conn != ignore {
@@ -229,7 +225,6 @@ func (manager *ClientManager) EventRegister(client *Client) {
 
 // 用户登录
 func (manager *ClientManager) EventLogin(login *login) {
-
 	client := login.Client
 	// 连接存在，在添加
 	if manager.InClient(client) {
@@ -251,7 +246,6 @@ func (manager *ClientManager) EventUnregister(client *Client) {
 	deleteResult := manager.DelUsers(client)
 	if deleteResult == false {
 		// 不是当前连接的客户端
-
 		return
 	}
 
@@ -280,15 +274,12 @@ func (manager *ClientManager) start() {
 		case conn := <-manager.Register:
 			// 建立连接事件
 			manager.EventRegister(conn)
-
 		case login := <-manager.Login:
 			// 用户登录
 			manager.EventLogin(login)
-
 		case conn := <-manager.Unregister:
 			// 断开连接事件
 			manager.EventUnregister(conn)
-
 		case message := <-manager.Broadcast:
 			// 广播事件
 			clients := manager.GetClients()

@@ -16,7 +16,6 @@ import (
 
 func Init() {
 	Timer(3*time.Second, 30*time.Second, cleanConnection, "", nil, nil)
-
 }
 
 // 清理超时连接
@@ -30,7 +29,6 @@ func cleanConnection(param interface{}) (result bool) {
 	}()
 
 	log.Println("定时任务，清理超时连接", param)
-
 	websocket.ClearTimeoutConnections()
 
 	return

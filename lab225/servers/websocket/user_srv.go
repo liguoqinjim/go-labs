@@ -19,13 +19,11 @@ import (
 
 // 查询所有用户
 func UserList() (userList []string) {
-
 	userList = make([]string, 0)
 	currentTime := uint64(time.Now().Unix())
 	servers, err := cache.GetServerAll(currentTime)
 	if err != nil {
 		log.Println("给全体用户发消息", err)
-
 		return
 	}
 

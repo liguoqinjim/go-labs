@@ -29,7 +29,6 @@ func PingController(client *Client, seq string, message []byte) (code uint32, ms
 
 // 用户登录
 func LoginController(client *Client, seq string, message []byte) (code uint32, msg string, data interface{}) {
-
 	code = common.OK
 	currentTime := uint64(time.Now().Unix())
 
