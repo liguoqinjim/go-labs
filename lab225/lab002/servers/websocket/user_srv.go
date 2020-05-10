@@ -12,7 +12,6 @@ import (
 	"github.com/go-redis/redis"
 	"lab225/lib/cache"
 	"lab225/models"
-	"lab225/servers/grpcclient"
 	"log"
 	"time"
 )
@@ -34,7 +33,8 @@ func UserList() (userList []string) {
 		if IsLocal(server) {
 			list = GetUserList()
 		} else {
-			list, _ = grpcclient.GetUserList(server)
+			//去除分布式
+			//list, _ = grpcclient.GetUserList(server)
 		}
 		userList = append(userList, list...)
 	}
@@ -82,7 +82,6 @@ func checkUserOnline(appId uint32, userId string) (online bool, err error) {
 
 // 给用户发送消息
 func SendUserMessage(appId uint32, userId string, msgId, message string) (sendResults bool, err error) {
-
 	data := models.GetTextMsgData(userId, msgId, message)
 
 	// TODO::需要判断不在本机的情况
@@ -128,7 +127,8 @@ func SendUserMessageAll(appId uint32, userId string, msgId, cmd, message string)
 			data := models.GetMsgData(userId, msgId, cmd, message)
 			AllSendMessages(appId, userId, data)
 		} else {
-			grpcclient.SendMsgAll(server, msgId, appId, userId, cmd, message)
+			//去除分布式
+			//grpcclient.SendMsgAll(server, msgId, appId, userId, cmd, message)
 		}
 	}
 

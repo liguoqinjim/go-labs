@@ -47,7 +47,6 @@ func LoginController(client *Client, seq string, message []byte) (code uint32, m
 	if request.UserId == "" || len(request.UserId) >= 20 {
 		code = common.UnauthorizedUserId
 		log.Println("用户登录 非法的用户", seq, request.UserId)
-
 		return
 	}
 
@@ -73,7 +72,6 @@ func LoginController(client *Client, seq string, message []byte) (code uint32, m
 	if err != nil {
 		code = common.ServerError
 		log.Println("用户登录 SetUserOnlineInfo", seq, err)
-
 		return
 	}
 
@@ -92,7 +90,6 @@ func LoginController(client *Client, seq string, message []byte) (code uint32, m
 
 // 心跳接口
 func HeartbeatController(client *Client, seq string, message []byte) (code uint32, msg string, data interface{}) {
-
 	code = common.OK
 	currentTime := uint64(time.Now().Unix())
 

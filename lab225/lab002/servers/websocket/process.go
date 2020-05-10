@@ -79,8 +79,8 @@ func ProcessData(client *Client, message []byte) {
 	log.Println("acc_request", cmd, client.Addr)
 
 	// 采用 map 注册的方式
-	if value, ok := getHandlers(cmd); ok {
-		code, msg, data = value(client, seq, requestData)
+	if f, ok := getHandlers(cmd); ok {
+		code, msg, data = f(client, seq, requestData)
 	} else {
 		code = common.RoutingNotExist
 		log.Println("处理数据 路由不存在", client.Addr, "cmd", cmd)

@@ -112,7 +112,6 @@ func (c *Client) write() {
 			if !ok {
 				// 发送数据错误 关闭连接
 				log.Println("Client发送数据 关闭连接", c.Addr, "ok:", ok)
-
 				return
 			}
 
@@ -123,9 +122,7 @@ func (c *Client) write() {
 
 // 读取客户端数据
 func (c *Client) SendMsg(msg []byte) {
-
 	if c == nil {
-
 		return
 	}
 
@@ -170,11 +167,9 @@ func (c *Client) IsHeartbeatTimeout(currentTime uint64) (timeout bool) {
 
 // 是否登录了
 func (c *Client) IsLogin() (isLogin bool) {
-
 	// 用户登录了
 	if c.UserId != "" {
 		isLogin = true
-
 		return
 	}
 

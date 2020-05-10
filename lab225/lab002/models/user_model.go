@@ -36,7 +36,6 @@ type UserOnline struct {
 
 // 用户登录
 func UserLogin(accIp, accPort string, appId uint32, userId string, addr string, loginTime uint64) (userOnline *UserOnline) {
-
 	userOnline = &UserOnline{
 		AccIp:         accIp,
 		AccPort:       accPort,
@@ -53,7 +52,6 @@ func UserLogin(accIp, accPort string, appId uint32, userId string, addr string, 
 
 // 用户心跳
 func (u *UserOnline) Heartbeat(currentTime uint64) {
-
 	u.HeartbeatTime = currentTime
 	u.IsLogoff = false
 
@@ -62,7 +60,6 @@ func (u *UserOnline) Heartbeat(currentTime uint64) {
 
 // 用户退出登录
 func (u *UserOnline) LogOut() {
-
 	currentTime := uint64(time.Now().Unix())
 	u.LogOutTime = currentTime
 	u.IsLogoff = true

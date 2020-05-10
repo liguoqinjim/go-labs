@@ -11,7 +11,6 @@ import (
 	"github.com/gin-gonic/gin"
 	"lab225/lib/redislib"
 	"lab225/routers"
-	"lab225/servers/grpcserver"
 	"lab225/servers/task"
 	"lab225/servers/websocket"
 	"log"
@@ -30,15 +29,10 @@ func main() {
 	routers.Init(router)
 	routers.WebsocketInit()
 
-	// 定时任务
-	task.Init()
-
-	// 服务注册
-	task.ServerInit()
+	// 定时任务:关闭超时连接
+	task.InitClean()
 
 	go websocket.StartWebSocket()
-	// grpc
-	go grpcserver.Init()
 
 	if err := http.ListenAndServe(":18080", router); err != nil {
 		log.Fatalf("listen and serve at 18080 error:%v", err)

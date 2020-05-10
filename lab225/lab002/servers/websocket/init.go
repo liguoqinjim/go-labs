@@ -9,8 +9,6 @@ package websocket
 
 import (
 	"github.com/gorilla/websocket"
-	"github.com/spf13/viper"
-	"lab225/helper"
 	"lab225/models"
 	"log"
 	"net/http"
@@ -26,14 +24,7 @@ var (
 )
 
 func GetAppIds() []uint32 {
-
 	return appIds
-}
-
-func GetServer() (server *models.Server) {
-	server = models.NewServer(serverIp, serverPort)
-
-	return
 }
 
 func IsLocal(server *models.Server) (isLocal bool) {
@@ -45,7 +36,6 @@ func IsLocal(server *models.Server) (isLocal bool) {
 }
 
 func InAppIds(appId uint32) (inAppId bool) {
-
 	for _, value := range appIds {
 		if value == appId {
 			inAppId = true
@@ -59,17 +49,11 @@ func InAppIds(appId uint32) (inAppId bool) {
 
 // 启动程序
 func StartWebSocket() {
-	serverIp = helper.GetServerIp()
-
-	rpcPort := viper.GetString("app.rpcPort")
-
-	serverPort = rpcPort
-
 	http.HandleFunc("/ws", wsPage)
 
 	// 添加处理程序
 	go clientManager.start()
-	log.Println("WebSocket 启动程序成功", serverIp, serverPort)
+	log.Println("WebSocket 启动程序成功")
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		log.Fatalf("websocket 8080 error:%v", err)
@@ -77,8 +61,6 @@ func StartWebSocket() {
 }
 
 func wsPage(w http.ResponseWriter, req *http.Request) {
-	log.Println("waPage function start")
-
 	// 升级协议
 	conn, err := (&websocket.Upgrader{CheckOrigin: func(r *http.Request) bool {
 		log.Println("升级协议", "ua:", r.Header["User-Agent"], "referer:", r.Header["Referer"])
@@ -87,7 +69,6 @@ func wsPage(w http.ResponseWriter, req *http.Request) {
 	}}).Upgrade(w, req, nil)
 	if err != nil {
 		http.NotFound(w, req)
-
 		return
 	}
 
@@ -101,6 +82,4 @@ func wsPage(w http.ResponseWriter, req *http.Request) {
 
 	// 用户连接事件
 	clientManager.Register <- client
-
-	log.Println("waPage function end")
 }

@@ -35,7 +35,6 @@ func List(c *gin.Context) {
 
 // 查看用户是否在线
 func Online(c *gin.Context) {
-
 	userId := c.Query("userId")
 	appIdStr := c.Query("appId")
 

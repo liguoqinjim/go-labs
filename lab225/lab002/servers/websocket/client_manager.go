@@ -226,6 +226,7 @@ func (manager *ClientManager) EventRegister(client *Client) {
 // 用户登录
 func (manager *ClientManager) EventLogin(login *login) {
 	client := login.Client
+
 	// 连接存在，在添加
 	if manager.InClient(client) {
 		userKey := login.GetKey()
@@ -234,8 +235,8 @@ func (manager *ClientManager) EventLogin(login *login) {
 
 	log.Println("EventLogin 用户登录", client.Addr, login.AppId, login.UserId)
 
-	orderId := helper.GetOrderIdTime()
-	SendUserMessageAll(login.AppId, login.UserId, orderId, models.MessageCmdEnter, "哈喽~")
+	seqId := helper.GetSeqId()
+	SendUserMessageAll(login.AppId, login.UserId, seqId, models.MessageCmdEnter, "哈喽~")
 }
 
 // 用户断开连接
@@ -262,7 +263,7 @@ func (manager *ClientManager) EventUnregister(client *Client) {
 	log.Println("EventUnregister 用户断开连接", client.Addr, client.AppId, client.UserId)
 
 	if client.UserId != "" {
-		orderId := helper.GetOrderIdTime()
+		orderId := helper.GetSeqId()
 		SendUserMessageAll(client.AppId, client.UserId, orderId, models.MessageCmdExit, "用户已经离开~")
 	}
 }
@@ -271,17 +272,13 @@ func (manager *ClientManager) EventUnregister(client *Client) {
 func (manager *ClientManager) start() {
 	for {
 		select {
-		case conn := <-manager.Register:
-			// 建立连接事件
+		case conn := <-manager.Register: // 建立连接事件
 			manager.EventRegister(conn)
-		case login := <-manager.Login:
-			// 用户登录
+		case login := <-manager.Login: // 用户登录
 			manager.EventLogin(login)
-		case conn := <-manager.Unregister:
-			// 断开连接事件
+		case conn := <-manager.Unregister: // 断开连接事件
 			manager.EventUnregister(conn)
-		case message := <-manager.Broadcast:
-			// 广播事件
+		case message := <-manager.Broadcast: // 广播事件
 			clients := manager.GetClients()
 			for conn := range clients {
 				select {

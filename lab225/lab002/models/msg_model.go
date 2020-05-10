@@ -45,7 +45,6 @@ func getTextMsgData(cmd, uuId, msgId, message string) string {
 
 // 文本消息
 func GetMsgData(uuId, msgId, cmd, message string) string {
-
 	return getTextMsgData(cmd, uuId, msgId, message)
 }
 

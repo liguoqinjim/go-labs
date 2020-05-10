@@ -61,7 +61,6 @@ func GetUserOnlineInfo(userKey string) (userOnline *models.UserOnline, err error
 
 // 设置用户在线数据
 func SetUserOnlineInfo(userKey string, userOnline *models.UserOnline) (err error) {
-
 	redisClient := redislib.GetClient()
 	key := getUserOnlineKey(userKey)
 
