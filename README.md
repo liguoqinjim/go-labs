@@ -233,3 +233,4 @@
 |lab223|go-humanize,Go Humans! (formatters for units to human friendly sizes) |https://github.com/dustin/go-humanize|
 |lab224|gota,Gota: DataFrames and data wrangling in Go (Golang)|https://github.com/go-gota/gota|
 |lab225|websocket demo||
+|lab226|A generator library for concise, unambiguous and URL-safe UUIDs |https://github.com/lithammer/shortuuid|
