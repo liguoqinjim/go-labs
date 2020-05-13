@@ -16,3 +16,4 @@
 ## 参考资料
  - https://github.com/iris-contrib/swagger
  - https://swaggo.github.io/swaggo.io/declarative_comments_format/
+ - https://github.com/swaggo/swag/blob/master/README_zh-CN.md#%E5%BC%80%E5%8F%91%E7%8E%B0%E7%8A%B6

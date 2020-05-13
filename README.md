@@ -138,7 +138,7 @@
 |lab128|gorm,The fantastic ORM library for Golang|https://github.com/jinzhu/gorm|
 |lab129|sync.Map和map| |
 |lab130|gods，Go Data Structures|https://github.com/emirpasic/gods|
-|lab131|url.ParseQuery| |
+|lab131|url.ParseQuery,urldecode| |
 |lab132|ping的几个库| |
 |lab133|tail|https://github.com/hpcloud/tail|
 |lab134|go-zookeeper|https://github.com/samuel/go-zookeeper |
@@ -225,7 +225,7 @@
 |lab215|httpexpect,End-to-end HTTP and REST API testing for Go.|https://github.com/gavv/httpexpect|
 |lab216|numcn,中文数字与Go语言数字的相互转换|https://github.com/pkumza/numcn|
 |lab217|交叉编译| |
-|lab218|wechat,WeChat SDK for Go|https://github.com/silenceper/wechat|
+|lab218|wechat,WeChat SDK for Go,weixin|https://github.com/silenceper/wechat|
 |lab219|mysql相关测试| |
 |lab220|excelize,Golang library for reading and writing Microsoft Excel™ (XLSX) files.|https://github.com/360EntSecGroup-Skylar/excelize|
 |lab221|go-opentaobao,淘宝Api、淘宝开放平台Api请求基础SDK|https://github.com/nilorg/go-opentaobao|

@@ -11,3 +11,4 @@
 |lab006|下载图片| |
 |lab007|get参数测试| |
 |lab008|gzip| |
+|lab009|post| |
