@@ -2,10 +2,10 @@ package main
 
 import (
 	"flag"
-	"fmt"
 	"github.com/aliyun/alibaba-cloud-sdk-go/services/dysmsapi"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
+	"log"
 )
 
 var (
@@ -26,15 +26,21 @@ func init() {
 
 func main() {
 	client, err := dysmsapi.NewClientWithAccessKey("cn-hangzhou", accessKeyId, accessSecret)
+	if err != nil {
+		log.Fatalf("new client error:%v", err)
+	}
 
 	request := dysmsapi.CreateSendSmsRequest()
 	request.Scheme = "https"
 
 	request.PhoneNumbers = phone
+	request.SignName = "微团队"
+	request.TemplateCode = "SMS_190270015"
+	request.TemplateParam = "{\"code\":\"134920\"}"
 
 	response, err := client.SendSms(request)
 	if err != nil {
-		fmt.Print(err.Error())
+		log.Fatalf("client.SendSMS error:%v", err)
 	}
-	fmt.Printf("response is %#v\n", response)
+	log.Printf("response is %#v\n", response)
 }
