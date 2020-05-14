@@ -233,5 +233,7 @@
 |lab223|go-humanize,Go Humans! (formatters for units to human friendly sizes) |https://github.com/dustin/go-humanize|
 |lab224|gota,Gota: DataFrames and data wrangling in Go (Golang)|https://github.com/go-gota/gota|
 |lab225|websocket demo||
-|lab226|A generator library for concise, unambiguous and URL-safe UUIDs |https://github.com/lithammer/shortuuid|
-|lab227|A golang package for converting to snake_case or CamelCase|https://github.com/iancoleman/strcase|
+|lab226|shortuuid,A generator library for concise, unambiguous and URL-safe UUIDs |https://github.com/lithammer/shortuuid|
+|lab227|strcase,A golang package for converting to snake_case or CamelCase|https://github.com/iancoleman/strcase|
+|lab228|alibaba-cloud-sdk-go,Alibaba Cloud SDK for Go|https://github.com/aliyun/alibaba-cloud-sdk-go|
+|lab229|gojsonq,A simple Go package to Query over JSON/YAML/XML/CSV Data|https://github.com/thedevsaddam/gojsonq|
