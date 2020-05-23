@@ -238,3 +238,4 @@
 |lab228|alibaba-cloud-sdk-go,Alibaba Cloud SDK for Go|https://github.com/aliyun/alibaba-cloud-sdk-go|
 |lab229|gojsonq,A simple Go package to Query over JSON/YAML/XML/CSV Data|https://github.com/thedevsaddam/gojsonq|
 |lab230|shortid,Super short, fully unique, non-sequential and URL friendly Ids|https://github.com/teris-io/shortid|
+|lab231|aws-sdk-go,AWS SDK for the Go programming language.|https://github.com/aws/aws-sdk-go|
