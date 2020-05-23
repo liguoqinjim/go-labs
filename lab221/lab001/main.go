@@ -11,11 +11,13 @@ import (
 var (
 	appKey    string
 	appSecret string
+	pid       string
 )
 
 func init() {
 	pflag.StringVarP(&appKey, "appKey", "k", "", "set appKey")
 	pflag.StringVarP(&appSecret, "appSecret", "s", "", "set appSecret")
+	pflag.StringVarP(&pid, "pid", "p", "", "pid")
 
 	pflag.CommandLine.AddGoFlagSet(flag.CommandLine)
 	pflag.Parse()
@@ -31,14 +33,14 @@ func main() {
 	opentaobao.AppSecret = appSecret
 	opentaobao.Router = "http://gw.api.taobao.com/router/rest"
 
-	res, err := opentaobao.Execute("taobao.tbk.privilege.get", opentaobao.Parameter{
-		"fields": "num_iid,title,pict_url,small_images,reserve_price,zk_final_price,user_type,provcity,item_url,seller_id,volume,nick",
-		"q":      "女装",
-		"cat":    "16,18",
+	res, err := opentaobao.Execute("taobao.tbk.coupon.convert", opentaobao.Parameter{
+		"item_id":   618386269125,
+		"adzone_id": pid,
+		"url":       "https://uland.taobao.com/quan/detail?sellerId=2207780422672&activityId=679ab82a8fc743179e87c6d159cdef6f",
 	})
 
 	if err != nil {
-		log.Println(err)
+		log.Fatalf("execute error:%+v", err)
 	}
 
 	log.Println("商品数量:", res.Get("tbk_item_get_response").Get("total_results").MustInt())
