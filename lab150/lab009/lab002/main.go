@@ -39,7 +39,7 @@ func main() {
 
 		form := ctx.Request().MultipartForm
 
-		files := form.File["files[]"]
+		files := form.File["files"]
 		failures := 0
 		for _, file := range files {
 			_, err = saveUploadedFile(file, "../uploads")
