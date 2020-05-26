@@ -242,3 +242,4 @@
 |lab232|filetype,Fast, dependency-free, small Go package to infer binary file types based on the magic numbers signature|https://github.com/h2non/filetype|
 |lab233|tunny,A goroutine pool for Go|https://github.com/Jeffail/tunny|
 |lab234|machinery,Machinery is an asynchronous task queue/job queue based on distributed message passing.|https://github.com/RichardKnop/machinery|
+|lab235|slack,Slack API in Go|https://github.com/slack-go/slack|
