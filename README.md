@@ -45,10 +45,10 @@
 |lab034|Golang比较两个slice是否相等| |
 |lab035|包依赖管理| |
 |lab036|logrus,Structured, pluggable logging for Go|https://github.com/sirupsen/logrus|
-|lab037|link,Go语言网络层脚手架|https://github.com/funny/link |
+|lab037|link,Go语言网络层脚手架 |https://github.com/funny/link |
 |lab038|protobuf| |
 |lab039|内存数据库事务demo| |
-|lab040|rpc| |
+|lab040|rpc|grpc,net/rpc,thrift |
 |lab041|mock| |
 |lab042|SO_REUSEPORT| |
 |lab043|+build(build tag)| |
