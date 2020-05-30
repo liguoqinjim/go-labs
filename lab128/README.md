@@ -12,6 +12,7 @@
 |lab007|mysql的json数据格式| |
 |lab008|事务| |
 |lab009|查询为空| |
+|lab010|一对多，多对多，联合查询|Association,preload|
 
 ## NOTICE
  - gorm的tag在有auto_increment的情况下，要是还有type，auto_increment会不生效。
