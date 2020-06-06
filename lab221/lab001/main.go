@@ -6,17 +6,20 @@ import (
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 	"log"
+	"strings"
 )
 
 var (
-	appKey    string
-	appSecret string
-	pid       string
+	appKey      string
+	appSecret   string
+	accessToken string
+	pid         string
 )
 
 func init() {
 	pflag.StringVarP(&appKey, "appKey", "k", "", "set appKey")
 	pflag.StringVarP(&appSecret, "appSecret", "s", "", "set appSecret")
+	pflag.StringVarP(&accessToken, "accessToken", "t", "", "set accessToken")
 	pflag.StringVarP(&pid, "pid", "p", "", "pid")
 
 	pflag.CommandLine.AddGoFlagSet(flag.CommandLine)
@@ -33,24 +36,53 @@ func main() {
 	opentaobao.AppSecret = appSecret
 	opentaobao.Router = "http://gw.api.taobao.com/router/rest"
 
-	res, err := opentaobao.Execute("taobao.tbk.coupon.convert", opentaobao.Parameter{
-		"item_id":   618386269125,
-		"adzone_id": pid,
-		"url":       "https://uland.taobao.com/quan/detail?sellerId=2207780422672&activityId=679ab82a8fc743179e87c6d159cdef6f",
-	})
+	pids := strings.Split(pid, "_")
 
+	res, err := opentaobao.Execute("taobao.tbk.privilege.get", opentaobao.Parameter{
+		"session":   accessToken,
+		"item_id":   600996379667,
+		"site_id":   pids[2],
+		"adzone_id": pids[3],
+	})
 	if err != nil {
 		log.Fatalf("execute error:%+v", err)
 	}
 
-	log.Println("商品数量:", res.Get("tbk_item_get_response").Get("total_results").MustInt())
-	var imtes []interface{}
-	imtes, _ = res.Get("tbk_item_get_response").Get("results").Get("n_tbk_item").Array()
-	for _, v := range imtes {
-		log.Println("======")
-		item := v.(map[string]interface{})
-		log.Println("商品名称:", item["title"])
-		log.Println("商品价格:", item["reserve_price"])
-		log.Println("商品链接:", item["item_url"])
+	log.Println()
+	dm, err := res.Get("tbk_privilege_get_response").Get("result").Get("data").Map()
+	if err != nil {
+		log.Fatalf("repsonse get error:%v", err)
 	}
+	for k, v := range dm {
+		log.Println(k, v)
+	}
+
+	//短连接
+	itemUrl, err := res.Get("tbk_privilege_get_response").Get("result").Get("data").Get("item_url").String()
+	if err != nil {
+		log.Fatalf("get itemUrl error:%v", err)
+	}
+	itemUrl += "&activityId=664a1b9713744a08b112831d579f66a3"
+	log.Println("itemUrl=", itemUrl)
+
+	res, err = opentaobao.Execute("taobao.tbk.spread.get", opentaobao.Parameter{
+		"requests": struct {
+			Url string `json:"url"`
+		}{Url: itemUrl},
+	})
+	if err != nil {
+		log.Fatalf("execute error:%+v", err)
+	}
+
+	log.Println("短连接:", res)
+
+	//淘口令
+	res, err = opentaobao.Execute("taobao.tbk.tpwd.create", opentaobao.Parameter{
+		"text":"12345",
+		"url":itemUrl,
+	})
+	if err != nil {
+		log.Fatalf("execute error:%+v", err)
+	}
+	log.Println("淘口令:", res)
 }
