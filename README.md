@@ -245,3 +245,4 @@
 |lab235|slack,Slack API in Go|https://github.com/slack-go/slack|
 |lab236|gocron,A Golang Job Scheduling Package.|https://github.com/jasonlvhit/gocron|
 |lab237|silk编码||
+|lab238|gopay，QQ、微信（WeChat）、支付宝（AliPay）的Go版本SDK|https://github.com/iGoogle-ink/gopay|
