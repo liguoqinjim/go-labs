@@ -12,6 +12,7 @@
 |lab008|testing| |
 |lab009|上传文件| |
 |lab010|下发文件| |
+|lab011|得到所有router| |
 
 ## iris模板
  - 模板在github里面有一个专门的库，TODO
