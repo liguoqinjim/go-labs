@@ -2,7 +2,7 @@ module lab218
 
 go 1.14
 
-replace github.com/silenceper/wechat => /Users/li/Downloads/coding/wechat-1.2.6
+//replace github.com/silenceper/wechat => /Users/li/Downloads/coding/wechat-1.2.6
 
 require (
 	github.com/bradfitz/gomemcache v0.0.0-20190913173617-a41fca850d0b // indirect
