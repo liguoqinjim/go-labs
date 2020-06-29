@@ -37,41 +37,36 @@ func main() {
 	opentaobao.Router = "http://gw.api.taobao.com/router/rest"
 
 	layout := "2006-01-02 15:04:05"
+	//timeNow := time.Unix(1592409600, 0)
+	timeNow := time.Unix(1593344338-60*18, 0)
 
-	endTime := time.Now().Format(layout)
-	startTime := time.Now().Add(-time.Minute * 20).Format(layout)
+	startTime := timeNow.Format(layout)
+	endTime := timeNow.Add(time.Minute * 20).Format(layout)
 
-	timeNow := time.Unix(1592568000, 0)
 	//timeNow := time.Now()
-	for i := 0; i < 30; i++ {
-		res, err := opentaobao.Execute("taobao.tbk.sc.order.details.get", opentaobao.Parameter{
-			"session":    accessToken,
-			"start_time": startTime,
-			"end_time":   endTime,
-			"page_zie":   20,
-		})
-		if err != nil {
-			log.Fatalf("execute error:%+v", err)
+	res, err := opentaobao.Execute("taobao.tbk.sc.order.details.get", opentaobao.Parameter{
+		"session":    accessToken,
+		"start_time": startTime,
+		"end_time":   endTime,
+		"page_zie":   20,
+	})
+	if err != nil {
+		log.Fatalf("execute error:%+v", err)
+	}
+
+	log.Println("res", res)
+	dm, err := res.Get("tbk_sc_order_details_get_response").Get("data").Get("results").Get("publisher_order_dto").Array()
+	if err != nil {
+		//log.Fatalf("repsonse get error:%v", err)
+		log.Printf("response get error:%v", err)
+	}
+
+	log.Println("dm.length=", len(dm))
+	for _, v := range dm {
+		item := v.(map[string]interface{})
+
+		for k, v := range item {
+			log.Println(k, v)
 		}
-
-		log.Println("res", res)
-		dm, err := res.Get("tbk_sc_order_details_get_response").Get("data").Get("results").Get("publisher_order_dto").Array()
-		if err != nil {
-			//log.Fatalf("repsonse get error:%v", err)
-			log.Printf("response get error:%v", err)
-		}
-
-		log.Println("dm.length=", len(dm))
-		for _, v := range dm {
-			item := v.(map[string]interface{})
-
-			for k, v := range item {
-				log.Println(k, v)
-			}
-		}
-
-		timeNow = timeNow.Add(-time.Minute * 20)
-
-		time.Sleep(time.Second * 3)
 	}
 }
