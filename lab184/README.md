@@ -1,13 +1,12 @@
 # [cron](https://github.com/robfig/cron)
-安装：`go get -u -v github.com/robfig/cron`
+安装：`go get github.com/robfig/cron/v3`
 
 |实验|简介|说明|
 |---|---|---|
-|lab001|example| |
-|lab002|测试cron表达式| |
+|lab001|example|**deprecated** |
+|lab002|测试cron表达式|**deprecated** |
+|lab003|v3 example||
 
-## cron例子
- - `0 */1 * * * *` (每分钟的0秒执行)
- 
 ## NOTICE
- - 这个库不支持秒级的cron
+ - v3版本支持秒级
+ 
