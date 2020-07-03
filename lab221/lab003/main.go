@@ -6,6 +6,7 @@ import (
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
 	"log"
+	"strings"
 )
 
 var (
@@ -45,7 +46,7 @@ func main() {
 
 	log.Println("res1:", res)
 
-	return
+	//return
 
 	//三个接口
 	//https://open.taobao.com/api.htm?spm=a219a.7386797.0.0.32e2669al3VfB0&source=search&docId=42646&docType=2
@@ -53,16 +54,16 @@ func main() {
 	//https://open.taobao.com/api.htm?spm=a219a.7386797.0.0.32e2669al3VfB0&source=search&docId=43873&docType=2
 
 	//解析淘口令-授权
-	//pids := strings.Split(pid, "_")
-	//res, err := opentaobao.Execute("taobao.tbk.sc.tpwd.convert", opentaobao.Parameter{
-	//	"session":          accessToken,
-	//	"password_content": "￥4iwZ1GmsnLc￥",
-	//	"adzone_id":        pids[3],
-	//	"site_id":          pids[2],
-	//})
-	//if err != nil {
-	//	log.Fatalf("execute error:%+v", err)
-	//}
-	//
-	//log.Println("res", res)
+	pids := strings.Split(pid, "_")
+	res, err = opentaobao.Execute("taobao.tbk.sc.tpwd.convert", opentaobao.Parameter{
+		"session":          accessToken,
+		"password_content": "￥4iwZ1GmsnLc￥",
+		"adzone_id":        pids[3],
+		"site_id":          pids[2],
+	})
+	if err != nil {
+		log.Fatalf("execute error:%+v", err)
+	}
+
+	log.Println("res", res)
 }
