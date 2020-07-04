@@ -62,7 +62,7 @@ func main() {
 	//queryOrder(orderId)
 
 	//沙盒支付
-	orderId := "20070363415937655127"
+	orderId := "20070406515938323997"
 	//sandBoxPay(orderId)
 
 	queryOrder(orderId)

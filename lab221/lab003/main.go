@@ -37,14 +37,14 @@ func main() {
 	opentaobao.Router = "http://gw.api.taobao.com/router/rest"
 
 	//解析淘口令
-	res, err := opentaobao.Execute("taobao.tbk.tpwd.parse", opentaobao.Parameter{
-		"password_content": "￥4iwZ1GmsnLc￥",
-	})
-	if err != nil {
-		log.Fatalf("execute error:%+v,%+v", err, res)
-	}
-
-	log.Println("res1:", res)
+	//res, err := opentaobao.Execute("taobao.tbk.tpwd.parse", opentaobao.Parameter{
+	//	"password_content": "￥4iwZ1GmsnLc￥",
+	//})
+	//if err != nil {
+	//	log.Fatalf("execute error:%+v,%+v", err, res)
+	//}
+	//
+	//log.Println("res1:", res)
 
 	//return
 
@@ -55,7 +55,7 @@ func main() {
 
 	//解析淘口令-授权
 	pids := strings.Split(pid, "_")
-	res, err = opentaobao.Execute("taobao.tbk.sc.tpwd.convert", opentaobao.Parameter{
+	res, err := opentaobao.Execute("taobao.tbk.sc.tpwd.convert", opentaobao.Parameter{
 		"session":          accessToken,
 		"password_content": "￥4iwZ1GmsnLc￥",
 		"adzone_id":        pids[3],
@@ -66,4 +66,9 @@ func main() {
 	}
 
 	log.Println("res", res)
+	j, err := res.MarshalJSON()
+	if err != nil {
+		log.Fatalf("marshal json error:%v", err)
+	}
+	log.Printf("%s", j)
 }
