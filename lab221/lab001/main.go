@@ -14,9 +14,12 @@ var (
 	appSecret   string
 	accessToken string
 	pid         string
+	pids        []string
 )
 
 func init() {
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
+
 	pflag.StringVarP(&appKey, "appKey", "k", "", "set appKey")
 	pflag.StringVarP(&appSecret, "appSecret", "s", "", "set appSecret")
 	pflag.StringVarP(&accessToken, "accessToken", "t", "", "set accessToken")
@@ -29,6 +32,8 @@ func init() {
 	if appKey == "" || appSecret == "" {
 		log.Fatalf("need appKey and appSecret")
 	}
+
+	pids = strings.Split(pid, "_")
 }
 
 func main() {
@@ -36,12 +41,17 @@ func main() {
 	opentaobao.AppSecret = appSecret
 	opentaobao.Router = "http://gw.api.taobao.com/router/rest"
 
-	pids := strings.Split(pid, "_")
+	itemUrl, couponUrl := privilege(42966407474)
+	shortUrl := short(itemUrl, couponUrl)
+	password(shortUrl)
+}
 
+//转链
+func privilege(itemId int) (string, string) {
 	//转链
 	res, err := opentaobao.Execute("taobao.tbk.privilege.get", opentaobao.Parameter{
 		"session":   accessToken,
-		"item_id":   605457131248,
+		"item_id":   42518985750,
 		"site_id":   pids[2],
 		"adzone_id": pids[3],
 	})
@@ -65,16 +75,26 @@ func main() {
 		}
 	}
 
-	//短连接
-	itemUrl += "&activityId=664a1b9713744a08b112831d579f66a3"
 	log.Println("itemUrl=", itemUrl)
-	couponUrl += "&activityId=b4700d16496e45e78bcb93c55fe095ff"
 	log.Println("couponUrl=", couponUrl)
+	return itemUrl, couponUrl
+}
 
-	res, err = opentaobao.Execute("taobao.tbk.spread.get", opentaobao.Parameter{
+//短连接
+func short(itemUrl, couponUrl string) string {
+	url := itemUrl
+	if couponUrl != "" {
+		url = couponUrl
+	} else {
+		//手动补上优惠券
+		//url += "&activityId=4e77fdf019a8404695818dddb0929d46"
+	}
+
+	log.Println("url=", url)
+	res, err := opentaobao.Execute("taobao.tbk.spread.get", opentaobao.Parameter{
 		"requests": struct {
 			Url string `json:"url"`
-		}{Url: couponUrl},
+		}{Url: url},
 	})
 	if err != nil {
 		log.Fatalf("execute error:%+v", err)
@@ -94,31 +114,20 @@ func main() {
 	}
 	log.Println("short:", short)
 
-	//淘口令
-	res, err = opentaobao.Execute("taobao.tbk.tpwd.create", opentaobao.Parameter{
+	return short
+}
+
+//淘口令
+func password(url string) {
+	res, err := opentaobao.Execute("taobao.tbk.tpwd.create", opentaobao.Parameter{
 		"text": "1", //这个参数在API里面被废除了，填了也不会有效果，但是不能不填，不填会报错
-		"url":  couponUrl,
+		"url":  url,
 	})
 	if err != nil {
 		log.Fatalf("execute error:%+v", err)
 	}
 	log.Println("淘口令:", res)
 	tpwd, err := res.Get("tbk_tpwd_create_response").Get("data").Get("model").String()
-	if err != nil {
-		log.Fatalf("淘口令 res error:%v", err)
-	}
-	log.Println("tpwd:", tpwd)
-
-	//用短连接生成淘口令
-	res, err = opentaobao.Execute("taobao.tbk.tpwd.create", opentaobao.Parameter{
-		"text": "1", //这个参数在API里面被废除了，填了也不会有效果，但是不能不填，不填会报错
-		"url":  short,
-	})
-	if err != nil {
-		log.Fatalf("execute error:%+v", err)
-	}
-	log.Println("淘口令2:", res)
-	tpwd, err = res.Get("tbk_tpwd_create_response").Get("data").Get("model").String()
 	if err != nil {
 		log.Fatalf("淘口令 res error:%v", err)
 	}
