@@ -46,9 +46,9 @@ func init() {
 	//    gopay.SoutheastAsia：东南亚
 	//    gopay.Other：其他国家
 	client.SetCountry(wechat.China)
-	if err := client.AddCertFilePath("../data/wechat/apiclient_cert.pem", "../data/wechat/apiclient_key.pem", "../data/wechat/apiclient_cert.p12"); err != nil {
-		log.Fatalf("addCertFilePath error:%v", err)
-	}
+	//if err := client.AddCertFilePath("../data/wechat/apiclient_cert.pem", "../data/wechat/apiclient_key.pem", "../data/wechat/apiclient_cert.p12"); err != nil {
+	//	log.Fatalf("addCertFilePath error:%v", err)
+	//}
 
 }
 
@@ -62,7 +62,7 @@ func main() {
 	//queryOrder(orderId)
 
 	//沙盒支付
-	orderId := "20070406515938323997"
+	orderId := "20070471715938319077"
 	//sandBoxPay(orderId)
 
 	queryOrder(orderId)
