@@ -247,3 +247,4 @@
 |lab237|silk编码||
 |lab238|gopay，QQ、微信（WeChat）、支付宝（AliPay）的Go版本SDK|https://github.com/iGoogle-ink/gopay|
 |lab239|sentry-go,Official Sentry SDK for Go|https://github.com/getsentry/sentry-go|
+|lab240|go-qrcode,QR Code encoder (Go)|https://github.com/skip2/go-qrcode|
