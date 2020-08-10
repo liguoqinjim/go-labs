@@ -126,7 +126,7 @@
 |lab116|go-http-auth，Basic and Digest HTTP Authentication for golang http| |
 |lab117|http使用代理| |
 |lab118|[deprecated]raven-go,Sentry client in Go|https://github.com/getsentry/raven-go|
-|lab119|utf，gbk，gb2312互转| |
+|lab119|字符串编码，utf，gbk，gb2312互转，unicode| |
 |lab120|ffjson，github.com/pquerna/ffjson| |
 |lab121|easyjson，github.com/mailru/easyjson| |
 |lab122|jsoniter，github.com/json-iterator/go| |
