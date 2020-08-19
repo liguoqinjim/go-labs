@@ -9,6 +9,7 @@
 |lab004|incr,incrby| |
 |lab005|直接存struct| |
 |lab006|切换db| |
+|lab007|lua脚本限流| |
 
 ## 运行命令
  - `go run main.go --redis=127.0.0.1:6379`
