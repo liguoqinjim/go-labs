@@ -250,3 +250,4 @@
 |lab240|go-qrcode,QR Code encoder (Go)|https://github.com/skip2/go-qrcode|
 |lab241|cobra,A Commander for modern Go CLI interactions|https://github.com/spf13/cobra|
 |lab242|判断是否为IP地址，几种方法比对|https://medium.com/@sergio.anguita/detecting-a-valid-ipv4-in-go-like-a-boss-32eda9bf422f|
+|lab243|gorm v2，第二版|https://github.com/go-gorm/gorm|
