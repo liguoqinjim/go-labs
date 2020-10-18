@@ -20,4 +20,5 @@
  https://open.taobao.com/api.htm?spm=a219a.7386797.0.0.7085669a1QrbLA&source=search&docId=27832&docType=2
  6. 生成淘口令
  https://open.taobao.com/api.htm?spm=a219a.7386797.0.0.32e2669aPEySbt&source=search&docId=31127&docType=2
-    
+ 7. 拉取RID列表
+ https://open.taobao.com/api.htm?spm=a219a.7386797.0.0.11ec669aU57NTN&source=search&docId=37989&docType=2

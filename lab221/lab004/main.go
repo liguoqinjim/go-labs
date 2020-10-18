@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"flag"
 	"fmt"
 	"github.com/nilorg/go-opentaobao"
@@ -77,7 +78,10 @@ func getRIDs() {
 	res, err := opentaobao.Execute("taobao.tbk.sc.publisher.info.get", opentaobao.Parameter{
 		"session":      accessToken,
 		"info_type":    1,
+		"page_no":      1,
+		"page_size":    10,
 		"relation_app": "common",
+		"external_id":  "EhqtuVSomfQU",
 	})
 	if err != nil {
 		log.Fatalf("execute error:%+v", err)
@@ -88,6 +92,24 @@ func getRIDs() {
 		log.Fatalf("marshalJSON error:%v", err)
 	}
 	log.Printf("rids.json:%s", j)
+
+	result, err := res.Get("tbk_sc_publisher_info_get_response").Get("data").Get("inviter_list").Get("map_data").Array()
+	log.Println(result)
+
+	for _, r := range result {
+		a := r.(map[string]interface{})
+
+		if _, ok := a["rtag"]; ok {
+			log.Println(a)
+			rtag := a["rtag"].(string)
+			relationId := a["relation_id"].(json.Number)
+			createDate := a["create_date"].(string)
+
+			log.Println(rtag, relationId, createDate)
+		}
+	}
+
+	log.Println(err)
 }
 
 //淘口令
