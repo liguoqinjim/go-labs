@@ -38,17 +38,18 @@ func main() {
 
 	layout := "2006-01-02 15:04:05"
 	//timeNow := time.Unix(1592409600, 0)
-	timeNow := time.Unix(1593344338-60*18, 0)
+	timeNow := time.Unix(1603335600+60*20, 0)
 
 	startTime := timeNow.Format(layout)
 	endTime := timeNow.Add(time.Minute * 20).Format(layout)
 
 	//timeNow := time.Now()
 	res, err := opentaobao.Execute("taobao.tbk.sc.order.details.get", opentaobao.Parameter{
-		"session":    accessToken,
-		"start_time": startTime,
-		"end_time":   endTime,
-		"page_zie":   20,
+		"session":     accessToken,
+		"start_time":  startTime,
+		"end_time":    endTime,
+		"page_zie":    20,
+		"order_scene": 2, //为了查rid的订单
 	})
 	if err != nil {
 		log.Fatalf("execute error:%+v", err)
@@ -69,4 +70,10 @@ func main() {
 			log.Println(k, v)
 		}
 	}
+
+	j, err := res.MarshalJSON()
+	if err != nil {
+		log.Fatalf("marshal Json error:%v", err)
+	}
+	log.Printf("%s", j)
 }

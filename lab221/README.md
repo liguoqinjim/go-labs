@@ -5,7 +5,8 @@
 |lab001|商品和优惠券，转链为淘口令| |
 |lab002|下载订单| |
 |lab003|淘口令操作| |
-|lab004|rid| |
+|lab004|rid，生成邀请链接| |
+|lab005|rid，转链| |
 
 ## 参考资料
  1. 优惠券信息
@@ -22,3 +23,5 @@
  https://open.taobao.com/api.htm?spm=a219a.7386797.0.0.32e2669aPEySbt&source=search&docId=31127&docType=2
  7. 拉取RID列表
  https://open.taobao.com/api.htm?spm=a219a.7386797.0.0.11ec669aU57NTN&source=search&docId=37989&docType=2
+ 8. external_id的设置
+ https://blog.csdn.net/dayunwang/article/details/107779132

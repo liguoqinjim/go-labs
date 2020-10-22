@@ -1,9 +1,7 @@
 package main
 
 import (
-	"encoding/json"
 	"flag"
-	"fmt"
 	"github.com/nilorg/go-opentaobao"
 	"github.com/spf13/pflag"
 	"github.com/spf13/viper"
@@ -21,6 +19,8 @@ var (
 )
 
 func init() {
+	log.SetFlags(log.LstdFlags | log.Lshortfile)
+
 	pflag.StringVarP(&appKey, "appKey", "k", "", "set appKey")
 	pflag.StringVarP(&appSecret, "appSecret", "s", "", "set appSecret")
 	pflag.StringVarP(&accessToken, "accessToken", "t", "", "set accessToken")
@@ -43,75 +43,83 @@ func main() {
 	opentaobao.AppSecret = appSecret
 	opentaobao.Router = "http://gw.api.taobao.com/router/rest"
 
-	//url := inviteCode()
-	//url += "&rtag=weituandui"
-	//
-	//password(url)
+	log.Println("rid=", rid)
 
-	getRIDs()
+	itemUrl, couponUrl := privilege("548551184593")
+	shortUrl := short(itemUrl, couponUrl)
+	password(shortUrl)
 }
 
-//生成邀请码
-func inviteCode() string {
-	res, err := opentaobao.Execute("taobao.tbk.sc.invitecode.get", opentaobao.Parameter{
-		"session":      accessToken,
-		"relation_id":  2563991004,
-		"relation_app": "common",
-		"code_type":    1,
+//转链
+func privilege(itemId string) (string, string) {
+
+	res, err := opentaobao.Execute("taobao.tbk.privilege.get", opentaobao.Parameter{
+		"session":     accessToken,
+		"item_id":     itemId,
+		"site_id":     pids[2],
+		"adzone_id":   pids[3],
+		"relation_id": rid,
 	})
 	if err != nil {
 		log.Fatalf("execute error:%+v", err)
 	}
-	log.Println("inviteCode:", res)
 
-	code, err := res.Get("tbk_sc_invitecode_get_response").Get("data").Get("inviter_code").String()
+	dm, err := res.Get("tbk_privilege_get_response").Get("result").Get("data").Map()
 	if err != nil {
-		log.Fatalf("inviteCode error:%v", err)
+		log.Fatalf("repsonse get error:%v", err)
 	}
-	log.Println("code=", code)
+	itemUrl := ""
+	couponUrl := ""
+	for k, v := range dm {
+		log.Println(k, v)
 
-	url := fmt.Sprintf("https://mos.m.taobao.com/inviter/register?inviterCode=%s&src=pub&app=common", code)
-	log.Println("url=", url)
-
-	return url
-}
-
-func getRIDs() {
-	res, err := opentaobao.Execute("taobao.tbk.sc.publisher.info.get", opentaobao.Parameter{
-		"session":      accessToken,
-		"info_type":    1,
-		"page_no":      1,
-		"page_size":    10,
-		"relation_app": "common",
-		"external_id":  "EhqtuVSomfQU",
-	})
-	if err != nil {
-		log.Fatalf("execute error:%+v", err)
-	}
-	log.Println("rids:", res)
-	j, err := res.MarshalJSON()
-	if err != nil {
-		log.Fatalf("marshalJSON error:%v", err)
-	}
-	log.Printf("rids.json:%s", j)
-
-	result, err := res.Get("tbk_sc_publisher_info_get_response").Get("data").Get("inviter_list").Get("map_data").Array()
-	log.Println(result)
-
-	for _, r := range result {
-		a := r.(map[string]interface{})
-
-		if _, ok := a["rtag"]; ok {
-			log.Println(a)
-			rtag := a["rtag"].(string)
-			relationId := a["relation_id"].(json.Number)
-			createDate := a["create_date"].(string)
-
-			log.Println(rtag, relationId, createDate)
+		if k == "item_url" {
+			itemUrl = v.(string)
+		} else if k == "coupon_click_url" {
+			couponUrl = v.(string)
 		}
 	}
 
-	log.Println(err)
+	log.Println("itemUrl=", itemUrl)
+	log.Println("couponUrl=", couponUrl)
+	return itemUrl, couponUrl
+}
+
+//短连接
+func short(itemUrl, couponUrl string) string {
+	url := itemUrl
+	if couponUrl != "" {
+		url = couponUrl
+	} else {
+		//手动补上优惠券
+		//url += "&activityId=4e77fdf019a8404695818dddb0929d46"
+	}
+
+	log.Println("url=", url)
+	res, err := opentaobao.Execute("taobao.tbk.spread.get", opentaobao.Parameter{
+		"requests": struct {
+			Url string `json:"url"`
+		}{Url: url},
+	})
+	if err != nil {
+		log.Fatalf("execute error:%+v", err)
+	}
+	log.Println("短连接:", res)
+	shorts, err := res.Get("tbk_spread_get_response").Get("results").Get("tbk_spread").Array()
+	if err != nil {
+		log.Fatalf("array error:%v", err)
+	}
+	short := ""
+	for _, s := range shorts {
+		v := s.(map[string]interface{})
+		short = v["content"].(string)
+	}
+	if err != nil {
+		log.Fatalf("短连接error:%v", err)
+	}
+	log.Println("short:", short)
+
+	return short
 }
 
 //淘口令
