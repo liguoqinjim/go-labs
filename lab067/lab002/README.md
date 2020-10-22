@@ -1,6 +1,6 @@
 # demo
 
-## 注意点
+## NOTICE
  - `test.html`里面是没有<html><head>这些标签的，就是两个strong标签。这样的数据在goquery里面读取是没有问题的，
  但是读取出来的结果里面会自动的加上<html><head><body>标签，会把我们的数据嵌套在<body>标签里面
  - `Html()`方法返回的是一个标签里面的数据，如`<div><strong>a</strong></div`，对div这个node调用`Html()`，
