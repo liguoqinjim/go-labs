@@ -47,16 +47,17 @@ func main() {
 }
 
 func getPresent() {
-	log.Println("adzone_id=", pids[3])
+	adzoneId := "110775200026"
+	log.Println("adzoneId=", adzoneId)
 	res, err := opentaobao.Execute("taobao.tbk.dg.vegas.tlj.create", opentaobao.Parameter{
 		"session":                  accessToken,
-		"adzone_id":                pids[3],
+		"adzone_id":                adzoneId,
 		"item_id":                  1,
-		"total_num":                2,
+		"total_num":                1,
 		"name":                     "我的第一个淘礼金",
 		"user_total_win_num_limit": 1,
 		"security_switch":          true,
-		"per_face":                 10,
+		"per_face":                 1,
 		"send_start_time":          "2018-09-01 00:00:00",
 	})
 
