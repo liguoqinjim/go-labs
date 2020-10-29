@@ -1,5 +1,4 @@
 # [redis](https://github.com/go-redis/redis)
-`go get github.com/go-redis/redis/v7`
 
 |实验|简介|说明|
 |---|---|---|

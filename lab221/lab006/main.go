@@ -47,7 +47,8 @@ func main() {
 }
 
 func getPresent() {
-	adzoneId := "110775200026"
+	//mm_18678356_46636874_108815600271
+	adzoneId := "108815600271"
 	log.Println("adzoneId=", adzoneId)
 	res, err := opentaobao.Execute("taobao.tbk.dg.vegas.tlj.create", opentaobao.Parameter{
 		"session":                  accessToken,
