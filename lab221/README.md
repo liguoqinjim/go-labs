@@ -7,7 +7,8 @@
 |lab003|淘口令操作| |
 |lab004|rid，生成邀请链接| |
 |lab005|rid，转链| |
-|lab006|淘口令| |
+|lab006|淘礼金| |
+|lab007|商品链接/淘口令 -> 商品信息&返利信息| |
 
 ## 参考资料
  1. 优惠券信息
@@ -26,5 +27,7 @@
  https://open.taobao.com/api.htm?spm=a219a.7386797.0.0.11ec669aU57NTN&source=search&docId=37989&docType=2
  8. external_id的设置
  https://blog.csdn.net/dayunwang/article/details/107779132
- 9.
+ 9. 淘礼金创建
  https://developer.alibaba.com/docs/api.htm?apiId=40173
+ 10. 获取单个商品详细信息
+ https://open.taobao.com/api.htm?spm=a219a.7629140.0.0.33f175feDy50I5&docId=24625&docType=2
