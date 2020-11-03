@@ -56,10 +56,8 @@ func getRebateInfo() {
 }
 
 func getItemInfo() {
-	res, err := opentaobao.Execute("taobao.item.seller.get", opentaobao.Parameter{
-		"session": accessToken,
-		"fields":  "num_iid,title,nick,price,approve_status,sku,pic_url",
-		"num_iid": itemId,
+	res, err := opentaobao.Execute("taobao.tbk.item.info.get", opentaobao.Parameter{
+		"num_iids": itemId,
 	})
 
 	if err != nil {
