@@ -252,3 +252,4 @@
 |lab242|判断是否为IP地址，几种方法比对|https://medium.com/@sergio.anguita/detecting-a-valid-ipv4-in-go-like-a-boss-32eda9bf422f|
 |lab243|gorm v2，第二版|https://github.com/go-gorm/gorm|
 |lab244|minify,Go minifiers for web formats，xml、json等格式的minify|https://github.com/tdewolff/minify|
+|lab245|carbon,Carbon for Golang, an extension for Time|https://github.com/uniplaces/carbon|
