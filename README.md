@@ -97,7 +97,7 @@
 |lab087|golang-geo，Geographical calculations in Go|https://github.com/kellydunn/golang-geo |
 |lab088|简单几何计算| |
 |lab089|surfer|https://github.com/henrylee2cn/surfer|
-|lab090|gorequest，Simplified HTTP client|https://github.com/parnurzeal/gorequest|
+|lab090|gorequest,Simplified HTTP client|https://github.com/parnurzeal/gorequest|
 |lab091|pony，tidwall/pony| |
 |lab092|go-bindata| |
 |lab093|文件夹相关| |
