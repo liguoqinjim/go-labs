@@ -31,3 +31,8 @@
  https://developer.alibaba.com/docs/api.htm?apiId=40173
  10. 获取单个商品详细信息  
  https://open.taobao.com/api.htm?docId=24518&docType=2&source=search
+ 
+## PID
+例子:`mm_111160411_35476806_127062249`
+site_id为35476806
+adzone_id为127062249
