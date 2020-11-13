@@ -37,10 +37,10 @@ func main() {
 	opentaobao.Router = "http://gw.api.taobao.com/router/rest"
 
 	layout := "2006-01-02 15:04:05"
-	timeNow := time.Unix(1602763200, 0)
+	timeNow := time.Unix(1605073200, 0)
 
 	startTime := timeNow.Format(layout)
-	endTime := timeNow.Add(time.Minute * 180).Format(layout)
+	endTime := timeNow.Add(time.Minute * 20).Format(layout)
 
 	//timeNow := time.Now()
 	res, err := opentaobao.Execute("taobao.tbk.sc.order.details.get", opentaobao.Parameter{
@@ -48,7 +48,7 @@ func main() {
 		"start_time":  startTime,
 		"end_time":    endTime,
 		"page_zie":    20,
-		"order_scene": 1, //为了查rid的订单
+		"order_scene": 2, //为了查rid的订单
 	})
 	if err != nil {
 		log.Fatalf("execute error:%+v", err)
