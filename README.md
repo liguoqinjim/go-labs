@@ -254,3 +254,4 @@
 |lab244|minify,Go minifiers for web formats，xml、json等格式的minify|https://github.com/tdewolff/minify|
 |lab245|carbon,Carbon for Golang, an extension for Time|https://github.com/uniplaces/carbon|
 |lab246|decimal,Arbitrary-precision fixed-point decimal numbers in go|https://github.com/shopspring/decimal|
+|lab247|循环的坑| |
