@@ -9,7 +9,8 @@
 |lab005|直接存struct| |
 |lab006|切换db| |
 |lab007|lua脚本限流| |
-|lab008|计算某个前缀的key的数量||
+|lab008|计算某个前缀的key的数量| |
+|lab009|key时间到期事件| |
 
 ## 运行命令
  - `go run main.go --redis=127.0.0.1:6379`
