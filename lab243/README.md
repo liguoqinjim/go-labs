@@ -11,3 +11,6 @@ go get -u gorm.io/driver/mysql
 |---|---|---|
 |lab001|实验新版本，批量插入，动态表名，错误处理| |
 |lab002|插件：读写分离||
+
+## NOTICE
+ - v1版本中的`gorm.IsRecordNotFound`在新版中变为`errors.Is(err, gorm.ErrRecordNotFound)`

@@ -1,6 +1,9 @@
 # [gorm](https://github.com/jinzhu/gorm)
 安装:`go get -u -v github.com/jinzhu/gorm`
 
+# 新版
+lab243用的是新版本
+
 |实验|简介|说明|
 |---|---|---|
 |lab001|连接数据库| |
