@@ -255,3 +255,5 @@
 |lab245|carbon,Carbon for Golang, an extension for Time|https://github.com/uniplaces/carbon|
 |lab246|decimal,Arbitrary-precision fixed-point decimal numbers in go|https://github.com/shopspring/decimal|
 |lab247|循环的坑| |
+|lab248|serial,A Go package to allow you to read and write from the serial port as a stream of bytes.|https://github.com/tarm/serial|
+|lab249|go-serial,This is a package that allows you to read from and write to serial ports in Go.|https://github.com/jacobsa/go-serial|
