@@ -1,4 +1,8 @@
 github.com/jacobsa/go-serial v0.0.0-20180131005756-15cf729a72d4 h1:G2ztCwXov8mRvP0ZfjE6nAlaCX2XbykaeHdbT6KwDz0=
 github.com/jacobsa/go-serial v0.0.0-20180131005756-15cf729a72d4/go.mod h1:2RvX5ZjVtsznNZPEt4xwJXNJrM3VTZoQf7V6gk0ysvs=
+github.com/tarm/goserial v0.0.0-20151007205400-b3440c3c6355 h1:Kp3kg8YL2dc75mckomrHZQTfzNyFGnaqFhJeQw4ozGc=
+github.com/tarm/goserial v0.0.0-20151007205400-b3440c3c6355/go.mod h1:jcMo2Odv5FpDA6rp8bnczbUolcICW6t54K3s9gOlgII=
+github.com/xlab/at v0.0.0-20200113074826-619e3fe95ff4 h1:w21Lc/y++xYKlS4hrN7s9VahDTSO1KyabmVZRjlbteM=
+github.com/xlab/at v0.0.0-20200113074826-619e3fe95ff4/go.mod h1:/gl6hh7ycmCUI33RNx0qiCIo2Y/lkbJAQvMnrD5m+hQ=
 golang.org/x/sys v0.0.0-20210104204734-6f8348627aad h1:MCsdmFSdEd4UEa5TKS5JztCRHK/WtvNei1edOj5RSRo=
 golang.org/x/sys v0.0.0-20210104204734-6f8348627aad/go.mod h1:h1NjWce9XRLGQEsW7wpKNCjG9DtNlClVuFLEZdDNbEs=
