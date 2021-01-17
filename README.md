@@ -255,3 +255,4 @@
 |lab245|carbon,Carbon for Golang, an extension for Time|https://github.com/uniplaces/carbon|
 |lab246|decimal,Arbitrary-precision fixed-point decimal numbers in go|https://github.com/shopspring/decimal|
 |lab247|循环的坑| |
+|lab248|gojieba,GoJieba是"结巴"中文分词的Golang语言版本|https://github.com/yanyiwu/gojieba|
