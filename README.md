@@ -258,3 +258,4 @@
 |lab248|serial,A Go package to allow you to read and write from the serial port as a stream of bytes.|https://github.com/tarm/serial|
 |lab249|go-serial,This is a package that allows you to read from and write to serial ports in Go.|https://github.com/jacobsa/go-serial|
 |lab250|gojieba,GoJieba是"结巴"中文分词的Golang语言版本|https://github.com/yanyiwu/gojieba|
+|lab251|mongo-go-driver,The Go driver for MongoDB|https://github.com/mongodb/mongo-go-driver|

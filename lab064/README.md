@@ -1,5 +1,5 @@
 # [mgo](https://github.com/globalsign/mgo)
-主页：http://labix.org/mgo
+主页：http://labix.org/mgo  
 安装:`go get github.com/globalsign/mgo`
 
 ## NOTICE
