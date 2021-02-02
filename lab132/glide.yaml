@@ -1,4 +1,0 @@
-package: lab132
-import:
-- package: github.com/sparrc/go-ping
-- package: github.com/tatsushid/go-fastping

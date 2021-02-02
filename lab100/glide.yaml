@@ -1,3 +1,0 @@
-package: lab100
-import:
-- package: github.com/divan/expvarmon

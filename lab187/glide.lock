@@ -1,6 +1,0 @@
-hash: ae68545c9458ebf6f8138d0f9eff8203a2eed8f3be95f98861b5c89756fd3393
-updated: 2019-03-23T23:36:26.0889674+08:00
-imports:
-- name: github.com/elastic/go-elasticsearch
-  version: 60ea51fd3784506e6f2e45444a1e024c2fd8aff0
-testImports: []

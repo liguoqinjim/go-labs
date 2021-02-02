@@ -1,3 +1,0 @@
-package: lab178
-import:
-- package: github.com/Shopify/sarama

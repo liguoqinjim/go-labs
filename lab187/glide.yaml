@@ -1,3 +1,0 @@
-package: lab187
-import:
-- package: github.com/elastic/go-elasticsearch
