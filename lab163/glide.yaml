@@ -1,3 +1,0 @@
-package: lab163
-import:
-- package: github.com/atotto/clipboard

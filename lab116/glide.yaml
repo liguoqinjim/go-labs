@@ -1,3 +1,0 @@
-package: lab116
-import:
-- package: github.com/abbot/go-http-auth

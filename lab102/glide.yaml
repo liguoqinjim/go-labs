@@ -1,3 +1,0 @@
-package: lab102
-import:
-- package: github.com/agatan/timejump

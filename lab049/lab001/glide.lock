@@ -1,8 +1,0 @@
-hash: 8cd451ccf0facb223c044104a05c654be6ad1ae229be05b77c881270a43ace12
-updated: 2017-05-03T17:53:20.0096079+08:00
-imports:
-- name: github.com/ShionRyuu/gobevtree
-  version: 0f29e58a4dba7bad0d261560f2c32ece458fcdfc
-- name: github.com/smartystreets/goconvey
-  version: d4c757aa9afd1e2fc1832aaab209b5794eb336e1
-testImports: []

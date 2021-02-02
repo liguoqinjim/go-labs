@@ -1,6 +1,0 @@
-package: lab009
-import:
-- package: github.com/go-sql-driver/mysql
-- package: github.com/golang/protobuf
-  subpackages:
-  - proto

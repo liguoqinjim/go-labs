@@ -1,4 +1,0 @@
-package: lab004
-import:
-- package: github.com/bitly/go-simplejson
-  version: v0.5.0

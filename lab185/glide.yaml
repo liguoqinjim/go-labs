@@ -1,3 +1,0 @@
-package: lab185
-import:
-- package: github.com/siddontang/go-mysql

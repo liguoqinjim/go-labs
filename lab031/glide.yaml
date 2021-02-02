@@ -1,9 +1,0 @@
-package: lab031
-import:
-- package: github.com/google/gops
-  subpackages:
-  - agent
-- package: github.com/shirou/gopsutil
-  subpackages:
-  - mem
-- package: github.com/stackimpact/stackimpact-go

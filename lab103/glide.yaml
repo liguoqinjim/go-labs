@@ -1,3 +1,0 @@
-package: lab103
-import:
-- package: github.com/mccutchen/go-httpbin

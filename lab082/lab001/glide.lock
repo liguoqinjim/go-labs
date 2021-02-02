@@ -1,6 +1,0 @@
-hash: ec5f2d3b036844440fdb5e23532073175c4b263e55fb805c07582fbc3e91a801
-updated: 2017-08-16T10:27:52.8269412+08:00
-imports:
-- name: github.com/petermattis/goid
-  version: 0ded85884ba5c4c9267fcd5a149061f7c3455eee
-testImports: []

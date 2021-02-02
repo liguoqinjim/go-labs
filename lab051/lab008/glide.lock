@@ -1,6 +1,0 @@
-hash: c1f19872c379b56f907a14646d98968cf54664c1369e79e9ad66a4dc2bd37e61
-updated: 2017-06-21T15:35:58.6090033+08:00
-imports:
-- name: github.com/liguoqinjim/behavior3go
-  version: 553ff27116727a320a7fbc2baf8a6a69d96d66de
-testImports: []

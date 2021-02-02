@@ -1,6 +1,0 @@
-hash: b95b8578aa88a3829d6b399b812633fe93913cf6dc323c8207c12041feb725ef
-updated: 2017-12-18T11:03:12.5305505+08:00
-imports:
-- name: github.com/agatan/timejump
-  version: 50c5a7a281e0a5d011eb598f93e9a4e2148a2887
-testImports: []

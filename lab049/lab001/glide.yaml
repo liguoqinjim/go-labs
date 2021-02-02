@@ -1,5 +1,0 @@
-package: lab049/lab001
-import:
-- package: github.com/ShionRyuu/gobevtree
-- package: github.com/smartystreets/goconvey
-  version: 1.6.2

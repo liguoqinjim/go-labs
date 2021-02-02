@@ -1,6 +1,0 @@
-hash: fadf4d88d71759f76bd5eb0434f9e001bec188139232b16c18d4a02f45d62cfc
-updated: 2017-05-04T14:53:59.5353362+08:00
-imports:
-- name: github.com/magicsea/behavior3go
-  version: f6322f84e992562c8622eee183296e203edbca5f
-testImports: []
