@@ -1,4 +1,4 @@
-### behavior3go，golang behavior tree
+# behavior3go，golang behavior tree
 
 |实验|简介|
 |---|---|

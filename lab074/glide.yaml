@@ -1,3 +1,0 @@
-package: lab074/lab005
-import:
-- package: github.com/andreburgaud/crypt2go

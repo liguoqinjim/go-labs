@@ -1,6 +1,0 @@
-hash: 26a7b814c72b88f3b19633af51593c6771c59afd962ad0d30c8074b8d3104bf5
-updated: 2018-08-06T18:01:02.397216+08:00
-imports:
-- name: gopkg.in/russross/blackfriday.v2
-  version: cadec560ec52d93835bf2f15bd794700d3a2473b
-testImports: []
