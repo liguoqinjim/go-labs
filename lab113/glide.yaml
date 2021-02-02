@@ -1,3 +1,0 @@
-package: lab113
-import:
-- package: github.com/henrylee2cn/teleport

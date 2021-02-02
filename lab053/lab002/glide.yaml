@@ -1,3 +1,0 @@
-package: lab053/lab002
-import:
-- package: github.com/hoisie/web

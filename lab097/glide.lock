@@ -1,6 +1,0 @@
-hash: 328ed57d862466d3d0fce77125223d0458d5602b585d5adcc66174a9d5e6c1e2
-updated: 2019-05-01T23:50:28.7940166+08:00
-imports:
-- name: github.com/otiai10/gosseract
-  version: 02d1df59ab53ed08b5eb2f5be04751e9f7a8f0a4
-testImports: []

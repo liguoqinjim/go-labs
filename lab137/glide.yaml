@@ -1,5 +1,0 @@
-package: lab137
-import:
-- package: github.com/coreos/etcd
-  subpackages:
-  - clientv3
