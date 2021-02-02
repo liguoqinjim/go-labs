@@ -1,6 +1,0 @@
-hash: cfa9bf3d273bead03662b5da1dbe3a5eef71bded3789537f9c00f0c57ad50fe3
-updated: 2018-12-27T15:46:21.421337+08:00
-imports:
-- name: github.com/spaolacci/murmur3
-  version: f09979ecbc725b9e6d41a297405f65e7e8804acc
-testImports: []

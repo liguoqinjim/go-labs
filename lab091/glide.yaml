@@ -1,3 +1,0 @@
-package: lab091
-import:
-- package: github.com/tidwall/pony

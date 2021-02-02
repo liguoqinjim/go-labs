@@ -1,4 +1,4 @@
-### gomock
+# [gomock](https://github.com/golang/mock/)
 
 安装：`go get -u -v github.com/golang/mock/gomock`
 

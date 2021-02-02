@@ -1,3 +1,0 @@
-package: lab063/lab003
-import:
-- package: github.com/knq/chromedp

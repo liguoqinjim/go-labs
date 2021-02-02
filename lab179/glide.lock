@@ -1,6 +1,0 @@
-hash: ec53c22e2a487e841c6aa46d5a864b3a1ca47e6da4de27f01a624b18176c6ca9
-updated: 2019-05-22T13:41:55.901621+08:00
-imports:
-- name: github.com/segmentio/kafka-go
-  version: 0b3aacc527812d4040e51211146a43545e82d670
-testImports: []

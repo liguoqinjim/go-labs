@@ -1,4 +1,0 @@
-package: lab063/lab001
-import:
-- package: github.com/knq/chromedp
-- package: golang.org/x/image/

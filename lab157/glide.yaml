@@ -1,3 +1,0 @@
-package: lab157
-import:
-- package: github.com/rockisch/appigo

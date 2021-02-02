@@ -1,2 +1,1 @@
-### pony
-`https://github.com/tidwall/pony`
+# [pony](https://github.com/tidwall/pony)

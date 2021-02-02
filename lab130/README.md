@@ -1,4 +1,4 @@
-# gods，Go Data Structures
+# [gods](https://github.com/emirpasic/gods)
 安装：`go get github.com/emirpasic/gods`
 
 |实验|简介|

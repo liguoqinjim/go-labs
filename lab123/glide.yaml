@@ -1,3 +1,0 @@
-package: lab123
-import:
-- package: github.com/sclevine/agouti

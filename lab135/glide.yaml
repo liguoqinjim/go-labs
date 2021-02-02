@@ -1,3 +1,0 @@
-package: lab135
-import:
-- package: github.com/bouk/monkey

@@ -1,3 +1,0 @@
-package: lab180
-import:
-- package: github.com/go-xorm/xorm

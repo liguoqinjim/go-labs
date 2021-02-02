@@ -1,3 +1,0 @@
-package: lab096
-import:
-- package: github.com/xiocode/weigo

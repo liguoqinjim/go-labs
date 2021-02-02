@@ -1,3 +1,0 @@
-package: lab144
-import:
-- package: github.com/go-ini/ini

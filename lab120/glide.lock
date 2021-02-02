@@ -1,6 +1,0 @@
-hash: 3cc8fae307208ba647220a009c5212bd97da2e05dfa85a407de6c1750f26232b
-updated: 2018-01-29T17:54:49.7395202+08:00
-imports:
-- name: github.com/pquerna/ffjson
-  version: d49c2bc1aa135aad0c6f4fc2056623ec78f5d5ac
-testImports: []

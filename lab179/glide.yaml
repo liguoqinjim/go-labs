@@ -1,3 +1,0 @@
-package: lab179
-import:
-- package: github.com/segmentio/kafka-go

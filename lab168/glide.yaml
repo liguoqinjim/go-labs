@@ -1,3 +1,0 @@
-package: lab168
-import:
-- package: github.com/spaolacci/murmur3

@@ -1,6 +1,0 @@
-hash: 50e930ccb3de0e006368f3482a94a5f4d90269ed7f738dd950e29063a7cb7229
-updated: 2017-12-25T17:31:17.7499352+08:00
-imports:
-- name: github.com/Knetic/govaluate
-  version: 9aa49832a739dcd78a5542ff189fb82c3e423116
-testImports: []

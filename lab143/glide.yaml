@@ -1,3 +1,0 @@
-package: lab143
-import:
-- package: github.com/parnurzeal/gorequest

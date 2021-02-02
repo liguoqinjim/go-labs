@@ -1,6 +1,0 @@
-hash: d786489f77abd21aead741f3b9b20ca045e5999e3f10d093b0fc29382693d772
-updated: 2018-10-26T15:39:57.893949+08:00
-imports:
-- name: github.com/go-ini/ini
-  version: 9c8236e659b76e87bf02044d06fde8683008ff3e
-testImports: []

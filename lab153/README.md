@@ -1,4 +1,4 @@
-# [selenium](https://github.com/tebeka/selenium)，Selenium/Webdriver client for Go
+# [selenium](https://github.com/tebeka/selenium)
 
 |实验|简介|说明|
 |---|---|---|
