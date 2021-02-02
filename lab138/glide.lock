@@ -1,8 +1,0 @@
-hash: c5e30d0ba42ca631f08ea2b5255c5b555ac8dbef9782825a87c868d69e1b6af6
-updated: 2018-05-09T15:09:24.5638376+08:00
-imports:
-- name: github.com/paulmach/go.geo
-  version: a3947523092bdabf278b66fffff1a997b14efba7
-- name: github.com/paulmach/go.geojson
-  version: 009733452f4eb8d86c5165a3dcc816c32ed1486d
-testImports: []

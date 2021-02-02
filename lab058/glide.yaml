@@ -1,4 +1,0 @@
-package: lab058
-import:
-- package: github.com/nsqio/go-nsq
-- package: gopkg.in/olivere/elastic.v5

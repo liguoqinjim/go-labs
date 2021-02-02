@@ -1,6 +1,0 @@
-hash: c49923d882dcd39aaec1894e6bc8c04945040e2cd9038bca881112aef0f36598
-updated: 2018-04-24T16:25:38.3859264+08:00
-imports:
-- name: github.com/hpcloud/tail
-  version: 37f4271387456dd1bf82ab1ad9229f060cc45386
-testImports: []

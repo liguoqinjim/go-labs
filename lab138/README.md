@@ -1,5 +1,4 @@
-### go.geo
-github.com/paulmach/go.geo
+# [go.geo](github.com/paulmach/go.geo)
 
 |实验|简介|说明|
 |---|---|---|

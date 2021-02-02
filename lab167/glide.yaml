@@ -1,3 +1,0 @@
-package: lab167
-import:
-- package: github.com/zserge/lorca

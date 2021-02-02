@@ -1,6 +1,0 @@
-hash: 5347c0b4cd19b4624c04fb0ea1210666ce5af2b916f5bc74870f5e291d98e378
-updated: 2018-11-23T15:26:18.2357011+08:00
-imports:
-- name: github.com/zserge/lorca
-  version: 1782770c5680d43cced618ea3bb310cb1d25f868
-testImports: []
