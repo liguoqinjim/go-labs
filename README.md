@@ -260,3 +260,4 @@
 |lab250|gojieba,GoJieba是"结巴"中文分词的Golang语言版本|https://github.com/yanyiwu/gojieba|
 |lab251|mongo-go-driver,The Go driver for MongoDB|https://github.com/mongodb/mongo-go-driver|
 |lab252|notionapi,Unofficial Go API for Notion.so|https://github.com/kjk/notionapi|
+|lab253|gift,Go Image Filtering Toolkit|https://github.com/disintegration/gift|
