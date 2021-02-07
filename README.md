@@ -262,3 +262,4 @@
 |lab252|notionapi,Unofficial Go API for Notion.so|https://github.com/kjk/notionapi|
 |lab253|gift,Go Image Filtering Toolkit|https://github.com/disintegration/gift|
 |lab254|tencentcloud-sdk-go,Tencent Cloud API 3.0 SDK for Golang|https://github.com/TencentCloud/tencentcloud-sdk-go|
+|lab255|sendgrid-go,The Official Twilio SendGrid Led, Community Driven Golang API Library|https://github.com/sendgrid/sendgrid-go|

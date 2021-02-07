@@ -38,6 +38,8 @@ lab051/lab008/gamedata/fightDemo/
 
 *.swp
 
+pkg
+
 lab132/lab001/lab001
 lab132/lab003/lab003
 lab151/lab001/test.mp4
@@ -69,5 +71,4 @@ lab232/data
 lab238/data/wechat
 lab150/lab010/files/
 lab253/testdata/dst_*.png
-
-pkg
+lab255/data
