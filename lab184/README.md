@@ -5,7 +5,7 @@
 |---|---|---|
 |lab001|example|**deprecated** |
 |lab002|测试cron表达式|**deprecated** |
-|lab003|v3 example||
+|lab003|v3 example| |
 
 ## NOTICE
  - v3版本支持秒级
