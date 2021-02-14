@@ -263,3 +263,4 @@
 |lab253|gift,Go Image Filtering Toolkit|https://github.com/disintegration/gift|
 |lab254|tencentcloud-sdk-go,Tencent Cloud API 3.0 SDK for Golang|https://github.com/TencentCloud/tencentcloud-sdk-go|
 |lab255|sendgrid-go,The Official Twilio SendGrid Led, Community Driven Golang API Library。邮件|https://github.com/sendgrid/sendgrid-go|
+|lab256|tablewriter,ASCII table in golang|https://github.com/olekukonko/tablewriter|
