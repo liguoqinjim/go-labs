@@ -5,4 +5,4 @@
 |lab001|example| 
 
 ## 注意点
- `sub, obj, act`，sub是用户，obj是resource，可以理解为API，act就是行为，可以理解为get或者post
+ `sub, obj, act`，sub是用户，obj是resource，可以理解为是API。act就是行为，可以理解为get或者post。

@@ -13,8 +13,8 @@
 [![codebeat badge](https://codebeat.co/badges/1551548b-45ed-4bf3-8ec2-07ca97924a67)](https://codebeat.co/projects/github-com-liguoqinjim-go-labs-master)
 ---
 
-|实验|简介|说明|
-|---|---|---|
+|实验|简介|说明|关键字|
+|---|---|---|---|
 |lab001|package flag的使用| |
 |lab002|解析json，marshal和unmarshal| |
 |lab003|解析json，NewDecoder和NewEncoder| |
@@ -218,8 +218,8 @@
 |lab208|viper,Go configuration with fangs|https://github.com/spf13/viper|
 |lab209|aliyun-oss-go-sdk,Aliyun OSS SDK for Go|https://github.com/aliyun/aliyun-oss-go-sdk|
 |lab210|jwt-go,Golang implementation of JSON Web Tokens (JWT)|https://github.com/dgrijalva/jwt-go|
-|lab211|casbin,An authorization library that supports access control models like ACL, RBAC, ABAC in Golang|https://github.com/casbin/casbin|
-|lab212|gorm-adapter,Gorm adapter for Casbin|https://github.com/casbin/gorm-adapter|
+|lab211|casbin,An authorization library that supports access control models like ACL, RBAC, ABAC in Golang|https://github.com/casbin/casbin|权限|
+|lab212|gorm-adapter,Gorm adapter for Casbin|https://github.com/casbin/gorm-adapter|权限|
 |lab213|go-toml,Go library for the TOML language|https://github.com/pelletier/go-toml|
 |lab214|在docker中运行go项目| |
 |lab215|httpexpect,End-to-end HTTP and REST API testing for Go.|https://github.com/gavv/httpexpect|
@@ -262,6 +262,6 @@
 |lab252|notionapi,Unofficial Go API for Notion.so|https://github.com/kjk/notionapi|
 |lab253|gift,Go Image Filtering Toolkit|https://github.com/disintegration/gift|
 |lab254|tencentcloud-sdk-go,Tencent Cloud API 3.0 SDK for Golang|https://github.com/TencentCloud/tencentcloud-sdk-go|
-|lab255|sendgrid-go,The Official Twilio SendGrid Led, Community Driven Golang API Library。邮件|https://github.com/sendgrid/sendgrid-go|
+|lab255|sendgrid-go,The Official Twilio SendGrid Led, Community Driven Golang API Library。|https://github.com/sendgrid/sendgrid-go|邮件|
 |lab256|tablewriter,ASCII table in golang|https://github.com/olekukonko/tablewriter|
 |lab257|color,Color package for Go (golang)|https://github.com/fatih/color|
