@@ -265,3 +265,4 @@
 |lab255|sendgrid-go,The Official Twilio SendGrid Led, Community Driven Golang API Library。|https://github.com/sendgrid/sendgrid-go|邮件|
 |lab256|tablewriter,ASCII table in golang|https://github.com/olekukonko/tablewriter|
 |lab257|color,Color package for Go (golang)|https://github.com/fatih/color|
+|lab258|gen,Converts a database into gorm structs and RESTful api|https://github.com/smallnest/gen|
