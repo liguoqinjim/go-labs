@@ -16,6 +16,11 @@ gen --sqltype=mysql --connstr="root:$MYSQL_PASSWORD@tcp($MYSQL_HOST:3306)/resear
 gen --sqltype=mysql --connstr="root:$MYSQL_PASSWORD@tcp(txcent001:3306)/research_report" --database=research_report --out=. --model=model2 --gorm --json --overwrite --file_naming="{{( replace . \"t_\" \"\" 0)}}" --model_naming="{{ toSnakeCase ( replace . \"t_\" \"\") }}" --mapping="extra.json"
 ```
 
-### template
+### Postgresql
+```
+gen --sqltype=postgres --connstr="host=127.0.0.1 user=postgres password=$POSTGRES_PASSWORD dbname=test port=5432 sslmode=disable TimeZone=Asia/Shanghai" --database=test --out=. --model=model --gorm --json --overwrite
+```
+
+### 默认template
  - 保存：`gen --save=./templates`
 
