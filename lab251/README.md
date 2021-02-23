@@ -2,7 +2,7 @@
 
 |实验|简介|说明|
 |---|---|---|
-|lab001|demo||
+|lab001|demo|链接，查询 |
 
 ## 参考资料
  - https://www.mongodb.com/golang
