@@ -6,7 +6,7 @@ import (
 	"github.com/snowzach/rotatefilehook"
 )
 
-func init() {
+func initLogrus() {
 	var logLevel = logrus.DebugLevel
 	var logTimeFormat = "060102-150405"
 
@@ -35,4 +35,8 @@ func init() {
 		TimestampFormat: logTimeFormat,
 	})
 	logrus.AddHook(rotateFileHook)
+}
+
+func init() {
+	initLogrus()
 }
