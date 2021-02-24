@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"lab259/lab001/sub"
+	"log"
 )
 
 func foo() {
@@ -20,14 +20,31 @@ func foo() {
 }
 
 func main() {
-	//foo()
+	//当前的包
+	{
+		//foo()
+	}
 
-	defer func() {
-		if r := recover(); r != nil {
-			fmt.Printf("捕获到的错误：%s\n", r)
-		}
-	}()
+	//别的包
+	{
+		//defer func() {
+		//	if r := recover(); r != nil {
+		//		fmt.Printf("捕获到的错误：%s\n", r)
+		//	}
+		//}()
+		//
+		////sub.SubFoo()
+		//sub.SubFoo2()
+	}
 
-	//sub.SubFoo()
-	sub.SubFoo2()
+	//fatal
+	{
+		defer func() {
+			if r := recover(); r != nil {
+				fmt.Printf("捕获到的错误：%s\n", r)
+			}
+		}()
+
+		log.Fatalf("fatal退出")
+	}
 }
