@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+
 	"go.uber.org/zap"
 )
 
@@ -17,7 +18,7 @@ func main() {
 	rawJSON := []byte(`{
 	  "level": "debug",
 	  "encoding": "json",
-	  "outputPaths": ["stdout", "./logs"],
+	  "outputPaths": ["stdout", "/tmp/logs"],
 	  "errorOutputPaths": ["stderr"],
 	  "initialFields": {"foo": "bar"},
 	  "encoderConfig": {
