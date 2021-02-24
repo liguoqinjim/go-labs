@@ -50,6 +50,7 @@ func getEncoder() zapcore.Encoder {
 	encoderConfig.EncodeTime = customTimeEncoder
 	//定义日志中的 日志级别显示和颜色
 	encoderConfig.EncodeLevel = zapcore.CapitalColorLevelEncoder
+
 	return zapcore.NewConsoleEncoder(encoderConfig)
 }
 
