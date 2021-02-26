@@ -5,4 +5,5 @@
 |lab001|demo|链接，查询 |
 
 ## 参考资料
+ - [文档](https://pkg.go.dev/go.mongodb.org/mongo-driver/mongo#section-documentation)
  - https://www.mongodb.com/golang
