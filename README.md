@@ -268,3 +268,4 @@
 |lab258|gen,Converts a database into gorm structs and RESTful api|https://github.com/smallnest/gen|
 |lab259|捕获错误,panic recover fatal exit| |
 |lab260|dateparse,GoLang Parse many date strings without knowing format in advance.|https://github.com/araddon/dateparse|time，时间解析|
+|lab261|tag,ID3, MP4 and OGG/FLAC metadata parsing in Go|https://github.com/dhowden/tag|
