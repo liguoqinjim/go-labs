@@ -11,7 +11,8 @@ func main() {
 }
 
 func demo() {
-	f, err := os.Open("../data/output.mp3")
+	//f, err := os.Open("../data/output.mp3")
+	f, err := os.Open("../../lab262/data/test.mp3")
 	if err != nil {
 		log.Fatalf("os.Open error:%v", err)
 	}
