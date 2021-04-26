@@ -13,6 +13,7 @@
  - `@Router /testapi/get-string-by-int/{some_id} [get]`，这个url要加上`@BasePath /api/v1`，才是最终的url
  - 可以在启动的时候指定doc.json的位置，在disablingWrapHandler里面用的是默认的配置，需要修改的话要用disablingCustom
  - `// @Param p query param.GroupQuery false "搜索条件"` 可以这样直接加上所有的query字段
+ - 访问地址：`http://localhost:30100/swagger/index.html`
 
 ## 参考资料
  - https://github.com/iris-contrib/swagger
