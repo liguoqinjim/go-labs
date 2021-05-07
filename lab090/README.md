@@ -12,3 +12,4 @@
 |lab007|get参数测试| |
 |lab008|gzip| |
 |lab009|post| |
+|lab010|retry| |
