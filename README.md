@@ -271,3 +271,4 @@
 |lab261|tag,ID3, MP4 and OGG/FLAC metadata parsing in Go|https://github.com/dhowden/tag|
 |lab262|tag,Parsing/editing tags ID3, MP4, FLAC|https://github.com/frolovo22/tag|
 |lab263|images,Image similarity in Golang|https://github.com/vitali-fedulov/images|
+|lab264|go build|go程序打包|
