@@ -8,3 +8,7 @@
 
 ## 效果
 ![Imgur](https://imgur.com/VDmEjNT)
+
+## 参考资料
+ - https://abelsu7.top/2019/10/24/go-build-compress-using-upx/
+ - https://www.jianshu.com/p/cd3c766b893c
