@@ -272,3 +272,4 @@
 |lab262|tag,Parsing/editing tags ID3, MP4, FLAC|https://github.com/frolovo22/tag|
 |lab263|images,Image similarity in Golang|https://github.com/vitali-fedulov/images|
 |lab264|go build|go程序打包|
+|lab265|判断当前系统| |
