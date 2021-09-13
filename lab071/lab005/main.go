@@ -18,7 +18,7 @@ func main() {
 		ids[n] = make([]string, 6)
 
 		for j := range ids[n] {
-			ids[n][j] = strconv.Itoa((n - 1) * j)
+			ids[n][j] = strconv.Itoa((n + 1) * j)
 		}
 	}
 

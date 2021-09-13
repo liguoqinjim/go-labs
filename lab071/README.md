@@ -6,7 +6,7 @@
 |lab002|Must| |
 |lab003|ParseFiles| |
 |lab004|ParseGlob| |
-|lab005|遍历slice|{{index . 3}}|
+|lab005|遍历slice|还可以参考readme例子|
 |lab006|遍历map| |
 
 ## NOTICE
