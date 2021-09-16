@@ -18,3 +18,6 @@
 ## iris模板
  - 模板在github里面有一个专门的库，TODO
  - 之后模板可能会用到iris-cli，但是现在这个库还在测试阶段还没有完成(https://github.com/kataras/iris-cli)
+
+## NOTICE 
+ - readQuery读取的tag是url，json是没用的。不正确的话会报错schema:invalid path
