@@ -138,7 +138,7 @@
 |lab128|gorm,The fantastic ORM library for Golang|https://github.com/jinzhu/gorm|
 |lab129|sync.Map和map| |
 |lab130|gods，Go Data Structures|https://github.com/emirpasic/gods|
-|lab131|url.ParseQuery,urldecode| |
+|lab131|url.ParseQuery|urldecode,urlencode,QueryUnescape,QueryEscape |
 |lab132|ping的几个库| |
 |lab133|tail|https://github.com/hpcloud/tail|
 |lab134|go-zookeeper|https://github.com/samuel/go-zookeeper |
