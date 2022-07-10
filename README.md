@@ -274,4 +274,5 @@
 |lab264|go build|go程序打包|
 |lab265|判断当前系统| |
 |lab266|ip地址十进制转换| |
-|lab267|goproxy,An HTTP proxy library for Go|like fiddler |
+|lab267|goproxy,An HTTP proxy library for Go|https://github.com/elazarl/goproxy,like fiddler |
+|lab268|goproxy,Proxy是golang实现的高性能http,https,websocket,tcp,socks5代理服务器|https://github.com/snail007/goproxy|
