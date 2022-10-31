@@ -75,7 +75,7 @@
 |lab064|mgo,MongoDB driver|https://github.com/globalsign/mgo|
 |lab065|lxn/walk,A Windows GUI toolkit| |
 |lab066|net/http client相关| |
-|lab067|goquery|https://github.com/PuerkitoBio/goquery|
+|lab067|goquery,css selector|https://github.com/PuerkitoBio/goquery|
 |lab068|对象池 sync.Pool| |
 |lab069|funny/slab,Slab allocation memory pools for Go.|https://github.com/funny/slab |
 |lab070|golang的值传递和引用传递| |
