@@ -1,0 +1,4 @@
+github.com/sashabaranov/go-gpt3 v0.0.0-20221202105456-0f9f4aa343ad h1:xuO52/X2TArHVbDISrxXasZrDhdsSGABAR5sJrePVGU=
+github.com/sashabaranov/go-gpt3 v0.0.0-20221202105456-0f9f4aa343ad/go.mod h1:BIZdbwdzxZbCrcKGMGH6u2eyGe1xFuX9Anmh3tCP8lQ=
+github.com/solywsh/chatgpt v0.0.13 h1:eQJdHYDzeJwHfZphVN3dvxPpYh6X2SIXHjI3y2mt1tE=
+github.com/solywsh/chatgpt v0.0.13/go.mod h1:UoxQKJbI2M22YNiJgrtRDiPfyggJb0qm0qYqMSkxll8=
