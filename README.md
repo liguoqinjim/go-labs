@@ -20,7 +20,7 @@
 |lab003|解析json，NewDecoder和NewEncoder| |
 |lab004|解析json，go-simplejson|https://github.com/bitly/go-simplejson|
 |lab005|得到程序本身的路径| |
-|lab006|读取文件| |
+|lab006|读取文件|读取文件时间 |
 |lab007|写入文件| |
 |lab009|mysql，原生sql操作| |
 |lab013|读取StructTag| |
