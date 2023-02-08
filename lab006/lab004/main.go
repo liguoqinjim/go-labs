@@ -54,11 +54,14 @@ func main() {
 		// 获取文件原来的访问时间，修改时间
 		finfo, _ := os.Stat(files[i])
 
-		// linux环境下代码如下
+		// darwin环境下代码如下
 		linuxFileAttr := finfo.Sys().(*syscall.Stat_t)
 		fmt.Println("文件创建时间", SecondToTime(linuxFileAttr.Ctimespec.Sec))
-		fmt.Println("最后访问时间", SecondToTime(linuxFileAttr.Ctimespec.Sec))
-		fmt.Println("最后修改时间", SecondToTime(linuxFileAttr.Ctimespec.Sec))
+		fmt.Println("最后访问时间", SecondToTime(linuxFileAttr.Atimespec.Sec))
+		fmt.Println("最后修改时间", SecondToTime(linuxFileAttr.Mtimespec.Sec))
+
+		//linux
+		//参考 go-tools/tool093
 
 		// windows下代码如下
 		//winFileAttr := finfo.Sys().(*syscall.Win32FileAttributeData)
