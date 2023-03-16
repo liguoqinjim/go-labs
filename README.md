@@ -278,3 +278,4 @@
 |lab268|goproxy,Proxy是golang实现的高性能http,https,websocket,tcp,socks5代理服务器|https://github.com/snail007/goproxy|
 |lab269|base64Captcha,captcha of base64 image string|https://github.com/mojocn/base64Captcha|
 |lab270|chatgpt,chatgpt client for golang|https://github.com/solywsh/chatgpt|
+|lab271|go-openai,OpenAI ChatGPT, GPT-3, GPT-4, DALL·E, Whisper API wrapper for Go|https://github.com/sashabaranov/go-openai|
