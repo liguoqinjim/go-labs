@@ -111,7 +111,7 @@
 |lab101|expvar| |
 |lab102|timejump，Time jumper for testing in Go| |
 |lab103|go-httpbin，golang实现的httpbin.org| |
-|lab104|go.uuid，UUID package for Go| |
+|lab104|go.uuid，UUID package for Go|https://github.com/satori/go.uuid |
 |lab105|压缩| |
 |lab106|wechat-go,go version wechat web api and message framework for building wechat robot| |
 |lab107|govaluate，Arbitrary expression evaluation for golang| |
