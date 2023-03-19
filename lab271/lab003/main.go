@@ -23,8 +23,12 @@ func main() {
 		Model: openai.GPT3Dot5Turbo0301,
 		Messages: []openai.ChatCompletionMessage{
 			{
+				Role:    openai.ChatMessageRoleSystem,
+				Content: "You are ChatGPT, a large language model trained by OpenAI. Answer as concisely as possible.\nKnowledge cutoff: 2021-09-21\nCurrent date: 2023-03-18",
+			},
+			{
 				Role:    openai.ChatMessageRoleUser,
-				Content: "帮忙写一篇30字左右的周报",
+				Content: "你知道今天是几号吗?",
 			},
 		},
 		Stream: true,
@@ -48,6 +52,6 @@ func main() {
 			return
 		}
 
-		fmt.Printf("Stream response: %v\n", response)
+		fmt.Printf("Stream response: %+v\n", response)
 	}
 }
