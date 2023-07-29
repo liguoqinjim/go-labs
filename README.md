@@ -280,3 +280,4 @@
 |lab270|chatgpt,chatgpt client for golang|https://github.com/solywsh/chatgpt|
 |lab271|go-openai,OpenAI ChatGPT, GPT-3, GPT-4, DALL·E, Whisper API wrapper for Go|https://github.com/sashabaranov/go-openai|
 |lab272|whisper.cpp,Port of OpenAI's Whisper model in C/C++|https://github.com/ggerganov/whisper.cpp|
+|lab273|go-toml v2|https://github.com/pelletier/go-toml|
