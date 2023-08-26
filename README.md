@@ -281,3 +281,4 @@
 |lab271|go-openai,OpenAI ChatGPT, GPT-3, GPT-4, DALL·E, Whisper API wrapper for Go|https://github.com/sashabaranov/go-openai|
 |lab272|whisper.cpp,Port of OpenAI's Whisper model in C/C++|https://github.com/ggerganov/whisper.cpp|
 |lab273|go-toml v2|https://github.com/pelletier/go-toml|
+|lab274|go-ticktick,A go library for ticktick and dida365(滴答清单)|github.com/ziyixi/go-ticktick|
