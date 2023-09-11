@@ -30,11 +30,11 @@ func main() {
 		AllDay:      false,
 		StartDate:   "",
 		DueDate:     "",
-		TimeZone:    "",
+		TimeZone:    "Asia/Shanghai",
 		Reminders:   nil,
 		Repeat:      "",
-		Priority:    0,
-		SortOrder:   0,
+		Priority:    5,                    //红色
+		SortOrder:   -9223372036854775000, //这样可以排序在最前面
 		Kind:        "",
 		Status:      0,
 	}
