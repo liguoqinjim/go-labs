@@ -284,3 +284,5 @@
 |lab274|go-ticktick,A go library for ticktick and dida365(滴答清单)|github.com/ziyixi/go-ticktick|
 |lab275|m3u,A basic golang m3u playlist parser|https://github.com/jamesnetherton/m3u|
 |lab276|go-m3u8,Parse and generate m3u8 playlists for Apple HTTP Live Streaming (HLS) in Golang|https://github.com/quangngotan95/go-m3u8|
+|lab277|m3u,fork|https://github.com/liguoqinjim/m3u|
+
